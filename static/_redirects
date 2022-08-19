@@ -1,2 +1,2 @@
 /admin/* 200!  Role=admin
-/admin/* https://edit_wars.com/login 302!
+/admin/* https://edit-wars.netlify.app/login 302!

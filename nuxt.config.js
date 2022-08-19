@@ -187,7 +187,7 @@ export default {
     },
   },
   sitemap: {
-      hostname: "https://weavingechoes.xyz",
+      hostname: "https://edit-wars.netlify.app/",
       routes: [
         '/about'
       ]
