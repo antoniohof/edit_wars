@@ -187,7 +187,6 @@ export default {
     },
   },
   sitemap: {
-    hostname: 'https://',
       routes: [
         '/about'
       ]
