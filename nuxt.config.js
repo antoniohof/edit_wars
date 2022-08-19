@@ -82,7 +82,6 @@ export default {
     '@nuxtjs/i18n'
   ],
   i18n: {
-    baseUrl: 'https://',
     strategy: 'no_prefix',
     locales: [
       {

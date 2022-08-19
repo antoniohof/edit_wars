@@ -1,2 +1,2 @@
 /admin/* 200!  Role=admin
-/admin/* https://TODO/login 302!
+/admin/* https://edit_wars.com/login 302!
