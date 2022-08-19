@@ -187,6 +187,7 @@ export default {
     },
   },
   sitemap: {
+      hostname: "https://weavingechoes.xyz",
       routes: [
         '/about'
       ]
