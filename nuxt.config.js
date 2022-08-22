@@ -26,13 +26,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+      /*
       {
         rel: 'preload',
         as: 'image',
         href: '/img/map.webp',
         type: "image/webp"
       },
-      /*
       {
         rel: 'preload',
         href: 'fonts/PanamaItalic/PanamaItalic.woff',
