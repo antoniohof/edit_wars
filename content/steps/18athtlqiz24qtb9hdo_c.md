@@ -1,9 +1,11 @@
 ---
 uuid: 18ATHtlQiZ24qtb9Hdo_C
-name: Step Doido
-duration: "100"
-order: 2
-component: StepDoido
-body_en: " En ACho que esse nao existe"
-body_ru: " RU ACho que esse nao existe"
+name: Step Paralaxe Cabecudo
+duration: "1000"
+order: 4
+component: StepParalaxe
+body_en: "![](/img/93-935982_deciduous-tree-png-transparent-background-tree-bla\
+  ck-and.png)"
+body_ru: "![](/img/93-935982_deciduous-tree-png-transparent-background-tree-bla\
+  ck-and.png)"
 ---
