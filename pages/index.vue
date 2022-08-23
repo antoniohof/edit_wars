@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import 'intersection-observer' // for cross-browser support
-import Scrollama from 'vue-scrollama' // local registration in this example, can also be globally registered
 
 export default {
   head () {
@@ -44,7 +42,6 @@ export default {
    
   },
   components: {
-    Scrollama
   },
   async asyncData({ $content }) {
   },

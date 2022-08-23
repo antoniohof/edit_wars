@@ -50,6 +50,8 @@ export default {
       */
     ],
     script: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+
     ]
   },
   ssr: true,
@@ -61,7 +63,12 @@ export default {
   plugins: [
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-js-toggle-button.js',
-    { src: '~/plugins/nuxt-swiper-plugin.js', mode: 'client' }
+    { src: '~/plugins/nuxt-swiper-plugin.js', mode: 'client' },
+    '~/plugins/vue-scrollama.js',
+    {
+      src: '~plugins/vue-scrollmagic.js',
+      ssr: false
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -89,8 +96,8 @@ export default {
         iso: 'en-US'
       },
       {
-        code: 'de',
-        iso: 'de-DE'
+        code: 'ru',
+        iso: 'ru-RU'
       }
     ],
     detectBrowserLanguage: {

@@ -52,7 +52,7 @@ export default {
       setTimeout(() => {
         window.location = "https://edit-wars.netlify.app/admin/#"
       }, 200)
-    });
+    })
   },
   data() {
     return {
