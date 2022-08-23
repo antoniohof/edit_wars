@@ -31,6 +31,7 @@ collections:
       - { label: 'Name', name: 'name', widget: string }
       - { label: 'Duration', name: 'duration', widget: 'string', default: '100' }
       - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 0, step: 1 }
+      - { label: 'Vue Component', name: 'component', widget: 'string' }
       - { label: 'Body EN', name: 'body_en', widget: markdown }
       - { label: 'Body RU', name: 'body_ru', widget: markdown }
     editor:
