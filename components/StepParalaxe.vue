@@ -17,8 +17,6 @@ export default {
     }
   },
   mounted () {
-    console.log('montou comp step: ', this.step.name)
-    console.log('scrollbox', this.$refs.scrollBox)
   },
   async asyncData({ $content }) {
   },

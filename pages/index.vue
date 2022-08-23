@@ -1,6 +1,14 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+    <div
+      class="sticky-div-container"
+    >
+      <div class="sticky-div" v-if="showSticky">
+        asdadasdasd
+      </div>
+    </div>
     <Scrollama 
+    class="scrollama"
     :debug="true"
     @step-enter="stepEnterHandler" 
     @step-exit="stepExitHandler"
@@ -36,6 +44,8 @@ export default {
     })
   },
   mounted () {
+    console.log(this.steps)
+    this.steps[this.currStep]
   },
   activated () {
   },
@@ -43,11 +53,14 @@ export default {
   },
   data () {
     return {
-      currStep: null,
+      currStep: 0,
       currStepProgress: 0
     }
   },
   computed: {
+    showSticky () {
+      return this.steps && this.steps[parseInt(this.currStep)] && this.steps[parseInt(this.currStep)].stickycomponent ? true : false
+    }
   },
   components: {
   },
@@ -76,10 +89,7 @@ export default {
 
     },
     getStepProgress (step) {
-      console.log('step', step)
-      console.log('curstep', this.currStep)
       const curStepNum = parseInt(this.currStep)
-      console.log(this.currStepProgress)
       if (step === curStepNum) {
         return this.currStepProgress
       }
@@ -104,6 +114,9 @@ export default {
   display: flex
   justify-content: center
   width: 100vw
+
+.scrollama
+  position: absolute
 .scrollama__steps
   width: 100%
   display: flex
@@ -120,4 +133,23 @@ export default {
   margin-bottom: 100px
 
 .step.active
+
+.sticky-div-container
+  min-width: 100vw
+  left: 0
+  height: 300px
+  width: 100vw
+  top: 0
+  position: sticky
+  display: flex
+  flex-direction: column
+  justify-content: center
+  color: blue
+  font-size: 100px
+  overflow: visible
+.sticky-div
+  position: sticky
+  height: 100%
+  display: flex
+  justify-content: center
 </style>
