@@ -24,8 +24,8 @@ collections:
     folder: content/steps
     format: 'frontmatter'
     create: true
-    slug: '{{name}}{{slug}}'
-    identifier_field: uuid
+    slug: '{{uuid}}'
+    identifier_field: name
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
