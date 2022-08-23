@@ -1,12 +1,13 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
-    <div
-      class="sticky-div-container"
-    >
-      <div class="sticky-div" v-if="showSticky">
-        asdadasdasd
+    <transition name="fade">
+      <div
+        class="sticky-div-container"
+        v-if="showSticky"
+      >
+        <LazyNuxtDynamic class='sticky' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStepObj.order)" />
       </div>
-    </div>
+    </transition>
     <Scrollama 
     class="scrollama"
     :debug="true"
@@ -58,8 +59,11 @@ export default {
     }
   },
   computed: {
-    showSticky () {
+    showSticky () { // se o prox tem sticky... se brotar so quando tiver nele vai ficar ruim
       return this.steps && this.steps[parseInt(this.currStep)] && this.steps[parseInt(this.currStep)].stickycomponent ? true : false
+    },
+    currStepObj () {
+      return this.steps[parseInt(this.currStep)]
     }
   },
   components: {
@@ -137,19 +141,15 @@ export default {
 .sticky-div-container
   min-width: 100vw
   left: 0
-  height: 300px
+  height: fit-content
   width: 100vw
   top: 0
   position: sticky
   display: flex
   flex-direction: column
   justify-content: center
-  color: blue
   font-size: 100px
   overflow: visible
-.sticky-div
-  position: sticky
-  height: 100%
-  display: flex
-  justify-content: center
+
+
 </style>
