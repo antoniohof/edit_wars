@@ -143,13 +143,12 @@ export default {
   left: 0
   height: fit-content
   width: 100vw
+  heigh: 100vh
   top: 0
   position: sticky
   display: flex
   flex-direction: column
   justify-content: center
-  font-size: 100px
   overflow: visible
-
 
 </style>

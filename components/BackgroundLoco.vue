@@ -1,6 +1,7 @@
 <template>
   <v-container class="step-component" fluid>
-    Background        do curupira
+    <nuxt-content class='step-component_content' :document="step[currentBody]" />
+    {{progress}}
   </v-container>
 </template>
 
@@ -8,7 +9,7 @@
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
-  name: 'StickyTextCurupira',
+  name: 'BackgroundLoco',
   mixins: [StepMixin],
   data() {
     return {
@@ -34,14 +35,11 @@ export default {
 
 .step-component
   display: flex
-  position: absolute
-  top: 0
   flex-direction: column
   align-content: flex-start
-  width: 100%
-  margin-bottom: 200px
-  height: 1000px !important
-  justify-content: center
-  font-size: 100px
-  text-align: center
+  width: 100vw
+  height: fit-content
+  &_content
+    color: white
+    background-color: black
 </style>

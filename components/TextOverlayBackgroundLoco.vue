@@ -1,6 +1,6 @@
 <template>
   <v-container class="step-component" fluid>
-    Background        do curupira
+        E foi ai que eles se foderam
   </v-container>
 </template>
 
@@ -8,7 +8,7 @@
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
-  name: 'StickyTextCurupira',
+  name: 'TextOverlayBackgroundLoco',
   mixins: [StepMixin],
   data() {
     return {
@@ -39,9 +39,11 @@ export default {
   flex-direction: column
   align-content: flex-start
   width: 100%
+  color: red
   margin-bottom: 200px
   height: 1000px !important
   justify-content: center
   font-size: 100px
+  z-index: 1000
   text-align: center
 </style>
