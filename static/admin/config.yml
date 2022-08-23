@@ -23,12 +23,16 @@ collections:
     name: 'steps'
     folder: content/steps
     format: 'frontmatter'
-    slug: '{{slug}}'
+    create: true
+    slug: '{{name}}{{slug}}'
     identifier_field: uuid
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
+      - { label: 'Name', name: 'name', widget: string }
       - { label: 'Duration', name: 'duration', widget: 'string', default: '100' }
       - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 0, step: 1 }
       - { label: 'Body EN', name: 'body_en', widget: markdown }
       - { label: 'Body RU', name: 'body_ru', widget: markdown }
+    editor:
+      preview: false
 
