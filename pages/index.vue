@@ -5,7 +5,7 @@
         class="sticky-div-container"
         v-if="showSticky"
       >
-        <LazyNuxtDynamic class='sticky' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStepObj.order)" />
+        <LazyNuxtDynamic class='sticky' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <Scrollama 
@@ -21,7 +21,7 @@
         :data-step-no="index"
         :class="{ active: index == currStep }"
       >
-        <LazyNuxtDynamic :component="step.component" :step="step" :progress="getStepProgress(step.order)" />
+        <LazyNuxtDynamic :component="step.component" :step="step" :progress="getStepProgress(index)" />
       </div>
     </Scrollama>
   </v-container>
