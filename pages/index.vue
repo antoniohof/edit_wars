@@ -15,11 +15,11 @@
     @step-exit="stepExitHandler"
     @step-progress="({ progress }) => (currStepProgress = progress)">
       <div
-        v-for="step in steps"
+        v-for="(step, index) in steps"
         :key="step.uuid"
         class="step"
-        :data-step-no="step.order"
-        :class="{ active: step.order == currStep }"
+        :data-step-no="index"
+        :class="{ active: index == currStep }"
       >
         <LazyNuxtDynamic :component="step.component" :step="step" :progress="getStepProgress(step.order)" />
       </div>
