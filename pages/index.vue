@@ -1,22 +1,20 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
-    <div class='home_container'>
-      <Scrollama 
-      :debug="true"
-      @step-enter="stepEnterHandler" 
-      @step-exit="stepExitHandler"
-      :offset="0.2">
-        <div
-          v-for="n in 4"
-          :key="n"
-          class="step"
-          :data-step-no="n"
-          :class="{ active: n == currStep }"
-        >
-          step {{ n }}
-        </div>
-      </Scrollama>
-    </div>
+    <Scrollama 
+    :debug="true"
+    @step-enter="stepEnterHandler" 
+    @step-exit="stepExitHandler"
+    :offset="0.2">
+      <div
+        v-for="step in steps"
+        :key="step.uuid"
+        class="step"
+        :data-step-no="step.order"
+        :class="{ active: step.order == currStep }"
+      >
+        <LazyNuxtDynamic :component="step.component" :step="step" />
+      </div>
+    </Scrollama>
   </v-container>
 </template>
 
@@ -28,6 +26,7 @@ export default {
     }
   },
   mounted () {
+    console.log('steps', this.steps)
   },
   activated () {
   },
@@ -43,7 +42,17 @@ export default {
   },
   components: {
   },
-  async asyncData({ $content }) {
+  async asyncData({ $content, params, error }) {
+    let steps
+    try {
+      // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
+      steps = await $content('steps').sortBy('order').fetch()
+    } catch (e) {
+      error({ message: 'steps list not found' })
+    }
+    return {
+      steps
+    }
   },
   methods: {
     stepEnterHandler ({element, index, direction}) {
@@ -63,14 +72,10 @@ export default {
 
 <style lang="sass" scoped>
 .home
-  height: 100%
+  height: 100vh
   display: flex
   justify-content: center
   width: 100vw
-  &_container
-    height: 100vh
-    width: 100vw
-
 .scrollama__steps
   width: 100%
 .step

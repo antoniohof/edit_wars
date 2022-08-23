@@ -86,7 +86,8 @@ export default {
     '@nuxt/content',
     '@nuxtjs/style-resources',
     '@nuxtjs/sitemap',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@blokwise/dynamic'
   ],
   i18n: {
     strategy: 'no_prefix',

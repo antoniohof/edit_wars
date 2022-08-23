@@ -8,14 +8,18 @@
         elevation="0"
         class="topbar"
         color="transparent"
+        justify-space-around
       >
-      APP HEADER
         <NuxtLink
           class="topbar_item justify-end about"
           to="/about"
         >
           {{ $t('about') }}
         </NuxtLink>
+        <v-spacer></v-spacer>
+        <div class='changelang' @click="onChangeLanguage">
+          Click to change lang to:  {{languageToChange}}
+        </div>
       </v-app-bar>
     </transition>
     <v-main class='main'>
@@ -45,6 +49,9 @@ export default {
   computed: {
     isEnglish () {
       return this.$i18n.locale === 'en'
+    },
+    languageToChange () {
+      return this.isEnglish ? 'ru' : 'en'
     }
   },
   mounted() {
@@ -90,5 +97,7 @@ export default {
   color: white
   width: 100vw
   background-image: red
-  justify-content: space-between
+
+.changelang
+  cursor: pointer
 </style>
