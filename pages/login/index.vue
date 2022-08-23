@@ -1,0 +1,55 @@
+<template>
+  <v-container fluid class="home ma-0 pa-0">
+    <div class='home_container'>
+    </div>
+  </v-container>
+</template>
+
+<script>
+
+export default {
+  head () {
+    return {
+      
+    }
+  },
+  mounted () {
+    netlifyIdentity.open()
+  },
+  activated () {
+  },
+  updated () {
+  },
+  data () {
+    return {
+    }
+  },
+  scrollToTop: false,
+  computed: {
+   
+  },
+  components: {},
+  async asyncData({ $content }) {
+  },
+  methods: {
+  }
+}
+</script>
+
+<style lang="sass" scoped>
+.home
+  position: absolute
+  z-index: -1
+  height: 100%
+  // height: 200vh (scroll?)
+  display: flex
+  justify-content: center
+  &_container
+    z-index: -1
+    height: 100vh
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+
+</style>
