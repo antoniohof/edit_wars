@@ -4,7 +4,7 @@
     :debug="true"
     @step-enter="stepEnterHandler" 
     @step-exit="stepExitHandler"
-    :offset="0.2">
+    @step-progress="({ progress }) => (currStepProgress = progress)">
       <div
         v-for="step in steps"
         :key="step.uuid"
@@ -12,21 +12,30 @@
         :data-step-no="step.order"
         :class="{ active: step.order == currStep }"
       >
-        <LazyNuxtDynamic :component="step.component" :step="step" />
+        <LazyNuxtDynamic :component="step.component" :step="step" :progress="getStepProgress(step.order)" />
       </div>
     </Scrollama>
   </v-container>
 </template>
 
 <script>
+import Vue from 'vue'
 
 export default {
   head () {
     return {
     }
   },
+  beforeMount () {
+    // check if each step components exist, if not set to load default
+    this.steps.forEach((step) => {
+      let componentExists = step.component in Vue.options.components
+      if (!componentExists) {
+        step.component = 'DefaultComponent'
+      }
+    })
+  },
   mounted () {
-    console.log('steps', this.steps)
   },
   activated () {
   },
@@ -34,11 +43,11 @@ export default {
   },
   data () {
     return {
-      currStep: null
+      currStep: null,
+      currStepProgress: 0
     }
   },
   computed: {
-   
   },
   components: {
   },
@@ -65,6 +74,21 @@ export default {
     },
     stepExitHandler ({element, index, direction}) {
 
+    },
+    getStepProgress (step) {
+      console.log('step', step)
+      console.log('curstep', this.currStep)
+      const curStepNum = parseInt(this.currStep)
+      console.log(this.currStepProgress)
+      if (step === curStepNum) {
+        return this.currStepProgress
+      }
+      if (step < curStepNum) {
+        return 100
+      }
+      if (step > curStepNum) {
+        return 0
+      }
     }
   }
 }
@@ -72,7 +96,7 @@ export default {
 
 <style lang="sass" scoped>
 .home
-  height: 100vh
+  height: 100%
   display: flex
   justify-content: center
   width: 100vw

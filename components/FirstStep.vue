@@ -1,19 +1,16 @@
 <template>
   <v-container class="step-component" fluid>
     <nuxt-content class='step-component_content' :document="step[currentBody]" />
+    {{progress}}
   </v-container>
 </template>
 
 <script>
+import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
   name: 'FirstStep',
-  props: {
-    step: {
-        type: Object,
-        required: true
-    }
-  },
+  mixins: [StepMixin],
   data() {
     return {
     }
@@ -24,21 +21,17 @@ export default {
   async asyncData({ $content }) {
   },
   computed: {
-    currentBody () {
-      return 'body_' + this.$i18n.locale
-    }
   },
-  components: {},
-
   methods: {
   },
+
   watch: {
 
   }
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .step-component
   display: flex
@@ -46,4 +39,7 @@ export default {
   align-content: flex-start
   width: 100%
   margin-bottom: 200px
+  &_content
+    color: white
+    background-color: black
 </style>
