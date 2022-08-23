@@ -93,6 +93,10 @@ export default {
   }
 }
 </script>
+<style lang="sass">
+.scrollama__debug-offset
+  border-top: 2px dashed red !important
+</style>
 
 <style lang="sass" scoped>
 .home
@@ -102,16 +106,18 @@ export default {
   width: 100vw
 .scrollama__steps
   width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
 .step
-  padding: 15vh 0
-  width: 50%
-  margin: 0 auto 30vh
-  background-color: beige
-  border: 1px solid #ccc
+  width: fit-content
+  background-color: black
   display: flex
   align-items: center
   justify-content: center
+  border: 1px solid green
+  margin-bottom: 100px
+
 .step.active
-  background-color: teal
-  color: white
 </style>
