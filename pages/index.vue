@@ -1,11 +1,8 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
     <transition name="fade">
-      <div
-        class="background"
-        v-if="currentBackground"
-      >
-        <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currStepObj" :progress="getStepProgress(currStep)" />
+      <div class='background' v-if="currentBackground">
+        <LazyNuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <Scrollama 
@@ -21,7 +18,7 @@
         :data-step-no="index"
         :class="{ active: index == currStep }"
       >
-        <LazyNuxtDynamic :component="step.component" :step="step" :progress="getStepProgress(index)" />
+        <LazyNuxtDynamic :component="step.component" :step="step" :currentStepIndex="currStep" :progress="getStepProgress(index)" />
       </div>
     </Scrollama>
   </v-container>
@@ -34,6 +31,8 @@ export default {
   head () {
     return {
     }
+  },
+  components: {
   },
   beforeMount () {
     // check if each step components exist, if not set to load default
@@ -59,18 +58,18 @@ export default {
     }
   },
   computed: {
-    showSticky () {
-      return this.steps && this.steps[this.currStep] && this.steps[this.currStep].stickycomponent ? true : false
-    },
     currStepObj () {
       return this.steps[this.currStep]
     },
     currentBackground () {
-      return this.backgrounds.find((item) => {
-        if (this.currStep > item.stepstart && this.currStep < item.stepend) {
+      let back = null
+      back = this.backgrounds.find((item) => {
+        if ((this.currStep >= (item.stepstart)) && (this.currStep <= (item.stepend))) {
           return item
         }
       })
+      console.log('cur back', back)
+      return back
     }
   },
   components: {
@@ -91,6 +90,9 @@ export default {
     }
   },
   methods: {
+    onStick () {
+      console.log('on sitck')
+    },
     stepEnterHandler ({element, index, direction}) {
       // handle the step-event as required here
       console.log({ element, index, direction });
@@ -108,7 +110,7 @@ export default {
         return this.currStepProgress
       }
       if (step < curStepNum) {
-        return 100
+        return 1
       }
       if (step > curStepNum) {
         return 0
@@ -128,9 +130,11 @@ export default {
   display: flex
   justify-content: center
   width: 100vw
+  position: relative
 
 .scrollama
-  position: absolute
+  flex: 1
+
 .scrollama__steps
   width: 100%
   display: flex
@@ -149,16 +153,20 @@ export default {
 .step.active
 
 .background
-  min-width: 100vw
-  left: 0
-  height: fit-content
+  height: 100vh
   width: 100vw
-  heigh: 100vh
+  position: fixed
   top: 0
-  position: sticky
   display: flex
-  flex-direction: column
   justify-content: center
-  overflow: visible
+  align-items: center
+
+.background_container
+  display: flex
+  justify-content: center
+  align-items: center
+  height: fit-content
+  width: fit-content
+
 
 </style>
