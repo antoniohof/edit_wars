@@ -86,7 +86,7 @@ export default {
 
 <style lang="sass" scoped>
 #app
-  background-color: black
+  background-color: white
   -webkit-transition: background-color 1s ease-in
           transition: background-color 1s ease-in
   -webkit-transition-delay: 0.5s

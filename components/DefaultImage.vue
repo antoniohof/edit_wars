@@ -35,12 +35,18 @@ export default {
   width: 100%
   height: 100%
   &_content
-    height: 100%
+    height: 70%
+    width: 70%
     color: white
     background-color: transparent
     display: flex
     justify-content: center
     align-items: center
-    ::v-deep img
-      height: 80%
+    :deep(p)
+      height: 100%
+      width: 100%
+      margin-bottom: 0px
+      img
+        height: 100%
+        width: 100%
 </style>

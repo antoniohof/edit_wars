@@ -3,27 +3,29 @@
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-    <transition name="fade">
+    <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackground">
-        <LazyNuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
+        <NuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
-    <Scrollama 
-    class="scrollama"
-    :debug="true"
-    @step-enter="stepEnterHandler" 
-    @step-exit="stepExitHandler"
-    @step-progress="({ progress }) => (currStepProgress = progress)">
-      <div
-        v-for="(step, index) in steps"
-        :key="step.uuid"
-        class="step"
-        :data-step-no="index"
-        :class="{ active: index == currStep }"
-      >
-        <LazyNuxtDynamic :component="step.component" :step="step" :currentStepIndex="currStep" :progress="getStepProgress(index)" />
-      </div>
-    </Scrollama>
+    <div class='side'>
+      <Scrollama 
+      class="scrollama"
+      :debug="true"
+      @step-enter="stepEnterHandler" 
+      @step-exit="stepExitHandler"
+      @step-progress="({ progress }) => (currStepProgress = progress)">
+        <div
+          v-for="(step, index) in steps"
+          :key="step.uuid"
+          class="step"
+          :data-step-no="index"
+          :class="{ active: index == currStep }"
+        >
+          <LazyNuxtDynamic :component="step.component" :step="step" :currentStepIndex="currStep" :progress="getStepProgress(index)" />
+        </div>
+      </Scrollama>
+    </div>
   </v-container>
 </template>
 
@@ -33,7 +35,6 @@ import WordCloud from '../components/WordCloud.vue'
 
 export default {
   head () {
-
   },
   components: {
   },
@@ -47,8 +48,7 @@ export default {
     })
   },
   mounted () {
-    console.log(this.steps)
-    this.steps[this.currStep]
+    this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
   },
   activated () {
   },
@@ -57,7 +57,12 @@ export default {
   data () {
     return {
       currStep: 0,
-      currStepProgress: 0
+      currStepProgress: 0,
+      backgroundAnimation: null,
+      startBackgroundScroll: null,
+      currentBackgroundScroll: null,
+      lastEnterBackgroundDirection: null,
+      lastDirection: null
     }
   },
   computed: {
@@ -72,6 +77,12 @@ export default {
         }
       })
       return back
+    },
+    getBackgroundTransition () {
+      if (this.lastDirection === 'down') {
+        return 'slide-fade-down'
+      }
+      return 'slide-fade-up'
     }
   },
   components: {
@@ -93,19 +104,16 @@ export default {
     }
   },
   methods: {
-    onStick () {
-      console.log('on sitck')
-    },
     stepEnterHandler ({element, index, direction}) {
-      // handle the step-event as required here
-      console.log({ element, index, direction });
-      // use the data attributes if needed
-      console.log(element.dataset.step) // a, b or c 
       this.currStep = parseInt(element.dataset.stepNo)
-      console.log(this.currStep)
+      if (this.currentBackground) {
+        this.startBackgroundScroll = window.scrollY
+      }
+      this.lastEnterBackgroundDirection = direction
+      this.lastDirection = direction
     },
     stepExitHandler ({element, index, direction}) {
-
+      this.lastDirection = direction
     },
     getStepProgress (step) {
       const curStepNum = this.currStep
@@ -118,7 +126,35 @@ export default {
       if (step > curStepNum) {
         return 0
       }
+    },
+    backgroundLoop () {
+      if (this.currentBackground) {
+        let backgroundContainer = document.querySelector('.background_container')
+        let oneStepBackground = true
+          if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
+            oneStepBackground = false
+          }
+          let top = window.innerHeight / 2
+          this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
+          if (this.lastEnterBackgroundDirection === 'up') {
+            top = -window.innerHeight / 2
+          }
+          const translateY = top - this.currentBackgroundScroll
+          if (oneStepBackground) {
+            backgroundContainer.style.transform = `translateY(${translateY}px)`
+          } else {
+            if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
+              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            }
+            if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
+              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            }
+          }
+      }
+      this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     }
+  },
+  watch: {
   }
 }
 </script>
@@ -132,10 +168,16 @@ export default {
 .home
   height: 100%
   display: flex
-  justify-content: center
+  justify-content: flex-end
   width: 100vw
   position: relative
 
+.side
+  display: flex
+  width: 30vw !important
+  align-self: flex-end
+  border: 1px solid black
+  padding: 0px 20px 0px 20px
 .scrollama
   flex: 1
 
@@ -159,8 +201,9 @@ export default {
 
 .background
   height: 100vh
-  width: 100vw
+  width: 70vw
   position: fixed
+  left: 0
   top: 0
   display: flex
   justify-content: center
@@ -173,11 +216,12 @@ export default {
   align-items: center
   height: fit-content
   width: fit-content
+  margin-bottom: 0px
 
 .wordcloud
   position: fixed
   height: 100vh
   width: 100vw
   z-index: 0
-
+  background-color: white
 </style>
