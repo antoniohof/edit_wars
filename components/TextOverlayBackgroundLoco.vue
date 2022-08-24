@@ -34,16 +34,12 @@ export default {
 
 .step-component
   display: flex
-  position: absolute
-  top: 0
   flex-direction: column
   align-content: flex-start
   width: 100%
-  color: red
   margin-bottom: 200px
-  height: 1000px !important
-  justify-content: center
-  font-size: 100px
-  z-index: 1000
-  text-align: center
+  height: 500px
+  &_content
+    color: white
+    background-color: black
 </style>

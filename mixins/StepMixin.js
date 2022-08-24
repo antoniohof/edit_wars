@@ -4,6 +4,10 @@ export default {
             type: Object,
             required: true
         },
+        currentStepIndex: {
+            type: Number,
+            default: 0
+        },
         progress: {
             type: Number,
             default: 0
