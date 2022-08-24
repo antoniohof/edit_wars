@@ -147,7 +147,7 @@ export default {
   justify-content: center
 .step
   width: fit-content
-  background-color: black
+  background-color: transparent
   display: flex
   align-items: center
   justify-content: center
