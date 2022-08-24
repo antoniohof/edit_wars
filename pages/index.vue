@@ -218,18 +218,10 @@ export default {
   width: fit-content
   margin-bottom: 0px
 
-<<<<<<< HEAD
-.aframe-container
-  height: 100vh
-  width: 100vw
-  position: fixed
-  top: 0
-=======
 .wordcloud
   position: fixed
   height: 100vh
   width: 100vw
   z-index: 0
   background-color: white
->>>>>>> 00c2dc5e8a20f7524cf4338e14347907a609e46d
 </style>
