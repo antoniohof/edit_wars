@@ -4,6 +4,9 @@
       <div class='background' v-if="currentBackground">
         <LazyNuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
+      <v-container>
+        <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
+      </v-container>
     </transition>
     <Scrollama 
     class="scrollama"
@@ -26,10 +29,14 @@
 
 <script>
 import Vue from 'vue'
+import WordCloud from '../components/WordCloud.vue'
 
 export default {
   head () {
     return {
+      script: [
+            {src: 'https://unpkg.com/aframe/dist/aframe-master.min.js'}
+        ]
     }
   },
   components: {
@@ -68,11 +75,11 @@ export default {
           return item
         }
       })
-      console.log('cur back', back)
       return back
     }
   },
   components: {
+    WordCloud
   },
   async asyncData({ $content, params, error }) {
     let steps
