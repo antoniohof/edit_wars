@@ -1,6 +1,6 @@
 ---
 uuid: N6J8zNHllu-Njlb4wm2vs
-name: "[Denazification: objectives] - 1"
+name: "[Denazification: objectives] - 5"
 title: "Invasion of Russia to Ukraine "
 date: 2022-02-23T23:38:19.270Z
 order: 4
