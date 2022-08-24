@@ -101,7 +101,6 @@ export default {
 .changelang
   cursor: pointer
   color: black
-  font-size: 30px
   font-weight: 400
   text-transform: uppercase
 </style>
