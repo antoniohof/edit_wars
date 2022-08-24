@@ -1,12 +1,7 @@
 <template>
-  <v-container class="step-component" fluid>
-    <nuxt-content class='step-component_content' :document="step[currentBody]" />
-	{{progress}}
-	<transition name="fade">
-		<div v-if="showDivAlerta">
-			EITA O CURUPIRA BROTOU
-		</div>
-	</transition>
+  <v-container class="text-component" fluid>
+    <nuxt-content class='text-component_content' :document="step[currentBody]" />
+    {{progress}}
   </v-container>
 </template>
 
@@ -14,7 +9,7 @@
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
-  name: 'StepImagemCurupira',
+  name: 'DefaultText',
   mixins: [StepMixin],
   data() {
     return {
@@ -26,13 +21,10 @@ export default {
   async asyncData({ $content }) {
   },
   computed: {
-	showDivAlerta () {
-		return this.progress > 0.3 && this.progress < 0.6
-	}
   },
-
   methods: {
   },
+
   watch: {
 
   }
@@ -41,13 +33,14 @@ export default {
 
 <style lang="sass" scoped>
 
-.step-component
+.text-component
   display: flex
   flex-direction: column
   align-content: flex-start
   width: 100%
   margin-bottom: 200px
+  height: 100vh
   &_content
-    color: white
+    color: black
     background-color: black
 </style>
