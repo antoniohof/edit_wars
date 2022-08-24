@@ -2,13 +2,16 @@
   <v-container class="step-component" fluid>
     <nuxt-content class='step-component_content' :document="step[currentBody]" />
     {{progress}}
+    <bar-chart/>
   </v-container>
 </template>
 
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
+import BarChart from './BarChart.vue';
 
 export default {
+  components: { BarChart },
   name: 'FirstStep',
   mixins: [StepMixin],
   data() {

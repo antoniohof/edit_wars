@@ -4,10 +4,10 @@
       <div class='background' v-if="currentBackground">
         <LazyNuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
-      <v-container>
-        <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
-      </v-container>
     </transition>
+    <div class="aframe-container">
+      <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
+    </div>
     <Scrollama 
     class="scrollama"
     :debug="true"
@@ -156,6 +156,7 @@ export default {
   justify-content: center
   border: 1px solid green
   margin-bottom: 100px
+  z-index: 2
 
 .step.active
 
@@ -167,6 +168,7 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  z-index: 1
 
 .background_container
   display: flex
@@ -175,5 +177,9 @@ export default {
   height: fit-content
   width: fit-content
 
-
+.aframe-container
+  height: 100vh
+  width: 100vw
+  position: fixed
+  top: 0
 </style>
