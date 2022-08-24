@@ -30,7 +30,7 @@ collections:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
       - { label: 'Title', name: 'title', widget: string, required: false }
-      - { label: 'Date', name: 'date', widget: 'datetime', required: false }
+      - { label: 'Date', name: 'date', widget: 'datetime', format: 'DD MM YYYY', required: false }
       - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }
       - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
