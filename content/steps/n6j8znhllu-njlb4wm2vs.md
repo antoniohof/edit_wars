@@ -3,7 +3,7 @@ uuid: N6J8zNHllu-Njlb4wm2vs
 name: "[Denazification: objectives] - 1"
 title: "Invasion of Russia to Ukraine "
 date: 2022-02-23T23:38:19.270Z
-order: 5
+order: 4
 component: DefaultText
 body_en: >-
   05:00 On the night of February 24, Russian President Vladimir Putin announced
