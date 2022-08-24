@@ -1,12 +1,12 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+      <v-container fluid class='wordcloud'>
+        <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
+      </v-container>
     <transition name="fade">
       <div class='background' v-if="currentBackground">
         <LazyNuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
-      <v-container>
-        <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
-      </v-container>
     </transition>
     <Scrollama 
     class="scrollama"
@@ -33,11 +33,7 @@ import WordCloud from '../components/WordCloud.vue'
 
 export default {
   head () {
-    return {
-      script: [
-            {src: 'https://unpkg.com/aframe/dist/aframe-master.min.js'}
-        ]
-    }
+
   },
   components: {
   },
@@ -132,6 +128,7 @@ export default {
 </style>
 
 <style lang="sass" scoped>
+
 .home
   height: 100%
   display: flex
@@ -156,6 +153,7 @@ export default {
   justify-content: center
   border: 1px solid green
   margin-bottom: 100px
+  z-index: 2
 
 .step.active
 
@@ -167,6 +165,7 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  z-index: 1
 
 .background_container
   display: flex
@@ -175,5 +174,10 @@ export default {
   height: fit-content
   width: fit-content
 
+.wordcloud
+  position: fixed
+  height: 100vh
+  width: 100vw
+  z-index: 0
 
 </style>
