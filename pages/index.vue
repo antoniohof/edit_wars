@@ -3,9 +3,9 @@
     <transition name="fade">
       <div
         class="background"
-        v-if="showSticky"
+        v-if="currentBackground"
       >
-        <LazyNuxtDynamic class='background_container' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStep)" />
+        <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currStepObj" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <Scrollama 
@@ -60,24 +60,34 @@ export default {
   },
   computed: {
     showSticky () {
-      return this.steps && this.steps[parseInt(this.currStep)] && this.steps[parseInt(this.currStep)].stickycomponent ? true : false
+      return this.steps && this.steps[this.currStep] && this.steps[this.currStep].stickycomponent ? true : false
     },
     currStepObj () {
-      return this.steps[parseInt(this.currStep)]
+      return this.steps[this.currStep]
+    },
+    currentBackground () {
+      return this.backgrounds.find((item) => {
+        if (this.currStep > item.stepstart && this.currStep < item.stepend) {
+          return item
+        }
+      })
     }
   },
   components: {
   },
   async asyncData({ $content, params, error }) {
     let steps
+    let backgrounds
     try {
       // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
       steps = await $content('steps').sortBy('order').fetch()
+      backgrounds = await $content('backgrounds').fetch()
     } catch (e) {
-      error({ message: 'steps list not found' })
+      error({ message: 'error retrieveing content' })
     }
     return {
-      steps
+      steps,
+      backgrounds
     }
   },
   methods: {
@@ -86,14 +96,14 @@ export default {
       console.log({ element, index, direction });
       // use the data attributes if needed
       console.log(element.dataset.step) // a, b or c 
-      this.currStep = element.dataset.stepNo
+      this.currStep = parseInt(element.dataset.stepNo)
       console.log(this.currStep)
     },
     stepExitHandler ({element, index, direction}) {
 
     },
     getStepProgress (step) {
-      const curStepNum = parseInt(this.currStep)
+      const curStepNum = this.currStep
       if (step === curStepNum) {
         return this.currStepProgress
       }
