@@ -1,7 +1,6 @@
 <template>
-  <v-container class="step-component" fluid>
-    <nuxt-content class='step-component_content' :document="step[currentBody]" />
-    {{progress}}
+  <v-container class="background-component" fluid>
+    <nuxt-content class='background-component_content' :document="step[currentBody]" />
   </v-container>
 </template>
 
@@ -32,14 +31,16 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-.step-component
-  display: flex
-  flex-direction: column
-  align-content: flex-start
-  width: 100vw
-  height: fit-content
+.background-component
+  width: 300px
+  height: 300px
   &_content
+    height: 100%
     color: white
-    background-color: black
+    background-color: transparent
+    display: flex
+    justify-content: center
+    align-items: center
+    ::v-deep img
+      height: 300px !important
 </style>
