@@ -1,10 +1,8 @@
 ---
 uuid: XC1ZhN85lzbYnobR3H_VQ
 name: Step 2 Teste
-duration: "500"
 order: 1
 component: StepImagemCurupira
-stickycomponent: StickyTextCurupira
 body_en: |-
   StepImagemCurupira Ingles
 

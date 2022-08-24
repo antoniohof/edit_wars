@@ -2,10 +2,10 @@
   <v-container fluid class="home ma-0 pa-0">
     <transition name="fade">
       <div
-        class="sticky-div-container"
+        class="background"
         v-if="showSticky"
       >
-        <LazyNuxtDynamic class='sticky' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStep)" />
+        <LazyNuxtDynamic class='background_container' :component="currStepObj.stickycomponent" :step="currStepObj" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <Scrollama 
@@ -59,7 +59,7 @@ export default {
     }
   },
   computed: {
-    showSticky () { // se o prox tem sticky... se brotar so quando tiver nele vai ficar ruim
+    showSticky () {
       return this.steps && this.steps[parseInt(this.currStep)] && this.steps[parseInt(this.currStep)].stickycomponent ? true : false
     },
     currStepObj () {
@@ -138,7 +138,7 @@ export default {
 
 .step.active
 
-.sticky-div-container
+.background
   min-width: 100vw
   left: 0
   height: fit-content
