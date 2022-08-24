@@ -68,7 +68,8 @@ export default {
     {
       src: '~plugins/vue-scrollmagic.js',
       ssr: false
-    }
+    },
+    '~/plugins/aframe-ignorelist.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

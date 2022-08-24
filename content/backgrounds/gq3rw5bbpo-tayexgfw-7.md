@@ -1,10 +1,9 @@
 ---
 uuid: gQ3Rw5BBpo-TAyEXgfW-7
-name: Background Gráfico
-duration: "100"
+name: "[Protection of russian-speaking] - Map Background 2"
 stepstart: 1
 stepend: 2
-component: BackgroundLoco
-body_en: "![](/img/back.jpeg)"
-body_ru: "![](/img/back.jpeg)"
+component: DefaultImage
+body_en: "![](/img/map-ukraine.jpeg)"
+body_ru: "![](/img/map-ukraine.jpeg)"
 ---

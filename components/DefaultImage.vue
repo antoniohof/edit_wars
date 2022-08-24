@@ -1,6 +1,6 @@
 <template>
-  <v-container class="background-component" fluid>
-    <nuxt-content class='background-component_content' :document="step[currentBody]" />
+  <v-container class="image-component" fluid>
+    <nuxt-content class='image-component_content' :document="step[currentBody]" />
   </v-container>
 </template>
 
@@ -8,7 +8,7 @@
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
-  name: 'BackgroundLoco',
+  name: 'DefaultImage',
   mixins: [StepMixin],
   data() {
     return {
@@ -31,16 +31,22 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.background-component
-  width: 300px
-  height: 300px
+.image-component
+  width: 100%
+  height: 100%
   &_content
-    height: 100%
+    height: 70%
+    width: 70%
     color: white
     background-color: transparent
     display: flex
     justify-content: center
     align-items: center
-    ::v-deep img
-      height: 300px !important
+    :deep(p)
+      height: 100%
+      width: 100%
+      margin-bottom: 0px
+      img
+        height: auto
+        width: 100%
 </style>

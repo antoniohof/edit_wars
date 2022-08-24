@@ -29,10 +29,13 @@ collections:
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
+      - { label: 'Title', name: 'title', widget: string, required: false }
+      - { label: 'Date', name: 'date', widget: 'date', required: false }
       - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }
-      - { label: 'Body EN', name: 'body_en', widget: markdown }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown }
+      - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
+      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
+
     editor:
       preview: false
   - label: 'Backgrounds'
@@ -46,7 +49,6 @@ collections:
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
-      - { label: 'Duration', name: 'duration', widget: 'string', default: '100' }
       - { label: 'Step Start', name: 'stepstart', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Step End', name: 'stepend', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }

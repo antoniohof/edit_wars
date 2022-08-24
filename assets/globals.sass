@@ -1,8 +1,11 @@
+
+// fade normal
 .fade-enter-active, .fade-leave-active
   transition: opacity 0.4s
 .fade-enter, .fade-leave-to
   opacity: 0
 
+// fade longo
 .fadelongo-enter-active
   transition: opacity 2s
   transition-delay: 0.5s
@@ -14,6 +17,34 @@
 .fadelongo-enter, .fadelongo-leave-to
   opacity: 0
 
+// fade saindo pra cima
+.slide-fade-up-enter-active
+  transition: all 0.3s ease
+.slide-fade-up-leave-active
+  transition: all 0.3s ease
+.slide-fade-up-enter
+  transition-delay: 0.1s
+  opacity: 0
+  transform: translateY(-100px)
+.slide-fade-up-enter-from,
+.slide-fade-up-leave-to
+  transform: translateY(100px)
+  opacity: 0
+
+// fade saindo pra baixo
+.slide-fade-down-enter-active
+  transition: all 0.3s ease
+.slide-fade-down-leave-active
+  transition: all 0.3s ease
+.slide-fade-down-enter
+  transition-delay: 0.1s
+  opacity: 0
+  transform: translateY(100px)
+.slide-fade-down-enter-from,
+.slide-fade-down-leave-to
+  transform: translateY(-100px)
+  opacity: 0
+
 .page-enter-active,
 .page-leave-active
   transition: opacity 0.2s
@@ -21,10 +52,8 @@
 .page-leave-to
   opacity: 0
 
-
 body
-  background-color: black
-
+  background-color: white
 
 // Overwrite aframe body html styles
 html.a-fullscreen

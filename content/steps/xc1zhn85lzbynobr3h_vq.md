@@ -1,14 +1,10 @@
 ---
 uuid: XC1ZhN85lzbYnobR3H_VQ
-name: Step 2 Teste
+name: "[Protection of russian-speaking] - 2"
+title: ""
+date: 2022-02-17T23:42:20.058Z
 order: 1
-component: StepImagemCurupira
-body_en: |-
-  StepImagemCurupira Ingles
-
-  ![](/img/download.jpeg "Curupira")
-body_ru: |-
-  StepImagem Curupira Russo
-
-  ![](/img/download.jpeg "Curupira")
+component: DefaultText
+body_en: Evacuation from Donetsk to Russia
+body_ru: Эвакуация из Донецка в Россию
 ---
