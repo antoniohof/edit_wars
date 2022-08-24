@@ -3,7 +3,7 @@ uuid: mGVFGVf7b0r38ampZqGbr
 name: "[Protection of russian-speaking] - 1"
 title: ""
 order: 0
-component: FirstStep
+component: DefaultText
 body_en: >-
   \
 
