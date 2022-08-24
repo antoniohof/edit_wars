@@ -37,7 +37,7 @@ export default {
   flex-direction: column
   align-content: center
   justify-content: center
-  width: 100%
+  width: fit-content
   height: 100vh
   &_content
     padding: 10px
