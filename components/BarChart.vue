@@ -21,7 +21,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 import { getDates, processTableutData } from '../utils/DataProcessing'
 
-import { steps } from '../data/'
+import { dataSteps } from '../data/'
 
 export default {
   components: { Bar },
@@ -75,7 +75,7 @@ export default {
   },
   mounted () {    
     var dates = getDates(new Date("01/01/2022"), new Date("08/01/2022"))
-    var data = processTableutData(steps[this.currentIndex].data, dates)
+    var data = processTableutData(dataSteps[this.currentIndex].data, dates)
     this.chartData = {
       labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [

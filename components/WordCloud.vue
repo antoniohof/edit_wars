@@ -62,7 +62,6 @@ export default {
       this.updateData()
     },
     currentProgress: function(newVal, oldVal) {
-      console.log("currentProgress", newVal, oldVal)
       this.totalProgress = this.currentStep + newVal
     }
   }

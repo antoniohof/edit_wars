@@ -76,8 +76,13 @@ export default {
     },
     currentBackground () {
       let back = null
+      if (!this.currStep) {
+        return null
+      }
+      const currOrder = parseInt(this.steps[this.currStep].order)
+      console.log('currorder', currOrder)
       back = this.backgrounds.find((item) => {
-        if ((this.currStep >= (item.stepstart)) && (this.currStep <= (item.stepend))) {
+        if ((currOrder >= (item.stepstart)) && (currOrder <= (item.stepend))) {
           return item
         }
       })
