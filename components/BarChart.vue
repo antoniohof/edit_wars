@@ -99,6 +99,5 @@ export default {
 
 <style lang="sass" scoped>
 .graph-container
-  display: contents !important
   width: 1011px !important
 </style>

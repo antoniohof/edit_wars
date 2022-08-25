@@ -49,6 +49,11 @@ export default {
   },
   mounted () {
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
+    if (this.currentBackground) {
+      // in case theres background at step
+      this.currentBackgroundToShow = this.currentBackground
+      this.lastBackground = this.currentBackgroundToShow
+    }
   },
   beforeDestroy (){
     cancelAnimationFrame(this.backgroundAnimation)
@@ -62,10 +67,10 @@ export default {
       currStep: 0,
       currStepProgress: 0,
       backgroundAnimation: null,
-      startBackgroundScroll: null,
-      currentBackgroundScroll: null,
-      lastEnterBackgroundDirection: null,
-      lastDirection: null,
+      startBackgroundScroll: 0,
+      currentBackgroundScroll: 0,
+      lastEnterBackgroundDirection: 'down',
+      lastDirection: 'down',
       currentBackgroundToShow: null,
       lastBackground: null
     }
@@ -80,7 +85,6 @@ export default {
         return null
       }
       const currOrder = parseInt(this.steps[this.currStep].order)
-      console.log('currorder', currOrder)
       back = this.backgrounds.find((item) => {
         if ((currOrder >= (item.stepstart)) && (currOrder <= (item.stepend))) {
           return item
@@ -150,8 +154,12 @@ export default {
             if (this.lastEnterBackgroundDirection === 'up') {
               top = -window.innerHeight / 2
             }
-            const translateY = top - this.currentBackgroundScroll
             const currOrder = parseInt(this.steps[this.currStep].order)
+  
+            let translateY = (top - this.currentBackgroundScroll)
+            if (currOrder === 1 && this.startBackgroundScroll === 0) {
+              translateY = translateY - ((window.innerHeight/2) - 64)
+            }
             if (oneStepBackground) {
               backgroundContainer.style.transform = `translateY(${translateY}px)`
             } else {
@@ -159,6 +167,7 @@ export default {
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
               if (this.currStepProgress > 0.5 && this.currentBackground.stepend === currOrder) {
+                console.log('aquiii', translateY)
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
             }
