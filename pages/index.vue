@@ -1,8 +1,10 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+    <!--
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
+      -->
     <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
         <NuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
@@ -151,13 +153,14 @@ export default {
               top = -window.innerHeight / 2
             }
             const translateY = top - this.currentBackgroundScroll
+            const currOrder = parseInt(this.steps[this.currStep].order)
             if (oneStepBackground) {
               backgroundContainer.style.transform = `translateY(${translateY}px)`
             } else {
-              if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
+              if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === currOrder) {
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
-              if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
+              if (this.currStepProgress > 0.5 && this.currentBackground.stepend === currOrder) {
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
             }
