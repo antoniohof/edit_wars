@@ -167,7 +167,6 @@ export default {
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
               if (this.currStepProgress > 0.5 && this.currentBackground.stepend === currOrder) {
-                console.log('aquiii', translateY)
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
             }
