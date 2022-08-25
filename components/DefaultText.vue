@@ -16,7 +16,6 @@ export default {
     }
   },
   mounted () {
-    console.log('montou comp step: ', this.step.name)
   },
   async asyncData({ $content }) {
   },
@@ -38,7 +37,7 @@ export default {
   flex-direction: column
   align-content: center
   justify-content: center
-  width: 100%
+  width: fit-content
   height: 100vh
   &_content
     padding: 10px

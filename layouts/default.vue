@@ -18,7 +18,7 @@
         </NuxtLink>
         <v-spacer></v-spacer>
         <div class='changelang' @click="onChangeLanguage">
-          Click to change lang to:  {{languageToChange}}
+          {{languageToChange}}
         </div>
       </v-app-bar>
     </transition>
@@ -100,4 +100,8 @@ export default {
 
 .changelang
   cursor: pointer
+  color: black
+  font-weight: 400
+  font-size: 30px
+  text-transform: uppercase
 </style>

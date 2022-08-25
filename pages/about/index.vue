@@ -57,6 +57,7 @@ export default {
   align-content: flex-start
   width: 100%
   margin-bottom: 200px
+  color: black
 .about-description
   font-family: TeX Gyre Heros Cn !important
   font-size: 32px !important
@@ -64,4 +65,6 @@ export default {
   width: 100%
   align-self: flex-start
   max-width: 900px
+  color: black
+
 </style>

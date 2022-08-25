@@ -3,9 +3,9 @@
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-    <transition :name="getBackgroundTransition">
-      <div class='background' v-if="currentBackground">
-        <NuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
+    <transition :name="getBackgroundTransition" mode="out-in">
+      <div class='background' v-if="currentBackgroundToShow">
+        <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <div class='side'>
@@ -50,6 +50,9 @@ export default {
   mounted () {
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
   },
+  beforeDestroy (){
+    cancelAnimationFrame(this.backgroundAnimation)
+  },
   activated () {
   },
   updated () {
@@ -62,7 +65,9 @@ export default {
       startBackgroundScroll: null,
       currentBackgroundScroll: null,
       lastEnterBackgroundDirection: null,
-      lastDirection: null
+      lastDirection: null,
+      currentBackgroundToShow: null,
+      lastBackground: null
     }
   },
   computed: {
@@ -105,7 +110,7 @@ export default {
   },
   methods: {
     stepEnterHandler ({element, index, direction}) {
-      this.currStep = parseInt(element.dataset.stepNo)
+    this.currStep = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
       }
@@ -128,33 +133,52 @@ export default {
       }
     },
     backgroundLoop () {
+      console.log('background loop')
       if (this.currentBackground) {
         let backgroundContainer = document.querySelector('.background_container')
-        let oneStepBackground = true
-          if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
-            oneStepBackground = false
-          }
-          let top = window.innerHeight / 2
-          this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
-          if (this.lastEnterBackgroundDirection === 'up') {
-            top = -window.innerHeight / 2
-          }
-          const translateY = top - this.currentBackgroundScroll
-          if (oneStepBackground) {
-            backgroundContainer.style.transform = `translateY(${translateY}px)`
-          } else {
-            if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+        if (backgroundContainer) {
+          let oneStepBackground = true
+            if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
+              oneStepBackground = false
             }
-            if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            let top = window.innerHeight / 2
+            this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
+            if (this.lastEnterBackgroundDirection === 'up') {
+              top = -window.innerHeight / 2
             }
-          }
+            const translateY = top - this.currentBackgroundScroll
+            if (oneStepBackground) {
+              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            } else {
+              console.log('loops')
+              if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
+                backgroundContainer.style.transform = `translateY(${translateY}px)`
+              }
+              if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
+                backgroundContainer.style.transform = `translateY(${translateY}px)`
+              }
+            }
+        }
       }
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     }
   },
   watch: {
+    currentBackground (value) {
+      if (!value) {
+        this.currentBackgroundToShow = null
+        return
+      }
+      if (!this.lastBackground || value.uuid !== this.lastBackground.uuid) {
+        this.currentBackgroundToShow = null
+        this.lastBackground = value
+        process.nextTick(() => {
+          this.currentBackgroundToShow = value
+        })
+      } else {
+        this.currentBackgroundToShow = value
+      }
+    }
   }
 }
 </script>
@@ -178,6 +202,8 @@ export default {
   align-self: flex-end
   border: 1px solid black
   padding: 0px 20px 0px 20px
+  z-index: 2
+
 .scrollama
   flex: 1
 
@@ -187,6 +213,8 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: center
+  z-index: 2
+
 .step
   width: fit-content
   background-color: transparent
@@ -217,11 +245,14 @@ export default {
   height: fit-content
   width: fit-content
   margin-bottom: 0px
+  position: relative
+  z-index: 1
 
 .wordcloud
   position: fixed
   height: 100vh
   width: 100vw
   z-index: 0
-  background-color: ;white
+  background-color: transparent
+
 </style>

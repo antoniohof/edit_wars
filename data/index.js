@@ -24,6 +24,12 @@ const steps = [
     data: nato_zapad_evrop,
     startDate: "04/01/2022",
     endData: "08/01/2022",
+  },
+  {
+    index: 4,
+    data: nato_zapad_evrop,
+    startDate: "04/01/2022",
+    endData: "08/01/2022",
   }
 ] 
 

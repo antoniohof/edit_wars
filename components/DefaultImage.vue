@@ -15,7 +15,6 @@ export default {
     }
   },
   mounted () {
-    console.log('montou comp step: ', this.step.name)
   },
   async asyncData({ $content }) {
   },
@@ -46,7 +45,9 @@ export default {
       height: 100%
       width: 100%
       margin-bottom: 0px
+      display: flex
       img
         height: auto
         width: 100%
+        align-self: center
 </style>
