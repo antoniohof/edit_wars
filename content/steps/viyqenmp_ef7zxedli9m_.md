@@ -4,7 +4,7 @@ name: "[Protection of russian-speaking] - 3"
 title_en: ""
 title_ru: ""
 date: 2022-02-22T21:42:02.916Z
-order: 3
+order: 4
 component: DefaultText
 body_en: The Russian parliament authorises Putin to use military force. The
   United States places full blocking sanctions on the Kremlin-controlled VEB
