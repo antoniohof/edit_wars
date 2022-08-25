@@ -26,6 +26,7 @@ collections:
     create: true
     slug: '{{uuid}}'
     identifier_field: identifier
+    sortableFields: ['order']
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
