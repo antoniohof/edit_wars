@@ -76,7 +76,7 @@ export default {
     },
     currentBackground () {
       let back = null
-      if (!this.currStep) {
+      if (!this.currStepObj) {
         return null
       }
       const currOrder = parseInt(this.steps[this.currStep].order)
