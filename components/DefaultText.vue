@@ -1,7 +1,7 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_container">
-      <h1 class='text-component_container_title' v-if="step.title">{{step.title}}</h1>
+      <h1 class='text-component_container_title' v-if="hasTitle">{{currentTitle}}</h1>
       <nuxt-content class='text-component_container_content' :document="step[currentBody]" />
     </div>
   </v-container>

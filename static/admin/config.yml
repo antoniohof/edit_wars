@@ -25,11 +25,12 @@ collections:
     format: 'frontmatter'
     create: true
     slug: '{{uuid}}'
-    identifier_field: {{name}}-{{order}}
+    identifier_field: order
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
-      - { label: 'Title', name: 'title', widget: string, required: false }
+      - { label: 'Title EN', name: 'title_en', widget: string, required: false }
+      - { label: 'Title RU', name: 'title_ru', widget: string, required: false }
       - { label: 'Date', name: 'date', widget: 'date', required: false }
       - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }

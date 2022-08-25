@@ -21,6 +21,13 @@ export default {
   computed: {
       currentBody () {
         return 'body_' + this.$i18n.locale
+      },
+      hasTitle () {
+        return !!(this.step['title_en'] || this.step['title_ru'])
+      },
+      currentTitle () {
+        const title = 'title_' + this.$i18n.locale
+        return this.step[title]
       }
     }
 }

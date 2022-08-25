@@ -1,7 +1,8 @@
 ---
 uuid: mGVFGVf7b0r38ampZqGbr
 name: "[Protection of russian-speaking] - 13"
-title: ""
+title_en: ""
+title_ru: ""
 date: 2022-02-14T23:41:54.669Z
 order: 13
 component: DefaultText
