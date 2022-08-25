@@ -3,9 +3,9 @@
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-    <transition :name="getBackgroundTransition" mode="out-in">
+    <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
-        <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
+        <NuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <div class='side'>
@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     stepEnterHandler ({element, index, direction}) {
-    this.currStep = parseInt(element.dataset.stepNo)
+      this.currStep = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
       }
@@ -133,8 +133,7 @@ export default {
       }
     },
     backgroundLoop () {
-      console.log('background loop')
-      if (this.currentBackground) {
+      if (this.currentBackgroundToShow) {
         let backgroundContainer = document.querySelector('.background_container')
         if (backgroundContainer) {
           let oneStepBackground = true
@@ -150,7 +149,6 @@ export default {
             if (oneStepBackground) {
               backgroundContainer.style.transform = `translateY(${translateY}px)`
             } else {
-              console.log('loops')
               if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
                 backgroundContainer.style.transform = `translateY(${translateY}px)`
               }
