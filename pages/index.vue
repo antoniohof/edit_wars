@@ -1,11 +1,13 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+    <!--
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-    <transition :name="getBackgroundTransition">
-      <div class='background' v-if="currentBackground">
-        <NuxtDynamic  class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
+      -->
+    <transition :name="getBackgroundTransition" mode="out-in">
+      <div class='background' v-if="currentBackgroundToShow">
+        <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
       </div>
     </transition>
     <div class='side'>
@@ -62,7 +64,9 @@ export default {
       startBackgroundScroll: null,
       currentBackgroundScroll: null,
       lastEnterBackgroundDirection: null,
-      lastDirection: null
+      lastDirection: null,
+      currentBackgroundToShow: null,
+      lastBackground: null
     }
   },
   computed: {
@@ -105,7 +109,7 @@ export default {
   },
   methods: {
     stepEnterHandler ({element, index, direction}) {
-      this.currStep = parseInt(element.dataset.stepNo)
+    this.currStep = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
       }
@@ -155,6 +159,21 @@ export default {
     }
   },
   watch: {
+    currentBackground (value) {
+      if (!value) {
+        this.currentBackgroundToShow = null
+        return
+      }
+      if (!this.lastBackground || value.uuid !== this.lastBackground.uuid) {
+        this.currentBackgroundToShow = null
+        this.lastBackground = value
+        process.nextTick(() => {
+          this.currentBackgroundToShow = value
+        })
+      } else {
+        this.currentBackgroundToShow = value
+      }
+    }
   }
 }
 </script>
@@ -217,6 +236,7 @@ export default {
   height: fit-content
   width: fit-content
   margin-bottom: 0px
+  position: relative
 
 .wordcloud
   position: fixed
@@ -224,4 +244,5 @@ export default {
   width: 100vw
   z-index: 0
   background-color: white
+
 </style>

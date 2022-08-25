@@ -15,7 +15,6 @@ export default {
     }
   },
   mounted () {
-    console.log('montou comp step: ', this.step.name)
   },
   async asyncData({ $content }) {
   },
