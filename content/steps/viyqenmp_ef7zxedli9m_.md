@@ -1,6 +1,6 @@
 ---
 uuid: VIYqeNmp_EF7ZXeDLi9M_
-name: "[Protection of russian-speaking] - 3"
+name: "[Protection of russian-speaking]"
 title_en: ""
 title_ru: ""
 date: 2022-02-22T21:42:02.916Z
@@ -14,4 +14,5 @@ body_ru: Российский парламент разрешает Путину
   Соединенные Штаты вводят полные блокирующие санкции против контролируемых
   Кремлем банка ВЭБ и банка ПСБ. Германия немедленно останавливает процесс
   сертификации газопровода "Северный поток - 2".
+identifier: 4_[Protection of russian-speaking]
 ---
