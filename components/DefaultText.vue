@@ -6,6 +6,7 @@
 
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
+import BarChart from './BarChart.vue';
 
 export default {
   name: 'DefaultText',
