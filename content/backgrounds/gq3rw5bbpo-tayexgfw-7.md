@@ -1,8 +1,8 @@
 ---
 uuid: gQ3Rw5BBpo-TAyEXgfW-7
 name: "[Protection of russian-speaking] - Map Background 2"
-stepstart: 1
-stepend: 2
+stepstart: 2
+stepend: 3
 component: DefaultImage
 body_en: "![](/img/map-ukraine.jpeg)"
 body_ru: "![](/img/map-ukraine.jpeg)"
