@@ -11,7 +11,8 @@
     <div class='side'>
       <Scrollama 
       class="scrollama"
-      :debug="true"
+      :debug="false"
+      :threshold="1"
       @step-enter="stepEnterHandler" 
       @step-exit="stepExitHandler"
       @step-progress="({ progress }) => (currStepProgress = progress)">
@@ -158,7 +159,7 @@ export default {
   
             let translateY = (top - this.currentBackgroundScroll)
             if (currOrder === 1 && this.startBackgroundScroll === 0) {
-              translateY = translateY - ((window.innerHeight/2) - 64)
+              translateY = translateY - ((window.innerHeight/2) - 64) // 64 is topbar height
             }
             if (oneStepBackground) {
               backgroundContainer.style.transform = `translateY(${translateY}px)`
@@ -212,7 +213,6 @@ export default {
   display: flex
   width: 30vw !important
   align-self: flex-end
-  border: 1px solid black
   padding: 0px 20px 0px 20px
   z-index: 2
 
@@ -233,7 +233,6 @@ export default {
   display: flex
   align-items: center
   justify-content: center
-  border: 1px solid green
   margin-bottom: 100px
   z-index: 2
 
