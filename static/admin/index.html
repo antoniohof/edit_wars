@@ -27,8 +27,12 @@
   CMS.registerEventListener({
   name: 'preSave',
   handler: ({ entry }) => {
-    console.log(entry.get('data').get('name'))
-    return entry.get('data').set('order', 100);
+    if (entry.get('data').get('order')) {
+      const identifier = entry.get('data').get('order') + '_' +  entry.get('data').get('name')
+      console.log('identifier', identifier)
+      return entry.get('data').set('identifier', identifier);
+    }
+    return null
     },
   });
 
