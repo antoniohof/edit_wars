@@ -50,6 +50,9 @@ export default {
   mounted () {
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
   },
+  beforeDestroy (){
+    cancelAnimationFrame(this.backgroundAnimation)
+  },
   activated () {
   },
   updated () {
@@ -130,28 +133,32 @@ export default {
       }
     },
     backgroundLoop () {
+      console.log('background loop')
       if (this.currentBackground) {
         let backgroundContainer = document.querySelector('.background_container')
-        let oneStepBackground = true
-          if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
-            oneStepBackground = false
-          }
-          let top = window.innerHeight / 2
-          this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
-          if (this.lastEnterBackgroundDirection === 'up') {
-            top = -window.innerHeight / 2
-          }
-          const translateY = top - this.currentBackgroundScroll
-          if (oneStepBackground) {
-            backgroundContainer.style.transform = `translateY(${translateY}px)`
-          } else {
-            if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+        if (backgroundContainer) {
+          let oneStepBackground = true
+            if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
+              oneStepBackground = false
             }
-            if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            let top = window.innerHeight / 2
+            this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
+            if (this.lastEnterBackgroundDirection === 'up') {
+              top = -window.innerHeight / 2
             }
-          }
+            const translateY = top - this.currentBackgroundScroll
+            if (oneStepBackground) {
+              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            } else {
+              console.log('loops')
+              if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === this.currStep) {
+                backgroundContainer.style.transform = `translateY(${translateY}px)`
+              }
+              if (this.currStepProgress > 0.5 && this.currentBackground.stepend === this.currStep) {
+                backgroundContainer.style.transform = `translateY(${translateY}px)`
+              }
+            }
+        }
       }
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     }
