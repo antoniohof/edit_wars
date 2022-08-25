@@ -2,7 +2,7 @@
 uuid: CE9-hW6lv5oTxBnOLUOLJ
 name: header step
 date: ""
-order: 12
+order: 0
 component: DefaultText
 body_en: |-
   # Edit Wars
