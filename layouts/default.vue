@@ -102,5 +102,6 @@ export default {
   cursor: pointer
   color: black
   font-weight: 400
+  font-size: 30px
   text-transform: uppercase
 </style>
