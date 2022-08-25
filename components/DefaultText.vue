@@ -1,6 +1,9 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
-    <nuxt-content class='text-component_content' :document="step[currentBody]" />
+    <div class="text-component_container">
+      <h1 class='text-component_container_title' v-if="step.title">{{step.title}}</h1>
+      <nuxt-content class='text-component_container_content' :document="step[currentBody]" />
+    </div>
   </v-container>
 </template>
 
@@ -39,13 +42,19 @@ export default {
   justify-content: center
   width: fit-content
   height: 100vh
-  &_content
-    padding: 10px
-    height: fit-content
-    width: 100%
+  &_container
     background-color: red
-    :deep(p)
+    padding: 10px
+    &_title
       color: black
+      font-weight: 900
       font-size: 22px
-      margin-bottom: 0px
+      margin-bottom: 10px
+    &_content
+      height: fit-content
+      width: 100%
+      :deep(p)
+        color: black
+        font-size: 22px
+        margin-bottom: 0px
 </style>
