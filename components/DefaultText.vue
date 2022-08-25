@@ -46,7 +46,7 @@ export default {
     background-color: red
     padding: 10px
     &_title
-      color: black
+      color: white
       font-weight: 900
       font-size: 22px
       margin-bottom: 10px
