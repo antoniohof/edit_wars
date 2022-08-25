@@ -34,7 +34,7 @@ export default {
       currentIndex: 0,
       texts: [],
       news: [],
-      size: 10
+      size: 15
     }
   },
   mounted () {
@@ -52,7 +52,7 @@ export default {
   watch: { 
     currentStep: function(newVal, oldVal) { // watch it
       console.log('Prop changed: ', newVal, ' | was: ', oldVal)
-      // this.updateData()
+      this.updateData()
     }
   }
 }
