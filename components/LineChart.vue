@@ -1,6 +1,6 @@
 <template>
   <div class="graph-container">
-    <Bar 
+    <Line 
       :chart-options="chartOptions"
       :chart-data="chartData"
       :chart-id="chartId"
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs'
+import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
@@ -26,7 +26,7 @@ import { getDates, processTableutData } from '../utils/DataProcessing'
 import { dataSteps } from '../data/'
 
 export default {
-  components: { Bar },
+  components: { Line },
   props: {
     currentIndex: {
       type: Number,
