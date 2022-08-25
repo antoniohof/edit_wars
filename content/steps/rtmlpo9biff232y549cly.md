@@ -1,6 +1,6 @@
 ---
 uuid: RtmLPo9BIFf232y549clY
-name: "[Denazification: objectives] - 7"
+name: "[Denazification: objectives] - 6"
 date: 2022-02-24T03:02:23.573Z
 order: 6
 component: DefaultText
