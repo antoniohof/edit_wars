@@ -1,10 +1,8 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
-    <!--
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-      -->
     <transition :name="getBackgroundTransition" mode="out-in">
       <div class='background' v-if="currentBackgroundToShow">
         <LazyNuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
@@ -197,6 +195,8 @@ export default {
   align-self: flex-end
   border: 1px solid black
   padding: 0px 20px 0px 20px
+  z-index: 2
+
 .scrollama
   flex: 1
 
@@ -206,6 +206,8 @@ export default {
   flex-direction: column
   align-items: center
   justify-content: center
+  z-index: 2
+
 .step
   width: fit-content
   background-color: transparent
@@ -237,12 +239,13 @@ export default {
   width: fit-content
   margin-bottom: 0px
   position: relative
+  z-index: 1
 
 .wordcloud
   position: fixed
   height: 100vh
   width: 100vw
   z-index: 0
-  background-color: white
+  background-color: transparent
 
 </style>
