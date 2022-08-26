@@ -57,7 +57,7 @@ export default {
   mounted() {
     netlifyIdentity.on('login', user => {
       setTimeout(() => {
-        window.location = "https://edit-wars.netlify.app/admin/#"
+        // window.location = "https://edit-wars.netlify.app/admin/#"
       }, 200)
     })
   },

@@ -22,10 +22,12 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
 import { getDates, processTableutData } from '../utils/DataProcessing'
+import StepMixin from "@/mixins/StepMixin.js";
 
 import { dataSteps } from '../data/'
 
 export default {
+  mixins: [StepMixin],
   components: { Bar },
   props: {
     currentIndex: {
@@ -92,6 +94,39 @@ export default {
           // borderWidth: 1
         }
       ]
+    }
+  },
+  watch: {
+    currentStepIndex (index) {
+      if (index === 0) {
+        var dates = getDates(new Date("01/01/2022"), new Date("08/01/2022"))
+          var data = processTableutData(dataSteps[this.currentIndex].data, dates)
+          this.chartData = {
+            labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+              {
+                label: 'Data One',
+                backgroundColor: this.gradient,
+                data: data,
+                // borderWidth: 1
+              }
+            ]
+          }
+      } else {
+        var dates = getDates(new Date("05/01/2022"), new Date("07/01/2022"))
+        var data = processTableutData(dataSteps[this.currentIndex].data, dates)
+        this.chartData = {
+          labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [
+            {
+              label: 'Data One',
+              backgroundColor: this.gradient,
+              data: data,
+              // borderWidth: 1
+            }
+          ]
+        }
+      }
     }
   }
 }
