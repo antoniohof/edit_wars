@@ -36,13 +36,20 @@ export default {
 <style lang="sass" scoped>
 
 .text-component
+  position: absolute
+  width: 100vw
+  height: fit-content
+  margin: 0 auto
+  left: 0
   display: flex
   flex-direction: column
   align-content: center
   justify-content: center
-  width: fit-content
+  padding: 0px 20px 0px 20px !important
   height: 100vh
   &_container
+    align-self: center
+    width: fit-content
     background-color: black
     padding: 10px
     &_title
@@ -51,8 +58,8 @@ export default {
       font-size: 22px
       margin-bottom: 10px
     &_content
-      color: white
       height: fit-content
+      color: white
       width: 100%
       :deep(p)
         color: white
