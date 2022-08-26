@@ -9,8 +9,8 @@ body_en: |-
 
   A media futures project
 body_ru: |-
-  # Edit Wars
+  # Edit Wars RU
 
-  A media futures project
+  A media futures project ru
 identifier: 1_Header
 ---
