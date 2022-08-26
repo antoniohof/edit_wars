@@ -3,12 +3,10 @@ uuid: mGVFGVf7b0r38ampZqGbr
 name: "[Protection of russian-speaking]"
 title_en: ""
 title_ru: ""
-date: 2022-02-14T23:41:54.669Z
-order: 13
-component: TextCenter
-body_en: The State Duma of Russia voted "FOR" an appeal to President Putin with
-  a request to recognize the terrorist DNR and LNR
-body_ru: Госдума России проголосовала ""ЗА" обращение к президенту Путину с
-  просьбой признать террористические ДНР и ЛНР
-identifier: 13_[Protection of russian-speaking]
+date: 2022-03-21T23:41:54.669Z
+order: 14
+component: ImageCenter
+body_en: "![](/img/01bd0000-0aff-0242-edee-08d9fc9345ff_w1597_n_r0_st_s.png)"
+body_ru: "![](/img/01bd0000-0aff-0242-edee-08d9fc9345ff_w1597_n_r0_st_s.png)"
+identifier: 14_[Protection of russian-speaking]
 ---
