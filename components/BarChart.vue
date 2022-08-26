@@ -113,7 +113,7 @@ export default {
             ]
           }
       } else {
-        var dates = getDates(new Date("05/01/2022"), new Date("07/01/2022"))
+        var dates = getDates(new Date("05/01/2022"), new Date("06/01/2022"))
         var data = processTableutData(dataSteps[this.currentIndex].data, dates)
         this.chartData = {
           labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
