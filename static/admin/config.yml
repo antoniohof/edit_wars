@@ -55,8 +55,8 @@ collections:
       - { label: 'Step Start', name: 'stepstart', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Step End', name: 'stepend', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }
-      - { label: 'Body EN', name: 'body_en', widget: markdown }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown }
+      - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
+      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false}
     editor:
       preview: false
 
