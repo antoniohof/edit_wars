@@ -2,12 +2,13 @@
   <v-container fluid class="home ma-0 pa-0">
     <!--
       <v-container fluid class='wordcloud'>
-        <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
+        <WordCloud :currentStepIndex="currStep" :progress="getStepProgress(currStep)" :step="currStepObj"/>
       </v-container>
-    -->
+      -->
     <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
-        <NuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
+        <component class='background_container'  keep-alive :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
+        <!--<NuxtDynamic keep-alive class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />-->
       </div>
     </transition>
     <div class='side'>
@@ -38,6 +39,11 @@ import WordCloud from '../components/WordCloud.vue'
 
 export default {
   head () {
+    return {
+      script: [
+            { src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }
+        ]
+    }
   },
   components: {
   },
@@ -220,6 +226,7 @@ export default {
 
 .scrollama
   flex: 1
+  will-change: true
 
 .scrollama__steps
   width: 100%
