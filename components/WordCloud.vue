@@ -17,14 +17,14 @@ import StepMixin from "@/mixins/StepMixin.js";
 export default {
   head () {
     return {
-      mixins: [
-        StepMixin
-      ],
       script: [
             {src: 'https://unpkg.com/aframe/dist/aframe-master.min.js'}
         ]
     }
   },
+  mixins: [
+           StepMixin
+         ],
   props: {
     currentStep: Number,
     currentProgress: Number

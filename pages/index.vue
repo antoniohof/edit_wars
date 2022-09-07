@@ -1,9 +1,10 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+    <!--
       <v-container fluid class='wordcloud'>
         <WordCloud :currentStep="parseInt(currStep)" :currentProgress="parseFloat(currStepProgress)" :step="currStepObj"/>
       </v-container>
-    <!--
+    -->
     <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
         <NuxtDynamic class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />
@@ -28,7 +29,6 @@
         </div>
       </Scrollama>
     </div>
-    -->
   </v-container>
 </template>
 

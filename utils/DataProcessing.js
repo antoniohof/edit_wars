@@ -26,7 +26,6 @@ function processTableutData (data, dates) {
   var dataValues = dates.map(d => 0)
   data.map((d) => {
     var date = cleanDate(d.fetchdate_orig).toLocaleDateString('en-GB')
-    console.log("date", date)
     var index = dates.indexOf(date)
     dataValues[index] = dataValues[index]+1
   })
