@@ -7,7 +7,10 @@
       -->
     <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
-        <component class='background_container'  keep-alive :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
+        <keep-alive>
+
+        <component class='background_container' :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
+        </keep-alive>
         <!--<NuxtDynamic keep-alive class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />-->
       </div>
     </transition>
