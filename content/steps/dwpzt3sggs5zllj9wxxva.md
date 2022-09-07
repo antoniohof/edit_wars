@@ -1,8 +1,8 @@
 ---
 uuid: DWpZt3SggS5ZlLJ9WXXva
 name: Mariupol Text 1
-title_en: Mariupol Text 1
-title_ru: Mariupol RU
+title_en: ""
+title_ru: ""
 date: 2022-09-07T17:33:37.436Z
 order: 8
 component: DefaultText
