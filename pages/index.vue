@@ -8,8 +8,7 @@
     <transition :name="getBackgroundTransition">
       <div class='background' v-if="currentBackgroundToShow">
         <keep-alive>
-
-        <component class='background_container' :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
+          <component class='background_container' :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
         </keep-alive>
         <!--<NuxtDynamic keep-alive class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />-->
       </div>
@@ -39,6 +38,7 @@
 <script>
 import Vue from 'vue'
 import WordCloud from '../components/WordCloud.vue'
+import throttle from 'lodash/throttle'
 
 export default {
   head () {
@@ -66,6 +66,8 @@ export default {
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
+
+    //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy (){
     cancelAnimationFrame(this.backgroundAnimation)

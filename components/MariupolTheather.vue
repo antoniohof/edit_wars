@@ -1,10 +1,13 @@
 <template>
     <v-container class="mariupol-component" fluid>
+        <div class="loading" v-if="loading">
+            LOADING
+        </div>
         <client-only>
-            <a-scene class='scene' embedded vr-mode-ui="enabled: false">
+            <a-scene v-if="timeoutEnded" class='scene' embedded vr-mode-ui="enabled: false">
                 <a-entity position="39 30 10" rotation="-50 75 0" wasd-controls="acceleration:100; fly: true;" camera="zoom: 0.9"></a-entity>
                 <a-sky color="white"></a-sky>
-                <a-entity position="0 0 0" :rotation="getRotation" gltf-model="url(models/mariupol_drama_theatre_after_bombing.glb)"></a-entity>
+                <a-entity position="0 0 0" :rotation="getRotation" @model-loaded="onModelLoaded" gltf-model="url(models/mariupol_drama_theatre_after_bombing.glb)"></a-entity>
             </a-scene>
         </client-only>
      </v-container>
@@ -19,7 +22,9 @@
          ],
      data () {
        return {
-        totalProgress: 0
+        totalProgress: 0,
+        timeoutEnded: false,
+        loading: true
        }
      },
      computed: {
@@ -30,8 +35,16 @@
         }
      },
      mounted () {
+        this.timeoutEnded = false
+        setTimeout(() => {
+            this.timeoutEnded = true
+        }, 100)
      },
      methods: {
+        onModelLoaded() {
+            console.log('model loaded')
+            this.loading = false
+        }
      },
      watch: {
         progress: function(newVal, oldVal) {
@@ -56,4 +69,9 @@
     justify-content: center
     align-items: center
     align-self: center
+
+.loading
+    z-index: 99999
+    color: red
+    font-size: 100px
 </style>
