@@ -6,21 +6,27 @@
       </v-container>
       -->
     <transition :name="getBackgroundTransition">
-      <div class='background' v-if="currentBackgroundToShow">
+      <div class="background" v-if="currentBackgroundToShow">
         <keep-alive>
-          <component class='background_container' :is="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)"></component>
+          <NuxtDynamic
+            class="background_container"
+            :component="currentBackground.component"
+            :step="currentBackground"
+            :currentStepIndex="currStep"
+            :progress="getStepProgress(currStep)"
+          />
         </keep-alive>
-        <!--<NuxtDynamic keep-alive class='background_container' :component="currentBackground.component" :step="currentBackground" :currentStepIndex="currStep" :progress="getStepProgress(currStep)" />-->
       </div>
     </transition>
-    <div class='side'>
-      <Scrollama 
-      class="scrollama"
-      :debug="false"
-      :threshold="1"
-      @step-enter="stepEnterHandler" 
-      @step-exit="stepExitHandler"
-      @step-progress="({ progress }) => (currStepProgress = progress)">
+    <div class="side">
+      <Scrollama
+        class="scrollama"
+        :debug="false"
+        :threshold="1"
+        @step-enter="stepEnterHandler"
+        @step-exit="stepExitHandler"
+        @step-progress="({ progress }) => (currStepProgress = progress)"
+      >
         <div
           v-for="(step, index) in steps"
           :key="step.uuid"
@@ -28,7 +34,12 @@
           :data-step-no="index"
           :class="{ active: index == currStep }"
         >
-          <LazyNuxtDynamic :component="step.component" :step="step" :currentStepIndex="currStep" :progress="getStepProgress(index)" />
+          <LazyNuxtDynamic
+            :component="step.component"
+            :step="step"
+            :currentStepIndex="currStep"
+            :progress="getStepProgress(index)"
+          />
         </div>
       </Scrollama>
     </div>
@@ -41,16 +52,13 @@ import WordCloud from '../components/WordCloud.vue'
 import throttle from 'lodash/throttle'
 
 export default {
-  head () {
+  head() {
     return {
-      script: [
-            { src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }
-        ]
+      script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
-  components: {
-  },
-  beforeMount () {
+  components: {},
+  beforeMount() {
     // check if each step components exist, if not set to load default
     this.steps.forEach((step) => {
       let componentExists = step.component in Vue.options.components
@@ -59,7 +67,7 @@ export default {
       }
     })
   },
-  mounted () {
+  mounted() {
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     if (this.currentBackground) {
       // in case theres background at step
@@ -69,14 +77,12 @@ export default {
 
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
-  beforeDestroy (){
+  beforeDestroy() {
     cancelAnimationFrame(this.backgroundAnimation)
   },
-  activated () {
-  },
-  updated () {
-  },
-  data () {
+  activated() {},
+  updated() {},
+  data() {
     return {
       currStep: 0,
       currStepProgress: 0,
@@ -90,23 +96,23 @@ export default {
     }
   },
   computed: {
-    currStepObj () {
+    currStepObj() {
       return this.steps[this.currStep]
     },
-    currentBackground () {
+    currentBackground() {
       let back = null
       if (!this.currStepObj) {
         return null
       }
       const currOrder = parseInt(this.steps[this.currStep].order)
       back = this.backgrounds.find((item) => {
-        if ((currOrder >= (item.stepstart)) && (currOrder <= (item.stepend))) {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
           return item
         }
       })
       return back
     },
-    getBackgroundTransition () {
+    getBackgroundTransition() {
       if (this.lastDirection === 'down') {
         return 'slide-fade-down'
       }
@@ -132,7 +138,7 @@ export default {
     }
   },
   methods: {
-    stepEnterHandler ({element, index, direction}) {
+    stepEnterHandler({ element, index, direction }) {
       this.currStep = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
@@ -140,10 +146,10 @@ export default {
       this.lastEnterBackgroundDirection = direction
       this.lastDirection = direction
     },
-    stepExitHandler ({element, index, direction}) {
+    stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
     },
-    getStepProgress (step) {
+    getStepProgress(step) {
       const curStepNum = this.currStep
       if (step === curStepNum) {
         return this.currStepProgress
@@ -155,42 +161,54 @@ export default {
         return 0
       }
     },
-    backgroundLoop () {
+    backgroundLoop() {
       if (this.currentBackgroundToShow) {
-        let backgroundContainer = document.querySelector('.background_container')
+        let backgroundContainer = document.querySelector(
+          '.background_container'
+        )
         if (backgroundContainer) {
           let oneStepBackground = true
-            if ((this.currentBackground.stepend - this.currentBackground.stepstart) > 0) {
-              oneStepBackground = false
-            }
-            let top = window.innerHeight / 2
-            this.currentBackgroundScroll = window.scrollY - this.startBackgroundScroll
-            if (this.lastEnterBackgroundDirection === 'up') {
-              top = -window.innerHeight / 2
-            }
-            const currOrder = parseInt(this.steps[this.currStep].order)
-  
-            let translateY = (top - this.currentBackgroundScroll)
-            if (currOrder === 1 && this.startBackgroundScroll === 0) {
-              translateY = translateY - ((window.innerHeight/2) - 64) // 64 is topbar height
-            }
-            if (oneStepBackground) {
+          if (
+            this.currentBackground.stepend - this.currentBackground.stepstart >
+            0
+          ) {
+            oneStepBackground = false
+          }
+          let top = window.innerHeight / 2
+          this.currentBackgroundScroll =
+            window.scrollY - this.startBackgroundScroll
+          if (this.lastEnterBackgroundDirection === 'up') {
+            top = -window.innerHeight / 2
+          }
+          const currOrder = parseInt(this.steps[this.currStep].order)
+
+          let translateY = top - this.currentBackgroundScroll
+          if (currOrder === 1 && this.startBackgroundScroll === 0) {
+            translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
+          }
+          if (oneStepBackground) {
+            backgroundContainer.style.transform = `translateY(${translateY}px)`
+          } else {
+            if (
+              this.currStepProgress < 0.5 &&
+              this.currentBackground.stepstart === currOrder
+            ) {
               backgroundContainer.style.transform = `translateY(${translateY}px)`
-            } else {
-              if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === currOrder) {
-                backgroundContainer.style.transform = `translateY(${translateY}px)`
-              }
-              if (this.currStepProgress > 0.5 && this.currentBackground.stepend === currOrder) {
-                backgroundContainer.style.transform = `translateY(${translateY}px)`
-              }
             }
+            if (
+              this.currStepProgress > 0.5 &&
+              this.currentBackground.stepend === currOrder
+            ) {
+              backgroundContainer.style.transform = `translateY(${translateY}px)`
+            }
+          }
         }
       }
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     }
   },
   watch: {
-    currentBackground (value) {
+    currentBackground(value) {
       if (!value) {
         this.currentBackgroundToShow = null
         return
@@ -280,5 +298,4 @@ export default {
   width: 100vw
   z-index: 0
   background-color: transparent
-
 </style>
