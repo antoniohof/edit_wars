@@ -1,6 +1,6 @@
 ---
 uuid: F1ys0K4DAnl2_O5l5v943
-name: "[Narrative 3] - Text About Map"
+name: Text About Map
 date: 2022-09-13T23:17:42.218Z
 narrative: 3
 order: 9
@@ -18,5 +18,5 @@ body_ru: Они включают в себя масштабные огранич
   накладывались поэтапно еще с 2014 года, в течение нескольких этапов. В
   контексте полномасштабного вторжения России в Украину объем санкций
   существенно вырос.
-identifier: 9_[Narrative 3] - Text About Map
+identifier: 9_[Narrative:3]_Text About Map
 ---
