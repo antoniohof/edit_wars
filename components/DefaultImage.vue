@@ -41,8 +41,13 @@ export default {
     display: flex
     justify-content: center
     align-items: center
+    display: flex
+    flex-direction: column
+    align-content: center
+    align-items: center
+    justify-content: center
     :deep(p)
-      height: 100%
+      height: fit-content
       width: 100%
       margin-bottom: 0px
       display: flex
