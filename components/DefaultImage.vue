@@ -51,6 +51,7 @@ export default {
       width: 100%
       margin-bottom: 0px
       display: flex
+      color: black
       img
         height: auto
         width: 100%
