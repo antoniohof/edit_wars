@@ -7,9 +7,9 @@ component: DefaultImage
 body_en: |-
   ![](/img/sanctions_against_russia_and_belarus_2022.svg.png)
 
-  s﻿ubtest
+  test subtitle
 body_ru: |-
   ![](/img/sanctions_against_russia_and_belarus_2022.svg.png)
 
-  s﻿ubtest
+  test subtitle
 ---
