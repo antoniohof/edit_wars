@@ -50,13 +50,13 @@ const dataSteps = [
     endData: "08/01/2022",
   },
   {
-    index: 8,
+    index: 16,
     data: nato_zapad_evrop,
     startDate: "03/01/2022",
     endData: "07/01/2022",
   },
   {
-    index: 9,
+    index: 17,
     data: nato_zapad_evrop,
     startDate: "04/01/2022",
     endData: "08/01/2022",
