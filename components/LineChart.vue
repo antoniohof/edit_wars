@@ -24,7 +24,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 import { getDates, processTableutData } from '../utils/DataProcessing'
 import StepMixin from "@/mixins/StepMixin.js";
 
-import { dataSteps } from '../data/'
+// import { dataSteps } from '../data/'
 
 export default {
   name: 'LineChart',
@@ -68,7 +68,7 @@ export default {
     }
   },
   mounted () {    
-    this.showData(this.currentStepIndex)
+    this.showData()
   },
   methods: {
     setAnimation () {
@@ -129,12 +129,15 @@ export default {
         }
     },
     showData (index) {
-      const rawStepData = dataSteps.find((step) => step.backgroundName === this.step.name)
+      consolelog(this.step)
+      const rawStepData = this.step.data
       if (!rawStepData) {
         console.error('no barChart data for this step')
         return
       }
-      const dates = getDates(new Date(rawStepData.startDate), new Date(rawStepData.endDate))
+      const startDate = "01/01/2022"
+      const endDate = "08/01/2022"
+      const dates = getDates(new Date(startDate), new Date(endDate))
       this.currentProcessedData = processTableutData(rawStepData.data, dates)
       this.setAnimation()
       this.currentChartData = {
