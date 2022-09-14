@@ -32,6 +32,11 @@
       console.log('identifier', identifier)
       return entry.get('data').set('identifier', identifier);
     }
+    if (!entry.get('data').get('order')) {
+      const identifier = '[Narrative:' + entry.get('data').get('narrative') + ']_' + entry.get('data').get('name')
+      console.log('identifier', identifier)
+      return entry.get('data').set('identifier', identifier);
+    }
     return null
     },
   });
