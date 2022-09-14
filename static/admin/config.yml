@@ -48,7 +48,7 @@ collections:
     folder: content/backgrounds
     format: 'frontmatter'
     create: true
-    slug: '{{name}}'
+    slug: '{{identifier}}'
     identifier_field: name
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
@@ -59,7 +59,8 @@ collections:
       - { label: 'Data JSON', name: "data", widget: "file", required: false }
       - { label: 'Chart Options', name: 'chartoptions', widget: 'code', required: false, default_language: 'javascript' }
       - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
+      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false },
+      - { label: "Identifier", name: "identifier", widget: "hidden", default: ""}
     editor:
       preview: false
 
