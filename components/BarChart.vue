@@ -28,49 +28,40 @@ import StepMixin from "@/mixins/StepMixin.js";
 import { dataSteps } from '../data/'
 
 export default {
+  name: 'BarChart',
   mixins: [StepMixin],
   components: { Bar },
   props: {
-    chartId: {
-      type: String,
-      default: 'bar-chart'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
-    },
-    width: {
-      type: Number,
-      default: 800
-    },
-    height: {
-      type: Number,
-      default: 800
-    },
-    cssClasses: {
-      default: '',
-      type: String
-    },
-    styles: {
-      type: Object,
-      default: () => {
-        return {
-          width: `70%`,
-        }
-      }
-    },
-    plugins: {
-      type: Object,
-      default: () => {}
-    }
   },
   data () {
     return {
       gradient: null,
       currentProcessedData: null,
       currentChartData: null,
+      chartId: 'bar-chart',
+      datasetIdKey: 'label',
+      width:800,
+      height: 800,
+      cssClasses: '',
+      styles: {
+          width: `70%`,
+      },
+      plugins: null,
       chartOptions: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          subtitle: {
+              display: true,
+              text: 'Custom Chart Subtitle'
+          },
+          title: {
+            display: true,
+            text: () => "Number of Articles"
+          }
+        }
       }
     }
   },
@@ -92,10 +83,8 @@ export default {
         labels: dates,
         datasets: [
           {
-            label: 'Data One',
             backgroundColor: this.gradient,
-            data: this.currentProcessedData,
-            // borderWidth: 1
+            data: this.currentProcessedData
           }
         ]
       }

@@ -24,7 +24,7 @@ collections:
     folder: content/steps
     format: 'frontmatter'
     create: true
-    slug: '{{uuid}}'
+    slug: '{{name}}'
     identifier_field: identifier
     sortableFields: ['order']
     fields:
@@ -48,7 +48,7 @@ collections:
     folder: content/backgrounds
     format: 'frontmatter'
     create: true
-    slug: '{{uuid}}'
+    slug: '{{name}}'
     identifier_field: name
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
@@ -56,8 +56,10 @@ collections:
       - { label: 'Step Start', name: 'stepstart', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Step End', name: 'stepend', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }
+      - { label: "Data JSON", name: "data", widget: "file", required: false, media_library: { config: { multiple:  false} },
+      - { label: 'Chart Options', name: 'chartoptions', widget: 'code', required: false, default_language: 'javascript' }
       - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false}
+      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
     editor:
       preview: false
 
