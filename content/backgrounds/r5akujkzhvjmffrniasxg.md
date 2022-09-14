@@ -1,6 +1,6 @@
 ---
 uuid: r5aKUjkzhvjmFFRNIAsXg
-name: Narrative 3 - sanctions_map
+name: sanctions_map
 stepstart: 8
 stepend: 9
 component: DefaultImage

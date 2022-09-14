@@ -1,6 +1,6 @@
 ---
 uuid: AAKA5FTbZDl-TqyEvHvGD
-name: Narrative 3 - sanctions_cloud_iso
+name: sanctions_cloud_iso
 stepstart: 12
 stepend: 14
 component: DefaultImage

@@ -1,8 +1,9 @@
 <template>
   <div class="graph-container">
     <Bar 
+      v-if="currentChartData"
       :chart-options="chartOptions"
-      :chart-data="chartData"
+      :chart-data="currentChartData"
       :chart-id="chartId"
       :dataset-id-key="datasetIdKey"
       :plugins="plugins"
@@ -30,10 +31,6 @@ export default {
   mixins: [StepMixin],
   components: { Bar },
   props: {
-    currentIndex: {
-      type: Number,
-      default: 0
-    },
     chartId: {
       type: String,
       default: 'bar-chart'
@@ -70,66 +67,43 @@ export default {
   data () {
     return {
       gradient: null,
-      currentData: null,
-      currentStep: null,
-      chartData: {
-        labels: [ 'January', 'February', 'March' ],
-        datasets: [ { data: [40, 20, 12] } ]
-      },
+      currentProcessedData: null,
+      currentChartData: null,
       chartOptions: {
         responsive: true
       }
     }
   },
   mounted () {    
-    let dates = getDates(new Date("01/01/2022"), new Date("08/01/2022"))
-    if (this.currentStepIndex === 1) {
-      dates = getDates(new Date("05/01/2022"), new Date("06/01/2022"))
-    }
-    var data = processTableutData(dataSteps[this.currentIndex].data, dates)
-    this.chartData = {
-      labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {
-          label: 'Data One',
-          backgroundColor: this.gradient,
-          data: data,
-          // borderWidth: 1
-        }
-      ]
+    this.showData(this.currentStepIndex)
+    //
+  
+  },
+  methods: {
+    showData (index) {
+      const rawStepData = dataSteps.find((step) => step.backgroundName === this.step.name)
+      if (!rawStepData) {
+        console.error('no barChart data for this step')
+        return
+      }
+      const dates = getDates(new Date(rawStepData.startDate), new Date(rawStepData.endDate))
+      this.currentProcessedData = processTableutData(rawStepData.data, dates)
+      this.currentChartData = {
+        labels: dates,
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: this.gradient,
+            data: this.currentProcessedData,
+            // borderWidth: 1
+          }
+        ]
+      }
     }
   },
   watch: {
     currentStepIndex (index) {
-      if (index === 0) {
-        var dates = getDates(new Date("01/01/2022"), new Date("08/01/2022"))
-          var data = processTableutData(dataSteps[this.currentIndex].data, dates)
-          this.chartData = {
-            labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            datasets: [
-              {
-                label: 'Data One',
-                backgroundColor: this.gradient,
-                data: data,
-                // borderWidth: 1
-              }
-            ]
-          }
-      } else {
-        var dates = getDates(new Date("05/01/2022"), new Date("06/01/2022"))
-        var data = processTableutData(dataSteps[this.currentIndex].data, dates)
-        this.chartData = {
-          labels: dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: this.gradient,
-              data: data,
-              // borderWidth: 1
-            }
-          ]
-        }
-      }
+      this.showData(this.currentStepIndex)
     }
   }
 }

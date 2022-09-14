@@ -7,15 +7,13 @@
       -->
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow">
-        <keep-alive>
           <NuxtDynamic
             class="background_container"
             :component="currentBackground.component"
             :step="currentBackground"
-            :currentStepIndex="currStep"
-            :progress="getStepProgress(currStep)"
+            :currentStepIndex="currStepIndex"
+            :progress="getStepProgress(currStepIndex)"
           />
-        </keep-alive>
       </div>
     </transition>
     <div class="side">
@@ -32,12 +30,12 @@
           :key="step.uuid"
           class="step"
           :data-step-no="index"
-          :class="{ active: index == currStep }"
+          :class="{ active: index == currStepIndex }"
         >
           <LazyNuxtDynamic
             :component="step.component"
             :step="step"
-            :currentStepIndex="currStep"
+            :currentStepIndex="currStepIndex"
             :progress="getStepProgress(index)"
           />
         </div>
@@ -84,7 +82,7 @@ export default {
   updated() {},
   data() {
     return {
-      currStep: 0,
+      currStepIndex: 0,
       currStepProgress: 0,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
@@ -97,14 +95,14 @@ export default {
   },
   computed: {
     currStepObj() {
-      return this.steps[this.currStep]
+      return this.steps[this.currStepIndex]
     },
     currentBackground() {
       let back = null
       if (!this.currStepObj) {
         return null
       }
-      const currOrder = parseInt(this.steps[this.currStep].order)
+      const currOrder = parseInt(this.steps[this.currStepIndex].order)
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend) {
           return item
@@ -139,7 +137,7 @@ export default {
   },
   methods: {
     stepEnterHandler({ element, index, direction }) {
-      this.currStep = parseInt(element.dataset.stepNo)
+      this.currStepIndex = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
       }
@@ -150,7 +148,7 @@ export default {
       this.lastDirection = direction
     },
     getStepProgress(step) {
-      const curStepNum = this.currStep
+      const curStepNum = this.currStepIndex
       if (step === curStepNum) {
         return this.currStepProgress
       }
@@ -180,7 +178,7 @@ export default {
           if (this.lastEnterBackgroundDirection === 'up') {
             top = -window.innerHeight / 2
           }
-          const currOrder = parseInt(this.steps[this.currStep].order)
+          const currOrder = parseInt(this.steps[this.currStepIndex].order)
 
           let translateY = top - this.currentBackgroundScroll
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
