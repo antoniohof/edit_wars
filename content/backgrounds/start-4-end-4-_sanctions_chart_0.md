@@ -9,19 +9,19 @@ chartoptions: |
   {
       plugins: {
         legend: {
-          display: false
+          display: "false"
         },
         subtitle: {
-            display: true,
+            display: "true",
             text: 'Custom Chart Subtitle'
         },
         title: {
-          display: true,
+          display: "true",
           text: "GRAFICO"
         }
     },
-      responsive: true,
-      borderColor: 'black'
+      responsive: "true",
+      borderColor: "black"
   }
 identifier: "[Start:4][End:4]_sanctions_chart_0"
 ---
