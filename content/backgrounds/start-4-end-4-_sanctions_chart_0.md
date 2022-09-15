@@ -17,7 +17,7 @@ chartoptions: |
         },
         title: {
           display: true,
-          text: () => "GRAFICO"
+          text: "GRAFICO"
         }
     },
       responsive: true,
