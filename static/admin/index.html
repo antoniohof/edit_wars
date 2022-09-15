@@ -33,7 +33,7 @@
       return entry.get('data').set('identifier', identifier);
     }
     if (!entry.get('data').get('order')) {
-      const identifier = '[Narrative:' + entry.get('data').get('narrative') + ']_' + entry.get('data').get('name')
+      const identifier = '[Start:' + entry.get('data').get('stepstart') + ']' + '[End:' + entry.get('data').get('stepend') + ']_' + entry.get('data').get('name')
       console.log('identifier', identifier)
       return entry.get('data').set('identifier', identifier);
     }
