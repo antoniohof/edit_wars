@@ -112,12 +112,7 @@ export default {
     },
     showData (index) {
       console.log(this.step)
-      const escaped = escape(this.step.chartoptions)
-      console.log(escaped)
-      const s = JSON.parse(escaped)
-      console.log(s)
-      console.log(s)
-      this.chartOptions = s
+      this.chartOptions = this.step.chartoptions.code
       // console.log(this.chartOptions)
       fetch(this.step.data).then(response => response.json()).then(data => {
         console.log('data', data)

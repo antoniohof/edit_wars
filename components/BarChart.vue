@@ -25,8 +25,6 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 import { getDates, processTableutData } from '../utils/DataProcessing'
 import StepMixin from "@/mixins/StepMixin.js";
 
-import { dataSteps } from '../data/'
-
 export default {
   name: 'BarChart',
   mixins: [StepMixin],
