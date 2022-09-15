@@ -5,8 +5,8 @@ stepstart: 4
 stepend: 4
 component: LineChart
 data: /img/nato_zapad_evrop.js
-chartoptions: |2
-    chartOptions: {
+chartoptions: |
+  {
       plugins: {
         legend: {
           display: false
