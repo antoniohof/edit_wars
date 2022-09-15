@@ -44,23 +44,7 @@ export default {
       styles: {
           width: `70%`,
       },
-      chartOptions: {
-        plugins: {
-          legend: {
-            display: false
-          },
-          subtitle: {
-              display: true,
-              text: 'Custom Chart Subtitle'
-          },
-          title: {
-            display: true,
-            text: () => "GRAFICO"
-          }
-      },
-        responsive: true,
-        borderColor: 'black'
-      },
+      chartOptions: null,
       additionalOptions: null,
       gradient: null,
       currentProcessedData: null,
@@ -129,7 +113,8 @@ export default {
         }
     },
     showData (index) {
-      consolelog(this.step)
+      console.log(this.step)
+      this.chartOptions = this.step.chartoptions
       const rawStepData = this.step.data
       if (!rawStepData) {
         console.error('no barChart data for this step')
