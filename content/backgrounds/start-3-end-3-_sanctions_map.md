@@ -1,5 +1,5 @@
 ---
-uuid: bhnPUH_RpfcfGJ_a4VMZc
+uuid: gG41C7PAQoOktCI7Apzi5
 name: sanctions_map
 stepstart: 3
 stepend: 3
@@ -20,5 +20,5 @@ body_ru: >-
 
 
   Map of Sanctions against Russia and Belarus 2022
-identifier: "[Narrative:undefined]_sanctions_map"
+identifier: "[Start:3][End:3]_sanctions_map"
 ---
