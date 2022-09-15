@@ -4,7 +4,7 @@ name: sanctions_chart_0
 stepstart: 4
 stepend: 4
 component: LineChart
-data: /static/files/nato_zapad_evrop.js
+data: /files/nato_zapad_evrop.js
 chartoptions:
   lang: json
   code: |

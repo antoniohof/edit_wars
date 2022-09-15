@@ -8,14 +8,14 @@ chartoptions:
   lang: javascript
 body_en: >-
   ![Map of Sanctions against Russia and Belarus
-  2022](/files/sanctions_against_russia_and_belarus_2022.svg.png "Map of Sanctions
+  2022](/img/sanctions_against_russia_and_belarus_2022.svg.png "Map of Sanctions
   against Russia and Belarus 2022")
 
 
   Map of Sanctions against Russia and Belarus 2022
 body_ru: >-
   ![Map of Sanctions against Russia and Belarus
-  2022](/files/sanctions_against_russia_and_belarus_2022.svg.png "Map of Sanctions
+  2022](/img/sanctions_against_russia_and_belarus_2022.svg.png "Map of Sanctions
   against Russia and Belarus 2022")
 
 
