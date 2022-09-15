@@ -116,32 +116,36 @@ export default {
       console.log(this.step)
       this.chartOptions = JSON.parse(this.step.chartoptions).chartOptions
       console.log(this.chartOptions)
-      const rawStepData = this.step.data
-      if (!rawStepData) {
-        console.error('no barChart data for this step')
-        return
-      }
-      const startDate = "01/01/2022"
-      const endDate = "08/01/2022"
-      const dates = getDates(new Date(startDate), new Date(endDate))
-      this.currentProcessedData = processTableutData(rawStepData.data, dates)
-      this.setAnimation()
-      this.currentChartData = {
-        labels: dates,
-        type: 'line',
-        datasets: [
-          {
-            type:'line',
-            label: 'Number of Articles About',
-            backgroundColor: this.gradient,
-            data: this.currentProcessedData,
-            fill: false,
-            ...this.additionalOptions,
-            borderWidth: 1
+      var json = require(this.step.data); //(with path)
+      fetch(json).then(response => response.json()).then(data => {
+        console.log('data', data)
+        const rawStepData = data
+          if (!rawStepData) {
+            console.error('no barChart data for this step')
+            return
           }
-        ]
+          const startDate = "01/01/2022"
+          const endDate = "08/01/2022"
+          const dates = getDates(new Date(startDate), new Date(endDate))
+          this.currentProcessedData = processTableutData(rawStepData.data, dates)
+          this.setAnimation()
+          this.currentChartData = {
+            labels: dates,
+            type: 'line',
+            datasets: [
+              {
+                type:'line',
+                label: 'Number of Articles About',
+                backgroundColor: this.gradient,
+                data: this.currentProcessedData,
+                fill: false,
+                ...this.additionalOptions,
+                borderWidth: 1
+              }
+            ]
+          }
+        })
       }
-    }
   },
   watch: {
     currentStepIndex (index) {
