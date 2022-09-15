@@ -49,7 +49,7 @@ collections:
     format: 'frontmatter'
     create: true
     slug: '{{identifier}}'
-    identifier_field: name
+    identifier_field: identifier
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
