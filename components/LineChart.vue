@@ -111,7 +111,7 @@ export default {
     },
     showData (index) {
       console.log(this.step)
-      this.chartOptions = this.step.chartoptions.code
+      // this.chartOptions = JSON.parse(this.step.chartoptions.code) // NOT WORKING, TODO
       // console.log(this.chartOptions)
       fetch(this.step.data).then(response => response.json()).then(data => {
         console.log('data', data)
