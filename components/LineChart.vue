@@ -114,7 +114,8 @@ export default {
     },
     showData (index) {
       console.log(this.step)
-      this.chartOptions = this.step.chartoptions
+      this.chartOptions = JSON.parse(this.step.chartoptions).chartOptions
+      console.log(this.chartOptions)
       const rawStepData = this.step.data
       if (!rawStepData) {
         console.error('no barChart data for this step')
