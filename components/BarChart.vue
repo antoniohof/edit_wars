@@ -66,33 +66,38 @@ export default {
     }
   },
   mounted () {    
-    this.showData(this.currentStepIndex)
+    this.showData()
     //
   
   },
   methods: {
-    showData (index) {
-      const rawStepData = dataSteps.find((step) => step.backgroundName === this.step.name)
-      if (!rawStepData) {
-        console.error('no barChart data for this step')
-        return
-      }
-      const dates = getDates(new Date(rawStepData.startDate), new Date(rawStepData.endDate))
-      this.currentProcessedData = processTableutData(rawStepData.data, dates)
-      this.currentChartData = {
-        labels: dates,
-        datasets: [
-          {
-            backgroundColor: this.gradient,
-            data: this.currentProcessedData
-          }
-        ]
-      }
+    showData () {
+      fetch(this.step.data).then(response => response.json()).then(data => {
+        console.log('data', data)
+        const rawStepData = data
+        if (!rawStepData) {
+          console.error('no barChart data for this step')
+          return
+        }
+        const startDate = "01/01/2022"
+        const endDate = "08/01/2022"
+        const dates = getDates(new Date(startDate), new Date(endDate))
+        this.currentProcessedData = processTableutData(rawStepData, dates)
+        this.currentChartData = {
+          labels: dates,
+          datasets: [
+            {
+              backgroundColor: this.gradient,
+              data: this.currentProcessedData
+            }
+          ]
+        }
+      })
     }
   },
   watch: {
     currentStepIndex (index) {
-      this.showData(this.currentStepIndex)
+      this.showData()
     }
   }
 }

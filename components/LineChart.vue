@@ -70,7 +70,6 @@ export default {
           duration: duration,
           from: NaN, // the point is initially skipped
           delay(ctx) {
-            console.log('ctx', ctx)
             if (ctx.type !== 'data' || ctx.xStarted) {
               return 0;
             }
@@ -84,7 +83,6 @@ export default {
           duration: duration,
           from: previousY,
           delay(ctx) {
-            console.log('ctx', ctx)
             if (ctx.type !== 'data' || ctx.yStarted) {
               return 0;
             }
@@ -114,8 +112,13 @@ export default {
     },
     showData (index) {
       console.log(this.step)
-      // this.chartOptions = JSON.parse(this.step.chartoptions)
-      console.log(this.chartOptions)
+      const escaped = escape(this.step.chartoptions)
+      console.log(escaped)
+      const s = JSON.parse(escaped)
+      console.log(s)
+      console.log(s)
+      this.chartOptions = s
+      // console.log(this.chartOptions)
       fetch(this.step.data).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data
@@ -126,7 +129,7 @@ export default {
           const startDate = "01/01/2022"
           const endDate = "08/01/2022"
           const dates = getDates(new Date(startDate), new Date(endDate))
-          this.currentProcessedData = processTableutData(rawStepData.data, dates)
+          this.currentProcessedData = processTableutData(rawStepData, dates)
           this.setAnimation()
           this.currentChartData = {
             labels: dates,
@@ -148,7 +151,7 @@ export default {
   },
   watch: {
     currentStepIndex (index) {
-      this.showData(this.currentStepIndex)
+      this.showData()
     }
   }
 }

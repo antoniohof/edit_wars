@@ -65,7 +65,7 @@ collections:
           media_folder: '/static/files'
           config:
             multiple: false
-      - { label: 'Chart Options', name: 'chartoptions', widget: 'code', required: false, default_language: 'json', output_code_only: true }
+      - { label: 'Chart Options', name: 'chartoptions', widget: 'code', required: false, default_language: 'json', output_code_only: false }
       - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
       - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
       - { label: "Identifier", name: "identifier", widget: "hidden", default: ""}
