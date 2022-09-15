@@ -114,10 +114,9 @@ export default {
     },
     showData (index) {
       console.log(this.step)
-      this.chartOptions = JSON.parse(this.step.chartoptions).chartOptions
+      // this.chartOptions = JSON.parse(this.step.chartoptions)
       console.log(this.chartOptions)
-      var json = require(this.step.data); //(with path)
-      fetch(json).then(response => response.json()).then(data => {
+      fetch(this.step.data).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data
           if (!rawStepData) {

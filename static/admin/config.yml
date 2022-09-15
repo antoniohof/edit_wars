@@ -60,6 +60,7 @@ collections:
         name: "data"
         widget: "file"
         required: false
+        media_folder: '/static/files'
         media_library:
           media_folder: '/static/files'
           config:
