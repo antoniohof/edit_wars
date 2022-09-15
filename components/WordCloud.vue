@@ -10,7 +10,6 @@
 
 <script>
 import { getDates, processTableutData, filterDatabyDate } from '../utils/DataProcessing'
-import { dataSteps } from '../data/'
 
 import StepMixin from "@/mixins/StepMixin.js";
 
@@ -34,7 +33,7 @@ export default {
   methods: {
     updateData () {
       //console.log("getDates", getDates(new Date("01/01/2022"), new Date("08/01/2022")))
-      var currentData = dataSteps[this.currentStepIndex]
+      var currentData = {}
       this.news = filterDatabyDate(currentData.data, currentData.startDate, currentData.endData)
       this.news = this.news.map(n => {
         n.x = Math.random()*this.size
