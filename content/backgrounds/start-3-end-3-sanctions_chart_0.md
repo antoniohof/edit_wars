@@ -5,5 +5,22 @@ stepstart: 3
 stepend: 3
 component: BarChart
 data: /static/data/test.json
+chartoptions: |-
+  {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false
+      },
+      subtitle: {
+          display: true,
+          text: 'Custom Chart Subtitle'
+      },
+      title: {
+        display: true,
+        text: () => "Test"
+      }
+    }
+  }
 identifier: "[Start:3][End:3]-sanctions_chart_0"
 ---
