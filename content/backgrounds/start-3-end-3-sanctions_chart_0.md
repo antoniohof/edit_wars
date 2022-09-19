@@ -11,6 +11,7 @@ chartoptions: |-
     "borderColor": "black",
     "backgroundColor": "black",
     "plugins": {
+      "label": "",
       "legend": {
         "display": "false"
       },
