@@ -11,7 +11,6 @@ chartoptions: |-
     "borderColor": "black",
     "backgroundColor": "black",
     "plugins": {
-      "label": "",
       "legend": {
         "display": "false"
       },
@@ -21,14 +20,6 @@ chartoptions: |-
       "title": {
         "display": "true",
         "text": "Number of Articles"
-      },
-      "scales": {
-        "y": {
-          "display": "false"
-        },
-        "x": {
-          "display": "false"
-        }
       }
     }
   }
