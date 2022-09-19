@@ -8,6 +8,8 @@ data: /static/data/test.json
 chartoptions: |-
   {
     "responsive": "true",
+    borderColor: "black",
+    backgroundColor: "black",
     "plugins": {
       "legend": {
         "display": "false"
