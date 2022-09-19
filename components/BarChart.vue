@@ -70,6 +70,7 @@ export default {
   },
   methods: {
     showData () {
+      console.log(this.step)
       fetch(this.step.data).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data
