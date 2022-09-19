@@ -7,12 +7,20 @@ component: BarChart
 data: /static/data/test.json
 chartoptions: |-
   {
-    "plugins": {
-      "title": {
-        "display": "true",
-        "text": "asdad"
-      }
-    }
-  }
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            },
+            subtitle: {
+                display: true,
+                text: 'Custom Chart Subtitle'
+            },
+            title: {
+              display: true,
+              text: () => "Number of Articles"
+            }
+          }
+        }
 identifier: "[Start:3][End:3]-sanctions_chart_0"
 ---
