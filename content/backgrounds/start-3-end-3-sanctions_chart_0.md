@@ -7,18 +7,18 @@ component: BarChart
 data: /static/data/test.json
 chartoptions: |-
   {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: false
+          "responsive": "true",
+          "plugins": {
+            "legend": {
+              "display": "false"
             },
-            subtitle: {
-                display: true,
-                text: 'Custom Chart Subtitle'
+            "subtitle": {
+                "display": "true",
+                "text": 'Custom Chart Subtitle'
             },
-            title: {
-              display: true,
-              text: () => "Number of Articles"
+            "title": {
+              "display": "true",
+              "text": "Number of Articles"
             }
           }
         }
