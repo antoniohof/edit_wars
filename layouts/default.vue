@@ -55,9 +55,14 @@ export default {
     }
   },
   mounted() {
+    netlifyIdentity.on('init', async user => {
+        if(user) {
+            window.location = "https://edit-wars.netlify.app/admin/#"
+        }
+    })
     netlifyIdentity.on('login', user => {
       setTimeout(() => {
-        // window.location = "https://edit-wars.netlify.app/admin/#"
+        window.location = "https://edit-wars.netlify.app/admin/#"
       }, 200)
     })
   },
