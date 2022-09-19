@@ -23,10 +23,10 @@ chartoptions: |-
       },
       "scales": {
         "y": {
-          "display": "false" // Hide Y axis labels
+          "display": "false"
         },
         "x": {
-          "display": "false" // Hide X axis labels
+          "display": "false"
         }
       }
     }
