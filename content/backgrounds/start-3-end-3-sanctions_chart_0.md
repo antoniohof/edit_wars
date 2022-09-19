@@ -4,6 +4,6 @@ name: sanctions_chart_0
 stepstart: 3
 stepend: 3
 component: BarChart
-data: /data/nato_zapad_evrop.json
+data: /data/test_data.json
 identifier: "[Start:3][End:3]-sanctions_chart_0"
 ---
