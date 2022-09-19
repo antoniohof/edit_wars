@@ -20,6 +20,14 @@ chartoptions: |-
       "title": {
         "display": "true",
         "text": "Number of Articles"
+      },
+      "scales": {
+        "y": {
+          "display": "false" // Hide Y axis labels
+        },
+        "x": {
+          "display": "false" // Hide X axis labels
+        }
       }
     }
   }
