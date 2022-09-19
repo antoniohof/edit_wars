@@ -6,11 +6,11 @@ stepend: 3
 component: BarChart
 data: /static/data/test.json
 chartoptions: |-
-  { 
-    plugins: {
-      title: {
-        display: true,
-        text: "Test"
+  {
+    "plugins": {
+      "title": {
+        "display": "true",
+        "text": "asdad"
       }
     }
   }
