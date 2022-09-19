@@ -15,8 +15,7 @@ chartoptions: |-
         "display": "false"
       },
       "subtitle": {
-          "display": "true",
-          "text": "Custom Chart Subtitle"
+          "display": "false"
       },
       "title": {
         "display": "true",
