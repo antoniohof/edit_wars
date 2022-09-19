@@ -22,7 +22,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
-import { getDates, processTableutData } from '../utils/DataProcessing'
+import { getDates, processTableutData, parseDataUrl } from '../utils/DataProcessing'
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
@@ -71,7 +71,7 @@ export default {
   methods: {
     showData () {
       console.log(this.step)
-      fetch(this.step.data).then(response => response.json()).then(data => {
+      fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data
         if (!rawStepData) {

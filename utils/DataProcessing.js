@@ -42,4 +42,8 @@ function filterDatabyDate (data, startDate, endDate) {
   return data
 }
 
-export { getDates, processTableutData, filterDatabyDate }
+function parseDataUrl (url) {
+  return url.replace("/static", "")
+}
+
+export { getDates, processTableutData, filterDatabyDate, parseDataUrl }
