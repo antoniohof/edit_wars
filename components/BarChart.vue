@@ -71,6 +71,7 @@ export default {
   methods: {
     showData () {
       console.log(this.step)
+      const j = JSON.parse(this.step.chartoptions)
       fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data

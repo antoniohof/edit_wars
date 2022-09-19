@@ -46,4 +46,12 @@ function parseDataUrl (url) {
   return url.replace("/static", "")
 }
 
-export { getDates, processTableutData, filterDatabyDate, parseDataUrl }
+function escapeCode (code) {
+    if (code != null && code != "") {
+       return code.replace(/\n/g, " ");
+    } else {
+       return code;
+    } 
+  }
+
+export { getDates, processTableutData, filterDatabyDate, parseDataUrl, escapeCode }
