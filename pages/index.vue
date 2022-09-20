@@ -271,7 +271,7 @@ export default {
 
 .background
   height: 100vh
-  width: 70vw
+  width: 65vw
   position: fixed
   left: 0
   top: 0

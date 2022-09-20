@@ -40,7 +40,7 @@ export default {
       height: 800,
       cssClasses: '',
       styles: {
-          width: `70%`,
+          width: `95%`,
       },
       chartOptions: {}
     }
