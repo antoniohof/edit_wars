@@ -25,7 +25,7 @@ chartoptions: |-
      "scales": {
               "x": {
                   "type": "time",
-                  "time": {
+                  "labels": {
                       "unit": "day"
                   }
               }
