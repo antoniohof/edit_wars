@@ -4,7 +4,7 @@ name: sanctions_chart_0
 stepstart: 3
 stepend: 3
 component: BarChart
-data: /static/data/test.json
+data: /static/data/sanctions_chart_0.json
 chartoptions: |-
   {
     "responsive": "true",
