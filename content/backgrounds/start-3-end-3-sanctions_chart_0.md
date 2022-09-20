@@ -19,7 +19,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Number of Articles"
+        "text": "Mention of Sanctions in the media"
       }
     }
   }
