@@ -119,25 +119,15 @@ export default {
             console.error('no barChart data for this step')
             return
           }
-          const startDate = "01/01/2022"
-          const endDate = "08/01/2022"
-          const dates = getDates(new Date(startDate), new Date(endDate))
-          this.currentProcessedData = processTableutData(rawStepData, dates)
+          // const startDate = "01/01/2022"
+          // const endDate = "08/01/2022"
+          // const dates = getDates(new Date(startDate), new Date(endDate))
+          // this.currentProcessedData = processTableutData(rawStepData, dates)
           this.setAnimation()
           this.currentChartData = {
-            labels: dates,
-            type: 'line',
-            datasets: [
-              {
-                type:'line',
-                label: 'Number of Articles About',
-                backgroundColor: this.gradient,
-                data: this.currentProcessedData,
-                fill: false,
-                ...this.additionalOptions,
-                borderWidth: 1
-              }
-            ]
+            labels: rawStepData.labels,
+            datasets: rawStepData.datasets,
+            type: 'line'
           }
         })
       }

@@ -46,30 +46,22 @@ export default {
     }
   },
   mounted () {    
-    this.loadData()
-    //
-  
+    this.loadData()  
   },
   methods: {
     loadData () {
       this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
+      console.log(this.step)
       fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
         const rawStepData = data
         if (!rawStepData) {
           console.error('no barChart data for this step')
           return
         }
-        const startDate = "01/01/2022"
-        const endDate = "08/01/2022"
-        const dates = getDates(new Date(startDate), new Date(endDate))
-        this.currentProcessedData = processTableutData(rawStepData, dates)
+        console.log('rawStepData', rawStepData)
         this.currentChartData = {
-          labels: dates,
-          datasets: [
-            {
-              data: this.currentProcessedData
-            }
-          ]
+          labels: rawStepData.labels,
+          datasets: rawStepData.datasets
         }
       })
     }
