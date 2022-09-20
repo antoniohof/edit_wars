@@ -6,7 +6,6 @@
       :chart-data="currentChartData"
       :chart-id="chartId"
       :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
       :css-classes="cssClasses"
       :styles="styles"
       :width="width"
@@ -22,7 +21,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
-import { getDates, processTableutData, parseDataUrl } from '../utils/DataProcessing'
+import { getDates, processTableutData, parseDataUrl, escapeCode } from '../utils/DataProcessing'
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
@@ -33,34 +32,17 @@ export default {
   },
   data () {
     return {
-      gradient: null,
       currentProcessedData: null,
       currentChartData: null,
       chartId: 'bar-chart',
       datasetIdKey: 'label',
-      width:800,
+      width: 800,
       height: 800,
       cssClasses: '',
       styles: {
           width: `70%`,
       },
-      plugins: null,
-      chartOptions: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false
-          },
-          subtitle: {
-              display: true,
-              text: 'Custom Chart Subtitle'
-          },
-          title: {
-            display: true,
-            text: () => "Number of Articles"
-          }
-        }
-      }
+      chartOptions: {}
     }
   },
   mounted () {    
@@ -70,10 +52,8 @@ export default {
   },
   methods: {
     showData () {
-      console.log(this.step)
-      const j = JSON.parse(this.step.chartoptions)
+      this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
       fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
-        console.log('data', data)
         const rawStepData = data
         if (!rawStepData) {
           console.error('no barChart data for this step')
@@ -87,7 +67,6 @@ export default {
           labels: dates,
           datasets: [
             {
-              backgroundColor: this.gradient,
               data: this.currentProcessedData
             }
           ]
