@@ -1,5 +1,5 @@
 <template>
-  <div class="graph-container">
+  <v-container fluid class="graph-container">
     <LineChartJs 
       v-if="currentChartData"
       :chart-options="chartOptions"
@@ -11,7 +11,7 @@
       :width="width"
       :height="height"
     />
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -142,5 +142,8 @@ export default {
 
 <style lang="sass" scoped>
 .graph-container
-  width: 1011px !important
+  width: 100%
+  width: -moz-available          
+  width: -webkit-fill-available 
+  width: fill-available
 </style>

@@ -76,5 +76,8 @@ export default {
 
 <style lang="sass" scoped>
 .graph-container
-  width: 1011px !important
+  width: 100%
+  width: -moz-available          
+  width: -webkit-fill-available 
+  width: fill-available
 </style>

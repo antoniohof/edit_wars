@@ -285,7 +285,7 @@ export default {
   justify-content: center
   align-items: center
   height: fit-content
-  width: fit-content
+  width: 100%
   margin-bottom: 0px
   position: relative
   z-index: 1
