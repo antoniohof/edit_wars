@@ -240,9 +240,9 @@ export default {
 
 .side
   display: flex
-  width: 30vw !important
+  width: 35vw !important
   align-self: flex-end
-  padding: 0px 20px 0px 20px
+  padding: 0px 27px 0px 27px
   z-index: 2
 
 .scrollama
@@ -267,7 +267,7 @@ export default {
   z-index: 2
 .step:last-child
   margin-bottom: 500px !important
-.step.active
+// .step.active
 
 .background
   height: 100vh

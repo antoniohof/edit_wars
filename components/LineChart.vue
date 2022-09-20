@@ -51,7 +51,7 @@ export default {
     }
   },
   mounted () {    
-    this.showData()
+    this.loadData()
   },
   methods: {
     setAnimation () {
@@ -109,7 +109,7 @@ export default {
           animation: this.animation
         }
     },
-    showData (index) {
+    loadData (index) {
       console.log(this.step)
       this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
       fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {

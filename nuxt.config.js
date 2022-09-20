@@ -33,21 +33,28 @@ export default {
         href: '/img/map.webp',
         type: "image/webp"
       },
+      */
       {
         rel: 'preload',
-        href: 'fonts/PanamaItalic/PanamaItalic.woff',
+        href: 'fonts/Golos-Text-Regular/Golos-Text_Regular.woff2',
         as: 'font',
-        type: 'font/woff',
+        type: 'font/woff2',
         crossorigin: true
       },
       {
         rel: 'preload',
-        href: 'fonts/PanamaRegular/PanamaRegular.woff',
+        href: 'fonts/space-mono-v12-latin/space-mono-v12-latin-700.woff2',
         as: 'font',
-        type: 'font/woff',
+        type: 'font/woff2',
+        crossorigin: true
+      },
+      {
+        rel: 'preload',
+        href: 'fonts/space-mono-v12-latin/space-mono-v12-latin-regular.woff2',
+        as: 'font',
+        type: 'font/woff2',
         crossorigin: true
       }
-      */
     ],
     script: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
@@ -56,7 +63,7 @@ export default {
   },
   ssr: true,
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/globals.sass', 'swiper/css/swiper.css'],
+  css: ['~/assets/sass/globals.sass', 'swiper/css/swiper.css'],
   target: 'static',
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -144,14 +151,14 @@ export default {
     }
   },
   styleResources: {
-    sass: ['~/assets/globals.sass']
+    sass: ['~/assets/sass/variables.sass']
   },
   content: {
     // Options
   },
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/globals.sass'],
+    customVariables: ['~/assets/sass/variables.sass'],
     theme: {
       dark: false,
       themes: {
@@ -176,7 +183,7 @@ export default {
   render: {
     bundleRenderer: {
       shouldPreload: (file, type) => {
-        return ['font'].includes(type)
+        return ['script', 'style', 'font'].includes(type)
       }
     }
   },

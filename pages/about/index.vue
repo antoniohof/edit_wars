@@ -59,7 +59,7 @@ export default {
   margin-bottom: 200px
   color: black
 .about-description
-  font-family: TeX Gyre Heros Cn !important
+  font-family: Space Mono !important
   font-size: 32px !important
   line-height: 40px !important
   width: 100%
