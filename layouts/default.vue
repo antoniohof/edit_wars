@@ -1,6 +1,5 @@
 <template>
   <v-app id="app">
-    <h1 style="display: none">Media Futures</h1>
     <transition name="fade">
       <v-app-bar
         app
@@ -10,15 +9,17 @@
         color="transparent"
         justify-space-around
       >
+      <!--
         <NuxtLink
           class="topbar_item justify-end about"
           to="/about"
         >
           {{ $t('about') }}
         </NuxtLink>
+        -->
         <v-spacer></v-spacer>
-        <div class='changelang' @click="onChangeLanguage">
-          {{languageToChange}}
+        <div class='menu' @click="onClickMenu">
+          MENU
         </div>
       </v-app-bar>
     </transition>
@@ -82,6 +83,9 @@ export default {
       } else {
         this.$i18n.locale = 'en'
       }
+    },
+    onClickMenu () {
+      console.log('on click menu')
     }
   },
   watch: {
@@ -102,11 +106,14 @@ export default {
   color: white
   width: 100vw
   background-image: red
+  padding: 0px 40px 0px 40px
 
-.changelang
+.menu
   cursor: pointer
+  font-family: Space Mono
   color: black
   font-weight: 400
-  font-size: 30px
+  font-size: 32px
   text-transform: uppercase
+  margin-top: 32px
 </style>
