@@ -20,7 +20,7 @@
             
             </template>
   
-            <v-list-item dense>
+            <v-list-item class='content' dense>
               {{ topic.content }}
             </v-list-item>
           </v-list-group>
@@ -49,32 +49,32 @@ export default {
       topics: [
         {
           title: 'Project Goals',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         },
         {
           title: 'Project Funding',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         },
         {
           title: 'Team',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         },
         {
           title: 'Research Methodology',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         },
         {
           title: 'Research Tools',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         },
         {
           title: 'Contacts',
-          content: 'Bla',
+          content: 'Topic Example',
           isOpen: false
         }
       ]
@@ -138,7 +138,11 @@ export default {
   text-transform: uppercase
   color: black
   padding: 0px !important
-  
+.content
+  font-family: Golos-Text-Regular
+  font-size: 25px
+  margin-bottom: 25px
+
 .divider
   border-color: rgba(0, 0, 0, 1) !important
   border: 1px solid black
