@@ -24,7 +24,10 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mention of Sanctions in the media"
+        "text": "Mention of Sanctions in the media",
+        "font": {
+          "size": "30"
+        }
       }
     },
       "scales": {
@@ -33,7 +36,7 @@ chartoptions: |-
             "time": {
                 "unit": "week",
                 "tooltipFormat": "MMM dd",
-               "displayFormats": {
+                "displayFormats": {
                  "week": "MMM dd"
                }
             }
