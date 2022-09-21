@@ -21,7 +21,7 @@ import {easingEffects} from 'chart.js/helpers'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
 
-import { getDates, processTableutData } from '../utils/DataProcessing'
+import { getDates, processTableutData, escapeCode, parseDataUrl} from '../utils/DataProcessing'
 import StepMixin from "@/mixins/StepMixin.js";
 
 
