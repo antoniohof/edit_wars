@@ -21,6 +21,14 @@ chartoptions: |-
         "display": "true",
         "text": "Mention of Sanctions in the media"
       }
+    },
+      "scales": {
+        "x": {
+            "type": "time",
+            "time": {
+                "unit": "month"
+            }
+        }
     }
   }
 identifier: "[Start:3][End:3]-sanctions_chart_0"
