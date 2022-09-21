@@ -10,15 +10,15 @@ chartoptions: |-
     "responsive": "true",
     "borderColor": "black",
     "backgroundColor": "black",
-    "tooltips": {
+    "plugins": {
+      "legend": {
+        "display": "false"
+      },
+      "tooltips": {
         "callbacks": {
            "label": ""
         }
-    },
-    "legend": {
-        "display": "false"
-    },
-    "plugins": {
+      },
       "subtitle": {
           "display": "false"
       },
