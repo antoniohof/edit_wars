@@ -14,7 +14,9 @@ export default {
     }
   },
   mounted () {
-    netlifyIdentity.open()
+    if (netlifyIdentity) {
+      netlifyIdentity.open()
+    }
   },
   activated () {
   },

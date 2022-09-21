@@ -59,11 +59,13 @@ export default {
     }
   },
   mounted() {
-    netlifyIdentity.on('login', user => {
-      setTimeout(() => {
-        // window.location = "https://edit-wars.netlify.app/admin/#"
-      }, 200)
-    })
+    if (netlifyIdentity) {
+      netlifyIdentity.on('login', user => {
+        setTimeout(() => {
+          // window.location = "https://edit-wars.netlify.app/admin/#"
+        }, 200)
+      })
+    }
   },
   data() {
     return {
