@@ -52,7 +52,7 @@ import throttle from 'lodash/throttle'
 export default {
   head() {
     return {
-      script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
+      // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
   components: {},
@@ -240,7 +240,7 @@ export default {
 
 .side
   display: flex
-  width: 35vw !important
+  width: 25vw !important
   align-self: flex-end
   padding: 0px 27px 0px 27px
   z-index: 2
@@ -271,7 +271,7 @@ export default {
 
 .background
   height: 100vh
-  width: 65vw
+  width: 75vw
   position: fixed
   left: 0
   top: 0

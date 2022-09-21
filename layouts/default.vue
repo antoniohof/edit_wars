@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <Menu @onclose="onMenuClose" :isOpen="isMenuOpen"></Menu>
     <transition name="fade">
       <v-app-bar
         app
@@ -18,9 +19,11 @@
         </NuxtLink>
         -->
         <v-spacer></v-spacer>
-        <div class='menu' @click="onClickMenu">
-          MENU
-        </div>
+        <transition name="fademenu">
+          <div class='menu' @click="onClickMenu" v-if="!isMenuOpen">
+            MENU
+          </div>
+      </transition>
       </v-app-bar>
     </transition>
     <v-main class='main'>
@@ -58,12 +61,13 @@ export default {
   mounted() {
     netlifyIdentity.on('login', user => {
       setTimeout(() => {
-        window.location = "https://edit-wars.netlify.app/admin/#"
+        // window.location = "https://edit-wars.netlify.app/admin/#"
       }, 200)
     })
   },
   data() {
     return {
+      isMenuOpen: false
     }
   },
   methods: {
@@ -79,8 +83,13 @@ export default {
         this.$i18n.locale = 'en'
       }
     },
+    onMenuClose () {
+      console.log('out')
+      this.isMenuOpen = false
+    },
     onClickMenu () {
       console.log('on click menu')
+      this.isMenuOpen = true
     }
   },
   watch: {
