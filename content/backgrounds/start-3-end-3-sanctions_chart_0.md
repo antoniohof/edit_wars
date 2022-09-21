@@ -32,6 +32,7 @@ chartoptions: |-
             "type": "time",
             "time": {
                 "unit": "week",
+                "tooltipFormat": "MMM dd"
                "displayFormats": {
                  "week": "MMM dd"
                }
