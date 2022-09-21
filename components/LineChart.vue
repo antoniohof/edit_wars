@@ -137,9 +137,6 @@ export default {
       }
   },
   watch: {
-    currentStepIndex (index) {
-      this.showData()
-    }
   }
 }
 </script>

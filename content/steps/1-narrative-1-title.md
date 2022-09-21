@@ -2,7 +2,7 @@
 uuid: y97q-94-S7I0l4JX_7-mR
 name: title
 date: 2022-09-19T20:10:31.161Z
-narrative: 1
+narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
 order: 1
 component: TextCenter
 body_en: Propaganda narratives and myths about sanctions in Russian-language media.

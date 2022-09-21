@@ -35,8 +35,8 @@ collections:
       - { label: 'Title EN', name: 'title_en', widget: string, required: false }
       - { label: 'Title RU', name: 'title_ru', widget: string, required: false }
       - { label: 'Date', name: 'date', widget: 'date', required: false }
-      - { label: "Narrative", name: "narrative", widget: "number", default: 0, value_type: "int", required: true}
-      - { label: 'Order', name: 'order', widget: "number", value_type: "int", default: 1, step: 1, min: 1 }
+      - { label: "Narrative", name: "narrative", widget: "string", default: "", required: true}
+      - { label: 'Order', name: 'order', widget: "number", value_type: "float", default: 1, step: 1, min: 1 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }
       - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
       - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }

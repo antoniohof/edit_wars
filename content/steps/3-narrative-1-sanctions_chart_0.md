@@ -2,7 +2,7 @@
 uuid: cruIyfgVgcSzZXFrcUqJ4
 name: sanctions_chart_0
 date: 2022-09-19T20:10:12.798Z
-narrative: 1
+narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
 order: 3
 component: DefaultText
 body_en: The Russian media covered the topic of sanctions even before the
