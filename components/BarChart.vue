@@ -51,8 +51,11 @@ export default {
   methods: {
     loadData () {
       this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
-      console.log(this.step)
-      fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
+      let data = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + this.step.name + '.json'
+      if (this.step.data) {
+        data = this.step.data
+      }
+      fetch(parseDataUrl(data)).then(response => response.json()).then(data => {
         const rawStepData = data
         if (!rawStepData) {
           console.error('no barChart data for this step')

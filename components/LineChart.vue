@@ -112,7 +112,11 @@ export default {
     loadData (index) {
       console.log(this.step)
       this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
-      fetch(parseDataUrl(this.step.data)).then(response => response.json()).then(data => {
+      let data = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + this.step.name + '.json'
+      if (this.step.data) {
+        data = this.step.data
+      }
+      fetch(parseDataUrl(data)).then(response => response.json()).then(data => {
         console.log('data', data)
         const rawStepData = data
           if (!rawStepData) {
