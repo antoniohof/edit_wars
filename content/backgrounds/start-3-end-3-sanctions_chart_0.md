@@ -32,7 +32,10 @@ chartoptions: |-
             "type": "time",
             "time": {
                 "unit": "week"
-            }
+            },
+             "displayFormats": {
+               "week": "MMM DD"
+             }
         }
     }
   }
