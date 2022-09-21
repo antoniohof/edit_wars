@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
-
+    Intro
   </v-container>
 </template>
 
@@ -50,8 +50,9 @@ export default {
 .home
   height: 100%
   display: flex
-  justify-content: flex-end
   width: 100vw
+  color: black
   position: relative
-
+  font-family: Space Mono !important
+  font-size: 32px !important
 </style>
