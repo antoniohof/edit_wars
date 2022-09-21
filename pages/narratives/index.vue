@@ -5,6 +5,7 @@
   </template>
   
   <script>
+import { narratives } from '@/utils/constants.js'
 import SpriteText from 'three-spritetext';
 import * as THREE from 'three'
   export default {
@@ -27,14 +28,16 @@ import * as THREE from 'three'
     mounted () {
           const el = document.querySelector('.narratives-page')
           const g = window.ForceGraph3D()(el)
-          const N = 5;
+          const N = 3;
+          const data = narratives.map(narrative => ({ id: narrative.id, label: narrative.name, path: narrative.slug }))
+          const ds = data.filter((d) => !!d)
           const gData = {
-          nodes: [...Array(N).keys()].map(i => ({ id: i, label: 'Narrative ' + i })),
+          nodes: ds,
           links: [...Array(N).keys()]
               .filter(id => id)
               .map(id => ({
               source: id,
-              target: 0,
+              target: 1,
               color: 'rgba(0,0,0,1)'
               }))
           };
@@ -48,7 +51,7 @@ import * as THREE from 'three'
         const group = new THREE.Group()
         if (node.id > 0) {
           console.log(group)
-          const geometry = new THREE.SphereGeometry( 5, 32, 16 );
+          const geometry = new THREE.SphereGeometry( 5, 64, 64 );
           const material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
           const sphere = new THREE.Mesh( geometry, material );
           const sprite = new SpriteText(node.label);
@@ -73,7 +76,7 @@ import * as THREE from 'three'
   
     methods: {
       onNodeClick (node) {
-        this.$router.push({path: 'narratives/' + node.id });
+        this.$router.push({path: 'narratives/' + node.path });
       }
     },
     watch: {

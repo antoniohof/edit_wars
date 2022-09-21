@@ -48,6 +48,7 @@
 import Vue from 'vue'
 import WordCloud from '@/components/WordCloud.vue'
 import throttle from 'lodash/throttle'
+import { narratives } from '@/utils/constants.js'
 
 export default {
   head() {
@@ -57,7 +58,10 @@ export default {
   },
   components: {},
   beforeMount() {
-    this.currentNarrative = parseInt($nuxt.$route.params.id)
+    this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
+    if (!this.currentNarrative) {
+      console.error('narrative not found!', $nuxt.$route.params.id)
+    }
     // check if each step components exist, if not set to load default
     this.steps.forEach((step) => {
       let componentExists = step.component in Vue.options.components
@@ -69,6 +73,8 @@ export default {
   mounted() {
     console.log($nuxt.$route)
     console.log('charango')
+    console.log(this.steps)
+    console.log(this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative)))
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     if (this.currentBackground) {
       // in case theres background at step
@@ -102,7 +108,7 @@ export default {
       if (!process.browser) {
         return []
       }
-      return this.steps.filter((step) => step.narrative === parseInt($nuxt.$route.params.id))
+      return this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative))
     },
     currStepObj() {
       return this.steps[this.currStepIndex]
