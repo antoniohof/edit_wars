@@ -77,7 +77,7 @@ export default {
     console.log(this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative)))
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
-    
+
     if (this.currentBackground) {
       // in case theres background at step
       this.currentBackgroundToShow = this.currentBackground
@@ -95,7 +95,7 @@ export default {
     return {
       currentNarrative: 0,
       currStepIndex: 0,
-      currStepProgress: 0,
+      currStepProgress: 0.1,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
