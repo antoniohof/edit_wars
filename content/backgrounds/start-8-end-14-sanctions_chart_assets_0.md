@@ -3,7 +3,7 @@ uuid: m2NREBIAYrU-fYbp3r5hZ
 name: sanctions_chart_assets_0
 stepstart: 8
 stepend: 14
-component: BarGraph
+component: BarChart
 chartoptions: |-
   {
     "responsive": "true",
