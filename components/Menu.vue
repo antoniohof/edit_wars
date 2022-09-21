@@ -53,7 +53,7 @@ export default {
       },
       computed: {
         selectedRoute () {
-            return this.$nuxt.$route.name
+            return this.$nuxt.$route.path
         }
       },
       mounted () {
