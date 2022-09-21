@@ -26,7 +26,8 @@ chartoptions: |-
         "display": "true",
         "text": "Mention of Sanctions in the media",
         "font": {
-          "size": "30"
+          "size": "30",
+          "family": "Golos-Text-Regular"
         }
       }
     },
