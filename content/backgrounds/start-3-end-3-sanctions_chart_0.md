@@ -27,6 +27,11 @@ chartoptions: |-
             "type": "time",
             "time": {
                 "unit": "day"
+            },
+            "adapters": { 
+              "date": {
+                "locale": "enUS", 
+              }
             }
         }
     }
