@@ -30,7 +30,7 @@ chartoptions: |-
             },
             "adapters": { 
               "date": {
-                "locale": "enUS", 
+                "locale": "enUS"
               }
             }
         }
