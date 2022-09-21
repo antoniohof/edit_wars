@@ -25,7 +25,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title :class="{'selected': selectedRoute === item.route }" >{{ item.title }}</v-list-item-title>
+            <v-list-item-title :class="{'selected': isSelected(item) }" >{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -62,6 +62,12 @@ export default {
       methods: {
         onClickClose () {
             this.isOpenLocal = false
+        },
+        isSelected (item) {
+          if (this.selectedRoute.indexOf('narratives') !== -1 && item.route === '/narratives') {
+            return true
+          }
+          return this.selectedRoute === item.route
         }
       },
       watch: {
@@ -106,6 +112,8 @@ export default {
     text-transform: uppercase
     font-size: 32px !important
     color: black
+    &:hover
+      color: white !important
 
 .selected
     color: white !important
