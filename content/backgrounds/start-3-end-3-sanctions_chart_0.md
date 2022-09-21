@@ -26,7 +26,7 @@ chartoptions: |-
         "x": {
             "type": "time",
             "time": {
-                "unit": "day"
+                "unit": "week"
             }
         }
     }
