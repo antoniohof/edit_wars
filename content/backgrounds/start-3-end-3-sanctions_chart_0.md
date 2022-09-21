@@ -24,7 +24,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mention of isolation in the media",
+        "text": "Mention of Sanctions in the media", 
         "color": "black",
         "font": {
           "size": "30",
