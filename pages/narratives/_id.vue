@@ -163,6 +163,7 @@ export default {
       }
       this.lastEnterBackgroundDirection = direction
       this.lastDirection = direction
+      console.log('this.currentBackground', this.currentBackground)
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
