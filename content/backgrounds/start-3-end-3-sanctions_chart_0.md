@@ -25,10 +25,10 @@ chartoptions: |-
       "title": {
         "display": "true",
         "text": "Mention of Sanctions in the media",
+        "color": "black",
         "font": {
           "size": "30",
-          "family": "Golos-Text-Regular",
-          "color": "black"
+          "family": "Golos-Text-Regular"
         }
       }
     },
