@@ -16,7 +16,7 @@ chartoptions: |-
       },
       "tooltips": {
         "callbacks": {
-           "label": ""
+           "label": "() => {}"
         }
       },
       "subtitle": {
