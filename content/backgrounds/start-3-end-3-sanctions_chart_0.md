@@ -4,7 +4,7 @@ name: sanctions_chart_0
 stepstart: 3
 stepend: 3
 component: BarChart
-data: https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/data/Colab/sanctions_chart_0.csv
+data: ""
 chartoptions: |-
   {
     "responsive": "true",
