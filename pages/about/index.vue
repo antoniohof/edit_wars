@@ -140,7 +140,7 @@ export default {
   padding: 0px !important
   
 .divider
-  border-color: rgba(0, 0, 0, 1)
+  border-color: rgba(0, 0, 0, 1) !important
   border: 1px solid black
   position: absolute
   top: 0px
