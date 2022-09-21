@@ -10,6 +10,9 @@
       v-model="isOpenLocal"
       class="menu"
     >
+      <div class="close" @click="onClickClose">
+        CLOSE
+      </div>
       <v-list height="300" class="list">
         <v-list-item
           v-for="item in items"
@@ -57,7 +60,9 @@ export default {
        
       },
       methods: {
-
+        onClickClose () {
+            this.isOpenLocal = false
+        }
       },
       watch: {
         isOpen (val) {
@@ -83,6 +88,15 @@ export default {
 .list
     margin-top: 147px
     margin-left: 60px
+
+.close
+    position: absolute
+    top: 0
+    font-family: Space Mono
+    font-size: 32px
+    margin-left: 27px
+    margin-top: 7px
+    cursor: pointer
     
 .v-list-item
     cursor: pointer
