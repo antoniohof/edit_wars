@@ -33,7 +33,7 @@ chartoptions: |-
             "time": {
                 "unit": "week",
                "displayFormats": {
-                 "week": "MMM DD"
+                 "week": "MMM dd"
                }
             }
         }
