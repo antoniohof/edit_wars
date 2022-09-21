@@ -2,7 +2,7 @@
 uuid: m2NREBIAYrU-fYbp3r5hZ
 name: sanctions_chart_assets_0
 stepstart: 8
-stepend: 14
+stepend: 8
 component: BarChart
 chartoptions: |-
   {
@@ -44,5 +44,5 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:8][End:14]-sanctions_chart_assets_0"
+identifier: "[Start:8][End:8]-sanctions_chart_assets_0"
 ---
