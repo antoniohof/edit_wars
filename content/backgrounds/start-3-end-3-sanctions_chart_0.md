@@ -31,11 +31,11 @@ chartoptions: |-
         "x": {
             "type": "time",
             "time": {
-                "unit": "week"
-            },
-             "displayFormats": {
-               "week": "MMM DD"
-             }
+                "unit": "week",
+               "displayFormats": {
+                 "week": "MMM DD"
+               }
+            }
         }
     }
   }
