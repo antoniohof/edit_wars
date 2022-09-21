@@ -1,10 +1,13 @@
 <template>
   <v-container class="about-page" fluid>
+    <div class="about-page-title">
+      Edit Wars project is the data based art research, studying special aspects of Russian propaganda and media situation in Russia regarding the invasion in Ukraine 2022 and current war. 
+    </div>
     <v-row
-      class="justify-start"
-      width="70%"
+      class="about-page-topics justify-start"
+      width="72%"
     >
-      <v-list dense width="70%">
+      <v-list dense width="72%">
           <v-list-group
             v-for="(topic, index) in topics"
             :key="index"
@@ -20,7 +23,7 @@
             
             </template>
   
-            <v-list-item class='content' dense>
+            <v-list-item class='topic-content' dense>
               {{ topic.content }}
             </v-list-item>
           </v-list-group>
@@ -130,6 +133,14 @@ export default {
   width: 100%
   padding: 0px 85px 0px 85px
   color: black
+  &-title
+    font-family: Golos-Text-Regular
+    font-size: 32px
+    margin-bottom: 100px 
+    width: 72%
+    margin-top: 30px
+  &-topics
+    margin: 0px !important
 
 .title
   font-family: Space Mono !important
@@ -138,7 +149,7 @@ export default {
   text-transform: uppercase
   color: black
   padding: 0px !important
-.content
+.topic-content
   font-family: Golos-Text-Regular
   font-size: 25px
   margin-bottom: 25px
