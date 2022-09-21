@@ -120,7 +120,7 @@ export default {
       if (!this.currStepObj) {
         return null
       }
-      const currOrder = parseInt(this.steps[this.currStepIndex].order)
+      const currOrder = this.steps[this.currStepIndex].order
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend) {
           return item
