@@ -2,7 +2,7 @@
 uuid: rZFu1PvDfmKkU96Jc0oIZ
 name: sanctions_map
 date: 2022-09-19T20:11:42.699Z
-narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
+narrative: 1
 order: 2
 component: DefaultText
 body_en: They include large-scale restrictions on the financial system,

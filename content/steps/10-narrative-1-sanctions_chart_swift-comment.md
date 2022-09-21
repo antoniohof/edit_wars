@@ -2,7 +2,7 @@
 uuid: fhu-duv49rnTloEN9mMW0
 name: sanctions_chart_swift comment
 date: 2022-09-21T20:57:38.882Z
-narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
+narrative: 1
 order: 10
 component: DefaultText
 body_en: The risk of disconnecting Russian banks from Swift before the invasion

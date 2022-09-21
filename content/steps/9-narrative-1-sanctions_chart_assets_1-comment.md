@@ -2,7 +2,7 @@
 uuid: A-Q4Hhflj2EX7pDAbpm2k
 name: sanctions_chart_assets_1 comment
 date: 2022-09-21T20:56:42.248Z
-narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
+narrative: 1
 order: 9
 component: DefaultText
 body_en: For example, the freezing of Russia's multi-billion dollar foreign

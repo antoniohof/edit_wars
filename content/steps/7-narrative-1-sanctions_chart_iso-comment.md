@@ -2,7 +2,7 @@
 uuid: jjiCRri7kQDaCQ3j83-qA
 name: sanctions_chart_iso comment
 date: 2022-09-21T20:49:23.890Z
-narrative: 8 Propaganda narratives and myths about sanctions in Russian-language media
+narrative: 1
 order: 7
 component: DefaultText
 body_en: The narrative of isolation has been in the news headlines since the
