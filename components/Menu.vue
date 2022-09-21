@@ -45,9 +45,9 @@ export default {
         return {
             isOpenLocal: false,
             items: [
-                { title: 'Intro', route: 'intro' },
-                { title: 'Narratives', route: 'narratives' },
-                { title: 'About', route: 'about' },
+                { title: 'Intro', route: '/intro' },
+                { title: 'Narratives', route: '/narratives' },
+                { title: 'About', route: '/about' },
             ],
         }
       },

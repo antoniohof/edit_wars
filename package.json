@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "3d-force-graph": "^1.70.13",
     "@blokwise/dynamic": "^1.5.0",
     "@nuxt/content": "^1.11.1",
     "@nuxtjs/i18n": "^7.2.2",
@@ -24,6 +25,7 @@
     "sass-loader": "7.1.0",
     "swiper": "5.x",
     "three": "^0.139.2",
+    "three-spritetext": "^1.6.5",
     "vue-awesome-swiper": "^4.1.1",
     "vue-chartjs": "^4.1.1",
     "vue-js-toggle-button": "^1.3.3",

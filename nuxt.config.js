@@ -36,21 +36,21 @@ export default {
       */
       {
         rel: 'preload',
-        href: 'fonts/Golos-Text-Regular/Golos-Text_Regular.woff2',
+        href: '/fonts/Golos-Text-Regular/Golos-Text_Regular.woff2',
         as: 'font',
         type: 'font/woff2',
         crossorigin: true
       },
       {
         rel: 'preload',
-        href: 'fonts/space-mono-v12-latin/space-mono-v12-latin-700.woff2',
+        href: '/fonts/space-mono-v12-latin/space-mono-v12-latin-700.woff2',
         as: 'font',
         type: 'font/woff2',
         crossorigin: true
       },
       {
         rel: 'preload',
-        href: 'fonts/space-mono-v12-latin/space-mono-v12-latin-regular.woff2',
+        href: '/fonts/space-mono-v12-latin/space-mono-v12-latin-regular.woff2',
         as: 'font',
         type: 'font/woff2',
         crossorigin: true
@@ -76,7 +76,12 @@ export default {
       src: '~plugins/vue-scrollmagic.js',
       ssr: false
     },
-    '~/plugins/aframe-ignorelist.js'
+    '~/plugins/aframe-ignorelist.js',
+    {
+      src: '~plugins/3d-force-graph.js',
+      ssr: false,
+      mode: 'client'
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -190,7 +195,20 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [
-      "three"
+      'd3-force-3d',
+      '3d-force-graph',
+      'd3-dispatch',
+      'three',
+      'd3-timer',
+      'd3-array',
+      'internmap',
+      'd3-scale',
+      'd3-time',
+      'd3-interpolate',
+      'three-spritetext',
+      'd3-color',
+      'd3-format',
+      'd3-quadtree'
     ],
     extend(config, ctx) {
       config.module.rules.push({

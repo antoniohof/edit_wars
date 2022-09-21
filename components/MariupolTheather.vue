@@ -54,7 +54,7 @@
    }
    </script>
    
-   <style lang="sass" scoped>
+<style lang="sass" scoped>
 .mariupol-component
     width: 100% !important
     height: 100% !important
