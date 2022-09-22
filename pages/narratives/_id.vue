@@ -2,7 +2,7 @@
   <v-container fluid class="narrative ma-0 pa-0">
     <!--
       <v-container fluid class='wordcloud'>
-        <WordCloud :currentStepIndex="currStep" :progress="getStepProgress(currStep)" :step="currStepObj"/>
+        <WordCloud :currentStepIndex="currStepIndex" :progress="getStepProgress(currStepIndex)" :step="currStepObj"/>
       </v-container>
       -->
     <transition :name="getBackgroundTransition">
@@ -10,7 +10,8 @@
           <NuxtDynamic
             class="background_container"
             :component="currentBackground.component"
-            :step="currentBackground"
+            :background="currentBackground"
+            :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)"
           />
@@ -120,7 +121,7 @@ export default {
       if (!this.currStepObj) {
         return null
       }
-      const currOrder = parseInt(this.steps[this.currStepIndex].order)
+      const currOrder = this.steps[this.currStepIndex].order
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend) {
           return item

@@ -29,6 +29,10 @@ export default {
   mixins: [StepMixin],
   components: { Bar },
   props: {
+    background: {
+          type: Object,
+          required: true
+      }
   },
   data () {
     return {
@@ -42,34 +46,51 @@ export default {
       styles: {
           width: `95%`,
       },
-      chartOptions: {}
+      chartOptions: {},
+      dataList: []
     }
   },
-  mounted () {    
-    this.loadData()  
+  async mounted () {   
+    console.log('this.background', this.background)
+    console.log('this.currStepIndex', this.currentStepIndex)
+    await this.loadData()
+    const dataIndex = this.step.order - this.background.stepstart 
+    console.log('dataIndex', dataIndex)
+    console.log('this.dataList', this.dataList)
+    this.setData(this.dataList[dataIndex])
   },
   methods: {
-    loadData () {
-      this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
-      let data = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + this.step.name + '.json'
-      if (this.step.data) {
-        data = this.step.data
+    async loadData () {
+      this.dataList = []
+      this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
+      const dataNames = this.background.name.split(',')
+      for await (const name of dataNames) {
+        let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + name + '.json'
+        await fetch(parseDataUrl(url)).then(response => response.json()).then(fetchedData => {
+          this.dataList.push(fetchedData)
+          console.log('loaded', this.dataList)
+        })
       }
-      fetch(parseDataUrl(data)).then(response => response.json()).then(data => {
-        const rawStepData = data
-        if (!rawStepData) {
-          console.error('no barChart data for this step')
-          return
-        }
-        console.log('rawStepData', rawStepData)
-        this.currentChartData = {
-          labels: rawStepData.labels,
-          datasets: rawStepData.datasets
-        }
-      })
+    },
+    setData(fetchedData) {
+      if (!fetchedData) {
+        console.error('no barChart data for this step')
+        return
+      }
+      console.log('fetchedData', fetchedData)
+      this.currentChartData = {
+        labels: fetchedData.labels,
+        datasets: fetchedData.datasets
+      }
     }
   },
   watch: {
+    step (step) {
+      const dataIndex = step.order - this.background.stepstart 
+      console.log('this.background.stepstart ', this.background.stepstart)
+      console.log('dataIndex', dataIndex)
+      this.setData(this.dataList[dataIndex])
+    }
   }
 }
 </script>

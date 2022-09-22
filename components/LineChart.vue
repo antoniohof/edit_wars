@@ -31,7 +31,11 @@ export default {
   components: { 
     'LineChartJs': Line,
    },
-  props: {
+   props: {
+    background: {
+          type: Object,
+          required: true
+      }
   },
   data () {
     return {
@@ -50,10 +54,37 @@ export default {
       currentChartData: null
     }
   },
-  mounted () {    
-    this.loadData()
+  async mounted () {    
+    console.log('this.background', this.background)
+    console.log('this.currStepIndex', this.currentStepIndex)
+    await this.loadData()
+    const dataIndex = this.step.order - this.background.stepstart 
+    this.setData(this.dataList[dataIndex])
   },
   methods: {
+    async loadData () {
+      this.dataList = []
+      this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
+      const dataNames = this.background.name.split(',')
+      for await (const name of dataNames) {
+        let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + name + '.json'
+        await fetch(parseDataUrl(url)).then(response => response.json()).then(fetchedData => {
+          this.dataList.push(fetchedData)
+        })
+      }
+    },
+    setData (fetchedData) {
+      if (!fetchedData) {
+        console.error('no barChart data for this step')
+        return
+      }
+      this.setAnimation()
+      this.currentChartData = {
+        labels: fetchedData.labels,
+        datasets: fetchedData.datasets,
+        type: 'line'
+      }
+    },
     setAnimation () {
       let easing = easingEffects.easeOutQuad;
       const data = this.currentProcessedData
@@ -108,35 +139,15 @@ export default {
           },
           animation: this.animation
         }
-    },
-    loadData (index) {
-      console.log(this.step)
-      this.chartOptions = JSON.parse(escapeCode(this.step.chartoptions))
-      let data = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + this.step.name + '.json'
-      if (this.step.data) {
-        data = this.step.data
-      }
-      fetch(parseDataUrl(data)).then(response => response.json()).then(data => {
-        console.log('data', data)
-        const rawStepData = data
-          if (!rawStepData) {
-            console.error('no barChart data for this step')
-            return
-          }
-          // const startDate = "01/01/2022"
-          // const endDate = "08/01/2022"
-          // const dates = getDates(new Date(startDate), new Date(endDate))
-          // this.currentProcessedData = processTableutData(rawStepData, dates)
-          this.setAnimation()
-          this.currentChartData = {
-            labels: rawStepData.labels,
-            datasets: rawStepData.datasets,
-            type: 'line'
-          }
-        })
-      }
+    }
   },
   watch: {
+    step (step) {
+      const dataIndex = step.order - this.background.stepstart 
+      console.log('this.background.stepstart ', this.background.stepstart)
+      console.log('dataIndex', dataIndex)
+      this.setData(this.dataList[dataIndex])
+    }
   }
 }
 </script>

@@ -3,7 +3,7 @@ uuid: m32a-MLXs9m4prqhLLVk3
 name: sanctions_chart_0
 stepstart: 3
 stepend: 3
-component: BarChart
+component: LineChart
 data: ""
 chartoptions: |-
   {
