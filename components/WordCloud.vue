@@ -1,6 +1,6 @@
 <template>
 <div class="wordcloud-page ma-0 pa-0" :class="{'hide': fadeCloud }">
-    <iframe class="wordcloudiframe" v-if="currentUrl !== ''" :src="currentUrl" ></iframe>
+    <iframe class="wordcloudiframe" :src="currentUrl" ></iframe>
 </div>
 </template>
   
@@ -26,6 +26,12 @@
       }
     },
     mounted () {
+      if (this.background) {
+          // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
+          let url = 'https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=' + this.background.name
+          // this.currentData = fetchedData
+          this.setData(this.background, url)
+      }
     },
     async asyncData({ $content }) {
   
@@ -40,7 +46,7 @@
     methods: {
       setData(background, url) {
         console.log('bg', background)
-        if (!process.client || this.lastBackground === background?.name || !url) {
+        if (this.lastBackground === background?.name || !url) {
         return
       }
       this.lastBackground = background?.name || ""
@@ -53,7 +59,7 @@
       background(entity) {
         if (entity && entity.component === "WordCloud") {
           // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
-            let url = 'https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=freezing_europe'
+            let url = 'https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=' + entity.name
             // this.currentData = fetchedData
             this.setData(entity, url)
         }
@@ -88,7 +94,7 @@
   -o-transform: translateZ(0)
   transform: translateZ(0)
 .hide
-  opacity: 0.05 !important
+  opacity: 0.2 !important
   pointer-events: none !important
   
 
