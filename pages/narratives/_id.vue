@@ -102,7 +102,7 @@ export default {
       backgroundContainer: null,
       currentNarrative: 0,
       currStepIndex: 0,
-      currStepProgress: 0.1,
+      currStepProgress: 0.01,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
@@ -124,10 +124,11 @@ export default {
     },
     currentBackground() {
       let back = null
-      if (!this.currStepObj || this.currStepIndex === -1) {
-        return null
+      if (!this.currStepObj) {
+        return back
       }
       const currOrder = this.steps[this.currStepIndex].order
+      console.log('currOrder', currOrder)
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend) {
           return item
