@@ -72,16 +72,7 @@ export default {
     '~/plugins/vue-js-toggle-button.js',
     { src: '~/plugins/nuxt-swiper-plugin.js', mode: 'client' },
     '~/plugins/vue-scrollama.js',
-    {
-      src: '~plugins/vue-scrollmagic.js',
-      ssr: false
-    },
-    '~/plugins/aframe-ignorelist.js',
-    {
-      src: '~plugins/3d-force-graph.js',
-      ssr: false,
-      mode: 'client'
-    }
+    '~/plugins/aframe-ignorelist.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -195,10 +186,10 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [
+      'three'
+      /*
       'd3-force-3d',
-      '3d-force-graph',
       'd3-dispatch',
-      'three',
       'd3-timer',
       'd3-array',
       'internmap',
@@ -209,6 +200,7 @@ export default {
       'd3-color',
       'd3-format',
       'd3-quadtree'
+      */
     ],
     extend(config, ctx) {
       config.module.rules.push({

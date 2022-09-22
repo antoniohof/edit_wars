@@ -1,12 +1,14 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
       <v-container fluid class='wordcloud'>
+        <client-only>
         <WordCloud 
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)" 
             :background="currentBackground"
             />
+        </client-only>
       </v-container>
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
@@ -97,6 +99,7 @@ export default {
   updated() {},
   data() {
     return {
+      backgroundContainer: null,
       currentNarrative: 0,
       currStepIndex: 0,
       currStepProgress: 0.1,
@@ -186,10 +189,10 @@ export default {
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
-        let backgroundContainer = document.querySelector(
-          '.background_container'
-        )
-        if (backgroundContainer) {
+        if (!this.backgroundContainer) {
+          this.backgroundContainer = document.querySelector('.background_container')
+        }
+        if (this.backgroundContainer) {
           let oneStepBackground = true
           if (
             this.currentBackground.stepend - this.currentBackground.stepstart >
@@ -210,19 +213,19 @@ export default {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
           if (oneStepBackground) {
-            backgroundContainer.style.transform = `translateY(${translateY}px)`
+            this.backgroundContainer.style.transform = `translateY(${translateY}px)`
           } else {
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+              this.backgroundContainer.style.transform = `translateY(${translateY}px)`
             }
             if (
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
-              backgroundContainer.style.transform = `translateY(${translateY}px)`
+              this.backgroundContainer.style.transform = `translateY(${translateY}px)`
             }
           }
         }

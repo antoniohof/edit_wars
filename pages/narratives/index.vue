@@ -21,11 +21,19 @@ import * as THREE from 'three'
     },
     data() {
       return {
+        ForceGraph3D: null
       }
     },
     mounted () {
+      if (window) {
+          this.ForceGraph3D = require('3d-force-graph').default
+
+          this.setData()
+        } else {
+          return
+        }
           const el = document.querySelector('.narratives-page')
-          const g = window.ForceGraph3D()(el)
+          const g = this.ForceGraph3D()(el)
           const N = 3;
           const data = narratives.map(narrative => ({ id: narrative.id, label: narrative.name, path: narrative.slug }))
           const ds = data.filter((d) => !!d)
@@ -81,7 +89,6 @@ import * as THREE from 'three'
   
     },
     beforeDestroy() {
-      console.log(window.ForceGraph3D)
     }
   }
   </script>
