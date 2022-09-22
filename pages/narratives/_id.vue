@@ -6,7 +6,7 @@
         :step="currStepObj"
         :currentStepIndex="currStepIndex"
         :progress="getStepProgress(currStepIndex)" 
-        :background="currentBackgroundToShow"
+        :background="currentBackground"
         />
     </client-only>
     <transition :name="getBackgroundTransition">
