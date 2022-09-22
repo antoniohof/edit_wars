@@ -112,7 +112,7 @@ export default {
 .wordcloud-page
   display: flex
   background-color: white
-  poitner-events: none
+  pointer-events: none
   z-index: -1
   flex-direction: column
   align-content: flex-start
