@@ -9834,6 +9834,11 @@ vue-server-renderer@^2.6.12:
     serialize-javascript "^6.0.0"
     source-map "0.5.6"
 
+vue-static@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vue-static/-/vue-static-0.0.5.tgz#4d3dbfcff7638d88734396a2a16a26da2c337b72"
+  integrity sha512-VRvuhEJmRhNErC8OznzQ+O7V+K7+RMg4N5LKO0teEt5EXtPKXhUvq4zDxnDQRqMlYUnd2orZJhWFieRkY7Assw==
+
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.3:
   version "4.1.3"
   resolved "https://registry.npmjs.org/vue-style-loader/-/vue-style-loader-4.1.3.tgz"

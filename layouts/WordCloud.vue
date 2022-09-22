@@ -16,11 +16,15 @@ export default {
           type: Object
       }
   },
-  data() {
+  static () {
     return {
-      lastBackground: "",
       ForceGraph3D: null,
       g: null
+    }
+  },
+  data() {
+    return {
+      lastBackground: ""
     }
   },
   mounted () {
@@ -62,7 +66,8 @@ export default {
           links: linksToLoad
         };
         console.log("LEGNTH", gData.nodes.length)
-    this.g.graphData(gData)
+        this.g.graphData(gData)
+        .backgroundColor("#ffcccb")
         .linkWidth(1)
         //.linkCurvature(0.1)
         //.linkAutoColorBy(function (link) { return "#f542c8"})
@@ -70,7 +75,6 @@ export default {
         .linkColor(() => "#000000")
         // .forceEngine('ngraph')
         // .cooldownTicks(0) // Don't animate-in, jump to final state
-        /*
         .nodeThreeObject(node => {
           const sprite = new SpriteText(node.id);
           sprite.fontFace = "roboto-mono";
@@ -79,7 +83,6 @@ export default {
           sprite.textHeight = 2 + Math.min(20, parseInt(node.value));
           return sprite;
         });
-        */
       this.g.d3Force('charge').strength(-300);
     }
   },
