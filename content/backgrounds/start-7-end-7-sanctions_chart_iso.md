@@ -23,7 +23,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mention of isolation in the media",
+        "text": "Mentions",
         "color": "black",
         "font": {
           "size": "30",

@@ -24,7 +24,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mention of Sanctions in the media", 
+        "text": "Mentions", 
         "color": "black",
         "font": {
           "size": "30",
