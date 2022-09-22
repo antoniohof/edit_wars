@@ -29,7 +29,12 @@ export default {
   },
   mounted () {
     console.log(THREE.REVISION)
-    this.ForceGraph3D = require('3d-force-graph').default
+    if (this.ForceGraph3D === null) {
+      this.ForceGraph3D = require('3d-force-graph').default
+    }
+    if (!this.background) {
+      return
+    }
 
     this.setData(this.background)
   },

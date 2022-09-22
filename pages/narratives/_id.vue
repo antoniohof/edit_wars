@@ -6,7 +6,7 @@
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)" 
-            :background="currentBackground"
+            :background="currentBackgroundToShow"
             />
         </client-only>
     <transition :name="getBackgroundTransition">
@@ -124,7 +124,7 @@ export default {
     },
     currentBackground() {
       let back = null
-      if (!this.currStepObj) {
+      if (!this.currStepObj || this.currStepIndex === -1) {
         return null
       }
       const currOrder = this.steps[this.currStepIndex].order
