@@ -89,7 +89,9 @@ export default {
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
-
+    process.nextTick(() => {
+      this.currStepIndex = 0
+    })
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
