@@ -9,11 +9,11 @@
             />
       </v-container>
     <transition :name="getBackgroundTransition">
-      <div class="background" v-if="currentBackgroundToShow">
+      <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
             class="background_container"
-            :component="currentBackground.component"
-            :background="currentBackground"
+            :component="currentBackgroundToShow.component"
+            :background="currentBackgroundToShow"
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)"
