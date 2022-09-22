@@ -46,21 +46,24 @@ export default {
   methods: {
     setData(background, data) {
       console.log('bg', background)
-      if (!process.client || this.lastBackground === background?.name) {
+      if (!process.client || this.lastBackground === background?.name || !data) {
       return
     }
     this.lastBackground = background?.name || ""
       const N = 10;
-      const nodesToLoad = data?.nodes || [...Array(N).keys()].map(i => ({ id: i, label: "Testeca" }))
-      const linksToLoad = data?.links || [...Array(N).keys()].filter(id => id).map(id => ({
+      const nodesToLoad = data?.nodes //|| [...Array(N).keys()].map(i => ({ id: i, label: "Testeca" }))
+      const linksToLoad = data?.links /*|| [...Array(N).keys()].filter(id => id).map(id => ({
             source: id,
             target: Math.round(Math.random() * (id-1)),
             color: 'rgba(0,0,0,1)'
           }))
+          */
       const el = document.querySelector('.wordcloud-page')
         if (!this.g) {
           this.g = this.ForceGraph3D({rendererConfig: {antialias: false, sortObjects: false}})(el)
         } 
+        // this.g.resumeAnimation()
+
         const gData = {
           nodes: nodesToLoad,
           links: linksToLoad
@@ -73,6 +76,7 @@ export default {
         //.linkAutoColorBy(function (link) { return "#f542c8"})
         .linkOpacity(0.1)
         .linkColor(() => "#000000")
+        .enablePointerInteraction(false)
         // .forceEngine('ngraph')
         // .cooldownTicks(0) // Don't animate-in, jump to final state
         .nodeThreeObject(node => {
@@ -84,6 +88,9 @@ export default {
           return sprite;
         });
       this.g.d3Force('charge').strength(-300);
+      setTimeout(() => {
+        // this.g.pauseAnimation()
+      }, 3000)
     }
   },
   watch: {
