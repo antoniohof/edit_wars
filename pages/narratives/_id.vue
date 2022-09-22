@@ -1,10 +1,13 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
-    <!--
       <v-container fluid class='wordcloud'>
-        <WordCloud :currentStepIndex="currStepIndex" :progress="getStepProgress(currStepIndex)" :step="currStepObj"/>
+        <WordCloud 
+            :step="currStepObj"
+            :currentStepIndex="currStepIndex"
+            :progress="getStepProgress(currStepIndex)" 
+            :background="currentBackground"
+            />
       </v-container>
-      -->
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow">
           <NuxtDynamic

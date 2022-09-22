@@ -1,59 +1,109 @@
 <template>
- <client-only>
-    <a-scene embedded vr-mode-ui="enabled: false">
-      <a-entity camera look-controls wasd-controls="acceleration:100; fly: true;" :position="`5 7 ${5 + 4*totalProgress}`"></a-entity>
-      <a-sky color="#fffffff"></a-sky>
-      <a-text font="msdf/cyrilic-msdf.json" opacity="0.8" color="black" font-image="msdf/cyrilic.png" negate="false" v-for="n in news" :key="n.ID" :position="`${n.x} ${n.y} ${n.z}`" :value="n.title_new"></a-text>
-    </a-scene>
-  </client-only>
+  <v-container class="wordcloud-page ma-0 pa-0" :class="{'hide': fadeCloud }" fluid>
+  </v-container>
 </template>
 
 <script>
-import { getDates, processTableutData, filterDatabyDate } from '../utils/DataProcessing'
-
 import StepMixin from "@/mixins/StepMixin.js";
-
+import { narratives } from '@/utils/constants.js'
+import SpriteText from 'three-spritetext';
+import * as THREE from 'three'
 export default {
-  mixins: [
-    StepMixin
-  ],
-  props: {
+  head: {
+    title: 'Narratives',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Narratives Page'
+      }
+    ]
   },
-  data () {
+  mixins: [StepMixin],
+  props: {
+    background: {
+          type: Object
+      }
+  },
+  data() {
     return {
-      texts: [],
-      news: [],
-      size: 15,
-      totalProgress: 0
     }
   },
   mounted () {
-    this.updateData()
+        const el = document.querySelector('.wordcloud-page')
+        const g = window.ForceGraph3D()(el)
+        const N = 10;
+        const gData = {
+          nodes: [...Array(N).keys()].map(i => ({ id: i, label: "Testeca" })),
+          links: [...Array(N).keys()]
+          .filter(id => id)
+          .map(id => ({
+            source: id,
+            target: Math.round(Math.random() * (id-1)),
+            color: 'rgba(0,0,0,1)'
+          }))
+        };
+    g.graphData(gData)
+    .backgroundColor('rgba(0,0,0,0)')
+    .nodeLabel('id')
+    .linkWidth(1)
+    .linkOpacity(1.0)
+    // .onNodeClick(this.onNodeClick)
+    .nodeThreeObject(node => {
+      const group = new THREE.Group()
+      if (node.id > 0) {
+        console.log(group)
+        const geometry = new THREE.SphereGeometry( 5, 64, 64 );
+        const material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+        const sphere = new THREE.Mesh( geometry, material );
+        const sprite = new SpriteText(node.label);
+        sprite.material.depthWrite = false; // make sprite background transparent
+        sprite.color = node.color;
+        sprite.textHeight = 8;
+        group.add(sprite)
+        sprite.position.set(0,10,0)
+        group.add(sphere)
+      }
+
+        return group;
+      });
   },
+  async asyncData({ $content }) {
+
+  },
+  computed: {
+    fadeCloud () {
+      return !!this.background || this.step.component === "TextCenter"
+    }
+  },
+  components: {},
+
   methods: {
-    updateData () {
-      //console.log("getDates", getDates(new Date("01/01/2022"), new Date("08/01/2022")))
-      var currentData = {}
-      this.news = filterDatabyDate(currentData.data, currentData.startDate, currentData.endData)
-      this.news = this.news.map(n => {
-        n.x = Math.random()*this.size
-        n.y = Math.random()*this.size
-        n.z = Math.random()*this.size
-        return n
-      })
-    }
+
   },
-  watch: { 
-    currentStepIndex: function(newVal, oldVal) { // watch it
-      this.updateData()
-    },
-    progress: function(newVal, oldVal) {
-      this.totalProgress = this.currentStepIndex + newVal
-    }
+  watch: {
+  },
+  beforeDestroy() {
+    console.log(window.ForceGraph3D)
   }
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+
+.wordcloud-page
+  z-index: -1
+  pointer-events: none
+  display: flex
+  background-color: white
+  flex-direction: column
+  align-content: flex-start
+  width: 100%
+  margin-bottom: 200px
+  color: black
+  opacity: 0.8
+  transition: opacity 0.4s ease
+.hide
+  opacity: 0.05 !important
 
 </style>

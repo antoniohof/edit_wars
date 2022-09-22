@@ -19,8 +19,6 @@ import * as THREE from 'three'
         }
       ]
     },
-    scrollToTop: true,
-    transition: '',
     data() {
       return {
       }
