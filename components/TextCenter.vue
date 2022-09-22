@@ -62,6 +62,7 @@ export default {
     &_container
       display: flex
       background-color: $window-text-bg
+      backdrop-filter: blur(3px)
       border-radius: 4px
       max-width: 80%
       flex-direction: column

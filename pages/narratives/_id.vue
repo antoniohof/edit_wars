@@ -1,15 +1,14 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
-      <v-container fluid class='wordcloud'>
-        <client-only>
-        <WordCloud 
-            :step="currStepObj"
-            :currentStepIndex="currStepIndex"
-            :progress="getStepProgress(currStepIndex)" 
-            :background="currentBackground"
-            />
-        </client-only>
-      </v-container>
+    <client-only>
+      <WordCloud 
+        class='wordcloud'
+        :step="currStepObj"
+        :currentStepIndex="currStepIndex"
+        :progress="getStepProgress(currStepIndex)" 
+        :background="currentBackground"
+        />
+    </client-only>
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
@@ -52,7 +51,6 @@
 
 <script>
 import Vue from 'vue'
-import WordCloud from '@/components/WordCloud.vue'
 import throttle from 'lodash/throttle'
 import { narratives } from '@/utils/constants.js'
 
@@ -62,7 +60,9 @@ export default {
       // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
-  components: {},
+  components: {
+    WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
+  },
   beforeMount() {
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
     if (!this.currentNarrative) {
@@ -89,7 +89,10 @@ export default {
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
-
+    setTimeout(() => {
+      this.isLoaded = true
+      this.currStepIndex = 0
+    }, 20)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
@@ -102,13 +105,15 @@ export default {
       backgroundContainer: null,
       currentNarrative: 0,
       currStepIndex: 0,
-      currStepProgress: 0.1,
+      currStepProgress: 0.01,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
+      isLoaded: false,
       lastEnterBackgroundDirection: 'down',
       lastDirection: 'down',
       currentBackgroundToShow: null,
+      currentBackground: null,
       lastBackground: null
     }
   },
@@ -122,28 +127,12 @@ export default {
     currStepObj() {
       return this.steps[this.currStepIndex]
     },
-    currentBackground() {
-      let back = null
-      if (!this.currStepObj) {
-        return null
-      }
-      const currOrder = this.steps[this.currStepIndex].order
-      back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
-          return item
-        }
-      })
-      return back
-    },
     getBackgroundTransition() {
       if (this.lastDirection === 'down') {
         return 'slide-fade-down'
       }
       return 'slide-fade-up'
     }
-  },
-  components: {
-    WordCloud
   },
   async asyncData({ $content, params, error }) {
     let steps
@@ -164,6 +153,9 @@ export default {
   },
   methods: {
     stepEnterHandler({ element, index, direction }) {
+      if (!this.isLoaded) {
+        return
+      }
       this.currStepIndex = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
@@ -234,6 +226,21 @@ export default {
     }
   },
   watch: {
+    currStepIndex (index) {
+      let back = null
+      if (!this.currStepObj) {
+        this.currentBackground = null
+        return
+      }
+      const currOrder = this.steps[this.currStepIndex].order
+      console.log('currOrder', currOrder)
+      back = this.backgrounds.find((item) => {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
+          return item
+        }
+      })
+      this.currentBackground = back
+    },
     currentBackground(value) {
       if (!value) {
         this.currentBackgroundToShow = null
@@ -321,6 +328,7 @@ export default {
 .wordcloud
   position: fixed
   height: 100vh
+  top: 0
   width: 100vw
   z-index: 0
   background-color: transparent

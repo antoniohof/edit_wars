@@ -46,6 +46,7 @@ export default {
   &_container
     border-radius: 4px
     background-color: $window-text-bg
+    backdrop-filter: blur(3px)
     box-shadow: 0px 4px 25px 0px #00000040
     &_top
       border-radius: 4px 4px 0px 0px

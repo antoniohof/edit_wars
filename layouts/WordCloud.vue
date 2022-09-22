@@ -16,6 +16,12 @@ export default {
           type: Object
       }
   },
+  static () {
+    return {
+      ForceGraph3D: null,
+      g: null
+    }
+  },
   data() {
     return {
       lastBackground: ""
@@ -23,6 +29,13 @@ export default {
   },
   mounted () {
     console.log(THREE.REVISION)
+    if (this.ForceGraph3D === null) {
+      this.ForceGraph3D = require('3d-force-graph').default
+    }
+    if (!this.background) {
+      return
+    }
+
     this.setData(this.background)
   },
   async asyncData({ $content }) {
@@ -38,32 +51,49 @@ export default {
   methods: {
     setData(background, data) {
       console.log('bg', background)
-      if (!process.client || this.lastBackground === background?.name) {
+      if (!process.client || this.lastBackground === background?.name || !data) {
       return
     }
     this.lastBackground = background?.name || ""
       const N = 10;
-      const nodesToLoad = data?.nodes || [...Array(N).keys()].map(i => ({ id: i, label: "Testeca" }))
-      const linksToLoad = data?.links || [...Array(N).keys()].filter(id => id).map(id => ({
+      const nodesToLoad = data?.nodes //|| [...Array(N).keys()].map(i => ({ id: i, label: "Testeca" }))
+      const linksToLoad = data?.links /*|| [...Array(N).keys()].filter(id => id).map(id => ({
             source: id,
             target: Math.round(Math.random() * (id-1)),
             color: 'rgba(0,0,0,1)'
           }))
+          */
       const el = document.querySelector('.wordcloud-page')
-      var ForceGraph3D = require('3d-force-graph').default
+        if (!this.g) {
+          this.g = this.ForceGraph3D({ 
+            rendererConfig: {
+              precision: 'lowp', 
+              depth: false, 
+              powerPreference: 'high-performance', 
+              alpha: 0, 
+              antialias: false, 
+              sortObjects: false
+            }
+            })(el)
+        } 
+        // this.g.resumeAnimation()
 
-        const g = ForceGraph3D({rendererConfig: {antialias: false}})(el)
         const gData = {
           nodes: nodesToLoad,
           links: linksToLoad
         };
-    g.graphData(gData)
-    .backgroundColor("#ffffff")
+        console.log("LEGNTH", gData.nodes.length)
+        this.g.graphData(gData)
+        .width(el.innerWidth)
+        .height(el.innerHeight)
+        .backgroundColor("#ffcccb")
         .linkWidth(1)
+        // .cooldownTime(5000)
         //.linkCurvature(0.1)
         //.linkAutoColorBy(function (link) { return "#f542c8"})
         .linkOpacity(0.1)
         .linkColor(() => "#000000")
+        .enablePointerInteraction(false)
         // .forceEngine('ngraph')
         // .cooldownTicks(0) // Don't animate-in, jump to final state
         .nodeThreeObject(node => {
@@ -74,7 +104,10 @@ export default {
           sprite.textHeight = 2 + Math.min(20, parseInt(node.value));
           return sprite;
         });
-      g.d3Force('charge').strength(-300);
+      this.g.d3Force('charge').strength(-300);
+      setTimeout(() => {
+        // this.g.pauseAnimation()
+      }, 3000)
     }
   },
   watch: {
@@ -92,6 +125,8 @@ export default {
     }
   },
   beforeDestroy() {
+    this.ForceGraph3D = null
+    this.g = null
   }
 }
 </script>
@@ -101,6 +136,7 @@ export default {
 .wordcloud-page
   display: flex
   background-color: white
+  z-index: -1
   flex-direction: column
   align-content: flex-start
   width: 100%
@@ -108,7 +144,14 @@ export default {
   color: black
   opacity: 0.8
   transition: opacity 0.4s ease
+  will-change: transform
+  -webkit-transform: translateZ(0)
+  -moz-transform: translateZ(0)
+  -ms-transform: translateZ(0)
+  -o-transform: translateZ(0)
+  transform: translateZ(0)
 .hide
   opacity: 0.05 !important
+  pointer-events: none !important
 
 </style>

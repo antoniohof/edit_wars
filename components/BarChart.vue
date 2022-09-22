@@ -44,7 +44,7 @@ export default {
       height: 800,
       cssClasses: '',
       styles: {
-          width: `95%`,
+          width: `90%`,
       },
       chartOptions: {},
       dataList: []

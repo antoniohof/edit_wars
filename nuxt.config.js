@@ -72,7 +72,11 @@ export default {
     '~/plugins/vue-js-toggle-button.js',
     { src: '~/plugins/nuxt-swiper-plugin.js', mode: 'client' },
     '~/plugins/vue-scrollama.js',
-    '~/plugins/aframe-ignorelist.js'
+    '~/plugins/aframe-ignorelist.js',
+    {
+      src: '~/plugins/vue-static.js',
+      mode: 'client'
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
