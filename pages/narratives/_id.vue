@@ -1,15 +1,14 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
-      <v-container fluid class='wordcloud'>
         <client-only>
         <WordCloud 
+            class='wordcloud'
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)" 
             :background="currentBackground"
             />
         </client-only>
-      </v-container>
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
@@ -52,7 +51,6 @@
 
 <script>
 import Vue from 'vue'
-import WordCloud from '@/components/WordCloud.vue'
 import throttle from 'lodash/throttle'
 import { narratives } from '@/utils/constants.js'
 
@@ -62,7 +60,9 @@ export default {
       // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
-  components: {},
+  components: {
+    WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
+  },
   beforeMount() {
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
     if (!this.currentNarrative) {
@@ -141,9 +141,6 @@ export default {
       }
       return 'slide-fade-up'
     }
-  },
-  components: {
-    WordCloud
   },
   async asyncData({ $content, params, error }) {
     let steps
@@ -321,6 +318,7 @@ export default {
 .wordcloud
   position: fixed
   height: 100vh
+  top: 0
   width: 100vw
   z-index: 0
   background-color: transparent

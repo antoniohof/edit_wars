@@ -18,11 +18,15 @@ export default {
   },
   data() {
     return {
-      lastBackground: ""
+      lastBackground: "",
+      ForceGraph3D: null,
+      g: null
     }
   },
   mounted () {
     console.log(THREE.REVISION)
+    this.ForceGraph3D = require('3d-force-graph').default
+
     this.setData(this.background)
   },
   async asyncData({ $content }) {
@@ -50,15 +54,15 @@ export default {
             color: 'rgba(0,0,0,1)'
           }))
       const el = document.querySelector('.wordcloud-page')
-      var ForceGraph3D = require('3d-force-graph').default
-
-        const g = ForceGraph3D({rendererConfig: {antialias: false}})(el)
+        if (!this.g) {
+          this.g = this.ForceGraph3D({rendererConfig: {antialias: false, sortObjects: false}})(el)
+        } 
         const gData = {
           nodes: nodesToLoad,
           links: linksToLoad
         };
-    g.graphData(gData)
-    .backgroundColor("#ffffff")
+        console.log("LEGNTH", gData.nodes.length)
+    this.g.graphData(gData)
         .linkWidth(1)
         //.linkCurvature(0.1)
         //.linkAutoColorBy(function (link) { return "#f542c8"})
@@ -66,6 +70,7 @@ export default {
         .linkColor(() => "#000000")
         // .forceEngine('ngraph')
         // .cooldownTicks(0) // Don't animate-in, jump to final state
+        /*
         .nodeThreeObject(node => {
           const sprite = new SpriteText(node.id);
           sprite.fontFace = "roboto-mono";
@@ -74,7 +79,8 @@ export default {
           sprite.textHeight = 2 + Math.min(20, parseInt(node.value));
           return sprite;
         });
-      g.d3Force('charge').strength(-300);
+        */
+      this.g.d3Force('charge').strength(-300);
     }
   },
   watch: {
@@ -101,6 +107,8 @@ export default {
 .wordcloud-page
   display: flex
   background-color: white
+  poitner-events: none
+  z-index: -1
   flex-direction: column
   align-content: flex-start
   width: 100%
@@ -108,6 +116,12 @@ export default {
   color: black
   opacity: 0.8
   transition: opacity 0.4s ease
+  will-change: transform
+  -webkit-transform: translateZ(0)
+  -moz-transform: translateZ(0)
+  -ms-transform: translateZ(0)
+  -o-transform: translateZ(0)
+  transform: translateZ(0)
 .hide
   opacity: 0.05 !important
 

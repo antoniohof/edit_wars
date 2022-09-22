@@ -6,7 +6,6 @@
 
 <script>
 import Vue from 'vue'
-import WordCloud from '../components/WordCloud.vue'
 import throttle from 'lodash/throttle'
 
 export default {
