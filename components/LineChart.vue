@@ -57,7 +57,10 @@ export default {
   async mounted () {    
     console.log('this.background', this.background)
     console.log('this.currStepIndex', this.currentStepIndex)
+    console.log('montou')
     await this.loadData()
+    console.log('loudou')
+
     const dataIndex = this.step.order - this.background.stepstart 
     this.setData(this.dataList[dataIndex])
   },
@@ -78,6 +81,8 @@ export default {
         console.error('no barChart data for this step')
         return
       }
+      console.log('meteu', fetchedData)
+
       this.setAnimation()
       this.currentChartData = {
         labels: fetchedData.labels,

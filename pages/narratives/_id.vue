@@ -75,18 +75,24 @@ export default {
     })
   },
   mounted() {
+      this.currStepIndex = 0
+      this.startBackgroundScroll = window.scrollY
+      this.lastEnterBackgroundDirection = 'down'
+      this.lastDirection = 'down'
+      console.log('this.currentBackground', this.currentBackground)
+
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
-    this.setBackground(this.currStepIndex)
-    if (this.currentBackground) {
+    process.nextTick(() => {
+      if (this.currentBackground) {
       // in case theres background at step
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
+    })
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
-      const currOrder = this.steps[this.currStepIndex].order
     }, 20)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
@@ -99,7 +105,7 @@ export default {
     return {
       backgroundContainer: null,
       currentNarrative: 0,
-      currStepIndex: 0,
+      currStepIndex: -1,
       currStepProgress: 0.01,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
@@ -152,12 +158,15 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
-      if (this.currentBackground) {
-        this.startBackgroundScroll = window.scrollY
-      }
-      this.lastEnterBackgroundDirection = direction
-      this.lastDirection = direction
-      console.log('this.currentBackground', this.currentBackground)
+      process.nextTick(() => {
+
+        if (this.currentBackground) {
+          this.startBackgroundScroll = window.scrollY
+        }
+        this.lastEnterBackgroundDirection = direction
+        this.lastDirection = direction
+        console.log('this.currentBackground', this.currentBackground)
+      })
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
@@ -173,21 +182,6 @@ export default {
       if (step > curStepNum) {
         return 0
       }
-    },
-    setBackground (index) {
-      let back = null
-      if (!this.currStepObj) {
-        this.currentBackground = null
-        return
-      }
-      const currOrder = this.steps[index].order
-      console.log('currOrder', currOrder)
-      back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
-          return item
-        }
-      })
-      this.currentBackground = back
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
@@ -237,7 +231,19 @@ export default {
   },
   watch: {
     currStepIndex (index) {
-      this.setBackground (index)
+      let back = null
+      if (!this.currStepObj) {
+        this.currentBackground = null
+        return
+      }
+      const currOrder = this.steps[this.currStepIndex].order
+      console.log('currOrder', currOrder)
+      back = this.backgrounds.find((item) => {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
+          return item
+        }
+      })
+      this.currentBackground = back
     },
     currentBackground(value) {
       if (!value) {
