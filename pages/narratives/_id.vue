@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
     <client-only>
-      <WordCloud 
+      <WordCloud2 
         class='wordcloud'
         :step="currStepObj"
         :currentStepIndex="currStepIndex"
@@ -61,7 +61,7 @@ export default {
     }
   },
   components: {
-    WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
+    // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
