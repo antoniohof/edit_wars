@@ -51,6 +51,7 @@ export default {
     height: fit-content
     margin: 0 auto
     left: 0
+    align-self: center
     display: flex
     height: 100vh
     align-content: center
@@ -62,6 +63,7 @@ export default {
       display: flex
       background-color: $window-text-bg
       border-radius: 4px
+      max-width: 80%
       flex-direction: column
       align-content: center
       justify-content: center
