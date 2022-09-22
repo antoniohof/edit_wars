@@ -75,13 +75,9 @@ export default {
     })
   },
   mounted() {
-    console.log($nuxt.$route)
-    console.log('charango')
-    console.log(this.steps)
-    console.log(this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative)))
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
-
+    this.setBackground(this.currStepIndex)
     if (this.currentBackground) {
       // in case theres background at step
       this.currentBackgroundToShow = this.currentBackground
@@ -90,6 +86,7 @@ export default {
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
+      const currOrder = this.steps[this.currStepIndex].order
     }, 20)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
@@ -177,6 +174,21 @@ export default {
         return 0
       }
     },
+    setBackground (index) {
+      let back = null
+      if (!this.currStepObj) {
+        this.currentBackground = null
+        return
+      }
+      const currOrder = this.steps[index].order
+      console.log('currOrder', currOrder)
+      back = this.backgrounds.find((item) => {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
+          return item
+        }
+      })
+      this.currentBackground = back
+    },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
         if (!this.backgroundContainer) {
@@ -225,19 +237,7 @@ export default {
   },
   watch: {
     currStepIndex (index) {
-      let back = null
-      if (!this.currStepObj) {
-        this.currentBackground = null
-        return
-      }
-      const currOrder = this.steps[this.currStepIndex].order
-      console.log('currOrder', currOrder)
-      back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
-          return item
-        }
-      })
-      this.currentBackground = back
+      this.setBackground (index)
     },
     currentBackground(value) {
       if (!value) {

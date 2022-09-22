@@ -27,9 +27,9 @@
     },
     mounted () {
       if (this.background) {
+        console.log('this.background', this.background)
           // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
           let url = 'https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=' + this.background.name
-          // this.currentData = fetchedData
           this.setData(this.background, url)
       }
     },
@@ -38,7 +38,7 @@
     },
     computed: {
       fadeCloud () {
-        return (!!this.background && this.background.component !== 'WordCloud')|| this.step.component === "TextCenter"
+        return (!!this.background && this.background.component !== 'WordCloud')
       }
     },
     components: {},
@@ -58,9 +58,7 @@
     watch: {
       background(entity) {
         if (entity && entity.component === "WordCloud") {
-          // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
             let url = 'https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=' + entity.name
-            // this.currentData = fetchedData
             this.setData(entity, url)
         }
       }
