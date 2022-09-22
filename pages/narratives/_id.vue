@@ -109,6 +109,7 @@ export default {
       lastEnterBackgroundDirection: 'down',
       lastDirection: 'down',
       currentBackgroundToShow: null,
+      currentBackground: null,
       lastBackground: null
     }
   },
@@ -121,20 +122,6 @@ export default {
     },
     currStepObj() {
       return this.steps[this.currStepIndex]
-    },
-    currentBackground() {
-      let back = null
-      if (!this.currStepObj) {
-        return back
-      }
-      const currOrder = this.steps[this.currStepIndex].order
-      console.log('currOrder', currOrder)
-      back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
-          return item
-        }
-      })
-      return back
     },
     getBackgroundTransition() {
       if (this.lastDirection === 'down') {
@@ -232,6 +219,21 @@ export default {
     }
   },
   watch: {
+    currStepIndex (index) {
+      let back = null
+      if (!this.currStepObj) {
+        this.currentBackground = null
+        return
+      }
+      const currOrder = this.steps[this.currStepIndex].order
+      console.log('currOrder', currOrder)
+      back = this.backgrounds.find((item) => {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
+          return item
+        }
+      })
+      this.currentBackground = back
+    },
     currentBackground(value) {
       if (!value) {
         this.currentBackgroundToShow = null
