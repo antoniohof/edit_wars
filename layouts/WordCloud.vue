@@ -60,7 +60,7 @@ export default {
           */
       const el = document.querySelector('.wordcloud-page')
         if (!this.g) {
-          this.g = this.ForceGraph3D({rendererConfig: {antialias: false, sortObjects: false}})(el)
+          this.g = this.ForceGraph3D({precision: 'lowp', rendererConfig: {depth: false, powerPreference: 'high-performance', alpha: 0, antialias: false, sortObjects: false}})(el)
         } 
         // this.g.resumeAnimation()
 
@@ -70,6 +70,8 @@ export default {
         };
         console.log("LEGNTH", gData.nodes.length)
         this.g.graphData(gData)
+        .width(el.innerWidth)
+        .height(el.innerHeight)
         .backgroundColor("#ffcccb")
         .linkWidth(1)
         //.linkCurvature(0.1)
