@@ -101,6 +101,8 @@ export default {
     }
   },
   beforeDestroy() {
+    this.ForceGraph3D = null
+    this.g = null
   }
 }
 </script>
