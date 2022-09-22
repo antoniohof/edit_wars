@@ -89,9 +89,10 @@ export default {
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
-    process.nextTick(() => {
+    setTimeout(() => {
+      this.isLoaded = true
       this.currStepIndex = 0
-    })
+    }, 20)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
@@ -108,6 +109,7 @@ export default {
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
+      isLoaded: false,
       lastEnterBackgroundDirection: 'down',
       lastDirection: 'down',
       currentBackgroundToShow: null,
@@ -151,6 +153,9 @@ export default {
   },
   methods: {
     stepEnterHandler({ element, index, direction }) {
+      if (!this.isLoaded) {
+        return
+      }
       this.currStepIndex = parseInt(element.dataset.stepNo)
       if (this.currentBackground) {
         this.startBackgroundScroll = window.scrollY
