@@ -60,7 +60,16 @@ export default {
           */
       const el = document.querySelector('.wordcloud-page')
         if (!this.g) {
-          this.g = this.ForceGraph3D({precision: 'lowp', rendererConfig: {depth: false, powerPreference: 'high-performance', alpha: 0, antialias: false, sortObjects: false}})(el)
+          this.g = this.ForceGraph3D({ 
+            rendererConfig: {
+              precision: 'lowp', 
+              depth: false, 
+              powerPreference: 'high-performance', 
+              alpha: 0, 
+              antialias: false, 
+              sortObjects: false
+            }
+            })(el)
         } 
         // this.g.resumeAnimation()
 
@@ -74,6 +83,7 @@ export default {
         .height(el.innerHeight)
         .backgroundColor("#ffcccb")
         .linkWidth(1)
+        // .cooldownTime(5000)
         //.linkCurvature(0.1)
         //.linkAutoColorBy(function (link) { return "#f542c8"})
         .linkOpacity(0.1)
@@ -121,7 +131,6 @@ export default {
 .wordcloud-page
   display: flex
   background-color: white
-  pointer-events: none
   z-index: -1
   flex-direction: column
   align-content: flex-start
@@ -138,5 +147,6 @@ export default {
   transform: translateZ(0)
 .hide
   opacity: 0.05 !important
+  pointer-events: none !important
 
 </style>
