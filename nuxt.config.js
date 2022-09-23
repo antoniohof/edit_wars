@@ -25,6 +25,7 @@ export default {
       }
     ],
     link: [
+      { href:"/admin/config.yml", type:"text/yaml", rel:"cms-config-url" },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       /*
       {
