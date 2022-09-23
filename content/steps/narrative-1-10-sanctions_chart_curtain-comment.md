@@ -4,7 +4,7 @@ name: sanctions_chart_curtain comment
 date: 2022-09-22T12:03:47.575Z
 narrative: 1
 order: 10
-component: TextDefault
+component: DefaultText
 body_en: The withdrawal of foreign companies' business in Russia was a reaction
   to the invasion and was related not only to sanctions restrictions, but also
   to the position of their management. The topic of companies leaving the
