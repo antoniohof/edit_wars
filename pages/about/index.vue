@@ -1,7 +1,7 @@
 <template>
   <v-container class="about-page" fluid>
     <div class="about-page-title">
-      Edit Wars project is the data based art research, studying special aspects of Russian propaganda and media situation in Russia regarding the invasion in Ukraine 2022 and current war. 
+      Edit Wars is a data based art research project, studying special aspects of Russian propaganda and media situation in Russia regarding the invasion in Ukraine 2022 and current war. 
     </div>
     <v-row
       class="about-page-topics justify-start"
