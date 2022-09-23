@@ -20,7 +20,7 @@ export default {
         const user = netlifyIdentity.currentUser();
         console.log(user)
         if (user) {
-          window.location = "https://editwars.org/admin/#"
+          // window.location = "https://editwars.org/admin/#"
         }
       })
     })
@@ -29,7 +29,7 @@ export default {
         const user = netlifyIdentity.currentUser();
         console.log(user)
         if (user) {
-          window.location = "https://editwars.org/admin/#"
+          // window.location = "https://editwars.org/admin/#"
         }
       })
     });
