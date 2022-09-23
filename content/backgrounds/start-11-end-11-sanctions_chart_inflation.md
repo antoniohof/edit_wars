@@ -1,7 +1,7 @@
 ---
 uuid: ZTZR2V9ynxPHOQiMHtkRz
-name: sanctions_chart_inflation
-stepstart: 11
+name: sanctions_chart_curtain,sanctions_chart_inflation
+stepstart: 10
 stepend: 11
 component: LineChart
 chartoptions: |-
@@ -44,5 +44,5 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:11][End:11]-sanctions_chart_inflation"
+identifier: "[Start:10][End:11]-sanctions_chart_curtain,sanctions_chart_inflation"
 ---
