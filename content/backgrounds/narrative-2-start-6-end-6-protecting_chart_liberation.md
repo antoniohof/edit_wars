@@ -4,7 +4,7 @@ name: protecting_chart_liberation
 narrative: 2
 stepstart: 6
 stepend: 6
-component: BarChart
+component: LineChart
 chartoptions: |-
   {
     "responsive": "true",
@@ -36,7 +36,7 @@ chartoptions: |-
         "x": {
             "type": "time",
             "time": {
-                "unit": "week",
+                "unit": "day",
                 "tooltipFormat": "MMM dd",
                 "displayFormats": {
                  "week": "MMM dd"
