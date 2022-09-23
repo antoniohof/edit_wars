@@ -10,6 +10,7 @@
         color="transparent"
         justify-space-around
       >
+      <div class="title">EDIT WARS</div>
       <!--
         <NuxtLink
           class="topbar_item justify-end about"
@@ -108,6 +109,13 @@ export default {
           transition-delay: 0.5s
 .main
   color: white
+.title
+  color: black !important
+  font-size: 54px !important
+  font-family: Space Mono !important
+  font-weight: 700 !important
+  margin-left: -8px
+  margin-top: 32px
 .topbar
   color: white
   width: 100vw

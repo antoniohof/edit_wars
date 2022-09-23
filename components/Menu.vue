@@ -90,6 +90,7 @@ export default {
     top: 25px !important
     background-color: $menu-bg
     border-radius: 4px 0px 0px 4px
+    backdrop-filter: blur(3px)
 
 .list
     margin-top: 147px
