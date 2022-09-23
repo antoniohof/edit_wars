@@ -68,7 +68,7 @@ export default {
       console.error('narrative not found!', $nuxt.$route.params.id)
     }
     // check if each step components exist, if not set to load default
-    this.currentSteps.forEach((step) => {
+    this.steps.forEach((step) => {
       let componentExists = step.component in Vue.options.components
       if (!componentExists) {
         step.component = 'DefaultComponent'
@@ -127,7 +127,7 @@ export default {
       return this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative))
     },
     currStepObj() {
-      return narrativeSteps[this.currStepIndex]
+      return this.narrativeSteps[this.currStepIndex]
     },
     getBackgroundTransition() {
       if (this.lastDirection === 'down') {
@@ -203,7 +203,7 @@ export default {
           if (this.lastEnterBackgroundDirection === 'up') {
             top = -window.innerHeight / 2
           }
-          const currOrder = parseInt(this.currentSteps[this.currStepIndex].order)
+          const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
 
           let translateY = top - this.currentBackgroundScroll
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
@@ -237,10 +237,10 @@ export default {
         this.currentBackground = null
         return
       }
-      const currOrder = this.currentSteps[this.currStepIndex].order
+      const currOrder = this.narrativeSteps[this.currStepIndex].order
       console.log('currOrder', currOrder)
       console.log('currStepIndex', index)
-      console.log('curstep', this.currentSteps[this.currStepIndex])
+      console.log('curstep', this.narrativeSteps[this.currStepIndex])
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend && parseInt(item.narrative) === parseInt(this.currentNarrative)) {
           return item
