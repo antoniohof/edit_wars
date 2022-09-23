@@ -103,11 +103,13 @@ export default {
       {
         code: 'en',
         iso: 'en-US'
-      },
+      }
+      /*,
       {
         code: 'ru',
         iso: 'ru-RU'
       }
+      */
     ],
     detectBrowserLanguage: {
       useCookie: true,
