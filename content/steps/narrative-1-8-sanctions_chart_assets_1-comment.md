@@ -14,5 +14,5 @@ body_ru: >-
   (https://www.dw.com/en/yale-study-shows-sanctions-are-crippling-russias-economy/a-62623738).\
 
   Власти стремится объяснить аудитории снижение уровня жизни внешним давлением и несправедливостью недружественных стран.
-identifier: [Narrative:1]-8-sanctions_chart_assets_1 comment
+identifier: "[Narrative:1]-8-sanctions_chart_assets_1 comment"
 ---

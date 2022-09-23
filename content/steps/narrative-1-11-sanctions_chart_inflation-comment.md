@@ -18,5 +18,5 @@ body_ru: Заголовков с упоминанием инфляции на З
   санкций на гражданах западных стран. При этом описываемая ситуация с
   Российской инфляцией, как правило далека от реальности
   (https://theins.ru/en/antifake/252360).
-identifier: [Narrative:1]-11-sanctions_chart_inflation comment
+identifier: "[Narrative:1]-11-sanctions_chart_inflation comment"
 ---

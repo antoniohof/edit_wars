@@ -16,5 +16,6 @@ body_ru: >-
   \
 
   Пропаганда активно развивает и воспроизводит нарратив “антироссийского” характера санкций, то есть направленных прежде всего против населения России.
-identifier: [Narrative:1]-4-sanctions_cloud_sanktz comment
+identifier: "[Narrative:1]-4-sanctions_cloud_sanktz comment"
 ---
+

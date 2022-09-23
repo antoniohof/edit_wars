@@ -22,5 +22,5 @@ body_ru: В энергетической повестке медиа фокус�
   (https://www.stopfake.org/en/fake-vatican-first-to-pay-russia-for-gas-in-rubles/)
   или Австрии
   (https://www.stopfake.org/en/fake-austria-agrees-to-pay-for-russian-gas-in-rubles/).
-identifier: [Narrative:1]-12-sanctions_chart_gas comment
+identifier: "[Narrative:1]-12-sanctions_chart_gas comment"
 ---

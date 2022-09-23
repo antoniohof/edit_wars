@@ -26,5 +26,5 @@ body_ru: Сворачивание бизнеса зарубежных компа
   российский рынок любыми способами, включая опору на факты, что часть компаний
   продолжает работать в стране
   (https://som.yale.edu/story/2022/over-1000-companies-have-curtailed-operations-russia-some-remain).
-identifier: [Narrative:1]-10-sanctions_chart_curtain comment
+identifier: "[Narrative:1]-10-sanctions_chart_curtain comment"
 ---
