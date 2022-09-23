@@ -66,13 +66,6 @@ export default {
     }
   },
   mounted() {
-    if (netlifyIdentity) {
-      netlifyIdentity.on('login', user => {
-        setTimeout(() => {
-          // window.location = "https://edit-wars.netlify.app/admin/#"
-        }, 200)
-      })
-    }
   },
   data() {
     return {

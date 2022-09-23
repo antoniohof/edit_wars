@@ -8,10 +8,11 @@
 <script>
 
 export default {
-  head () {
-    return {
-      
-    }
+  head: {
+    title: 'Login',
+    script: [
+      { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" }
+    ]
   },
   mounted () {
     if (netlifyIdentity) {

@@ -236,6 +236,7 @@ export default {
     currStepIndex (index) {
       let back = null
       if (!this.currStepObj) {
+        console.error('return')
         this.currentBackground = null
         return
       }
