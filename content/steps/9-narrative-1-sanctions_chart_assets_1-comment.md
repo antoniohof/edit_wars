@@ -3,7 +3,7 @@ uuid: A-Q4Hhflj2EX7pDAbpm2k
 name: sanctions_chart_assets_1 comment
 date: 2022-09-21T20:56:42.248Z
 narrative: 1
-order: 9
+order: 8
 component: DefaultText
 body_en: For example, the freezing of Russia's multi-billion dollar foreign
   currency reserves and the assets of the oligarchs in connection with the
@@ -14,5 +14,5 @@ body_ru: >-
   (https://www.dw.com/en/yale-study-shows-sanctions-are-crippling-russias-economy/a-62623738).\
 
   Власти стремится объяснить аудитории снижение уровня жизни внешним давлением и несправедливостью недружественных стран.
-identifier: 9-[Narrative:1]-sanctions_chart_assets_1 comment
+identifier: 8-[Narrative:1]-sanctions_chart_assets_1 comment
 ---

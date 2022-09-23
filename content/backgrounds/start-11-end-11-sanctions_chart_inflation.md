@@ -1,9 +1,9 @@
 ---
-uuid: USyTD8KFqvg4yagAjOhb1
-name: sanctions_chart_iso,sanctions_chart_assets_0,sanctions_chart_assets_1
-stepstart: 6
-stepend: 8
-component: BarChart
+uuid: ZTZR2V9ynxPHOQiMHtkRz
+name: sanctions_chart_inflation
+stepstart: 11
+stepend: 11
+component: LineChart
 chartoptions: |-
   {
     "responsive": "true",
@@ -23,7 +23,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mentions",
+        "text": "Mentions", 
         "color": "black",
         "font": {
           "size": "30",
@@ -44,6 +44,5 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:6][End:8]-sanctions_chart_iso,sanctions_chart_assets_0,sanc\
-  tions_chart_assets_1"
+identifier: "[Start:11][End:11]-sanctions_chart_inflation"
 ---

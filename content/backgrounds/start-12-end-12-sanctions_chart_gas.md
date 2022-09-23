@@ -1,8 +1,8 @@
 ---
-uuid: USyTD8KFqvg4yagAjOhb1
-name: sanctions_chart_iso,sanctions_chart_assets_0,sanctions_chart_assets_1
-stepstart: 6
-stepend: 8
+uuid: -l1eDYK0i_RbhR3A0wQoG
+name: sanctions_chart_gas,sanctions_chart_europe,sanctions_chart_food_crisis
+stepstart: 12
+stepend: 14
 component: BarChart
 chartoptions: |-
   {
@@ -23,7 +23,7 @@ chartoptions: |-
       },
       "title": {
         "display": "true",
-        "text": "Mentions",
+        "text": "Mentions", 
         "color": "black",
         "font": {
           "size": "30",
@@ -44,6 +44,6 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:6][End:8]-sanctions_chart_iso,sanctions_chart_assets_0,sanc\
-  tions_chart_assets_1"
+identifier: "[Start:12][End:14]-sanctions_chart_gas,sanctions_chart_europe,sanc\
+  tions_chart_food_crisis"
 ---

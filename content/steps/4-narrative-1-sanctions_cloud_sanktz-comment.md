@@ -6,7 +6,7 @@ narrative: 1
 order: 4
 component: DefaultText
 body_en: >-
-  Shift in focus in the media: sanctions target all Russians.
+  **Shift in focus in the media: sanctions target all Russians.**
 
 
   Propaganda actively develops and reproduces the narrative of the "anti-Russian" nature of the sanctions, that is, directed primarily against the Russian population.

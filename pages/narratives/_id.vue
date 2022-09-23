@@ -1,14 +1,12 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
-    <client-only>
-      <WordCloud 
+      <WordCloud
         class='wordcloud'
         :step="currStepObj"
         :currentStepIndex="currStepIndex"
         :progress="getStepProgress(currStepIndex)" 
         :background="currentBackground"
         />
-    </client-only>
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
@@ -61,7 +59,7 @@ export default {
     }
   },
   components: {
-    WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
+    // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
@@ -77,18 +75,21 @@ export default {
     })
   },
   mounted() {
-    console.log($nuxt.$route)
-    console.log('charango') // pqp
-    console.log(this.steps)
-    console.log(this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative)))
+      this.currStepIndex = 0
+      this.startBackgroundScroll = window.scrollY
+      this.lastEnterBackgroundDirection = 'down'
+      this.lastDirection = 'down'
+      console.log('this.currentBackground', this.currentBackground)
+
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
-
-    if (this.currentBackground) {
+    process.nextTick(() => {
+      if (this.currentBackground) {
       // in case theres background at step
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
     }
+    })
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
@@ -104,7 +105,7 @@ export default {
     return {
       backgroundContainer: null,
       currentNarrative: 0,
-      currStepIndex: 0,
+      currStepIndex: -1,
       currStepProgress: 0.01,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
@@ -157,12 +158,15 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
-      if (this.currentBackground) {
-        this.startBackgroundScroll = window.scrollY
-      }
-      this.lastEnterBackgroundDirection = direction
-      this.lastDirection = direction
-      console.log('this.currentBackground', this.currentBackground)
+      process.nextTick(() => {
+
+        if (this.currentBackground) {
+          this.startBackgroundScroll = window.scrollY
+        }
+        this.lastEnterBackgroundDirection = direction
+        this.lastDirection = direction
+        console.log('this.currentBackground', this.currentBackground)
+      })
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
