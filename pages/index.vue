@@ -7,6 +7,9 @@
 
   This project is the data and art research how propaganda narratives are reproduced in the Russian-language digital media in the closed space of destroyed media freedom.
     </v-container>
+    <div class="arrow" @click="onClickArrow">
+      <img src="~/assets/icons/arrow.svg"/>
+    </div>
   </v-container>
 </template>
 
@@ -45,7 +48,9 @@ export default {
 
   },
   methods: {
-   
+    onClickArrow() {
+      this.$router.push({ path: "/narratives/"});
+    }
   }
 }
 </script>
@@ -63,10 +68,26 @@ export default {
   align-content: center
   justify-content: flex-start
   align-items: center
+  overflow-y: hidden !important
+  
 .intro
   width: 80%
   margin-left: 85px
   font-size: 40px
   font-family: Space Mono
+
+.arrow
+  position: fixed
+  width: 100%
+  height: 50px
+  bottom: 0
+  width: 100%
+  margin: 0 auto
+  height: 100px
+  justify-content: center
+  display: flex
+  cursor: pointer
+  bottom: 0
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%)
 
 </style>
