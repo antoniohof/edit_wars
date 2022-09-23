@@ -2,7 +2,7 @@ const narratives = []
 narratives[1] = {
     id: 1,
     name: "“Freezing Europe”",
-    slug: "propaganda-narratives"
+    slug: "freezing-europe"
 }
 narratives[2] = {
     id: 2,
