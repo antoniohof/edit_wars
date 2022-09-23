@@ -4,7 +4,7 @@ name: sanctions_chart_inflation comment
 date: 2022-09-23T00:02:05.500Z
 narrative: 1
 order: 11
-component: BarChart
+component: LineChart
 body_en: >-
   **Inflationary War**\
 
