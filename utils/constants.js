@@ -15,6 +15,11 @@ narratives[4] = {
     slug: "mythical-nazis"
 }
 
+const colorPalette = [
+    "#FFBE41",
+    "#A67BEA",
+    "#66CE79",
+    "#FF70B6",
+]
 
-
-export { narratives }
+export { narratives, colorPalette }

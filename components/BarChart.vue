@@ -22,6 +22,9 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 
 
 import { getDates, processTableutData, parseDataUrl, escapeCode } from '../utils/DataProcessing'
+
+import { colorPalette } from '../utils/constants'
+
 import StepMixin from "@/mixins/StepMixin.js";
 
 export default {
@@ -45,6 +48,7 @@ export default {
       cssClasses: '',
       styles: {
           width: `90%`,
+          'max-width': `800px`,
       },
       chartOptions: {},
       dataList: []
