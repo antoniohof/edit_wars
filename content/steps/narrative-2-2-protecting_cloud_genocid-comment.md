@@ -4,7 +4,7 @@ name: protecting_cloud_genocid comment
 date: 2022-09-23T01:23:34.901Z
 narrative: 2
 order: 2
-component: TextCenter
+component: DefaultText
 body_en: The idea of ​​protecting russian-speaking population is one of the main
   in russian propaganda. Russia set itself up as the defender of the “russian
   world” – this is clearly seen in the statements of politicians and numerous
