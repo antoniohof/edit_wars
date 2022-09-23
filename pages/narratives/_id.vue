@@ -314,7 +314,6 @@ export default {
   margin-bottom: 100px
   z-index: 2
 .step:last-child
-  margin-bottom: 500px !important
 // .step.active
 
 .background
