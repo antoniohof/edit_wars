@@ -4,7 +4,7 @@ name: sanctions_chart_gas,sanctions_chart_europe,sanctions_chart_food_crisis
 narrative: 1
 stepstart: 12
 stepend: 14
-component: BarChart
+component: LineChart
 chartoptions: |-
   {
     "responsive": "true",
@@ -45,6 +45,6 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:12][End:14]-sanctions_chart_gas,sanctions_chart_europe,sanc\
-  tions_chart_food_crisis"
+identifier: "[Narrative:1]-[Start:12][End:14]-sanctions_chart_gas,sanctions_cha\
+  rt_europe,sanctions_chart_food_crisis"
 ---
