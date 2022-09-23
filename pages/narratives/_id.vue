@@ -29,11 +29,11 @@
         @step-enter="stepEnterHandler"
         v-if="narrativeSteps.length > 0"
         @step-exit="stepExitHandler"
-        @step-progress="({ progress }) => (currStepProgress = progress)"
+        @step-progress="onProgress"
       >
         <div
           v-for="(step, index) in narrativeSteps"
-          :key="step.uuid"
+          :key="index"
           class="step"
           :data-step-no="index"
           :class="{ active: index == currStepIndex }"
@@ -94,10 +94,12 @@ export default {
       // in case theres background at step
       this.currentBackgroundToShow = this.currentBackground
       this.lastBackground = this.currentBackgroundToShow
+      window.dispatchEvent(new Event('resize'));
     }
     })
     setTimeout(() => {
       this.isLoaded = true
+      window.dispatchEvent(new Event('resize'));
       this.currStepIndex = 0
     }, 150)
     //window.addEventListener('scroll', throttle(callback, 1000));
@@ -112,7 +114,7 @@ export default {
       backgroundContainer: null,
       currentNarrative: 0,
       currStepIndex: -1,
-      currStepProgress: 0.01,
+      currStepProgress: 0,
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
@@ -148,7 +150,6 @@ export default {
       // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
       steps = await $content('steps').sortBy('order').fetch()
       backgrounds = await $content('backgrounds').fetch()
-      console.log(steps)
 
     } catch (e) {
       error({ message: 'error retrieveing content' })
@@ -159,6 +160,10 @@ export default {
     }
   },
   methods: {
+    onProgress (val) {
+      this.currStepProgress = val.progress
+      this.currStepIndex = val.index
+    },
     stepEnterHandler({ element, index, direction }) {
       if (!this.isLoaded) {
         return
@@ -171,7 +176,6 @@ export default {
         }
         this.lastEnterBackgroundDirection = direction
         this.lastDirection = direction
-        console.log('this.currentBackground', this.currentBackground)
       })
     },
     stepExitHandler({ element, index, direction }) {
@@ -239,14 +243,10 @@ export default {
     currStepIndex (index) {
       let back = null
       if (!this.currStepObj) {
-        console.error('return')
         this.currentBackground = null
         return
       }
       const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
-      console.log('currOrder', currOrder)
-      console.log('currStepIndex', index)
-      console.log('curstep', this.narrativeSteps[this.currStepIndex])
       back = this.backgrounds.find((item) => {
         if (currOrder >= item.stepstart && currOrder <= item.stepend && parseInt(item.narrative) === parseInt(this.currentNarrative)) {
           return item
