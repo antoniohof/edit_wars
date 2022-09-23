@@ -4,7 +4,7 @@ name: protecting_chart_liberation
 narrative: 2
 stepstart: 6
 stepend: 6
-component: LineChart
+component: BarChart
 chartoptions: |-
   {
     "responsive": "true",
