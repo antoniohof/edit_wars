@@ -6,7 +6,7 @@ narrative: 1
 order: 13
 component: DefaultText
 body_en: >-
-  Freezing Europe\
+  **Freezing Europe**\
 
   \
 
