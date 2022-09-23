@@ -11,5 +11,5 @@ body_en: The narrative of isolation has been in the news headlines since the
 body_ru: Нарратив изоляции постоянно присутствует в новостных заголовках с
   начала войны и связывается как с введением новых санкций, так и с сообщениями
   об успешном противостоянии им.
-identifier: 6-[Narrative:1]-sanctions_chart_iso comment
+identifier: [Narrative:1]-6-sanctions_chart_iso comment
 ---

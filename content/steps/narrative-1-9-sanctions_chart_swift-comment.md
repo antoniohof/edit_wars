@@ -12,5 +12,5 @@ body_en: The risk of disconnecting Russian banks from Swift before the invasion
 body_ru: Риск отключения российских банков от Swift до вторжения позиционируется
   как невозможный и невыгодный Западу, с момента введения санкций его ущерб
   нивелируется, а тема выходит из обращения.
-identifier: 9-[Narrative:1]-sanctions_chart_swift comment
+identifier: [Narrative:1]-9-sanctions_chart_swift comment
 ---

@@ -8,5 +8,5 @@ component: TextCenter
 body_en: Propaganda narratives and myths about sanctions in Russian-language media.
 body_ru: Пропагандистские нарративы и мифы о санкциях в русскоязычных СМИ.
   (translated by deepl)
-identifier: 1-[Narrative:1]-title
+identifier: [Narrative:1]-1-title
 ---
