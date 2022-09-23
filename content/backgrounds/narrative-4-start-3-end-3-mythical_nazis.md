@@ -8,7 +8,10 @@ component: WordCloud
 chartoptions: |-2
     {
       "function": "focusOnNode",
-      "data": "денацификация"
+      "data": {
+        "node_id": "денацификация",
+        "distance": 500
+      }
     }
 identifier: "[Narrative:4]-[Start:3][End:3]-mythical_nazis"
 ---
