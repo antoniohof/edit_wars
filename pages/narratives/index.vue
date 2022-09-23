@@ -85,7 +85,7 @@ export default {
 
   methods: {
     onNodeClick(node) {
-      this.$router.push({ path: "narratives/" + node.path });
+      this.$router.push({ path: "/narratives/" + node.path });
     },
   },
   watch: {},
