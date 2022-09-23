@@ -162,21 +162,22 @@ export default {
   methods: {
     onProgress (val) {
       this.currStepProgress = val.progress
-      this.currStepIndex = val.index
     },
     stepEnterHandler({ element, index, direction }) {
       if (!this.isLoaded) {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
-      process.nextTick(() => {
+      //process.nextTick(() => {
 
-        if (this.currentBackground) {
+        // if (this.currentBackground) {
           this.startBackgroundScroll = window.scrollY
-        }
+        //}
+        console.log('this.startBackgroundScroll', this.startBackgroundScroll)
+        console.log('direction', direction)
         this.lastEnterBackgroundDirection = direction
         this.lastDirection = direction
-      })
+      //})
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
@@ -195,9 +196,7 @@ export default {
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
-        if (!this.backgroundContainer) {
-          this.backgroundContainer = document.querySelector('.background_container')
-        }
+        this.backgroundContainer = document.querySelector('.background_container')
         if (this.backgroundContainer) {
           let oneStepBackground = true
           if (
@@ -218,20 +217,21 @@ export default {
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
+          translateY = translateY
           if (oneStepBackground) {
-            this.backgroundContainer.style.transform = `translateY(${translateY}px)`
+            this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
           } else {
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
-              this.backgroundContainer.style.transform = `translateY(${translateY}px)`
+              this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
             }
-            if (
+            else if (
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
-              this.backgroundContainer.style.transform = `translateY(${translateY}px)`
+              this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
             }
           }
         }
@@ -252,8 +252,6 @@ export default {
           return item
         }
       })
-      console.log('currStepIndex', index)
-      console.log('back', back)
       this.currentBackground = back
     },
     currentBackground(value) {
