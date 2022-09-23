@@ -4,7 +4,7 @@ name: protecting_chart_genocid
 narrative: 2
 stepstart: 3
 stepend: 3
-component: LineChart
+component: BarChart
 chartoptions: |-
   {
     "responsive": "true",
