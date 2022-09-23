@@ -6,7 +6,7 @@ narrative: 1
 order: 12
 component: DefaultText
 body_en: >-
-  gas infowar\
+  **Gas Infowar**\
 
   \
 
