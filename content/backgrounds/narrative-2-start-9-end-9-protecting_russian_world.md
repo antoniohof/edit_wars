@@ -10,7 +10,7 @@ chartoptions: |-
     "function": "focusOnNode",
     "data": {
        "node_id": "беженец",
-        "distance": 500
+       "distance": 500
     }
   }
 identifier: "[Narrative:2]-[Start:9][End:9]-protecting_russian_world"
