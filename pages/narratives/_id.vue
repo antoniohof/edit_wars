@@ -64,7 +64,6 @@ export default {
     // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
-    window.scrollTo(0,0)
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
     if (!this.currentNarrative) {
       console.error('narrative not found!', $nuxt.$route.params.id)
@@ -78,6 +77,7 @@ export default {
     })
   },
   mounted() {
+      window.scrollTo(0,0)
       this.currStepIndex = -1
       this.startBackgroundScroll = window.scrollY
       this.lastEnterBackgroundDirection = 'down'
