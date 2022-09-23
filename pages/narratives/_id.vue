@@ -237,7 +237,7 @@ export default {
         this.currentBackground = null
         return
       }
-      const currOrder = this.narrativeSteps[this.currStepIndex].order
+      const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
       console.log('currOrder', currOrder)
       console.log('currStepIndex', index)
       console.log('curstep', this.narrativeSteps[this.currStepIndex])

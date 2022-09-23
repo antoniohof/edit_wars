@@ -2,7 +2,7 @@
 uuid: s_g5Y07ZWYE5EcdkL8NWm
 name: protecting_chart_donbas comment 2
 date: 2022-09-23T01:49:29.665Z
-narrative: 8
+narrative: 2
 order: 4.5
 component: DefaultText
 body_en: "However, if you look at the facts, according to a UN report, at least
