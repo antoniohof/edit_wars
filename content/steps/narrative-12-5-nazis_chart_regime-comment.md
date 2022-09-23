@@ -2,7 +2,7 @@
 uuid: shk8K1va49T_DMuPusSIr
 name: nazis_chart_regime comment
 date: 2022-09-23T02:27:19.057Z
-narrative: 12
+narrative: 4
 order: 5
 component: DefaultText
 body_en: On February 24, Peskov said that Ukraine needs to be «crackdown on
@@ -13,5 +13,5 @@ body_ru: 24 февраля Песков заявил, что Украину ну
   Именно “нацисты” (также используется слово “бандеровцы”) в российских СМИ
   обстреливают мирных жителей и гражданские объекты, срывают эвакуации, пытают
   людей, и во главе страны тоже – “нацистский режим”.
-identifier: "[Narrative:12]-5-nazis_chart_regime comment"
+identifier: 5-[Narrative:4]-nazis_chart_regime comment
 ---
