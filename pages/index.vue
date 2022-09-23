@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
-    <v-container fluid class="intro">
+    <v-container fluid class="intro pa-0">
       The monopoly on information is a key propaganda tool. Using it, a state is able to shape a non-alternative picture of the world.
 
   Nowadays, not only does the Russian government wage a war in Ukraine, but it also works hard on shaping the information reality using propaganda narratives.
@@ -66,5 +66,7 @@ export default {
 .intro
   width: 80%
   margin-left: 85px
+  font-size: 40px
+  font-family: Space Mono
 
 </style>
