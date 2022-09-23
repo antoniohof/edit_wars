@@ -1,7 +1,7 @@
 ---
 uuid: t8d_S_W4hpnuMlF1OUFHK
 name: nazis_colab_denazification
-narrative: 3
+narrative: 4
 stepstart: 2
 stepend: 2
 component: BarChart

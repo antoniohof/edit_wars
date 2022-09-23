@@ -2,7 +2,7 @@
 uuid: zMtmjLTR-4HxIs-n-JnJ-
 name: nazis_colab_denazification comment
 date: 2022-09-23T02:19:38.343Z
-narrative: 3
+narrative: 4
 order: 2
 component: DefaultText
 body_en: One of the main theses of anti-ukrainian propaganda is the assertion

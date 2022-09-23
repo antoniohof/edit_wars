@@ -1,7 +1,7 @@
 ---
 uuid: wdbcuSh7Nwo1ZRwGISdxp
 name: mythical_nazis
-narrative: 3
+narrative: 4
 stepstart: 1
 stepend: 1
 component: WordCloud

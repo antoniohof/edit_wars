@@ -11,5 +11,5 @@ body_en: "However, if you look at the facts, according to a UN report, at least
   show that the death toll is decreasing and is in the tens already in 2021.
   Also, according to UN report, as of August 2022, there were 13,477 civilian
   casualties in the country: 5,587 killed and 7,890 wounded."
-identifier: "[Narrative:8]-4.5-protecting_chart_donbas comment 2"
+identifier: "[Narrative:2]-4.5-protecting_chart_donbas comment 2"
 ---
