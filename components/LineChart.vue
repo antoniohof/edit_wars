@@ -82,7 +82,7 @@ export default {
         return
       }
       console.log('meteu', fetchedData)
-
+      this.currentProcessedData = fetchedData.datasets[0].data
       this.setAnimation()
       this.currentChartData = {
         labels: fetchedData.labels,
@@ -143,6 +143,10 @@ export default {
             }
           },
           animation: this.animation
+        }
+        this.chartOptions = {
+          ...this.additionalOptions,
+          ...this.chartOptions
         }
     }
   },
