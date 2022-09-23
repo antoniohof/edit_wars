@@ -1,6 +1,7 @@
 ---
 uuid: USyTD8KFqvg4yagAjOhb1
 name: sanctions_chart_iso,sanctions_chart_assets_0,sanctions_chart_assets_1
+narrative: 1
 stepstart: 6
 stepend: 8
 component: BarChart

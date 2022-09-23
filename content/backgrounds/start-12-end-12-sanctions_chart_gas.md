@@ -1,6 +1,7 @@
 ---
 uuid: -l1eDYK0i_RbhR3A0wQoG
 name: sanctions_chart_gas,sanctions_chart_europe,sanctions_chart_food_crisis
+narrative: 1
 stepstart: 12
 stepend: 14
 component: BarChart

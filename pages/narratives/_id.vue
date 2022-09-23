@@ -240,7 +240,7 @@ export default {
       const currOrder = this.steps[this.currStepIndex].order
       console.log('currOrder', currOrder)
       back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend) {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend && item.narrative === parseInt(this.currentNarrative)) {
           return item
         }
       })

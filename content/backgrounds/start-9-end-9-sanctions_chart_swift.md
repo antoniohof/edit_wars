@@ -1,6 +1,7 @@
 ---
 uuid: dC_WpgFEiWvSQB9KvT2d9
 name: sanctions_chart_swift
+narrative: 1
 stepstart: 9
 stepend: 9
 component: BarChart

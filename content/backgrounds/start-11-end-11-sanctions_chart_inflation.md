@@ -1,6 +1,7 @@
 ---
 uuid: ZTZR2V9ynxPHOQiMHtkRz
 name: sanctions_chart_curtain,sanctions_chart_inflation
+narrative: 1
 stepstart: 10
 stepend: 11
 component: LineChart

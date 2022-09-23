@@ -1,6 +1,7 @@
 ---
 uuid: RFGVyERvv_47aMrkXxvuQ
 name: freezing_europe
+narrative: 1
 stepstart: 15
 stepend: 15
 component: WordCloud

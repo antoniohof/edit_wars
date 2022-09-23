@@ -55,6 +55,7 @@ collections:
     fields:
       - { label: 'UUID', name: 'uuid', widget: uuid }
       - { label: 'Name', name: 'name', widget: string }
+      - { label: "Narrative", name: "narrative", widget: "number", default: 0, value_type: "int", required: true}
       - { label: 'Step Start', name: 'stepstart', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Step End', name: 'stepend', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
       - { label: 'Vue Component', name: 'component', widget: 'string' }

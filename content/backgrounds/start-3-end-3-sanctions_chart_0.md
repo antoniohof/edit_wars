@@ -1,6 +1,7 @@
 ---
 uuid: m32a-MLXs9m4prqhLLVk3
 name: sanctions_chart_0
+narrative: 1
 stepstart: 3
 stepend: 3
 component: LineChart
