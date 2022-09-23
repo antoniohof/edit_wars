@@ -3,7 +3,7 @@ uuid: Y5rSuBvSivxvR2RzGPNxu
 name: sanctions_chart_assets_0 comment
 date: 2022-09-21T20:54:53.369Z
 narrative: 1
-order: 8
+order: 7
 component: DefaultText
 body_en: >-
   The negative effect of sanctions inside Russia is not advertised by public
@@ -17,5 +17,5 @@ body_ru: >-
   (https://www.dw.com/en/yale-study-shows-sanctions-are-crippling-russias-economy/a-62623738).\
 
   Власти стремится объяснить аудитории снижение уровня жизни внешним давлением и несправедливостью недружественных стран.
-identifier: 8-[Narrative:1]-sanctions_chart_assets_0 comment
+identifier: 7-[Narrative:1]-sanctions_chart_assets_0 comment
 ---
