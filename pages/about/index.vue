@@ -134,7 +134,7 @@ export default {
   margin: 0px 85px 0px 85px
   color: black
   &-title
-    font-family: Golos-Text-Regular
+    font-family: Space Mono
     font-size: 29px
     margin-bottom: 70px 
     width: 72%
