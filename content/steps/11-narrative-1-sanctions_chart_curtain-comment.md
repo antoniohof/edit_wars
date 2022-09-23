@@ -3,7 +3,7 @@ uuid: W87yZ3j9Qu2d7pl_J21an
 name: sanctions_chart_curtain comment
 date: 2022-09-22T12:03:47.575Z
 narrative: 1
-order: 11
+order: 10
 component: TextCenter
 body_en: The withdrawal of foreign companies' business in Russia was a reaction
   to the invasion and was related not only to sanctions restrictions, but also
@@ -26,5 +26,5 @@ body_ru: Сворачивание бизнеса зарубежных компа
   российский рынок любыми способами, включая опору на факты, что часть компаний
   продолжает работать в стране
   (https://som.yale.edu/story/2022/over-1000-companies-have-curtailed-operations-russia-some-remain).
-identifier: 11-[Narrative:1]-sanctions_chart_curtain comment
+identifier: 10-[Narrative:1]-sanctions_chart_curtain comment
 ---
