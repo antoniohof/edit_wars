@@ -8,7 +8,7 @@ component: WordCloud
 chartoptions: |-2
     {
       "function": "focusOnNode",
-      "data": "активы"
+      "data": "банк"
     }
 identifier: "[Narrative:1]-[Start:2][End:2]-freezing_europe"
 ---
