@@ -52,32 +52,32 @@ export default {
       topics: [
         {
           title: 'Project Goals',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Project Funding',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Team',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Research Methodology',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Research Tools',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Contacts',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         }
       ]
