@@ -20,6 +20,7 @@ export default {
   data() {
     return {};
   },
+  scrollToTop: true,
   mounted() {
     let ForceGraph3D;
     if (window) {

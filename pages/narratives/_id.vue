@@ -59,10 +59,12 @@ export default {
       // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
+  scrollToTop: true,
   components: {
     // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
+    window.scrollTo(0,0)
     this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
     if (!this.currentNarrative) {
       console.error('narrative not found!', $nuxt.$route.params.id)
