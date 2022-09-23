@@ -22,6 +22,9 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 
 
 import { getDates, processTableutData, escapeCode, parseDataUrl} from '../utils/DataProcessing'
+
+import { colorPalette } from '../utils/constants'
+
 import StepMixin from "@/mixins/StepMixin.js";
 
 
@@ -82,8 +85,16 @@ export default {
         return
       }
       console.log('meteu', fetchedData)
+      fetchedData.datasets = fetchedData.datasets.map((d, i) => {
+        d.borderColor = colorPalette[i]
+        d.backgroundColor = colorPalette[i]
+        return d
+      })
       this.currentProcessedData = fetchedData.datasets[0].data
-      this.setAnimation()
+      console.log("this.chartOptions", this.chartOptions)
+      if (this.chartOptions?.scales.x.time.unit !== "week") {
+        //this.setAnimation()
+      }
       this.currentChartData = {
         labels: fetchedData.labels,
         datasets: fetchedData.datasets,
