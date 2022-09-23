@@ -78,7 +78,7 @@ export default {
     })
   },
   mounted() {
-      this.currStepIndex = 0
+      this.currStepIndex = -1
       this.startBackgroundScroll = window.scrollY
       this.lastEnterBackgroundDirection = 'down'
       this.lastDirection = 'down'
@@ -96,7 +96,7 @@ export default {
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
-    }, 20)
+    }, 150)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
