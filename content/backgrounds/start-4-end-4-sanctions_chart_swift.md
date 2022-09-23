@@ -8,7 +8,10 @@ component: WordCloud
 chartoptions: |-
   {
     "function": "focusOnNode",
-    "data": "санкция"
+    "data": {
+      "node_id": "санкция",
+      "distance": 500
+    }
   }
 identifier: "[Narrative:1]-[Start:4][End:4]-freezing_europe"
 ---

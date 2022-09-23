@@ -5,10 +5,6 @@ narrative: 4
 stepstart: 1
 stepend: 1
 component: WordCloud
-chartoptions: |-2
-    {
-      "function": "fitToCanvas",
-      "data": ""
-    }
-identifier: "[Narrative:3]-[Start:1][End:1]-mythical_nazis"
+chartoptions: ""
+identifier: "[Narrative:4]-[Start:1][End:1]-mythical_nazis"
 ---
