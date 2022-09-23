@@ -52,6 +52,12 @@ export default {
   components: {
   },
   computed: {
+    isHomeRoute () {
+      if (!process.browser) {
+        return null
+      }
+      return $nuxt.$route.path === '/'
+    },
     isEnglish () {
       return this.$i18n.locale === 'en'
     },

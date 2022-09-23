@@ -1,5 +1,5 @@
 <template>
-  <v-container class="about-page" fluid>
+  <v-container class="about-page pa-0" fluid>
     <div class="about-page-title">
       Edit Wars is a data based art research project, studying special aspects of Russian propaganda and media situation in Russia regarding the invasion in Ukraine 2022 and current war. 
     </div>
@@ -52,32 +52,32 @@ export default {
       topics: [
         {
           title: 'Project Goals',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Project Funding',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Team',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Research Methodology',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Research Tools',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         },
         {
           title: 'Contacts',
-          content: 'Topic Example',
+          content: '--',
           isOpen: false
         }
       ]
@@ -131,14 +131,14 @@ export default {
   flex-direction: column
   align-content: flex-start
   width: 100%
-  padding: 0px 85px 0px 85px
+  margin: 0px 85px 0px 85px
   color: black
   &-title
-    font-family: Golos-Text-Regular
-    font-size: 32px
-    margin-bottom: 100px 
+    font-family: Space Mono
+    font-size: 29px
+    margin-bottom: 70px 
     width: 72%
-    margin-top: 30px
+    margin-top: 50px
   &-topics
     margin: 0px !important
 
