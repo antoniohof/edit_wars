@@ -78,7 +78,7 @@ export default {
   },
   mounted() {
     console.log($nuxt.$route)
-    console.log('charango')
+    console.log('charango') // pqp
     console.log(this.steps)
     console.log(this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative)))
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
