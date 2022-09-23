@@ -54,13 +54,11 @@ export default {
       console.log("bg", background);
       if (background.chartoptions) {
         this.chartOptions = JSON.parse(escapeCode(background.chartoptions));
-        console.log("this.chartOptions", this.chartOptions);
         if (this.chartOptions["function"] !== undefined) {
-          console.log("window.frames", this.$refs.wordcloud.contentWindow);
           this.$refs.wordcloud.contentWindow.postMessage({
             function: this.chartOptions["function"],
             data: this.chartOptions["data"],
-          });
+          }, "*");
         }
       }
       if (this.lastBackground === background?.name || !url) {
