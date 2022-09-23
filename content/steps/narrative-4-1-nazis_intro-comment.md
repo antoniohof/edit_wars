@@ -6,5 +6,5 @@ narrative: 4
 order: 1
 component: TextCenter
 body_en: "**01.03.2022** - Start of the siege of Mariupol & Azovstal"
-identifier: "[Narrative:3]-1-nazis_intro comment"
+identifier: "[Narrative:4]-1-nazis_intro comment"
 ---
