@@ -1,8 +1,8 @@
 ---
 uuid: -l1eDYK0i_RbhR3A0wQoG
-name: sanctions_chart_gas,sanctions_chart_europe
+name: sanctions_chart_gas,sanctions_chart_europe,sanctions_chart_food_crisis
 stepstart: 12
-stepend: 13
+stepend: 14
 component: BarChart
 chartoptions: |-
   {
@@ -44,5 +44,6 @@ chartoptions: |-
         }
     }
   }
-identifier: "[Start:12][End:13]-sanctions_chart_gas,sanctions_chart_europe"
+identifier: "[Start:12][End:14]-sanctions_chart_gas,sanctions_chart_europe,sanc\
+  tions_chart_food_crisis"
 ---
