@@ -115,7 +115,7 @@ export default {
 
 .mdi-close
   color: black !important
-  font-size: 16px !important
+  font-size: 21px !important
   align-self: center
   width: 24px !important
   height: 24px !important
