@@ -3,7 +3,7 @@ uuid: dC_WpgFEiWvSQB9KvT2d9
 name: sanctions_chart_swift
 stepstart: 9
 stepend: 9
-component: LineChart
+component: BarChart
 chartoptions: |-
   {
     "responsive": "true",
