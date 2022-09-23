@@ -25,7 +25,11 @@
         currentUrl: ""
       }
     },
+    actiavated () {
+      console.error("ACTIVATED WORDCLOUD")
+    },
     mounted () {
+      console.error("MOUNTED WORDCLOUD")
       if (this.background) {
         console.log('this.background', this.background)
           // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'

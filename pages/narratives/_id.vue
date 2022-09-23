@@ -1,6 +1,7 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
       <WordCloud
+        keep-alive
         class='wordcloud'
         :step="currStepObj"
         :currentStepIndex="currStepIndex"
