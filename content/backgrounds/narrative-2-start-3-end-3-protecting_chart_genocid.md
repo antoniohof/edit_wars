@@ -4,7 +4,7 @@ name: protecting_chart_genocid
 narrative: 2
 stepstart: 3
 stepend: 3
-component: BarChart
+component: LineChart
 chartoptions: |-
   {
     "responsive": "true",
@@ -36,7 +36,7 @@ chartoptions: |-
         "x": {
             "type": "time",
             "time": {
-                "unit": "week",
+                "unit": "day",
                 "tooltipFormat": "MMM dd",
                 "displayFormats": {
                  "week": "MMM dd"
