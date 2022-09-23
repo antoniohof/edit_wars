@@ -65,6 +65,6 @@ export default {
       :deep(p)
         font-family: Golos-Text-Regular
         color: black
-        font-size: 21px
+        font-size: 16px
         margin-bottom: 0px
 </style>

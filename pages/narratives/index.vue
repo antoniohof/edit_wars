@@ -68,6 +68,7 @@ export default {
           const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
           const sphere = new THREE.Mesh(geometry, material);
           const sprite = new SpriteText(node.label);
+          sprite.fontFace = 'Space Mono'
           sprite.material.depthWrite = false; // make sprite background transparent
           sprite.color = node.color;
           sprite.textHeight = 8;
