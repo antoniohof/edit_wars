@@ -11,6 +11,7 @@ chartoptions: |-
     "data": {
       "node_id": "защита",
       "distance": 500
+    }
   }
 identifier: "[Narrative:2]-[Start:5][End:5]-protecting_russian_world"
 ---
