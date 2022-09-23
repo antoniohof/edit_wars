@@ -30,7 +30,7 @@
         @step-progress="({ progress }) => (currStepProgress = progress)"
       >
         <div
-          v-for="(step, index) in currenteSteps"
+          v-for="(step, index) in narrativeSteps"
           :key="step.uuid"
           class="step"
           :data-step-no="index"
@@ -120,14 +120,14 @@ export default {
     }
   },
   computed: {
-    currenteSteps () {
+    narrativeSteps () {
       if (!process.browser) {
         return []
       }
       return this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative))
     },
     currStepObj() {
-      return this.steps[this.currStepIndex]
+      return this.narrativeSteps[this.currStepIndex]
     },
     getBackgroundTransition() {
       if (this.lastDirection === 'down') {
@@ -203,7 +203,7 @@ export default {
           if (this.lastEnterBackgroundDirection === 'up') {
             top = -window.innerHeight / 2
           }
-          const currOrder = parseInt(this.steps[this.currStepIndex].order)
+          const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
 
           let translateY = top - this.currentBackgroundScroll
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
@@ -237,13 +237,17 @@ export default {
         this.currentBackground = null
         return
       }
-      const currOrder = this.steps[this.currStepIndex].order
+      const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
       console.log('currOrder', currOrder)
+      console.log('currStepIndex', index)
+      console.log('curstep', this.narrativeSteps[this.currStepIndex])
       back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend && item.narrative === parseInt(this.currentNarrative)) {
+        if (currOrder >= item.stepstart && currOrder <= item.stepend && parseInt(item.narrative) === parseInt(this.currentNarrative)) {
           return item
         }
       })
+      console.log('currStepIndex', index)
+      console.log('back', back)
       this.currentBackground = back
     },
     currentBackground(value) {
