@@ -27,6 +27,7 @@
         :debug="false"
         :threshold="1"
         @step-enter="stepEnterHandler"
+        v-if="narrativeSteps.length > 0"
         @step-exit="stepExitHandler"
         @step-progress="({ progress }) => (currStepProgress = progress)"
       >
