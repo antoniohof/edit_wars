@@ -15,6 +15,27 @@ export default {
     ]
   },
   mounted () {
+    netlifyIdentity.on('open', () => {
+      const user = netlifyIdentity.currentUser();
+      console.log(user)
+    })
+    netlifyIdentity.on('close', () => {
+      process.nextTick(() => {
+        const user = netlifyIdentity.currentUser();
+
+        window.location = "https://editwars.org/admin/#"
+      })
+    });
+
+    netlifyIdentity.on('login', (user) => {
+      netlifyIdentity.close()
+      process.nextTick(() => {
+        const user = netlifyIdentity.currentUser();
+        console.log(user)
+        window.location = "https://editwars.org/admin/#"
+      })
+    })
+
     if (netlifyIdentity) {
       netlifyIdentity.open()
     }
