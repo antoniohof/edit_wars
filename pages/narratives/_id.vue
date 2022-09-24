@@ -184,6 +184,7 @@ export default {
         console.log('direction', direction)
         this.lastEnterBackgroundDirection = direction
         this.lastDirection = direction
+        window.dispatchEvent(new Event('resize'));
       //})
     },
     stepExitHandler({ element, index, direction }) {
