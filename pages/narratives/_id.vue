@@ -100,7 +100,9 @@ export default {
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
+      console.log('set to 0')
       process.nextTick(() => {
+        console.log('dispatch resize')
         window.dispatchEvent(new Event('resize'));
       })
     }, 200)
@@ -170,6 +172,7 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
+      console.log('step enter handler', this.currStepIndex)
       //process.nextTick(() => {
 
         // if (this.currentBackground) {
