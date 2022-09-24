@@ -99,9 +99,11 @@ export default {
     })
     setTimeout(() => {
       this.isLoaded = true
-      window.dispatchEvent(new Event('resize'));
       this.currStepIndex = 0
-    }, 150)
+      process.nextTick(() => {
+        window.dispatchEvent(new Event('resize'));
+      })
+    }, 200)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
