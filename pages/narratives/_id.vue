@@ -12,8 +12,8 @@
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
             class="background_container"
-            :component="currentBackgroundToShow.component"
-            :background="currentBackgroundToShow"
+            :component="currentBackground.component"
+            :background="currentBackground"
             keep-alive
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
