@@ -14,6 +14,7 @@
             class="background_container"
             :component="currentBackgroundToShow.component"
             :background="currentBackgroundToShow"
+            keep-alive
             :step="currStepObj"
             :currentStepIndex="currStepIndex"
             :progress="getStepProgress(currStepIndex)"
@@ -32,12 +33,13 @@
       >
         <div
           v-for="(step, index) in narrativeSteps"
-          :key="index"
+          :key="step.uuid"
           class="step"
           :data-step-no="index"
           :class="{ active: index == currStepIndex }"
         >
-          <NuxtDynamic
+          <LazyNuxtDynamic
+            keep-alive
             :component="step.component"
             :step="step"
             :currentStepIndex="currStepIndex"
