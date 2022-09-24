@@ -10,7 +10,7 @@
         />
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
-          <LazyNuxtDynamic
+          <NuxtDynamic
             class="background_container"
             :component="currentBackgroundToShow.component"
             :background="currentBackgroundToShow"
@@ -37,7 +37,7 @@
           :data-step-no="index"
           :class="{ active: index == currStepIndex }"
         >
-          <LazyNuxtDynamic
+          <NuxtDynamic
             :component="step.component"
             :step="step"
             :currentStepIndex="currStepIndex"
