@@ -22,6 +22,7 @@
       </div>
     </transition>
     <div class="side">
+      <client-only>
       <Scrollama
         class="scrollama"
         :debug="false"
@@ -47,6 +48,7 @@
           />
         </div>
       </Scrollama>
+    </client-only>
     </div>
   </v-container>
 </template>
