@@ -39,7 +39,7 @@
           :data-step-no="index"
           :class="{ active: index == currStepIndex }"
         >
-          <LazyNuxtDynamic
+          <NuxtDynamic
             keep-alive
             :component="step.component"
             :step="step"
