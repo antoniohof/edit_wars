@@ -10,7 +10,7 @@
         />
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
-          <NuxtDynamic
+          <LazyNuxtDynamic
             class="background_container"
             :component="currentBackgroundToShow.component"
             :background="currentBackgroundToShow"
@@ -21,7 +21,6 @@
       </div>
     </transition>
     <div class="side">
-      <client-only>
       <Scrollama
         class="scrollama"
         :debug="false"
@@ -46,7 +45,6 @@
           />
         </div>
       </Scrollama>
-    </client-only>
     </div>
   </v-container>
 </template>
