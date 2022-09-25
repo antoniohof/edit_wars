@@ -10,7 +10,6 @@
 
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
-import BarChart from './BarChart.vue';
 
 export default {
   name: 'DefaultText',
@@ -20,6 +19,7 @@ export default {
     }
   },
   mounted () {
+    console.log('montou')
   },
   async asyncData({ $content }) {
   },
@@ -43,6 +43,7 @@ export default {
   justify-content: center
   width: fit-content
   height: 100vh
+  will-change: transform
   &_container
     border-radius: 4px
     background-color: $window-text-bg

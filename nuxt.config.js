@@ -57,20 +57,18 @@ export default {
       }
     ],
     script: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
 
     ]
   },
   ssr: true,
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/sass/globals.sass', 'swiper/css/swiper.css'],
+  css: ['~/assets/sass/globals.sass'],
   target: 'static',
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-js-toggle-button.js',
-    { src: '~/plugins/nuxt-swiper-plugin.js', mode: 'client' },
     '~/plugins/vue-scrollama.js',
     '~/plugins/aframe-ignorelist.js',
     {

@@ -23,32 +23,30 @@
     </transition>
     <div class="side">
       <client-only>
-      <Scrollama
-        class="scrollama"
-        :debug="false"
-        :threshold="1"
-        @step-enter="stepEnterHandler"
-        v-if="narrativeSteps.length > 0"
-        @step-exit="stepExitHandler"
-        @step-progress="onProgress"
-      >
-        <div
-          v-for="(step, index) in narrativeSteps"
-          :key="step.uuid"
-          class="step"
-          :data-step-no="index"
-          :class="{ active: index == currStepIndex }"
+        <Scrollama
+          class="scrollama"
+          :debug="false"
+          @step-enter="stepEnterHandler"
+          v-if="narrativeSteps.length > 0"
+          @step-exit="stepExitHandler"
+          @step-progress="onProgress"
         >
-          <NuxtDynamic
-            keep-alive
-            :component="step.component"
-            :step="step"
-            :currentStepIndex="currStepIndex"
-            :progress="getStepProgress(index)"
-          />
-        </div>
-      </Scrollama>
-    </client-only>
+          <div
+            v-for="(step, index) in narrativeSteps"
+            :key="step.uuid"
+            class="step"
+            :data-step-no="index"
+          >
+            <NuxtDynamic
+              class="step-child"
+              :component="step.component"
+              :step="step"
+              :currentStepIndex="currStepIndex"
+              :progress="getStepProgress(index)"
+            />
+          </div>
+        </Scrollama>
+      </client-only>
     </div>
   </v-container>
 </template>
@@ -175,17 +173,10 @@ export default {
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
       console.log('step enter handler', this.currStepIndex)
-      //process.nextTick(() => {
-
-        // if (this.currentBackground) {
-          this.startBackgroundScroll = window.scrollY
-        //}
-        console.log('this.startBackgroundScroll', this.startBackgroundScroll)
-        console.log('direction', direction)
-        this.lastEnterBackgroundDirection = direction
-        this.lastDirection = direction
-        window.dispatchEvent(new Event('resize'));
-      //})
+      this.startBackgroundScroll = window.scrollY
+      this.lastEnterBackgroundDirection = direction
+      this.lastDirection = direction
+      window.dispatchEvent(new Event('resize'));
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
@@ -321,8 +312,12 @@ export default {
   justify-content: center
   margin-bottom: 100px
   z-index: 2
+  will-change: transform
 .step:last-child
 // .step.active
+
+.step-child
+  will-change: transform
 
 .background
   height: 100vh
