@@ -294,7 +294,7 @@ export default {
 
 .scrollama
   flex: 1
-  will-change: true
+  will-change: transform
 
 .scrollama__steps
   width: 100%

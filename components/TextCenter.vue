@@ -47,10 +47,10 @@ export default {
   height: 100vh
   &_center
     position: absolute
+    left: -38vw
     width: 100vw
     height: fit-content
     margin: 0 auto
-    left: 0
     align-self: center
     display: flex
     height: 100vh
