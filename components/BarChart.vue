@@ -47,7 +47,7 @@ export default {
       height: 800,
       cssClasses: '',
       styles: {
-          width: `90%`,
+          width: `85%`,
           'max-width': `800px`,
       },
       chartOptions: {},

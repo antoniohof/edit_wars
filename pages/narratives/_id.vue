@@ -389,7 +389,7 @@ export default {
   height: 100vh
   width: 75vw
   position: fixed
-  left: 0
+  left: 30px
   top: 0
   display: flex
   justify-content: center
