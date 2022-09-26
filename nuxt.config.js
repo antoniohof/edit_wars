@@ -11,7 +11,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
 
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+      },
       {
         hid: 'description',
         name: 'description',
@@ -20,8 +23,7 @@ export default {
       {
         hid: 'keywords',
         name: 'keywords',
-        content:
-          'art, russia, propaganda'
+        content: 'art, russia, propaganda'
       }
     ],
     link: [
@@ -56,9 +58,7 @@ export default {
         crossorigin: true
       }
     ],
-    script: [
-
-    ]
+    script: []
   },
   ssr: true,
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -112,7 +112,7 @@ export default {
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root'  // recommended
+      redirectOn: 'root' // recommended
     },
     defaultLocale: 'en',
     vueI18n: {
@@ -130,24 +130,22 @@ export default {
   hooks: {
     // Doc: https://content.nuxtjs.org/advanced#contentfilebeforeinsert
     'content:file:beforeInsert': async (document, database) => {
-      // search for markdown containing 
+      // search for markdown containing
       // only `specialNotice` property.
-      if (document.extension === '.md' && 
-          document['body_en']) { 
-        // Replace Markdown string in database 
+      if (document.extension === '.md' && document['body_en']) {
+        // Replace Markdown string in database
         // with the JSON ATS version
-        document['body_en'] = await database 
-          .markdown
-          .toJSON(document['body_en']) 
+        document['body_en'] = await database.markdown.toJSON(
+          document['body_en']
+        )
       }
-      if (document.extension === '.md' && 
-          document['body_ru']) {
-        // Replace Markdown string in database 
+      if (document.extension === '.md' && document['body_ru']) {
+        // Replace Markdown string in database
         // with the JSON ATS version
-        document['body_ru'] = await database 
-          .markdown
-          .toJSON(document['body_ru']) 
-       }
+        document['body_ru'] = await database.markdown.toJSON(
+          document['body_ru']
+        )
+      }
     }
   },
   styleResources: {
@@ -162,6 +160,11 @@ export default {
     theme: {
       dark: false,
       themes: {
+        light: {
+          primary: colors.grey.darken1, // #E53935
+          secondary: colors.grey.lighten4, // #FFCDD2
+          accent: colors.grey.base // #3F51B5
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
@@ -176,9 +179,7 @@ export default {
   },
   generate: {
     fallback: true,
-    routes: [
-
-    ]
+    routes: []
   },
   render: {
     bundleRenderer: {
@@ -214,12 +215,10 @@ export default {
           name: '[path][name].[ext]'
         }
       })
-    },
+    }
   },
   sitemap: {
-      hostname: "https://edit-wars.netlify.app/",
-      routes: [
-        '/about'
-      ]
+    hostname: 'https://edit-wars.netlify.app/',
+    routes: ['/about']
   }
 }

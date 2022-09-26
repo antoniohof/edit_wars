@@ -8,6 +8,18 @@
         :progress="getStepProgress(currStepIndex)" 
         :background="currentBackground"
         />
+        <div class="timeline">
+          <v-timeline dense>
+            <v-timeline-item 
+            small 
+            fill-dot             
+            v-for="(step, index) in narrativeSteps"
+            @click.native="onClickTimeline(index)"
+            :class="{'active': currStepIndex === index}"
+            :key="index">{{index}}</v-timeline-item>
+           
+          </v-timeline>
+        </div>
     <transition :name="getBackgroundTransition">
       <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
           <NuxtDynamic
@@ -85,27 +97,25 @@ export default {
       this.startBackgroundScroll = window.scrollY
       this.lastEnterBackgroundDirection = 'down'
       this.lastDirection = 'down'
-      console.log('this.currentBackground', this.currentBackground)
 
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
     process.nextTick(() => {
-      if (this.currentBackground) {
-      // in case theres background at step
-      this.currentBackgroundToShow = this.currentBackground
-      this.lastBackground = this.currentBackgroundToShow
       window.dispatchEvent(new Event('resize'));
-    }
+      if (this.currentBackground) {
+        // in case theres background at step
+        this.currentBackgroundToShow = this.currentBackground
+        this.lastBackground = this.currentBackgroundToShow
+        window.dispatchEvent(new Event('resize'));
+      }
     })
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
-      console.log('set to 0')
       process.nextTick(() => {
-        console.log('dispatch resize')
         window.dispatchEvent(new Event('resize'));
       })
-    }, 200)
+    }, 250)
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
@@ -172,9 +182,10 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
-      console.log('step enter handler', this.currStepIndex)
-      this.startBackgroundScroll = window.scrollY
-      this.lastEnterBackgroundDirection = direction
+      if (this.lastEnterBackgroundDirection !== "jump") {
+        this.lastEnterBackgroundDirection = direction
+        this.startBackgroundScroll = window.scrollY
+      }
       this.lastDirection = direction
       window.dispatchEvent(new Event('resize'));
     },
@@ -192,6 +203,20 @@ export default {
       if (step > curStepNum) {
         return 0
       }
+    },
+    onClickTimeline (index) {
+      this.lastEnterBackgroundDirection = "jump"
+      console.log('index', index)
+      const margin = 100
+      const pixels = (index * (window.innerHeight + margin))
+      scrollTo(0, pixels)
+      process.nextTick(() => {
+        this.startBackgroundScroll = (pixels - window.innerHeight/2)
+        window.dispatchEvent(new Event('resize'))
+        setTimeout(() => {
+          this.lastEnterBackgroundDirection = "down"
+        }, 250)
+      })
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
@@ -217,6 +242,7 @@ export default {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
           translateY = translateY
+
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
           } else {
@@ -274,6 +300,22 @@ export default {
 <style lang="sass">
 .scrollama__debug-offset
   border-top: 2px dashed red !important
+
+
+.v-timeline-item__body
+  color: white
+  cursor: pointer
+  font-size: 13px
+  font-family: Space Mono
+  position: absolute
+  left: 48px
+  display: flex
+  justify-content: center
+  margin-top: 2px
+  z-index: 10
+.v-timeline-item__inner-dot
+  opacity: 0.35
+  cursor: pointer
 </style>
 
 <style lang="sass" scoped>
@@ -284,6 +326,30 @@ export default {
   justify-content: flex-end
   width: 100vw
   position: relative
+
+.timeline
+  position: fixed
+  left: 0
+  top: 0px
+  height: 100vh
+  width: 50px
+  display: flex
+  z-index: 10
+
+.v-timeline
+  display: flex
+  justify-content: center
+  flex-direction: column
+
+.v-timeline-item
+  flex-direction: row !important
+  padding-bottom: 14px !important
+  z-index: 12
+  &.active
+    :deep(.v-timeline-item__dot)
+      background: black !important
+      cursor: pointer
+
 
 .side
   display: flex
