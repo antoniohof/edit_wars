@@ -138,7 +138,7 @@ export default {
     font-size: 29px
     margin-bottom: 70px 
     width: 72%
-    margin-top: 50px
+    margin-top: 65px
   &-topics
     margin: 0px !important
 
