@@ -21,24 +21,24 @@ aboutmain_en: >-
   Contact us: [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)
 aboutmain_ru: M﻿ain Russo
 aboutgoals_en: >-
-  1. To deconstruct Russian propaganda narratives through data research
+  * To deconstruct Russian propaganda narratives through data research
 
-  2. To create data analysis tools for the content investigation of the headlines in Russian online media
+  * To create data analysis tools for the content investigation of the headlines in Russian online media
 
-  3. To study the dynamics of the use of thematic markers, the presence of propaganda narratives in the headlines, as well as the temporal relationship between events and their media coverage
+  * To study the dynamics of the use of thematic markers, the presence of propaganda narratives in the headlines, as well as the temporal relationship between events and their media coverage
 
-  4. To promote critical thinking and build resilience to misinformation and its reproduction.
+  * To promote critical thinking and build resilience to misinformation and its reproduction.
 
-  5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
+  * To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
 aboutgoals_ru: >-
-  1. To deconstruct Russian propaganda narratives through data research
+  * To deconstruct Russian propaganda narratives through data research
 
-  2. To create data analysis tools for the content investigation of the headlines in Russian online media
+  * To create data analysis tools for the content investigation of the headlines in Russian online media
 
-  3. To study the dynamics of the use of thematic markers, the presence of propaganda narratives in the headlines, as well as the temporal relationship between events and their media coverage
+  * To study the dynamics of the use of thematic markers, the presence of propaganda narratives in the headlines, as well as the temporal relationship between events and their media coverage
 
-  4. To promote critical thinking and build resilience to misinformation and its reproduction.
+  * To promote critical thinking and build resilience to misinformation and its reproduction.
 
-  5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
+  * To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
 identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
 ---
