@@ -18,7 +18,7 @@ main_en: >-
   We are open to partnerships with publishers, media and fact-checking organizations.
 
 
-  **Contact us: [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)**
+  <strong>Contact us at: editwarsproject@protonmail.com</strong>
 main_ru: M﻿ain Russo
 body_en: >-
   1. To deconstruct Russian propaganda narratives through data research
@@ -31,4 +31,5 @@ body_en: >-
 
   5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
 body_ru: About RUsso
+identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
 ---
