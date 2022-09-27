@@ -1,7 +1,7 @@
 <template>
   <v-container class="about-page pa-0" fluid>
     <div class="about-page-title">
-      <nuxt-content :document="about['aboutmain_en']" />
+      <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
     <v-row
       class="about-page-topics justify-start"
@@ -23,8 +23,8 @@
             
             </template>
   
-            <v-list-item class='topic-content' dense>
-              <nuxt-content :document="topic.content" />
+            <v-list-item class='topic' dense>
+              <nuxt-content class="topic-content" :document="topic.content" />
             </v-list-item>
           </v-list-group>
       </v-list>
@@ -141,21 +141,23 @@ export default {
   color: black
   &-title
     font-family: Space Mono
-    font-size: 15px
+    font-size: 20px
     margin-bottom: 70px 
     width: 72%
     margin-top: 65px
+      
   &-topics
     margin: 0px !important
 
 .title
   font-family: Space Mono !important
-  font-size: 32px !important
+  font-size: 29px !important
   overflow: visible
   text-transform: uppercase
   color: black
   padding: 0px !important
-.topic-content
+  
+.topic
   font-family: Golos-Text-Regular
   font-size: 25px
   margin-bottom: 25px
