@@ -18,7 +18,7 @@ aboutmain_en: >-
   We are open to partnerships with publishers, media and fact-checking organizations.
 
 
-  <strong>Contact us at: editwarsproject@protonmail.com</strong>
+  Contact us: [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)
 aboutmain_ru: M﻿ain Russo
 aboutgoals_en: >-
   1. To deconstruct Russian propaganda narratives through data research
