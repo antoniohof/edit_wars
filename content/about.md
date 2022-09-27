@@ -31,5 +31,4 @@ body_en: >-
 
   5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
 body_ru: About RUsso
-identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
 ---

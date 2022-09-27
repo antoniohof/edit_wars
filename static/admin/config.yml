@@ -17,10 +17,10 @@ collections:
         file: "content/about.md"
         format: "frontmatter"
         fields:
-          - { label: main_en, name: main_en, widget: markdown }
-          - { label: main_ru, name: main_ru, widget: markdown }
-          - { label: goals_en, name: body_en, widget: markdown }
-          - { label: goals_ru, name: body_ru, widget: markdown }
+          - { label: main_en, name: main_en, widget: text }
+          - { label: main_ru, name: main_ru, widget: text }
+          - { label: goals_en, name: body_en, widget: text }
+          - { label: goals_ru, name: body_ru, widget: text }
   - label: "Steps"
     label_singular: "Step"
     name: "steps"
