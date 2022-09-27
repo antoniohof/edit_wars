@@ -86,6 +86,7 @@ export default {
   mounted () {
     console.log('about', this.about)
     this.topics[0].content = this.goals
+    console.log(this.goals)
   },
   async asyncData({ $content }) {
     const about = await $content('about').fetch()

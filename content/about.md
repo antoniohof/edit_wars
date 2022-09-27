@@ -1,6 +1,6 @@
 ---
 title: About
-main_en: >-
+aboutmain_en: >-
   Edit Wars is a project using the analysis of media publications accompanying
   the growing militarization and manipulation of mass consciousness in Russia
   for a better understanding of the mechanics of state propaganda and ways to
@@ -19,8 +19,8 @@ main_en: >-
 
 
   <strong>Contact us at: editwarsproject@protonmail.com</strong>
-main_ru: M﻿ain Russo
-body_en: >-
+aboutmain_ru: M﻿ain Russo
+aboutgoals_en: >-
   1. To deconstruct Russian propaganda narratives through data research
 
   2. To create data analysis tools for the content investigation of the headlines in Russian online media
@@ -30,6 +30,15 @@ body_en: >-
   4. To promote critical thinking and build resilience to misinformation and its reproduction.
 
   5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
-body_ru: About RUsso
+aboutgoals_ru: >-
+  1. To deconstruct Russian propaganda narratives through data research
+
+  2. To create data analysis tools for the content investigation of the headlines in Russian online media
+
+  3. To study the dynamics of the use of thematic markers, the presence of propaganda narratives in the headlines, as well as the temporal relationship between events and their media coverage
+
+  4. To promote critical thinking and build resilience to misinformation and its reproduction.
+
+  5. To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
 identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
 ---
