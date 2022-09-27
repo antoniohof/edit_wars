@@ -1,7 +1,7 @@
 <template>
   <v-container class="about-page pa-0" fluid>
     <div class="about-page-title">
-      {{ mainText }}
+      <nuxt-content :document="about['aboutmain_en']" />
     </div>
     <v-row
       class="about-page-topics justify-start"
@@ -24,7 +24,7 @@
             </template>
   
             <v-list-item class='topic-content' dense>
-              {{ topic.content }}
+              <nuxt-content :document="topic.content" />
             </v-list-item>
           </v-list-group>
       </v-list>
@@ -96,10 +96,10 @@ export default {
   },
   computed: {
     mainText () {
-      return this.about['main_' + this.$i18n.locale]
+      return this.about['aboutmain_' + this.$i18n.locale]
     },
     goals () {
-      return this.about['goals_' + this.$i18n.locale]
+      return this.about['aboutgoals_' + this.$i18n.locale]
     }
   },
   components: {},
