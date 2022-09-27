@@ -316,6 +316,9 @@ export default {
 .v-timeline-item__inner-dot
   opacity: 0.35
   cursor: pointer
+
+.v-timeline-item__dot 
+  box-shadow: none !important
 </style>
 
 <style lang="sass" scoped>
@@ -341,6 +344,14 @@ export default {
   justify-content: center
   flex-direction: column
 
+.v-timeline::before
+  bottom: 0
+  content: ""
+  height: 100%
+  position: absolute
+  top: 0
+  width: 0px
+
 .v-timeline-item
   flex-direction: row !important
   padding-bottom: 14px !important
@@ -349,7 +360,7 @@ export default {
     :deep(.v-timeline-item__dot)
       background: black !important
       cursor: pointer
-
+      box-shadow: 0px !important
 
 .side
   display: flex
