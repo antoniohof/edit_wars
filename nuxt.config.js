@@ -146,6 +146,37 @@ export default {
           document['body_ru']
         )
       }
+
+      if (document.extension === '.md' && document['aboutmain_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutmain_en'] = await database.markdown.toJSON(
+          document['aboutmain_en']
+        )
+      }
+
+      if (document.extension === '.md' && document['aboutmain_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutmain_ru'] = await database.markdown.toJSON(
+          document['aboutmain_ru']
+        )
+      }
+
+      if (document.extension === '.md' && document['aboutgoals_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutgoals_en'] = await database.markdown.toJSON(
+          document['aboutgoals_en']
+        )
+      }
+      if (document.extension === '.md' && document['aboutgoals_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutgoals_ru'] = await database.markdown.toJSON(
+          document['aboutgoals_ru']
+        )
+      }
     }
   },
   styleResources: {
