@@ -6,68 +6,123 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - label: 'Pages'
-    label_singular: 'Page'
-    name: 'pages'
+  - label: "Pages"
+    label_singular: "Page"
+    name: "pages"
     create: false
     preview: false
     files:
-      - label: 'About Page'
-        name: 'about'
-        file: 'content/about.md'
-        format: 'frontmatter'
+      - label: "About Page"
+        name: "about"
+        file: "content/about.md"
+        format: "frontmatter"
         fields:
-          - { label: Body EN, name: body_en, widget: markdown }
-          - { label: Body RU, name: body_ru, widget: markdown }
-  - label: 'Steps'
-    label_singular: 'Step'
-    name: 'steps'
+          - { label: main_en, name: main_en, widget: markdown }
+          - { label: main_ru, name: main_ru, widget: markdown }
+          - { label: goals_en, name: body_en, widget: markdown }
+          - { label: goals_ru, name: body_ru, widget: markdown }
+  - label: "Steps"
+    label_singular: "Step"
+    name: "steps"
     preview: false
     folder: content/steps
-    format: 'frontmatter'
+    format: "frontmatter"
     create: true
-    slug: '{{identifier}}'
+    slug: "{{identifier}}"
     identifier_field: identifier
-    sortable_fields: ['order']
+    sortable_fields: ["order"]
     fields:
-      - { label: 'UUID', name: 'uuid', widget: uuid }
-      - { label: 'Name', name: 'name', widget: string }
-      - { label: 'Title EN', name: 'title_en', widget: string, required: false }
-      - { label: 'Title RU', name: 'title_ru', widget: string, required: false }
-      - { label: 'Date', name: 'date', widget: 'date', required: false }
-      - { label: "Narrative", name: "narrative", widget: "number", default: 0, value_type: "int", required: true}
-      - { label: 'Order', name: 'order', widget: "number", value_type: "float", default: 1.0,  min: 1.0 }
-      - { label: 'Vue Component', name: 'component', widget: 'string' }
-      - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
-      - { label: "Identifier", name: "identifier", widget: "hidden", default: ""}
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - { label: "Title EN", name: "title_en", widget: string, required: false }
+      - { label: "Title RU", name: "title_ru", widget: string, required: false }
+      - { label: "Date", name: "date", widget: "date", required: false }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "number",
+          default: 0,
+          value_type: "int",
+          required: true,
+        }
+      - {
+          label: "Order",
+          name: "order",
+          widget: "number",
+          value_type: "float",
+          default: 1.0,
+          min: 1.0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
 
     editor:
       preview: false
-  - label: 'Backgrounds'
-    label_singular: 'Background'
-    name: 'backgrounds'
+  - label: "Backgrounds"
+    label_singular: "Background"
+    name: "backgrounds"
     folder: content/backgrounds
-    format: 'frontmatter'
+    format: "frontmatter"
     create: true
-    slug: '{{identifier}}'
+    slug: "{{identifier}}"
     identifier_field: identifier
     fields:
-      - { label: 'UUID', name: 'uuid', widget: uuid }
-      - { label: 'Name', name: 'name', widget: string }
-      - { label: "Narrative", name: "narrative", widget: "number", default: 0, value_type: "int", required: true}
-      - { label: 'Step Start', name: 'stepstart', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
-      - { label: 'Step End', name: 'stepend', widget: "number", value_type: "int", default: 0, step: 1, min: 0 }
-      - { label: 'Vue Component', name: 'component', widget: 'string' }
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "number",
+          default: 0,
+          value_type: "int",
+          required: true,
+        }
+      - {
+          label: "Step Start",
+          name: "stepstart",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - {
+          label: "Step End",
+          name: "stepend",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
       - label: "Data JSON"
         name: "data"
         widget: "file"
         required: false
-        media_folder: '/static/data'
-      - { label: 'Chart Options', name: 'chartoptions', widget: 'code', required: false, default_language: 'json', output_code_only: true }
-      - { label: 'Body EN', name: 'body_en', widget: markdown, required: false }
-      - { label: 'Body RU', name: 'body_ru', widget: markdown, required: false }
-      - { label: "Identifier", name: "identifier", widget: "hidden", default: ""}
+        media_folder: "/static/data"
+      - {
+          label: "Chart Options",
+          name: "chartoptions",
+          widget: "code",
+          required: false,
+          default_language: "json",
+          output_code_only: true,
+        }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
     editor:
       preview: false
-
