@@ -20,7 +20,7 @@ export default {
         const user = netlifyIdentity.currentUser();
         console.log(user)
         if (user) {
-          window.location.href="https://edit-wars.netlify.app/admin/#"        
+          // window.location.href="https://edit-wars.netlify.app/admin/#"        
         }
       })
     })
@@ -35,7 +35,7 @@ export default {
     });
 
     netlifyIdentity.on('login', (user) => {
-      // netlifyIdentity.close()
+      //netlifyIdentity.close()
     })
 
     if (netlifyIdentity) {
