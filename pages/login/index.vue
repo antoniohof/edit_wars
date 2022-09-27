@@ -35,7 +35,7 @@ export default {
     });
 
     netlifyIdentity.on('login', (user) => {
-      netlifyIdentity.close()
+      // netlifyIdentity.close()
     })
 
     if (netlifyIdentity) {

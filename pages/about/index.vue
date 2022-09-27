@@ -55,7 +55,7 @@ export default {
       topics: [
         {
           title: 'Project Goals',
-          content: '--',
+          content: '',
           isOpen: false
         },
         {
@@ -87,6 +87,7 @@ export default {
     }
   },
   mounted () {
+    console.log('about', this.about)
   },
   async asyncData({ $content }) {
     const about = await $content('about').fetch()
