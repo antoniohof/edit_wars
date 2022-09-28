@@ -332,7 +332,7 @@ export default {
 
 .timeline
   position: fixed
-  left: -20px
+  left: 0px
   top: 0px
   height: 100vh
   width: 50px
