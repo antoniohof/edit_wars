@@ -74,7 +74,6 @@ aboutmethodology_ru: >-
   **\
 
   You can check the full methodology here. (hyperlink: <https://docs.google.com/document/d/1C-l0Eehe_5LkzkVgGjkDR78s6Fi4z-BOFgKY5JUEinQ/edit#> )**
-title: About
 aboutteam_en: |-
   Alberto Harres, Artist and Developer
 
@@ -99,4 +98,35 @@ aboutteam_ru: |-
   Slava Romanov, Media Artist, Team Lead
 
   Sofya Ozga, Artist and Researcher
+aboutcontact_en: "Contact us:
+  [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)"
+aboutcontact_ru: "Contact us:
+  [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)"
+abouttools_en: |-
+  Datasets we use
+
+  Gdelt GDG
+
+  Filtered dataset
+
+  List of relevant media assets
+abouttools_ru: |-
+  Datasets we use
+
+  Gdelt GDG
+
+  Filtered dataset
+
+  List of relevant media assets
+aboutfunding_en: >-
+  ![](https://lh3.googleusercontent.com/3eZUN3ZwmaSu8zoYYstFkHnR5yrMZjSkx9BZeyoIwdrWDwpLOBr4zuWoUmb3XbnwabI8eLykCh-TIS6KKKQCrk85274Cx3a57KIV4yQE2G79CmLEIwoDPkci7xxRy246NVUnjjCf0UNLap57OO222zBbrGbqAmm-hiODHVFRUcsgzaLyAfA7wX-8KQ)
+
+
+  **This website is part of a project «Edit Wars»‎ that has received funding from the European Union’s Horizon 2020 research and innovation programme (MediaFutures «‎Artist for media»‎) under grant agreement No.  951962**
+aboutfunding_ru: >-
+  ![](https://lh3.googleusercontent.com/3eZUN3ZwmaSu8zoYYstFkHnR5yrMZjSkx9BZeyoIwdrWDwpLOBr4zuWoUmb3XbnwabI8eLykCh-TIS6KKKQCrk85274Cx3a57KIV4yQE2G79CmLEIwoDPkci7xxRy246NVUnjjCf0UNLap57OO222zBbrGbqAmm-hiODHVFRUcsgzaLyAfA7wX-8KQ)
+
+
+  **This website is part of a project «Edit Wars»‎ that has received funding from the European Union’s Horizon 2020 research and innovation programme (MediaFutures «‎Artist for media»‎) under grant agreement No.  951962**
+title: About
 ---
