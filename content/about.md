@@ -99,14 +99,14 @@ aboutcontact_en: "Contact us:
 aboutcontact_ru: "Contact us:
   [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)"
 abouttools_en: By using GDELT Global Difference Graph (GDG) databases, we
-  analyzed more than 250,000 newsheaders of Russian-language media publications.
+  analyzed more than 250,000 headlines of Russian-language media publications.
   We used machine learning tools (in particular, the BERTopic algorithm) to
   thematically clusterize data and to obtain relevant topics with the dynamics
   of their change. Additionally, we also applied Tableau to discover typical
   words and phrases of propaganda. Finally, we extracted word connections in
   headlines and visualized the resulting network graph using Spacy library.
 abouttools_ru: By using GDELT Global Difference Graph (GDG) databases, we
-  analyzed more than 250,000 newsheaders of Russian-language media publications.
+  analyzed more than 250,000 headlines of Russian-language media publications.
   We used machine learning tools (in particular, the BERTopic algorithm) to
   thematically clusterize data and to obtain relevant topics with the dynamics
   of their change. Additionally, we also applied Tableau to discover typical
