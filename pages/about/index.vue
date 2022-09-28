@@ -24,7 +24,7 @@
             </template>
   
             <v-list-item class='topic' dense>
-              <nuxt-content class="topic-content" :document="topic.content" />
+              <nuxt-content class="topic-content" :document="getTopicContent(topic.content)" />
             </v-list-item>
           </v-list-group>
       </v-list>
@@ -52,7 +52,7 @@ export default {
       topics: [
         {
           title: 'Project Goals',
-          content: '',
+          content: 'goals',
           isOpen: false
         },
         {
@@ -62,12 +62,12 @@ export default {
         },
         {
           title: 'Team',
-          content: '--',
+          content: 'team',
           isOpen: false
         },
         {
           title: 'Research Methodology',
-          content: '--',
+          content: 'methodology',
           isOpen: false
         },
         {
@@ -84,9 +84,6 @@ export default {
     }
   },
   mounted () {
-    console.log('about', this.about)
-    this.topics[0].content = this.goals
-    console.log(this.goals)
   },
   async asyncData({ $content }) {
     const about = await $content('about').fetch()
@@ -100,6 +97,12 @@ export default {
     },
     goals () {
       return this.about['aboutgoals_' + this.$i18n.locale]
+    },
+    methodology () {
+      return this.about['aboutmethodology_' + this.$i18n.locale]
+    },
+    team () {
+      return this.about['aboutteam_' + this.$i18n.locale]
     }
   },
   components: {},
@@ -107,6 +110,9 @@ export default {
   methods: {
     setTopicOpen(topic) {
       topic.isOpen = !topic.isOpen
+    },
+    getTopicContent(content) {
+      return this[content]
     }
   },
   watch: {
