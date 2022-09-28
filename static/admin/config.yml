@@ -37,6 +37,8 @@ collections:
           - { label: contact_ru, name: aboutcontact_ru, widget: markdown }
           - { label: tools_en, name: abouttools_en, widget: markdown }
           - { label: tools_ru, name: abouttools_ru, widget: markdown }
+          - { label: funding_en, name: aboutfunding_en, widget: markdown }
+          - { label: funding_ru, name: aboutfunding_ru, widget: markdown }
   - label: "Steps"
     label_singular: "Step"
     name: "steps"

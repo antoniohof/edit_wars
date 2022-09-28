@@ -233,6 +233,20 @@ export default {
           document['abouttools_ru']
         )
       }
+      if (document.extension === '.md' && document['aboutfunding_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutfunding_en'] = await database.markdown.toJSON(
+          document['aboutfunding_en']
+        )
+      }
+      if (document.extension === '.md' && document['aboutfunding_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutfunding_ru'] = await database.markdown.toJSON(
+          document['aboutfunding_ru']
+        )
+      }
     }
   },
   styleResources: {

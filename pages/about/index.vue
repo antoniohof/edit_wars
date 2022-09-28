@@ -57,7 +57,7 @@ export default {
         },
         {
           title: 'Project Funding',
-          content: '--',
+          content: 'funding',
           isOpen: false
         },
         {
@@ -72,12 +72,12 @@ export default {
         },
         {
           title: 'Research Tools',
-          content: '--',
+          content: 'tools',
           isOpen: false
         },
         {
           title: 'Contacts',
-          content: '--',
+          content: 'contact',
           isOpen: false
         }
       ]
@@ -103,6 +103,15 @@ export default {
     },
     team () {
       return this.about['aboutteam_' + this.$i18n.locale]
+    },
+    tools () {
+      return this.about['abouttools_' + this.$i18n.locale]
+    },
+    contact () {
+      return this.about['aboutcontact_' + this.$i18n.locale]
+    },
+    contact () {
+      return this.about['aboutfunding_' + this.$i18n.locale]
     }
   },
   components: {},
