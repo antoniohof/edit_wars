@@ -31,6 +31,8 @@ collections:
               name: aboutmethodology_ru,
               widget: markdown,
             }
+          - { label: team_en, name: aboutteam_en, widget: markdown }
+          - { label: team_ru, name: aboutteam_ru, widget: markdown }
   - label: "Steps"
     label_singular: "Step"
     name: "steps"

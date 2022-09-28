@@ -191,6 +191,21 @@ export default {
           document['aboutmethodology_ru']
         )
       }
+      if (document.extension === '.md' && document['aboutteam_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutteam_en'] = await database.markdown.toJSON(
+          document['aboutteam_en']
+        )
+      }
+      if (document.extension === '.md' && document['aboutteam_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutteam_ru'] = await database.markdown.toJSON(
+          document['aboutteam_ru']
+        )
+      }
+      
     }
   },
   styleResources: {
