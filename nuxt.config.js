@@ -177,6 +177,20 @@ export default {
           document['aboutgoals_ru']
         )
       }
+      if (document.extension === '.md' && document['aboutmethodology_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutmethodology_en'] = await database.markdown.toJSON(
+          document['aboutmethodology_en']
+        )
+      }
+      if (document.extension === '.md' && document['aboutmethodology_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutmethodology_ru'] = await database.markdown.toJSON(
+          document['aboutmethodology_ru']
+        )
+      }
     }
   },
   styleResources: {

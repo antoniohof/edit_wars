@@ -21,6 +21,16 @@ collections:
           - { label: main_ru, name: aboutmain_ru, widget: markdown }
           - { label: goals_en, name: aboutgoals_en, widget: markdown }
           - { label: goals_ru, name: aboutgoals_ru, widget: markdown }
+          - {
+              label: methodology_en,
+              name: aboutmethodology_en,
+              widget: markdown,
+            }
+          - {
+              label: methodology_ru,
+              name: aboutmethodology_ru,
+              widget: markdown,
+            }
   - label: "Steps"
     label_singular: "Step"
     name: "steps"
