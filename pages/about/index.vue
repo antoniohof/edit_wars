@@ -110,7 +110,7 @@ export default {
     contact () {
       return this.about['aboutcontact_' + this.$i18n.locale]
     },
-    contact () {
+    funding () {
       return this.about['aboutfunding_' + this.$i18n.locale]
     }
   },
@@ -176,6 +176,8 @@ export default {
   font-family: Golos-Text-Regular
   font-size: 25px
   margin-bottom: 25px
+  :deep(img)
+    width: 100%
 
 .divider
   border-color: rgba(0, 0, 0, 1) !important
