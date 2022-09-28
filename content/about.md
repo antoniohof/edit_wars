@@ -1,5 +1,4 @@
 ---
-title: About
 aboutmain_en: >-
   Edit Wars is a project using the analysis of media publications accompanying
   the growing militarization and manipulation of mass consciousness in Russia
@@ -19,6 +18,7 @@ aboutmain_en: >-
 
 
   Contact us: [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)
+identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
 aboutmain_ru: M﻿ain Russo
 aboutgoals_en: >-
   * To deconstruct Russian propaganda narratives through data research
@@ -40,5 +40,63 @@ aboutgoals_ru: >-
   * To promote critical thinking and build resilience to misinformation and its reproduction.
 
   * To develop artistic interpretation and embodiment of the research insights to offer new ways of perceiving the material.
-identifier: "[Narrative:undefined]-[Start:undefined][End:undefined]-undefined"
+aboutmethodology_en: >-
+  The first iteration of the project is based on data analysis of propaganda
+  narratives created and reproduced by the Russian digital media from January to
+  July 2022. By using GDELT Global Difference Graph (GDG) databases, we analyzed
+  more than 250,000 newsheaders of Russian-language media publications. We used
+  machine learning tools (in particular, the BERTopic algorithm) to thematically
+  clusterize data and to obtain relevant topics with the dynamics of their
+  change. Additionally, we also applied Tableau to discover typical words and
+  phrases of propaganda. Finally, we extracted word connections in headlines and
+  visualized the resulting network graph using Spacy library.\
+
+  The methodology we developed allows us to replicate the results of our study and contains algorithms for working with the data. We encourage stakeholders to use it as a basis for their own research on propaganda narratives.
+
+
+  **\
+
+  You can check the full methodology here. (hyperlink: <https://docs.google.com/document/d/1C-l0Eehe_5LkzkVgGjkDR78s6Fi4z-BOFgKY5JUEinQ/edit#> )**
+aboutmethodology_ru: >-
+  The first iteration of the project is based on data analysis of propaganda
+  narratives created and reproduced by the Russian digital media from January to
+  July 2022. By using GDELT Global Difference Graph (GDG) databases, we analyzed
+  more than 250,000 newsheaders of Russian-language media publications. We used
+  machine learning tools (in particular, the BERTopic algorithm) to thematically
+  clusterize data and to obtain relevant topics with the dynamics of their
+  change. Additionally, we also applied Tableau to discover typical words and
+  phrases of propaganda. Finally, we extracted word connections in headlines and
+  visualized the resulting network graph using Spacy library.\
+
+  The methodology we developed allows us to replicate the results of our study and contains algorithms for working with the data. We encourage stakeholders to use it as a basis for their own research on propaganda narratives.
+
+
+  **\
+
+  You can check the full methodology here. (hyperlink: <https://docs.google.com/document/d/1C-l0Eehe_5LkzkVgGjkDR78s6Fi4z-BOFgKY5JUEinQ/edit#> )**
+title: About
+aboutteam_en: |-
+  Alberto Harres, Artist and Developer
+
+  Antonio Hofmeister Ribeiro, Artist and Developer
+
+  Lucy Saribegyan, Artist and Designer
+
+  Maiia Guseva, Data Analyst
+
+  Slava Romanov, Media Artist, Team Lead
+
+  Sofya Ozga, Artist and Researcher
+aboutteam_ru: |-
+  Alberto Harres, Artist and Developer
+
+  Antonio Hofmeister Ribeiro, Artist and Developer
+
+  Lucy Saribegyan, Artist and Designer
+
+  Maiia Guseva, Data Analyst
+
+  Slava Romanov, Media Artist, Team Lead
+
+  Sofya Ozga, Artist and Researcher
 ---
