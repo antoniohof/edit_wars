@@ -98,22 +98,20 @@ aboutcontact_en: "Contact us:
   [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)"
 aboutcontact_ru: "Contact us:
   [editwarsproject@protonmail.com](mailto:editwarsproject@protonmail.com)"
-abouttools_en: |-
-  Datasets we use
-
-  Gdelt GDG
-
-  Filtered dataset
-
-  List of relevant media assets
-abouttools_ru: |-
-  Datasets we use
-
-  Gdelt GDG
-
-  Filtered dataset
-
-  List of relevant media assets
+abouttools_en: By using GDELT Global Difference Graph (GDG) databases, we
+  analyzed more than 250,000 newsheaders of Russian-language media publications.
+  We used machine learning tools (in particular, the BERTopic algorithm) to
+  thematically clusterize data and to obtain relevant topics with the dynamics
+  of their change. Additionally, we also applied Tableau to discover typical
+  words and phrases of propaganda. Finally, we extracted word connections in
+  headlines and visualized the resulting network graph using Spacy library.
+abouttools_ru: By using GDELT Global Difference Graph (GDG) databases, we
+  analyzed more than 250,000 newsheaders of Russian-language media publications.
+  We used machine learning tools (in particular, the BERTopic algorithm) to
+  thematically clusterize data and to obtain relevant topics with the dynamics
+  of their change. Additionally, we also applied Tableau to discover typical
+  words and phrases of propaganda. Finally, we extracted word connections in
+  headlines and visualized the resulting network graph using Spacy library.
 aboutfunding_en: >-
   ![](https://lh3.googleusercontent.com/3eZUN3ZwmaSu8zoYYstFkHnR5yrMZjSkx9BZeyoIwdrWDwpLOBr4zuWoUmb3XbnwabI8eLykCh-TIS6KKKQCrk85274Cx3a57KIV4yQE2G79CmLEIwoDPkci7xxRy246NVUnjjCf0UNLap57OO222zBbrGbqAmm-hiODHVFRUcsgzaLyAfA7wX-8KQ)
 
