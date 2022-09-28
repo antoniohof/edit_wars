@@ -33,6 +33,10 @@ collections:
             }
           - { label: team_en, name: aboutteam_en, widget: markdown }
           - { label: team_ru, name: aboutteam_ru, widget: markdown }
+          - { label: contact_en, name: aboutcontact_en, widget: markdown }
+          - { label: contact_ru, name: aboutcontact_ru, widget: markdown }
+          - { label: tools_en, name: abouttools_en, widget: markdown }
+          - { label: tools_ru, name: abouttools_ru, widget: markdown }
   - label: "Steps"
     label_singular: "Step"
     name: "steps"

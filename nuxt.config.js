@@ -205,7 +205,34 @@ export default {
           document['aboutteam_ru']
         )
       }
-      
+      if (document.extension === '.md' && document['aboutcontact_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutcontact_en'] = await database.markdown.toJSON(
+          document['aboutcontact_en']
+        )
+      }
+      if (document.extension === '.md' && document['aboutcontact_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutcontact_ru'] = await database.markdown.toJSON(
+          document['aboutcontact_ru']
+        )
+      }
+      if (document.extension === '.md' && document['abouttools_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['abouttools_en'] = await database.markdown.toJSON(
+          document['abouttools_en']
+        )
+      }
+      if (document.extension === '.md' && document['abouttools_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['abouttools_ru'] = await database.markdown.toJSON(
+          document['abouttools_ru']
+        )
+      }
     }
   },
   styleResources: {
