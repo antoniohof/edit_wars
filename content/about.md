@@ -49,15 +49,10 @@ aboutgoals_ru: >-
 aboutmethodology_en: >-
   The first iteration of the project is based on data analysis of propaganda
   narratives created and reproduced by the Russian digital media from January to
-  July 2022. By using GDELT Global Difference Graph (GDG) databases, we analyzed
-  more than 250,000 newsheaders of Russian-language media publications. We used
-  machine learning tools (in particular, the BERTopic algorithm) to thematically
-  clusterize data and to obtain relevant topics with the dynamics of their
-  change. Additionally, we also applied Tableau to discover typical words and
-  phrases of propaganda. Finally, we extracted word connections in headlines and
-  visualized the resulting network graph using Spacy library.\
-
-  The methodology we developed allows us to replicate the results of our study and contains algorithms for working with the data. We encourage stakeholders to use it as a basis for their own research on propaganda narratives.
+  July 2022. The methodology we developed allows us to replicate the results of
+  our research and contains algorithms for working with data from the source to
+  the end result. We encourage stakeholders to use it as a basis for their own
+  research on propaganda narratives.
 
 
   **\
@@ -66,15 +61,10 @@ aboutmethodology_en: >-
 aboutmethodology_ru: >-
   The first iteration of the project is based on data analysis of propaganda
   narratives created and reproduced by the Russian digital media from January to
-  July 2022. By using GDELT Global Difference Graph (GDG) databases, we analyzed
-  more than 250,000 newsheaders of Russian-language media publications. We used
-  machine learning tools (in particular, the BERTopic algorithm) to thematically
-  clusterize data and to obtain relevant topics with the dynamics of their
-  change. Additionally, we also applied Tableau to discover typical words and
-  phrases of propaganda. Finally, we extracted word connections in headlines and
-  visualized the resulting network graph using Spacy library.\
-
-  The methodology we developed allows us to replicate the results of our study and contains algorithms for working with the data. We encourage stakeholders to use it as a basis for their own research on propaganda narratives.
+  July 2022. The methodology we developed allows us to replicate the results of
+  our research and contains algorithms for working with data from the source to
+  the end result. We encourage stakeholders to use it as a basis for their own
+  research on propaganda narratives.
 
 
   **\
