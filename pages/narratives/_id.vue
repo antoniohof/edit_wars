@@ -1,36 +1,48 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
-      <WordCloud
-        keep-alive
-        class='wordcloud'
-        :step="currStepObj"
-        :currentStepIndex="currStepIndex"
-        :progress="getStepProgress(currStepIndex)" 
-        :background="currentBackground"
-        />
-        <div class="timeline">
-          <v-timeline dense>
-            <v-timeline-item 
-            small 
-            fill-dot             
-            v-for="(step, index) in narrativeSteps"
-            @click.native="onClickTimeline(index)"
-            :class="{'active': currStepIndex === index}"
-            :key="index">{{index}}</v-timeline-item>
-           
-          </v-timeline>
-        </div>
+    <div class="narrative_title">
+      <h1 class="narrative_title_name">
+        {{ getNarrativeName }}
+      </h1>
+    </div>
+    <WordCloud
+      keep-alive
+      class="wordcloud"
+      :step="currStepObj"
+      :currentStepIndex="currStepIndex"
+      :progress="getStepProgress(currStepIndex)"
+      :background="currentBackground"
+    />
+    <div class="timeline">
+      <v-timeline dense>
+        <v-timeline-item
+          small
+          fill-dot
+          v-for="(step, index) in narrativeSteps"
+          @click.native="onClickTimeline(index)"
+          :class="{ active: currStepIndex === index }"
+          :key="index"
+          >{{ index }}</v-timeline-item
+        >
+      </v-timeline>
+    </div>
     <transition :name="getBackgroundTransition">
-      <div class="background" v-if="currentBackgroundToShow && currentBackgroundToShow.component !== 'WordCloud'">
-          <NuxtDynamic
-            class="background_container"
-            :component="currentBackground.component"
-            :background="currentBackground"
-            keep-alive
-            :step="currStepObj"
-            :currentStepIndex="currStepIndex"
-            :progress="getStepProgress(currStepIndex)"
-          />
+      <div
+        class="background"
+        v-if="
+          currentBackgroundToShow &&
+          currentBackgroundToShow.component !== 'WordCloud'
+        "
+      >
+        <NuxtDynamic
+          class="background_container"
+          :component="currentBackground.component"
+          :background="currentBackground"
+          keep-alive
+          :step="currStepObj"
+          :currentStepIndex="currStepIndex"
+          :progress="getStepProgress(currStepIndex)"
+        />
       </div>
     </transition>
     <div class="side">
@@ -79,7 +91,9 @@ export default {
     // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
-    this.currentNarrative = narratives.find((narrative) => { return narrative?.slug === $nuxt.$route.params.id })?.id
+    this.currentNarrative = narratives.find((narrative) => {
+      return narrative?.slug === $nuxt.$route.params.id
+    })
     if (!this.currentNarrative) {
       console.error('narrative not found!', $nuxt.$route.params.id)
     }
@@ -92,28 +106,28 @@ export default {
     })
   },
   mounted() {
-      window.scrollTo(0,0)
-      this.currStepIndex = -1
-      this.startBackgroundScroll = window.scrollY
-      this.lastEnterBackgroundDirection = 'down'
-      this.lastDirection = 'down'
+    window.scrollTo(0, 0)
+    this.currStepIndex = -1
+    this.startBackgroundScroll = window.scrollY
+    this.lastEnterBackgroundDirection = 'down'
+    this.lastDirection = 'down'
 
     this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     this.currentBackgroundScroll = window.scrollY
     process.nextTick(() => {
-      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('resize'))
       if (this.currentBackground) {
         // in case theres background at step
         this.currentBackgroundToShow = this.currentBackground
         this.lastBackground = this.currentBackgroundToShow
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event('resize'))
       }
     })
     setTimeout(() => {
       this.isLoaded = true
       this.currStepIndex = 0
       process.nextTick(() => {
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event('resize'))
       })
     }, 250)
     //window.addEventListener('scroll', throttle(callback, 1000));
@@ -126,7 +140,7 @@ export default {
   data() {
     return {
       backgroundContainer: null,
-      currentNarrative: 0,
+      currentNarrative: {},
       currStepIndex: -1,
       currStepProgress: 0,
       backgroundAnimation: null,
@@ -141,11 +155,17 @@ export default {
     }
   },
   computed: {
-    narrativeSteps () {
+    getNarrativeName() {
+      console.log(' this.currentNarrative?.name', this.currentNarrative?.name)
+      return this.currentNarrative?.name
+    },
+    narrativeSteps() {
       if (!process.browser) {
         return []
       }
-      return this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative))
+      return this.steps.filter(
+        (step) => step.narrative === parseInt(this.currentNarrative.id)
+      )
     },
     currStepObj() {
       return this.narrativeSteps[this.currStepIndex]
@@ -164,7 +184,6 @@ export default {
       // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
       steps = await $content('steps').sortBy('order').fetch()
       backgrounds = await $content('backgrounds').fetch()
-
     } catch (e) {
       error({ message: 'error retrieveing content' })
     }
@@ -174,7 +193,7 @@ export default {
     }
   },
   methods: {
-    onProgress (val) {
+    onProgress(val) {
       this.currStepProgress = val.progress
     },
     stepEnterHandler({ element, index, direction }) {
@@ -182,12 +201,12 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
-      if (this.lastEnterBackgroundDirection !== "jump") {
+      if (this.lastEnterBackgroundDirection !== 'jump') {
         this.lastEnterBackgroundDirection = direction
         this.startBackgroundScroll = window.scrollY
       }
       this.lastDirection = direction
-      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('resize'))
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
@@ -204,23 +223,25 @@ export default {
         return 0
       }
     },
-    onClickTimeline (index) {
-      this.lastEnterBackgroundDirection = "jump"
+    onClickTimeline(index) {
+      this.lastEnterBackgroundDirection = 'jump'
       console.log('index', index)
       const margin = 100
-      const pixels = (index * (window.innerHeight + margin))
+      const pixels = index * (window.innerHeight + margin)
       scrollTo(0, pixels)
       process.nextTick(() => {
-        this.startBackgroundScroll = (pixels - window.innerHeight/2)
+        this.startBackgroundScroll = pixels - window.innerHeight / 2
         window.dispatchEvent(new Event('resize'))
         setTimeout(() => {
-          this.lastEnterBackgroundDirection = "down"
+          this.lastEnterBackgroundDirection = 'down'
         }, 250)
       })
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
-        this.backgroundContainer = document.querySelector('.background_container')
+        this.backgroundContainer = document.querySelector(
+          '.background_container'
+        )
         if (this.backgroundContainer) {
           let oneStepBackground = true
           if (
@@ -235,7 +256,9 @@ export default {
           if (this.lastEnterBackgroundDirection === 'up') {
             top = -window.innerHeight / 2
           }
-          const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
+          const currOrder = parseInt(
+            this.narrativeSteps[this.currStepIndex].order
+          )
 
           let translateY = top - this.currentBackgroundScroll
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
@@ -244,19 +267,30 @@ export default {
           translateY = translateY
 
           if (oneStepBackground) {
-            this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
+            this.backgroundContainer.style.setProperty(
+              'transform',
+              `translateY(${translateY}px)`,
+              'important'
+            )
           } else {
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
-              this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
-            }
-            else if (
+              this.backgroundContainer.style.setProperty(
+                'transform',
+                `translateY(${translateY}px)`,
+                'important'
+              )
+            } else if (
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
-              this.backgroundContainer.style.setProperty('transform', `translateY(${translateY}px)`, 'important');
+              this.backgroundContainer.style.setProperty(
+                'transform',
+                `translateY(${translateY}px)`,
+                'important'
+              )
             }
           }
         }
@@ -265,7 +299,7 @@ export default {
     }
   },
   watch: {
-    currStepIndex (index) {
+    currStepIndex(index) {
       let back = null
       if (!this.currStepObj) {
         this.currentBackground = null
@@ -273,7 +307,11 @@ export default {
       }
       const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
       back = this.backgrounds.find((item) => {
-        if (currOrder >= item.stepstart && currOrder <= item.stepend && parseInt(item.narrative) === parseInt(this.currentNarrative)) {
+        if (
+          currOrder >= item.stepstart &&
+          currOrder <= item.stepend &&
+          parseInt(item.narrative) === parseInt(this.currentNarrative?.id)
+        ) {
           return item
         }
       })
@@ -317,7 +355,7 @@ export default {
   opacity: 0.35
   cursor: pointer
 
-.v-timeline-item__dot 
+.v-timeline-item__dot
   box-shadow: none !important
 </style>
 
@@ -329,6 +367,25 @@ export default {
   justify-content: flex-end
   width: 100vw
   position: relative
+  &_title
+    pointer-events: none
+    position: sticky
+    top: 35px
+    left: 0
+    width: 100vw
+    height: 200px
+    margin-top: 100px
+    z-index: 50
+    &_name
+      display: flex
+      justify-content: center
+      position: absolute
+      width: 100vw
+      left: 0
+      color: black
+      font-family: Space Mono
+      font-weight: 400
+      font-size: 24px
 
 .timeline
   position: fixed
