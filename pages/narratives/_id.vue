@@ -386,6 +386,7 @@ export default {
       font-family: Space Mono
       font-weight: 400
       font-size: 24px
+      text-transform: uppercase
 
 .timeline
   position: fixed
