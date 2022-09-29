@@ -1,38 +1,36 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_center">
-        <div class="text-component_center_container">
-            <div class='text-component_center_container_top'></div>
-            <h1 class='text-component_center_container_title' v-if="hasTitle">{{currentTitle}}</h1>
-            <nuxt-content class='text-component_center_container_content' :document="step[currentBody]" />
-        </div>
+      <div class="text-component_center_container">
+        <div class="text-component_center_container_top"></div>
+        <h1 class="text-component_center_container_title" v-if="hasTitle">
+          {{ currentTitle }}
+        </h1>
+        <nuxt-content
+          class="text-component_center_container_content"
+          :document="step[currentBody]"
+        />
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import StepMixin from "@/mixins/StepMixin.js";
-import BarChart from './BarChart.vue';
+import StepMixin from '@/mixins/StepMixin.js'
+import BarChart from './BarChart.vue'
 
 export default {
   name: 'TextCenter',
   mixins: [StepMixin],
   data() {
-    return {
-    }
+    return {}
   },
-  mounted () {
-  },
-  async asyncData({ $content }) {
-  },
-  computed: {
-  },
-  methods: {
-  },
+  mounted() {},
+  async asyncData({ $content }) {},
+  computed: {},
+  methods: {},
 
-  watch: {
-
-  }
+  watch: {}
 }
 </script>
 
@@ -88,6 +86,6 @@ export default {
         :deep(p)
             font-family: Golos-Text-Regular
             color: black
-            font-size: 21px
+            font-size: 16px
             margin-bottom: 0px
 </style>
