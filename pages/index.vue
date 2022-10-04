@@ -2,9 +2,11 @@
   <v-container fluid class="home ma-0 pa-0">
     <v-container fluid class="intro pa-0">
       <div class="intro-background"></div>
-      <div class="intro-title">EDIT WARS</div>
+      <transition name="fadelongo">
+        <div v-show="showName" class="intro-title">EDIT WARS</div>
+      </transition>
     </v-container>
-    <typewriter :type-interval="45" class="intro-text" v-if="isScrolled">
+    <typewriter :type-interval="30" class="intro-text" v-if="isScrolled">
       <div>
         The monopoly on information is a key propaganda tool. Using it, a state
         is able to shape a non-alternative picture of the world. Nowadays, not
@@ -38,6 +40,10 @@ export default {
   components: {},
   beforeMount() {},
   mounted() {
+    window.scrollTo(0, 0)
+    setTimeout(() => {
+      this.showName = true
+    }, 1000)
     window.addEventListener('scroll', this.handleScroll)
 
     let ForceGraph3D
@@ -86,7 +92,7 @@ export default {
         return group
       })
     let distance = 500
-    g.d3Force('charge').strength(-35)
+    g.d3Force('charge').strength(-85)
 
     // camera orbit
     let angle = 0
@@ -110,7 +116,8 @@ export default {
   data() {
     return {
       animation: null,
-      isScrolled: false
+      isScrolled: false,
+      showName: false
     }
   },
   computed: {},
@@ -124,6 +131,10 @@ export default {
       } else {
         this.isScrolled = false
       }
+      const text = document.querySelector('.intro-title')
+      const percentage = window.scrollY / window.innerHeight
+      const x = percentage * window.innerWidth
+      text.style.transform = `translateX(${-x}px)`
     },
     onClickArrow() {
       window.scrollTo({
@@ -165,6 +176,8 @@ export default {
   width: 100vw
   height: 100vh
   z-index: 0
+  opacity: 1.0
+  transition: opacity 0.4s ease
 .intro-title
   z-index: 1
   width: 100%
@@ -185,8 +198,9 @@ export default {
 .intro-text
   height: 75vh
   font-family: Space Mono !important
-  font-size: 32px !important
+  font-size: 35px !important
   padding: 0px 64px 0px 64px
+  z-index: 5
   color: black
 .arrow
   position: fixed
