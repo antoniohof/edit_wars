@@ -56,7 +56,7 @@ export default {
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
       .nodeLabel('id')
-      .linkWidth(0.5)
+      .linkWidth(0.2)
       .showNavInfo(false)
       .numDimensions(2)
       .linkOpacity(1.0)
@@ -67,19 +67,21 @@ export default {
           const geometry = new THREE.SphereGeometry(5, 64, 64)
           const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
           const sphere = new THREE.Mesh(geometry, material)
-          const sprite = new SpriteText(node.label)
-          sprite.fontFace = 'Space Mono'
+          sphere.scale.set(0.8, 0.8, 0.8)
+          const sprite = new SpriteText(node.label.toUpperCase())
+          sprite.fontFace = 'Space Mono Italic'
           sprite.material.depthWrite = false // make sprite background transparent
           sprite.color = node.color
-          sprite.textHeight = 8
+          sprite.textHeight = 5
           group.add(sprite)
+
           sprite.position.set(0, 10, 0)
           group.add(sphere)
         }
 
         return group
       })
-    g.d3Force('charge').strength(-300)
+    g.d3Force('charge').strength(-1800)
   },
   async asyncData({ $content }) {},
   computed: {},

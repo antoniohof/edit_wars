@@ -6,7 +6,7 @@
         <div v-show="showName" class="intro-title">EDIT WARS</div>
       </transition>
     </v-container>
-    <typewriter :type-interval="30" class="intro-text" v-if="isScrolled">
+    <typewriter :type-interval="20" class="intro-text" v-if="isScrolled">
       <div>
         The monopoly on information is a key propaganda tool. Using it, a state
         is able to shape a non-alternative picture of the world. Nowadays, not
@@ -43,7 +43,7 @@ export default {
     window.scrollTo(0, 0)
     setTimeout(() => {
       this.showName = true
-    }, 1000)
+    }, 700)
     window.addEventListener('scroll', this.handleScroll)
 
     let ForceGraph3D
