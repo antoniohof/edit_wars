@@ -10,7 +10,7 @@
         color="transparent"
         justify-space-around
       >
-        <div class="title">EDIT WARS</div>
+        <div v-show="!isHomeRoute" class="title">EDIT WARS</div>
         <!--
         <NuxtLink
           class="topbar_item justify-end about"
