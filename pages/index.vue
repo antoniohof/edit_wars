@@ -4,14 +4,26 @@
       <div class="intro-background"></div>
       <div class="intro-title">EDIT WARS</div>
     </v-container>
-    <div class="arrow" @click="onClickArrow">
-      <img src="~/assets/icons/arrow.svg" />
-    </div>
+    <typewriter :type-interval="45" class="intro-text" v-if="isScrolled">
+      <div>
+        The monopoly on information is a key propaganda tool. Using it, a state
+        is able to shape a non-alternative picture of the world. Nowadays, not
+        only does the Russian government wage a war in Ukraine, but it also
+        works hard on shaping the information reality using propaganda
+        narratives. This project is the data and art research how propaganda
+        narratives are reproduced in the Russian-language digital media in the
+        closed space of destroyed media freedom.
+      </div>
+    </typewriter>
+    <transition name="fade">
+      <div class="arrow" v-show="!isScrolled" @click="onClickArrow">
+        <img src="~/assets/icons/arrow.svg" />
+      </div>
+    </transition>
   </v-container>
 </template>
 
 <script>
-import Vue from 'vue'
 import throttle from 'lodash/throttle'
 import SpriteText from 'three-spritetext'
 import * as THREE from 'three'
@@ -26,6 +38,8 @@ export default {
   components: {},
   beforeMount() {},
   mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+
     let ForceGraph3D
     if (window) {
       ForceGraph3D = require('3d-force-graph').default
@@ -57,7 +71,6 @@ export default {
       .nodeThreeObject((node) => {
         const group = new THREE.Group()
         if (node.id > 0) {
-          console.log(group)
           const geometry = new THREE.SphereGeometry(5, 64, 64)
           const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
           const sphere = new THREE.Mesh(geometry, material)
@@ -70,12 +83,11 @@ export default {
           sprite.position.set(0, 10, 0)
           group.add(sphere)
         }
-        console.log(g.d3Force('charge'))
-
         return group
       })
     let distance = 500
     g.d3Force('charge').strength(-35)
+
     // camera orbit
     let angle = 0
     const step = () => {
@@ -90,19 +102,29 @@ export default {
     this.animation = requestAnimationFrame(step)
   },
   beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
     cancelAnimationFrame(this.animation)
   },
   activated() {},
   updated() {},
   data() {
     return {
-      animation: null
+      animation: null,
+      isScrolled: false
     }
   },
   computed: {},
   components: {},
   async asyncData({ $content, params, error }) {},
   methods: {
+    handleScroll() {
+      console.log('window.scrollY', window.scrollY)
+      if (window.scrollY > 100) {
+        this.isScrolled = true
+      } else {
+        this.isScrolled = false
+      }
+    },
     onClickArrow() {
       window.scrollTo({
         top: window.innerHeight,
@@ -117,34 +139,37 @@ export default {
 <style lang="sass" scoped>
 
 .home
-  height: 200vh
+  height: 175vh
   display: flex
+  flex-direction: column
   width: 100vw
   color: black
   position: relative
-  font-family: Space Mono !important
-  font-size: 32px !important
   align-content: flex-start
   justify-content: flex-start
   align-items: flex-start
   overflow-y: hidden !important
 
 .intro
-  height: calc(100vh - 128px)
-  margin: 0px 62px 0px 62px
+  height: calc(100vh - 64px)
+  margin: 0px
   display: flex
+  flex-direction: column
   justify-content: center
 
 .intro-background
   position: fixed
   pointer-events: none
   top: 0
+  left: 0
   width: 100vw
   height: 100vh
   z-index: 0
 .intro-title
   z-index: 1
   width: 100%
+  margin-top: -64px
+  position: relative
   font-size: 16vw
   font-weight: 700
   white-space: nowrap
@@ -154,7 +179,15 @@ export default {
   justify-content: center
   align-content: center
   align-items: center
+  &:after
+    content: none !important
 
+.intro-text
+  height: 75vh
+  font-family: Space Mono !important
+  font-size: 32px !important
+  padding: 0px 64px 0px 64px
+  color: black
 .arrow
   position: fixed
   width: 100%
@@ -167,5 +200,5 @@ export default {
   display: flex
   cursor: pointer
   bottom: 0
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%)
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(0,0, 0,0.5) 100%)
 </style>

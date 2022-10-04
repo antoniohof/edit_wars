@@ -74,6 +74,11 @@ export default {
     {
       src: '~/plugins/vue-static.js',
       mode: 'client'
+    },
+    {
+      src: '~/plugins/vue-typewriter.js',
+      mode: 'client',
+      ssr: false
     }
   ],
 

@@ -9389,6 +9389,11 @@ typedarray@^0.0.6:
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
+typewriter-vue@^0.5.19:
+  version "0.5.19"
+  resolved "https://registry.yarnpkg.com/typewriter-vue/-/typewriter-vue-0.5.19.tgz#4dd55b505245d1d1177dd4d814fc675a9e9883f8"
+  integrity sha512-rVgnc8jiIBCw8B3FnL3EFDNu611g/cwgzWLIotaord66JAq585DotS0K0I9zlC3Jq510XofNgDpD4+b0CQkJmw==
+
 ua-parser-js@^0.7.28:
   version "0.7.31"
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.31.tgz"
