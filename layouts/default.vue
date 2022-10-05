@@ -10,7 +10,9 @@
         color="transparent"
         justify-space-around
       >
-        <div class="title">EDIT WARS</div>
+        <div v-show="!isHomeRoute" @click="onClickHome" class="title">
+          EDIT WARS
+        </div>
         <!--
         <NuxtLink
           class="topbar_item justify-end about"
@@ -69,6 +71,9 @@ export default {
     }
   },
   methods: {
+    onClickHome() {
+      this.$router.push({ path: '/' })
+    },
     isMobile() {
       let check = false
       ;(function (a) {
@@ -119,6 +124,7 @@ export default {
 .main
   color: white
 .title
+  cursor: pointer
   color: black !important
   font-size: 54px !important
   font-family: Space Mono !important

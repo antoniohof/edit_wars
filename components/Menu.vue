@@ -20,7 +20,13 @@
           nuxt
         >
           <v-list-item-icon>
-            <span class="dot" :class="{ line: item.title !== 'Intro', selected: isSelected(item) }"></span>
+            <span
+              class="dot"
+              :class="{
+                line: item.title !== 'Intro',
+                selected: isSelected(item)
+              }"
+            ></span>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -63,12 +69,6 @@ export default {
       this.isOpenLocal = false
     },
     isSelected(item) {
-      if (
-        this.selectedRoute.indexOf('narratives') !== -1 &&
-        item.route === '/narratives'
-      ) {
-        return true
-      }
       return this.selectedRoute === item.route
     }
   },
@@ -91,8 +91,6 @@ export default {
   opacity: 0 !important
 .v-list-item:hover::before
   opacity: 0 !important
-
-
 </style>
 
 <style lang="sass" scoped>
@@ -127,10 +125,10 @@ export default {
     font-size: 32px !important
     color: black
     &:hover
-      color: white !important
+      font-style: italic
 
 .selected
-  color: white !important
+  // font-style: italic
 
 .v-list-item__icon
   align-self: center
@@ -142,7 +140,7 @@ export default {
   background-color: black
   border-radius: 50%
   display: inline-block
- 
+
 .line:before
   content: ""
   display: block

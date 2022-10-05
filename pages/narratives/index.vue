@@ -1,85 +1,87 @@
 <template>
   <v-container class="narratives-page ma-0 pa-0" fluid> </v-container>
 </template>
-  
-  <script>
-import { narratives } from "@/utils/constants.js";
-import SpriteText from "three-spritetext";
-import * as THREE from "three";
+
+<script>
+import { narratives } from '@/utils/constants.js'
+import SpriteText from 'three-spritetext'
+import * as THREE from 'three'
 export default {
   head: {
-    title: "Narratives",
+    title: 'Narratives',
     meta: [
       {
-        hid: "description",
-        name: "description",
-        content: "Narratives Page",
-      },
-    ],
+        hid: 'description',
+        name: 'description',
+        content: 'Narratives Page'
+      }
+    ]
   },
   data() {
-    return {};
+    return {}
   },
   scrollToTop: true,
   mounted() {
-    let ForceGraph3D;
+    let ForceGraph3D
     if (window) {
-      ForceGraph3D = require("3d-force-graph").default;
+      ForceGraph3D = require('3d-force-graph').default
     } else {
-      return;
+      return
     }
-    const el = document.querySelector(".narratives-page");
-    const g = ForceGraph3D()(el);
-    const N = 3;
+    const el = document.querySelector('.narratives-page')
+    const g = ForceGraph3D()(el)
+    const N = 3
     const data = narratives.map((narrative) => ({
       id: narrative.id,
       label: narrative.name,
-      path: narrative.slug,
-    }));
-    const ds = data.filter((d) => !!d);
+      path: narrative.slug
+    }))
+    const ds = data.filter((d) => !!d)
     // empty node to conect all
     ds.push({
       id: 0,
       label: '',
-      path: '',
+      path: ''
     })
-    var links = ds.map(n => ({
+    var links = ds.map((n) => ({
       source: 0,
       target: n.id,
-      color: "rgba(0,0,0,1)",
+      color: 'rgba(0,0,0,1)'
     }))
 
     const gData = {
       nodes: ds,
-      links: links,
-    };
+      links: links
+    }
     g.graphData(gData)
-      .backgroundColor("rgba(0,0,0,0)")
-      .nodeLabel("id")
-      .linkWidth(0.5)
+      .backgroundColor('rgba(0,0,0,0)')
+      .nodeLabel('id')
+      .linkWidth(0.2)
+      .showNavInfo(false)
       .numDimensions(2)
       .linkOpacity(1.0)
       .onNodeClick(this.onNodeClick)
       .nodeThreeObject((node) => {
-        const group = new THREE.Group();
+        const group = new THREE.Group()
         if (node.id > 0) {
-          console.log(group);
-          const geometry = new THREE.SphereGeometry(5, 64, 64);
-          const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-          const sphere = new THREE.Mesh(geometry, material);
-          const sprite = new SpriteText(node.label);
-          sprite.fontFace = 'Space Mono'
-          sprite.material.depthWrite = false; // make sprite background transparent
-          sprite.color = node.color;
-          sprite.textHeight = 8;
-          group.add(sprite);
-          sprite.position.set(0, 10, 0);
-          group.add(sphere);
+          const geometry = new THREE.SphereGeometry(5, 64, 64)
+          const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
+          const sphere = new THREE.Mesh(geometry, material)
+          sphere.scale.set(0.8, 0.8, 0.8)
+          const sprite = new SpriteText(node.label.toUpperCase())
+          sprite.fontFace = 'Space Mono Italic'
+          sprite.material.depthWrite = false // make sprite background transparent
+          sprite.color = node.color
+          sprite.textHeight = 5
+          group.add(sprite)
+
+          sprite.position.set(0, 10, 0)
+          group.add(sphere)
         }
 
-        return group;
-      });
-      g.d3Force('charge').strength(-300);
+        return group
+      })
+    g.d3Force('charge').strength(-1800)
   },
   async asyncData({ $content }) {},
   computed: {},
@@ -87,15 +89,15 @@ export default {
 
   methods: {
     onNodeClick(node) {
-      this.$router.push({ path: "/narratives/" + node.path });
-    },
+      this.$router.push({ path: '/narratives/' + node.path })
+    }
   },
   watch: {},
-  beforeDestroy() {},
-};
+  beforeDestroy() {}
+}
 </script>
 
-  <style lang="sass">
+<style lang="sass">
 .narratives-page
   display: flex
   background-color: white
@@ -105,4 +107,3 @@ export default {
   margin-bottom: 200px
   color: black
 </style>
-  

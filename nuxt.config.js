@@ -38,6 +38,13 @@ export default {
       */
       {
         rel: 'preload',
+        href: '/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: true
+      },
+      {
+        rel: 'preload',
         href: '/fonts/Golos-Text-Regular/Golos-Text_Regular.woff2',
         as: 'font',
         type: 'font/woff2',
@@ -74,6 +81,11 @@ export default {
     {
       src: '~/plugins/vue-static.js',
       mode: 'client'
+    },
+    {
+      src: '~/plugins/vue-typewriter.js',
+      mode: 'client',
+      ssr: false
     }
   ],
 
