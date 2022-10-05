@@ -48,96 +48,9 @@ import { colorPalette } from "../utils/constants";
 
 import StepMixin from "@/mixins/StepMixin.js";
 
-import { renderTooltip } from "../utils/tooltips"
+import { defaultOptions } from "../utils/chart"
 
-const defaultOptions = {
-  responsive: true,
-  borderColor: "black",
-  backgroundColor: "black",
-  plugins: {
-    legend: {
-      display: false,
-    },
-    tooltip: {
-      enabled: true,
-      displayColors: false,
-      //external: renderTooltip,
-      callbacks: {
-        label: (context) => "",
-        title: (context) => "",
-        afterBody: (context) => {
-          const maxCharPerLine = 50
-          let str = context[0].raw.label ? context[0].raw.label : context[1].raw.label
-          if (str == undefined) return ""
-          var words = str.split(" ")
-          var lines = [""]
-          var i = 0
-          words.forEach(w => {
-            console.log(lines[i].length, w.length)
-            if (lines[i].length + w.length > maxCharPerLine) {
-              i++
-              lines[i] = ""
-            } else {
-              lines[i] += " " + w
-            }
-          })
-          return lines
-        }
-      },
-      labelTextColor: "white",
-      bodyFont: {
-        size: "12",
-        family: "Golos-Text-Regular",
-      },
-      backgroundColor: 'rgb(0, 0, 0)'
-    },
-    subtitle: {
-      display: false,
-    },
-    title: {
-      display: true,
-      text: "Mentions of the word 'Nazi'",
-      color: "black",
-      font: {
-        size: "18",
-        weight: "normal",
-        family: "Golos-Text-Regular",
-      },
-    },
-  },
-  scales: {
-    x: {
-      type: "time",
-      time: {
-        unit: "week",
-        //tooltipFormat: "MMM YYYY",
-        displayFormats: {
-          week: "MMM dd",
-        },
-      },
-      grid: {
-        display: false,
-        drawBorder: true,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-    },
-    y: {
-      grid: {
-        display: false,
-        drawBorder: true,
-        drawOnChartArea: false,
-        drawTicks: false,
-      },
-      ticks: {
-        // Include a dollar sign in the ticks
-        callback: function (value, index, ticks) {
-          return value;
-        },
-      },
-    },
-  },
-};
+
 
 export default {
   name: "BarChart",
@@ -214,12 +127,12 @@ export default {
       datasets[0] = {
         ...datasets[0],
         borderColor: "rgb(255, 0, 0)",
-        borderWidth: 2,
+        borderWidth: 1,
         backgroundColor: "transparent",
         pointRadius: 0,
       };
 
-      var scattered = {
+      var headlines = {
         label: "scatter",
         borderColor: "blue",
         borderWidth: 2,
@@ -231,13 +144,30 @@ export default {
           x: d.x,
           y: d.y,
           label: "this is an illustrative headline this is an illustrative headline 20",
+          type: "headline"
         })).filter((d, i) => {
           return i % 2 == 0
         }),
       };
-      console.log("scattered", scattered);
 
-      datasets = datasets.concat(scattered);
+      var events = {
+        label: "scatter",
+        borderColor: "green",
+        borderWidth: 2,
+        radius: 4,
+        borderRadius: 4,
+        backgroundColor: "transparent",
+        data: [{
+          x: "2022-04-26T23:00:00.000Z",
+          y: 0,
+          label: "this is an event this is an illustrative headline 20",
+          type: "event"
+        }]
+      } 
+      console.log("headlines", headlines);
+
+      datasets = datasets.concat(headlines);
+      datasets = datasets.concat(events);
 
       console.log("fetchedData", fetchedData);
       this.currentChartData = {
