@@ -118,6 +118,7 @@ export default {
 
 .v-list-item
     cursor: pointer
+    height: 100px
 
 .v-list-item__title
     font-family: Space Mono
@@ -148,7 +149,7 @@ export default {
   width: 1px
   height: 100%
   position: absolute
-  left: 25px
+  left: 24.5px
   top: -50%
   z-index: 1
 </style>
