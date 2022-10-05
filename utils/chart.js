@@ -93,6 +93,15 @@ const defaultOptions = {
       },
     },
   },
+  animation: {
+    x: {
+      duration: 5000,
+      from: 0
+    },
+    y: {
+      duration: 3000,
+      from: 500
+    }
+  }
 };
-
-export { defaultOptions }
+export { defaultOptions, chartAnimation }

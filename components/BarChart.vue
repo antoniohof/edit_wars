@@ -89,8 +89,7 @@ export default {
       cssClasses: "",
       styles: {
         width: `85%`,
-        "max-width": `800px`,
-        //height: '800px',
+        "max-width": `800px`
       },
       chartOptions: {},
       dataList: [],
@@ -144,6 +143,7 @@ export default {
         ...datasets[0],
         //borderColor: "rgb(255, 0, 0)",
         borderWidth: 1,
+        tension: 0.1,
         backgroundColor: "transparent",
         pointRadius: 0,
       };
