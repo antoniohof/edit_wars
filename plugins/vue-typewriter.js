@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import Typewriter from 'typewriter-vue'
+import VueTyperPlugin from 'vue-typer'
 
-Vue.component('Typewriter', Typewriter)
+Vue.use(VueTyperPlugin)

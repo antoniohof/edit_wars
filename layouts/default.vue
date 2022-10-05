@@ -75,6 +75,8 @@ export default {
   mounted() {
     if ($nuxt.$route.path !== '/') {
       this.isIntroFirstStep = false
+    } else {
+      this.isIntroFirstStep = true
     }
     EventBus.$on('introfirst', () => {
       this.isIntroFirstStep = true
