@@ -50,7 +50,23 @@ import StepMixin from "@/mixins/StepMixin.js";
 
 import { defaultOptions } from "../utils/chart"
 
+Tooltip.positioners.bottom = function(items) {
+  const pos = Tooltip.positioners.average(items);
 
+  // Happens when nothing is found
+  if (pos === false) {
+    return false;
+  }
+
+  const chart = this.chart;
+
+  return {
+    x: pos.x,
+    y: chart.chartArea.bottom + 300,
+    xAlign: 'center',
+    yAlign: 'top',
+  };
+};
 
 export default {
   name: "BarChart",
@@ -126,7 +142,7 @@ export default {
       datasets[0].data = datasets[0].data.sort(compare);
       datasets[0] = {
         ...datasets[0],
-        borderColor: "rgb(255, 0, 0)",
+        //borderColor: "rgb(255, 0, 0)",
         borderWidth: 1,
         backgroundColor: "transparent",
         pointRadius: 0,
@@ -136,7 +152,7 @@ export default {
         label: "scatter",
         borderColor: "blue",
         borderWidth: 2,
-        radius: 4,
+        radius: 5,
         borderRadius: 4,
         backgroundColor: "transparent",
         //type: 'scatter-chart',
@@ -152,11 +168,12 @@ export default {
 
       var events = {
         label: "scatter",
-        borderColor: "green",
+        borderColor: "red",
+        pointStyle: 'triangle',
         borderWidth: 2,
-        radius: 4,
+        radius: 5,
         borderRadius: 4,
-        backgroundColor: "transparent",
+        backgroundColor: "red",
         data: [{
           x: "2022-04-26T23:00:00.000Z",
           y: 0,

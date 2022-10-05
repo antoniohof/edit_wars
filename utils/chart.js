@@ -7,7 +7,13 @@ const defaultOptions = {
       display: false,
     },
     tooltip: {
-      //position: 'bottom',
+      position: (context) => {
+        if (context.chart.tooltip.dataPoints !== undefined && context.tooltip.dataPoints[0].raw.type === 'event') {
+          return 'bottom'
+        } else {
+          return 'nearest'
+        }
+      },
       enabled: true,
       displayColors: false,
       callbacks: {
