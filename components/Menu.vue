@@ -5,7 +5,7 @@
       app
       temporary
       right
-      width="400"
+      width="100%"
       :hide-overlay="true"
       v-model="isOpenLocal"
       class="menu"
@@ -97,11 +97,13 @@ export default {
 .menuitem
   background-color: transparent !important
 .menu
-    z-index: 10
+    z-index: 50
     top: 20px !important
     background-color: $menu-bg
     border-radius: 4px 0px 0px 4px
     backdrop-filter: blur(3px)
+    @media only screen and (max-width: 480px)
+      top: 0px !important
 
 .list
     margin-top: 147px
@@ -115,6 +117,11 @@ export default {
     margin-left: 27px
     margin-top: 6px
     cursor: pointer
+    @media only screen and (max-width: 480px)
+      right: 12px
+      font-size: 26px
+      margin-top: 8px
+
 
 .v-list-item
     cursor: pointer

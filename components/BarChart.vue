@@ -1,6 +1,6 @@
 <template>
   <div class="graph-container">
-    <Bar 
+    <Bar
       v-if="currentChartData"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
@@ -16,16 +16,37 @@
 
 <script>
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, TimeScale } from 'chart.js'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  TimeScale
+} from 'chart.js'
 import 'chartjs-adapter-date-fns'
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, TimeScale)
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  TimeScale
+)
 
-
-import { getDates, processTableutData, parseDataUrl, escapeCode } from '../utils/DataProcessing'
+import {
+  getDates,
+  processTableutData,
+  parseDataUrl,
+  escapeCode
+} from '../utils/DataProcessing'
 
 import { colorPalette } from '../utils/constants'
 
-import StepMixin from "@/mixins/StepMixin.js";
+import StepMixin from '@/mixins/StepMixin.js'
 
 export default {
   name: 'BarChart',
@@ -33,11 +54,11 @@ export default {
   components: { Bar },
   props: {
     background: {
-          type: Object,
-          required: true
-      }
+      type: Object,
+      required: true
+    }
   },
-  data () {
+  data() {
     return {
       currentProcessedData: null,
       currentChartData: null,
@@ -47,33 +68,38 @@ export default {
       height: 800,
       cssClasses: '',
       styles: {
-          width: `85%`,
-          'max-width': `800px`,
+        width: `85%`,
+        'max-width': `800px`
       },
       chartOptions: {},
       dataList: []
     }
   },
-  async mounted () {   
+  async mounted() {
     console.log('this.background', this.background)
     console.log('this.currStepIndex', this.currentStepIndex)
     await this.loadData()
-    const dataIndex = this.step.order - this.background.stepstart 
+    const dataIndex = this.step.order - this.background.stepstart
     console.log('dataIndex', dataIndex)
     console.log('this.dataList', this.dataList)
     this.setData(this.dataList[dataIndex])
   },
   methods: {
-    async loadData () {
+    async loadData() {
       this.dataList = []
       this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
       const dataNames = this.background.name.split(',')
       for await (const name of dataNames) {
-        let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + name + '.json'
-        await fetch(parseDataUrl(url)).then(response => response.json()).then(fetchedData => {
-          this.dataList.push(fetchedData)
-          console.log('loaded', this.dataList)
-        })
+        let url =
+          'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' +
+          name +
+          '.json'
+        await fetch(parseDataUrl(url))
+          .then((response) => response.json())
+          .then((fetchedData) => {
+            this.dataList.push(fetchedData)
+            console.log('loaded', this.dataList)
+          })
       }
     },
     setData(fetchedData) {
@@ -89,8 +115,8 @@ export default {
     }
   },
   watch: {
-    step (step) {
-      const dataIndex = step.order - this.background.stepstart 
+    step(step) {
+      const dataIndex = step.order - this.background.stepstart
       console.log('this.background.stepstart ', this.background.stepstart)
       console.log('dataIndex', dataIndex)
       this.setData(this.dataList[dataIndex])
@@ -102,7 +128,8 @@ export default {
 <style lang="sass" scoped>
 .graph-container
   width: 100%
-  width: -moz-available          
-  width: -webkit-fill-available 
+  width: -moz-available
+  width: -webkit-fill-available
   width: fill-available
+  @media only screen and (max-width: 480px)
 </style>

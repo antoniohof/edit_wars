@@ -160,11 +160,15 @@ export default {
   font-weight: 700 !important
   margin-left: -2px
   margin-top: 40px
+  @media only screen and (max-width: 480px)
+    font-size: 26px !important
+    margin-top: 0px
 .topbar
   color: white
   width: 100vw
-  background-image: red
   padding: 0px 40px 0px 40px
+  @media only screen and (max-width: 480px)
+    padding: 0px 12px 0px 12px !important
 
 .menu
   cursor: pointer
@@ -174,4 +178,7 @@ export default {
   font-size: 32px
   text-transform: uppercase
   margin-top: 32px
+  @media only screen and (max-width: 480px)
+    font-size: 26px !important
+    margin-top: -1px
 </style>

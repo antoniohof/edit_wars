@@ -209,10 +209,14 @@ export default {
 .intro-text
   height: 75vh
   font-family: Space Mono !important
-  font-size: 35px !important
+  font-size: 35px
   padding: 0px 64px 0px 64px
   z-index: 5
   color: black
+  @media only screen and (max-width: 480px)
+    padding: 0px 15px 0px 15px
+    font-size: 22px
+
 .arrow
   position: fixed
   width: 100%
