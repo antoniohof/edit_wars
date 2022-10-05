@@ -104,4 +104,4 @@ const defaultOptions = {
     }
   }
 };
-export { defaultOptions, chartAnimation }
+export { defaultOptions }
