@@ -10,7 +10,11 @@
         color="transparent"
         justify-space-around
       >
-        <div v-show="!isHomeRoute" @click="onClickHome" class="title">
+        <div
+          v-if="!isHomeRoute && delayOver"
+          @click="onClickHome"
+          class="title"
+        >
           EDIT WARS
         </div>
         <!--
@@ -73,6 +77,9 @@ export default {
     }
   },
   mounted() {
+    setTimeout(() => {
+      this.delayOver = true
+    }, 250)
     if ($nuxt.$route.path !== '/') {
       this.isIntroFirstStep = false
     } else {
@@ -88,7 +95,8 @@ export default {
   data() {
     return {
       isMenuOpen: false,
-      isIntroFirstStep: true
+      isIntroFirstStep: true,
+      delayOver: false
     }
   },
   methods: {
