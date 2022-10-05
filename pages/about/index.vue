@@ -3,37 +3,37 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row
-      class="about-page-topics justify-start"
-      width="72%"
-    >
+    <v-row class="about-page-topics justify-start" width="72%">
       <v-list dense width="72%">
-          <v-list-group
-            v-for="(topic, index) in topics"
-            :key="index"
-            v-model="topic.isOpen"
-            :append-icon="!topic.isOpen ? 'mdi-plus' : 'mdi-close'"
-            dense
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-divider class="divider"></v-divider>
-                <v-list-item-title class='title'>{{ topic.title }}</v-list-item-title>
-              </v-list-item-content>
-            
-            </template>
-  
-            <v-list-item class='topic' dense>
-              <nuxt-content class="topic-content" :document="getTopicContent(topic.content)" />
-            </v-list-item>
-          </v-list-group>
+        <v-list-group
+          v-for="(topic, index) in topics"
+          :key="index"
+          v-model="topic.isOpen"
+          :append-icon="!topic.isOpen ? 'mdi-plus' : 'mdi-close'"
+          dense
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-divider class="divider"></v-divider>
+              <v-list-item-title class="title">{{
+                topic.title
+              }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item class="topic" dense>
+            <nuxt-content
+              class="topic-content"
+              :document="getTopicContent(topic.content)"
+            />
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-row>
   </v-container>
 </template>
 
 <script>
-
 export default {
   head: {
     title: 'About',
@@ -83,7 +83,8 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
+    window.scrollTo(0, 0)
   },
   async asyncData({ $content }) {
     const about = await $content('about').fetch()
@@ -92,25 +93,25 @@ export default {
     }
   },
   computed: {
-    mainText () {
+    mainText() {
       return this.about['aboutmain_' + this.$i18n.locale]
     },
-    goals () {
+    goals() {
       return this.about['aboutgoals_' + this.$i18n.locale]
     },
-    methodology () {
+    methodology() {
       return this.about['aboutmethodology_' + this.$i18n.locale]
     },
-    team () {
+    team() {
       return this.about['aboutteam_' + this.$i18n.locale]
     },
-    tools () {
+    tools() {
       return this.about['abouttools_' + this.$i18n.locale]
     },
-    contact () {
+    contact() {
       return this.about['aboutcontact_' + this.$i18n.locale]
     },
-    funding () {
+    funding() {
       return this.about['aboutfunding_' + this.$i18n.locale]
     }
   },
@@ -124,9 +125,7 @@ export default {
       return this[content]
     }
   },
-  watch: {
-
-  }
+  watch: {}
 }
 </script>
 
@@ -157,10 +156,10 @@ export default {
   &-title
     font-family: Space Mono
     font-size: 20px
-    margin-bottom: 70px 
+    margin-bottom: 70px
     width: 72%
     margin-top: 65px
-      
+
   &-topics
     margin: 0px !important
 
@@ -171,7 +170,7 @@ export default {
   text-transform: uppercase
   color: black
   padding: 0px !important
-  
+
 .topic
   font-family: Golos-Text-Regular
   font-size: 25px
@@ -191,5 +190,4 @@ export default {
   height: 66px
   padding: 0px 0px 0px 0px !important
   align-content: center
-
 </style>

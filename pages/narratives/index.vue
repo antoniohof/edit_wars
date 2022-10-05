@@ -55,7 +55,6 @@ export default {
     }
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
-      .nodeLabel('id')
       .linkWidth(0.2)
       .showNavInfo(false)
       .numDimensions(2)

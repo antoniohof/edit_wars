@@ -6,17 +6,19 @@
         <div v-show="showName" class="intro-title">EDIT WARS</div>
       </transition>
     </v-container>
-    <typewriter :type-interval="20" class="intro-text" v-if="isScrolled">
-      <div>
-        The monopoly on information is a key propaganda tool. Using it, a state
-        is able to shape a non-alternative picture of the world. Nowadays, not
-        only does the Russian government wage a war in Ukraine, but it also
-        works hard on shaping the information reality using propaganda
-        narratives. This project is the data and art research how propaganda
-        narratives are reproduced in the Russian-language digital media in the
-        closed space of destroyed media freedom.
-      </div>
-    </typewriter>
+    <client-only>
+      <typewriter :type-interval="20" class="intro-text" v-if="isScrolled">
+        <div>
+          The monopoly on information is a key propaganda tool. Using it, a
+          state is able to shape a non-alternative picture of the world.
+          Nowadays, not only does the Russian government wage a war in Ukraine,
+          but it also works hard on shaping the information reality using
+          propaganda narratives. This project is the data and art research how
+          propaganda narratives are reproduced in the Russian-language digital
+          media in the closed space of destroyed media freedom.
+        </div>
+      </typewriter>
+    </client-only>
     <transition name="fade">
       <div class="arrow" v-show="!isScrolled" @click="onClickArrow">
         <img src="~/assets/icons/arrow.svg" />
@@ -30,6 +32,8 @@ import throttle from 'lodash/throttle'
 import SpriteText from 'three-spritetext'
 import * as THREE from 'three'
 import { request } from 'http'
+import EventBus from '@/utils/event-bus'
+
 export default {
   scrollToTop: true,
   head() {
@@ -127,8 +131,14 @@ export default {
     handleScroll() {
       console.log('window.scrollY', window.scrollY)
       if (window.scrollY > 100) {
+        if (!this.isScrolled) {
+          EventBus.$emit('introsecond')
+        }
         this.isScrolled = true
       } else {
+        if (this.isScrolled) {
+          EventBus.$emit('introfirst')
+        }
         this.isScrolled = false
       }
       const text = document.querySelector('.intro-title')

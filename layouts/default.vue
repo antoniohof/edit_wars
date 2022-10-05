@@ -23,7 +23,13 @@
         -->
         <v-spacer></v-spacer>
         <transition name="fademenu">
-          <div class="menu" @click="onClickMenu" v-if="!isMenuOpen">MENU</div>
+          <div
+            class="menu"
+            v-if="!isIntroFirstStep && !isMenuOpen"
+            @click="onClickMenu"
+          >
+            MENU
+          </div>
         </transition>
       </v-app-bar>
     </transition>
@@ -34,6 +40,8 @@
 </template>
 
 <script>
+import EventBus from '@/utils/event-bus'
+
 export default {
   head: {
     title: 'Home',
@@ -64,10 +72,21 @@ export default {
       return this.isEnglish ? 'ru' : 'en'
     }
   },
-  mounted() {},
+  mounted() {
+    if ($nuxt.$route.path !== '/') {
+      this.isIntroFirstStep = false
+    }
+    EventBus.$on('introfirst', () => {
+      this.isIntroFirstStep = true
+    })
+    EventBus.$on('introsecond', () => {
+      this.isIntroFirstStep = false
+    })
+  },
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isIntroFirstStep: true
     }
   },
   methods: {
