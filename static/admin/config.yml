@@ -16,8 +16,8 @@ collections:
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.md"
-        format: "frontmatter"
+        file: "content/about.json"
+        format: "json"
         fields:
           - { label: main_en, name: aboutmain_en, widget: markdown }
           - { label: main_ru, name: aboutmain_ru, widget: markdown }
