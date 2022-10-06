@@ -230,6 +230,7 @@ export default {
 .arrow
   position: fixed
   width: 100vw
+  transform: scaleX(2)
   height: 120px
   bottom: 0
   margin: 0 auto
@@ -237,11 +238,11 @@ export default {
   display: flex
   left: 0
   cursor: pointer
-  bottom: 0
   background-image: url("/img/gradient.png")
   filter: drop-shadow(16px 16px 15px black)
   img
     animation: spin 4s linear infinite
+    transform: scaleX(0.5) !important
 
 @keyframes spin
   100%
