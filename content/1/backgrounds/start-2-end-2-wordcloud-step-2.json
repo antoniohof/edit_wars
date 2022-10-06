@@ -2,9 +2,9 @@
   "narrative": 1,
   "stepstart": 2,
   "stepend": 2,
-  "identifier": "[Start:2][End:2]-WordCloud Step 2",
+  "identifier": "[Start:2][End:2]-freezing_europe",
   "uuid": "o26qTL_fdsT6pAgOzaoJJ",
   "component": "WordCloud",
   "chartoptions": "{\n  \"function\": \"focusOnNode\",\n  \"data\": \"банк\"\n}",
-  "name": "WordCloud Step 2"
+  "name": "freezing_europe"
 }
