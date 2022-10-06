@@ -202,7 +202,9 @@ export default {
     try {
       // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
       steps = await $content('steps').sortBy('order').fetch()
+      console.log('steps', steps)
       backgrounds = await $content('backgrounds').fetch()
+      console.log('backgrounds', backgrounds)
     } catch (e) {
       error({ message: 'error retrieveing content' })
     }

@@ -16,9 +16,7 @@ collections:
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.json"
-        extension: "json"
-        format: "json"
+        file: "content/about.md"
         fields:
           - { label: main_en, name: aboutmain_en, widget: markdown }
           - { label: main_ru, name: aboutmain_ru, widget: markdown }

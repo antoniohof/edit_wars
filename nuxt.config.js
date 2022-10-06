@@ -144,14 +144,14 @@ export default {
     'content:file:beforeInsert': async (document, database) => {
       // search for markdown containing
       // only `specialNotice` property.
-      if (document.extension === '.md' && document['body_en']) {
+      if (document['body_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['body_en'] = await database.markdown.toJSON(
           document['body_en']
         )
       }
-      if (document.extension === '.md' && document['body_ru']) {
+      if (document['body_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['body_ru'] = await database.markdown.toJSON(
@@ -159,7 +159,7 @@ export default {
         )
       }
 
-      if (document.extension === '.md' && document['aboutmain_en']) {
+      if (document['aboutmain_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutmain_en'] = await database.markdown.toJSON(
@@ -167,7 +167,7 @@ export default {
         )
       }
 
-      if (document.extension === '.md' && document['aboutmain_ru']) {
+      if (document['aboutmain_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutmain_ru'] = await database.markdown.toJSON(
@@ -175,84 +175,84 @@ export default {
         )
       }
 
-      if (document.extension === '.md' && document['aboutgoals_en']) {
+      if (document['aboutgoals_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutgoals_en'] = await database.markdown.toJSON(
           document['aboutgoals_en']
         )
       }
-      if (document.extension === '.md' && document['aboutgoals_ru']) {
+      if (document['aboutgoals_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutgoals_ru'] = await database.markdown.toJSON(
           document['aboutgoals_ru']
         )
       }
-      if (document.extension === '.md' && document['aboutmethodology_en']) {
+      if (document['aboutmethodology_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutmethodology_en'] = await database.markdown.toJSON(
           document['aboutmethodology_en']
         )
       }
-      if (document.extension === '.md' && document['aboutmethodology_ru']) {
+      if (document['aboutmethodology_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutmethodology_ru'] = await database.markdown.toJSON(
           document['aboutmethodology_ru']
         )
       }
-      if (document.extension === '.md' && document['aboutteam_en']) {
+      if (document['aboutteam_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutteam_en'] = await database.markdown.toJSON(
           document['aboutteam_en']
         )
       }
-      if (document.extension === '.md' && document['aboutteam_ru']) {
+      if (document['aboutteam_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutteam_ru'] = await database.markdown.toJSON(
           document['aboutteam_ru']
         )
       }
-      if (document.extension === '.md' && document['aboutcontact_en']) {
+      if (document['aboutcontact_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutcontact_en'] = await database.markdown.toJSON(
           document['aboutcontact_en']
         )
       }
-      if (document.extension === '.md' && document['aboutcontact_ru']) {
+      if (document['aboutcontact_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutcontact_ru'] = await database.markdown.toJSON(
           document['aboutcontact_ru']
         )
       }
-      if (document.extension === '.md' && document['abouttools_en']) {
+      if (document['abouttools_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['abouttools_en'] = await database.markdown.toJSON(
           document['abouttools_en']
         )
       }
-      if (document.extension === '.md' && document['abouttools_ru']) {
+      if (document['abouttools_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['abouttools_ru'] = await database.markdown.toJSON(
           document['abouttools_ru']
         )
       }
-      if (document.extension === '.md' && document['aboutfunding_en']) {
+      if (document['aboutfunding_en']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutfunding_en'] = await database.markdown.toJSON(
           document['aboutfunding_en']
         )
       }
-      if (document.extension === '.md' && document['aboutfunding_ru']) {
+      if (document['aboutfunding_ru']) {
         // Replace Markdown string in database
         // with the JSON ATS version
         document['aboutfunding_ru'] = await database.markdown.toJSON(
