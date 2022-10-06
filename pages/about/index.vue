@@ -66,12 +66,12 @@ export default {
           isOpen: false
         },
         {
-          title: 'Research Methodology',
+          title: 'Methodology',
           content: 'methodology',
           isOpen: false
         },
         {
-          title: 'Research Tools',
+          title: 'Datasets and Tools',
           content: 'tools',
           isOpen: false
         },

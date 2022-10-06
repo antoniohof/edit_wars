@@ -181,4 +181,6 @@ export default {
   @media only screen and (max-width: 480px)
     font-size: 26px !important
     margin-top: -1px
+  &:hover
+    font-style: italic
 </style>
