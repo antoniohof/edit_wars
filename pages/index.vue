@@ -220,14 +220,21 @@ export default {
 .arrow
   position: fixed
   width: 100%
-  height: 50px
+  height: 120px
   bottom: 0
   width: 100%
   margin: 0 auto
-  height: 100px
   justify-content: center
   display: flex
   cursor: pointer
   bottom: 0
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(0,0, 0,0.5) 100%)
+  background-image: url("/img/gradient.png")
+  filter: drop-shadow(16px 16px 15px black)
+  img
+    animation: spin 4s linear infinite
+
+@keyframes spin
+  100%
+    -webkit-transform: rotateY(360deg)
+    transform: rotateY(360deg)
 </style>
