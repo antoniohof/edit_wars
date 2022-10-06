@@ -67,7 +67,7 @@ export default {
           target: Math.round(Math.random() * (id - 1))
         }))
     }
-
+    this.g = g
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
       .nodeLabel('id')
@@ -108,15 +108,20 @@ export default {
     }
 
     this.animation = requestAnimationFrame(step)
+
+    window.addEventListener( 'resize', this.onWindowResize, false );
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener( 'resize', this.onWindowResize );
+
     cancelAnimationFrame(this.animation)
   },
   activated() {},
   updated() {},
   data() {
     return {
+      g: null,
       animation: null,
       isScrolled: false,
       showName: false
@@ -130,6 +135,10 @@ export default {
   components: {},
   async asyncData({ $content, params, error }) {},
   methods: {
+    onWindowResize () {
+      this.g.width(window.innerWidth)
+      this.g.height(window.innerHeight)
+    },
     handleScroll() {
       if (window.scrollY > 100) {
         if (!this.isScrolled) {
@@ -192,6 +201,7 @@ export default {
 .intro-title
   z-index: 1
   width: 100%
+  pointer-events: none
   margin-top: -64px
   position: relative
   font-size: 16vw

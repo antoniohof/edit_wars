@@ -18,7 +18,9 @@ export default {
     ]
   },
   data() {
-    return {}
+    return {
+      g: null
+    }
   },
   scrollToTop: true,
   mounted () {
@@ -81,12 +83,19 @@ export default {
         return group
       })
     g.d3Force('charge').strength(-1800)
+    this.g = g
+    window.addEventListener( 'resize', this.onWindowResize, false );
+
   },
   async asyncData({ $content }) {},
   computed: {},
   components: {},
 
   methods: {
+    onWindowResize () {
+      this.g.width(window.innerWidth)
+      this.g.height(window.innerHeight)
+    },
     onNodeClick(node) {
       this.$router.push({ path: '/narratives/' + node.path })
     }
