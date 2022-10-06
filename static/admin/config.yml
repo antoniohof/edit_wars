@@ -9,6 +9,7 @@ collections:
   - label: "Pages"
     label_singular: "Page"
     name: "pages"
+    extension: "json"
     create: false
     preview: false
     files:
@@ -45,6 +46,7 @@ collections:
     preview: false
     folder: content/steps
     format: "frontmatter"
+    extension: "json"
     create: true
     slug: "{{identifier}}"
     identifier_field: identifier
@@ -89,6 +91,7 @@ collections:
     folder: content/backgrounds
     format: "frontmatter"
     create: true
+    extension: "json"
     slug: "{{identifier}}"
     identifier_field: identifier
     fields:
