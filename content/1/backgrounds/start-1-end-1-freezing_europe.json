@@ -1,0 +1,9 @@
+{
+  "narrative": 1,
+  "stepstart": 1,
+  "stepend": 1,
+  "identifier": "[Start:1][End:1]-freezing_europe",
+  "uuid": "DZwrzYnDtBDqw9oqBnGOt",
+  "name": "freezing_europe",
+  "component": "WordCloud"
+}
