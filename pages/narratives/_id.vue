@@ -197,12 +197,14 @@ export default {
     }
   },
   async asyncData({ $content, params, error }) {
+    console.log('params', params)
     let steps
     let backgrounds
     try {
       let n = narratives.find((narrative) => {
-      return narrative?.slug === $nuxt.$route.params.id
+      return narrative?.slug === params.id
     })
+      console.log('n', n)
       const nameSteps = `${n?.id}/steps`
       const nameBgs = `${n?.id}/backgrounds`
       console.log(nameSteps)
@@ -211,7 +213,7 @@ export default {
       backgrounds = await $content(nameBgs).fetch()
       console.log('backgrounds', backgrounds)
     } catch (e) {
-      error({ message: 'error retrieveing content' })
+      error({ message: 'error retrieving content' })
     }
     return {
       steps,
