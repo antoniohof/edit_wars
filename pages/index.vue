@@ -219,10 +219,9 @@ export default {
 
 .arrow
   position: fixed
-  width: 100%
+  width: 120%
   height: 120px
   bottom: 0
-  width: 100%
   margin: 0 auto
   justify-content: center
   display: flex
@@ -230,6 +229,7 @@ export default {
   bottom: 0
   background-image: url("/img/gradient.png")
   filter: drop-shadow(16px 16px 15px black)
+  left: -10%
   img
     animation: spin 4s linear infinite
 

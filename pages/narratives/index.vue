@@ -21,7 +21,7 @@ export default {
     return {}
   },
   scrollToTop: true,
-  mounted() {
+  mounted () {
     let ForceGraph3D
     if (window) {
       ForceGraph3D = require('3d-force-graph').default
