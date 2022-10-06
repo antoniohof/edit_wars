@@ -60,11 +60,10 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
+          widget: "hidden",
           default: 1,
           value_type: "int",
-          required: true,
-          hidden: true
+          required: true
         }
       - {
           label: "Order",
@@ -102,11 +101,10 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
+          widget: "hidden",
           default: 1,
           value_type: "int",
-          required: true,
-          hidden: true
+          required: true
         }
       - {
           label: "Step Start",
@@ -170,11 +168,10 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
+          widget: "hidden",
           default: 2,
           value_type: "int",
-          required: true,
-          hidden: true
+          required: true
         }
       - {
           label: "Order",
@@ -211,11 +208,10 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
+          widget: "hidden",
           default: 2,
           value_type: "int",
-          required: true,
-          hidden: true
+          required: true
         }
       - {
           label: "Step Start",
