@@ -16,7 +16,7 @@ collections:
       - label: "About Page"
         name: "about"
         file: "content/about.md"
-        format: "frontmatter"
+        format: "json"
         fields:
           - { label: main_en, name: aboutmain_en, widget: markdown }
           - { label: main_ru, name: aboutmain_ru, widget: markdown }
@@ -45,7 +45,7 @@ collections:
     name: "steps"
     preview: false
     folder: content/steps
-    format: "frontmatter"
+    format: "json"
     extension: "json"
     create: true
     slug: "{{identifier}}"
@@ -89,7 +89,7 @@ collections:
     label_singular: "Background"
     name: "backgrounds"
     folder: content/backgrounds
-    format: "frontmatter"
+    format: "json"
     create: true
     extension: "json"
     slug: "{{identifier}}"
