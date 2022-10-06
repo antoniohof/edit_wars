@@ -154,7 +154,7 @@ export default {
 
 .v-list-item
     cursor: pointer
-    height: 100px
+    height: 70px
 
 .v-list-item__title
     font-family: Space Mono
