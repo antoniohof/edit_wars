@@ -155,8 +155,9 @@ export default {
 .about-page
   display: flex
   flex-direction: column
-  align-content: flex-starts
   width: 100%
+  height: 100%
+  justify-content: space-evenly
   margin: 0px 85px 0px 85px
   color: black
   &-title
@@ -165,9 +166,12 @@ export default {
     margin-bottom: 30px
     width: 78%
     margin-top: 44px
+    max-height: 100%
 
   &-topics
     margin: 0px !important
+    height: fit-content
+    max-height: 400px
 
 .title
   font-family: Space Mono !important
@@ -197,6 +201,8 @@ export default {
   left: 0px
   width: 100%
 
+.v-list
+  height: fit-content
 .v-list-item
   padding: 0 0
 .v-list-item__content

@@ -129,7 +129,7 @@ export default {
   },
   computed: {
     getText() {
-      return 'The monopoly on information is a key propaganda tool. \nUsing it, a state is able to shape a non-alternative \npicture of the world.\n \nNowadays, not only does the Russian government wage a\nwar in Ukraine, but it also works hard on shaping the \ninformation reality using propaganda narratives. \n \nThis is an data and art research project showing how \npropaganda narratives are reproduced in the Russian-\nlanguage digital media in the closed space of \ndestroyed media freedom.'
+      return 'The monopoly on information is a key propaganda tool. \nUsing it, a state is able to shape a non-alternative \npicture of the world.\n \nNowadays, not only does the Russian government wage a war \nin Ukraine, but it also works hard on shaping the \ninformation reality using propaganda narratives. \n \nThis is an data and art research project showing how propaganda \nnarratives are reproduced in the Russian-language digital \nmedia in the closed space of destroyed media freedom.'
     }
   },
   components: {},
@@ -229,17 +229,17 @@ export default {
 
 .arrow
   position: fixed
-  width: 120%
+  width: 100vw
   height: 120px
   bottom: 0
   margin: 0 auto
   justify-content: center
   display: flex
+  left: 0
   cursor: pointer
   bottom: 0
   background-image: url("/img/gradient.png")
   filter: drop-shadow(16px 16px 15px black)
-  left: -10%
   img
     animation: spin 4s linear infinite
 
