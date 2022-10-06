@@ -19,7 +19,9 @@
     </client-only>
     <transition name="fade">
       <div class="arrow" v-show="!isScrolled" @click="onClickArrow">
-        <img src="~/assets/icons/arrow.svg" />
+        <div class="adjuster">
+          <img src="~/assets/icons/arrow.svg" />
+        </div>
       </div>
     </transition>
   </v-container>
@@ -242,7 +244,8 @@ export default {
   filter: drop-shadow(16px 16px 15px black)
   img
     animation: spin 4s linear infinite
-    transform: scaleX(0.5) !important
+.adjuster
+  transform: scaleX(0.5)
 
 @keyframes spin
   100%
