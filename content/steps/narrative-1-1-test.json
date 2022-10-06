@@ -1,0 +1,11 @@
+{
+  "body_ru": "t﻿est",
+  "body_en": "t﻿est",
+  "identifier": "[Narrative:1]-1-test",
+  "name": "test",
+  "order": 1,
+  "date": "2022-10-06T13:40:30.808Z",
+  "narrative": 1,
+  "uuid": "Vn3yRnUNPxLS6f2lvoUzI",
+  "component": "DefaultText"
+}
