@@ -51,13 +51,8 @@ export default {
     return {
       topics: [
         {
-          title: 'Project Goals',
+          title: 'Goals',
           content: 'goals',
-          isOpen: false
-        },
-        {
-          title: 'Project Funding',
-          content: 'funding',
           isOpen: false
         },
         {
@@ -73,6 +68,11 @@ export default {
         {
           title: 'Datasets and Tools',
           content: 'tools',
+          isOpen: false
+        },
+        {
+          title: 'Funding',
+          content: 'funding',
           isOpen: false
         },
         {
@@ -183,8 +183,12 @@ export default {
   margin-bottom: 25px
   line-height: 33px !important
   :deep(img)
-    width: 100%
-
+    width: 30%
+    margin-top: 5px
+    margin-bottom: -5px !important
+    filter: grayscale(100%)
+  :deep(p)
+    margin-bottom: 5px !important
 .divider
   border-color: rgba(0, 0, 0, 1) !important
   border: 1px solid black
