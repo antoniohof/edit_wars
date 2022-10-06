@@ -10,12 +10,14 @@ collections:
     label_singular: "Page"
     name: "pages"
     extension: "json"
+    format: "json"
     create: false
     preview: false
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.md"
+        file: "content/about.json"
+        extension: "json"
         format: "json"
         fields:
           - { label: main_en, name: aboutmain_en, widget: markdown }
