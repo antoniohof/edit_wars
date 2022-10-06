@@ -3,8 +3,8 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row class="about-page-topics justify-start" width="72%">
-      <v-list dense width="72%">
+    <v-row class="about-page-topics justify-start" width="78%">
+      <v-list dense width="78%">
         <v-list-group
           v-for="(topic, index) in topics"
           :key="index"
@@ -135,13 +135,19 @@ export default {
 
 .mdi-close
   color: black !important
-  font-size: 21px !important
+  font-size: 26px !important
   align-self: center
   width: 24px !important
   height: 24px !important
-
+  left: 3px
+  font-weight: 1000 !important
 .mdi-plus
+  margin-top: 1px
   color: black !important
+  font-weight: 1000 !important
+  left: 3px
+  transform: scale(1.2,1.2)
+
 </style>
 
 <style lang="sass" scoped>
@@ -149,7 +155,7 @@ export default {
 .about-page
   display: flex
   flex-direction: column
-  align-content: flex-start
+  align-content: flex-starts
   width: 100%
   margin: 0px 85px 0px 85px
   color: black
@@ -157,8 +163,8 @@ export default {
     font-family: Space Mono
     font-size: 29px
     margin-bottom: 30px
-    width: 72%
-    margin-top: 65px
+    width: 78%
+    margin-top: 44px
 
   &-topics
     margin: 0px !important
@@ -175,6 +181,7 @@ export default {
   font-family: Golos-Text-Regular
   font-size: 25px
   margin-bottom: 25px
+  line-height: 33px !important
   :deep(img)
     width: 100%
 
@@ -187,7 +194,9 @@ export default {
   width: 100%
 
 .v-list-item__content
-  height: 66px
+  height: 55px
   padding: 0px 0px 0px 0px !important
   align-content: center
+.v-list-group:last-child
+  border-bottom: 2px solid black
 </style>

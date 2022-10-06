@@ -124,7 +124,7 @@ export default {
 .menuitem
   background-color: transparent !important
 .menu
-    transition: all 0.5s ease-out !important
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)
     z-index: 50
     top: 20px !important
     background-color: $menu-bg
