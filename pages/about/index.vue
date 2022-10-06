@@ -179,9 +179,9 @@ export default {
 
 .topic
   font-family: Golos-Text-Regular
-  font-size: 25px
+  font-size: 20px
   margin-bottom: 25px
-  line-height: 33px !important
+  line-height: 28px !important
   :deep(img)
     width: 30%
     margin-top: 5px
@@ -197,6 +197,8 @@ export default {
   left: 0px
   width: 100%
 
+.v-list-item
+  padding: 0 0
 .v-list-item__content
   height: 55px
   padding: 0px 0px 0px 0px !important
