@@ -200,13 +200,15 @@ export default {
     let steps
     let backgrounds
     try {
-      // steps = await $content('steps').only(['name', 'slug']).sortBy('name').fetch()
-      const nameSteps = `narrative${this.currentNarrative?.id}steps`
-      const nameBgs = `narrative${this.currentNarrative?.id}backgrounds`
-
-      steps = await $content(name).sortBy('order').fetch()
+      let n = narratives.find((narrative) => {
+      return narrative?.slug === $nuxt.$route.params.id
+    })
+      const nameSteps = `${n?.id}/steps`
+      const nameBgs = `${n?.id}/backgrounds`
+      console.log(nameSteps)
+      steps = await $content(nameSteps).sortBy('order').fetch()
       console.log('steps', steps)
-      backgrounds = await $content('nameBgs').fetch()
+      backgrounds = await $content(nameBgs).fetch()
       console.log('backgrounds', backgrounds)
     } catch (e) {
       error({ message: 'error retrieveing content' })
