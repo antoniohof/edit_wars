@@ -457,6 +457,7 @@ export default {
     width: 100% !important
     left: 0 !important
     margin-top: 50% // check
+    padding: 0px 50px 0px 50px
 .scrollama
   flex: 1
   will-change: transform
@@ -501,7 +502,6 @@ export default {
   @media only screen and (max-width: 480px)
     width: 100vw !important
     left: 0
-    top: 15%
 .background_container
   display: flex
   justify-content: center
