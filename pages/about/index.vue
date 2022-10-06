@@ -155,8 +155,8 @@ export default {
   color: black
   &-title
     font-family: Space Mono
-    font-size: 20px
-    margin-bottom: 70px
+    font-size: 29px
+    margin-bottom: 30px
     width: 72%
     margin-top: 65px
 
