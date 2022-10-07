@@ -111,12 +111,7 @@ export default {
     const dataIndex = this.step.order - this.background.stepstart;
     console.log("dataIndex", dataIndex);
     console.log("this.dataList", this.dataList);
-    let data = this.dataList[0]
-    if (this.dataList[dataIndex]) {
-      data = this.dataList[dataIndex]
-    }
-    console.log('data to send', data)
-    this.setData(data);
+    this.setData(this.dataList[dataIndex]);
   },
   methods: {
     async loadData() {
@@ -147,16 +142,16 @@ export default {
       //console.log('data', fetchedData)
       var datasets = fetchedData.datasets;
 
-      datasets.map( dataset => ({
-        ...dataset,
+      datasets[0] = {
+        ...datasets[0],
         //borderColor: "rgb(255, 0, 0)",
         type: "line",
-        data: dataset.data.sort(compare),
+        data: datasets[0].data.sort(compare),
         borderWidth: 1,
         tension: 0.1,
         backgroundColor: "transparent",
         pointRadius: 0,
-      }))
+      };
 
       var headlines = {
         label: "scatter",
@@ -168,7 +163,7 @@ export default {
         //type: 'scatter-chart',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
-          y: getDateValue(headline.date, datasets[0].data),
+          y: getDateValue(headline.date,  datasets[0].data),
           label: headline.text_en,
           type: "headline"
         }))
@@ -207,13 +202,7 @@ export default {
       const dataIndex = step.order - this.background.stepstart;
       console.log("this.background.stepstart ", this.background.stepstart);
       console.log("dataIndex", dataIndex);
-      console.log('data', this.dataList[dataIndex])
-      let data = this.dataList[0]
-      if (this.dataList[dataIndex]) {
-        data = this.dataList[dataIndex]
-      }
-      console.log('data to send', data)
-      this.setData(data);
+      this.setData(this.dataList[dataIndex]);
     },
   },
 };
