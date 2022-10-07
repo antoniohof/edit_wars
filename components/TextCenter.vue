@@ -57,6 +57,10 @@ export default {
     align-items: center
     align-self: center
     padding: 0px 20px 0px 20px !important
+    @media only screen and (max-width: 480px)
+      left: 0 !important
+      align-items: flex-start
+
     &_container
       display: flex
       background-color: $window-text-bg

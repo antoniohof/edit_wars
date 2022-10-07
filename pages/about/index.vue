@@ -3,37 +3,37 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row
-      class="about-page-topics justify-start"
-      width="72%"
-    >
-      <v-list dense width="72%">
-          <v-list-group
-            v-for="(topic, index) in topics"
-            :key="index"
-            v-model="topic.isOpen"
-            :append-icon="!topic.isOpen ? 'mdi-plus' : 'mdi-close'"
-            dense
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-divider class="divider"></v-divider>
-                <v-list-item-title class='title'>{{ topic.title }}</v-list-item-title>
-              </v-list-item-content>
-            
-            </template>
-  
-            <v-list-item class='topic' dense>
-              <nuxt-content class="topic-content" :document="getTopicContent(topic.content)" />
-            </v-list-item>
-          </v-list-group>
+    <v-row class="about-page-topics justify-start" width="78%">
+      <v-list dense width="78%">
+        <v-list-group
+          v-for="(topic, index) in topics"
+          :key="index"
+          v-model="topic.isOpen"
+          :append-icon="!topic.isOpen ? 'mdi-plus' : 'mdi-close'"
+          dense
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-divider class="divider"></v-divider>
+              <v-list-item-title class="title">{{
+                topic.title
+              }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item class="topic" dense>
+            <nuxt-content
+              class="topic-content"
+              :document="getTopicContent(topic.content)"
+            />
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-row>
   </v-container>
 </template>
 
 <script>
-
 export default {
   head: {
     title: 'About',
@@ -51,13 +51,8 @@ export default {
     return {
       topics: [
         {
-          title: 'Project Goals',
+          title: 'Goals',
           content: 'goals',
-          isOpen: false
-        },
-        {
-          title: 'Project Funding',
-          content: 'funding',
           isOpen: false
         },
         {
@@ -66,13 +61,18 @@ export default {
           isOpen: false
         },
         {
-          title: 'Research Methodology',
+          title: 'Methodology',
           content: 'methodology',
           isOpen: false
         },
         {
-          title: 'Research Tools',
+          title: 'Datasets and Tools',
           content: 'tools',
+          isOpen: false
+        },
+        {
+          title: 'Funding',
+          content: 'funding',
           isOpen: false
         },
         {
@@ -83,7 +83,8 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
+    window.scrollTo(0, 0)
   },
   async asyncData({ $content }) {
     const about = await $content('about').fetch()
@@ -92,25 +93,25 @@ export default {
     }
   },
   computed: {
-    mainText () {
+    mainText() {
       return this.about['aboutmain_' + this.$i18n.locale]
     },
-    goals () {
+    goals() {
       return this.about['aboutgoals_' + this.$i18n.locale]
     },
-    methodology () {
+    methodology() {
       return this.about['aboutmethodology_' + this.$i18n.locale]
     },
-    team () {
+    team() {
       return this.about['aboutteam_' + this.$i18n.locale]
     },
-    tools () {
+    tools() {
       return this.about['abouttools_' + this.$i18n.locale]
     },
-    contact () {
+    contact() {
       return this.about['aboutcontact_' + this.$i18n.locale]
     },
-    funding () {
+    funding() {
       return this.about['aboutfunding_' + this.$i18n.locale]
     }
   },
@@ -124,9 +125,7 @@ export default {
       return this[content]
     }
   },
-  watch: {
-
-  }
+  watch: {}
 }
 </script>
 
@@ -136,13 +135,19 @@ export default {
 
 .mdi-close
   color: black !important
-  font-size: 21px !important
+  font-size: 26px !important
   align-self: center
   width: 24px !important
   height: 24px !important
-
+  left: 3px
+  font-weight: 1000 !important
 .mdi-plus
+  margin-top: 1px
   color: black !important
+  font-weight: 1000 !important
+  left: 3px
+  transform: scale(1.2,1.2)
+
 </style>
 
 <style lang="sass" scoped>
@@ -150,19 +155,23 @@ export default {
 .about-page
   display: flex
   flex-direction: column
-  align-content: flex-start
   width: 100%
+  height: 100%
+  justify-content: space-evenly
   margin: 0px 85px 0px 85px
   color: black
   &-title
     font-family: Space Mono
-    font-size: 20px
-    margin-bottom: 70px 
-    width: 72%
-    margin-top: 65px
-      
+    font-size: 29px
+    margin-bottom: 30px
+    width: 78%
+    margin-top: 44px
+    max-height: 100%
+
   &-topics
     margin: 0px !important
+    height: fit-content
+    max-height: 400px
 
 .title
   font-family: Space Mono !important
@@ -171,14 +180,19 @@ export default {
   text-transform: uppercase
   color: black
   padding: 0px !important
-  
+
 .topic
   font-family: Golos-Text-Regular
-  font-size: 25px
+  font-size: 20px
   margin-bottom: 25px
+  line-height: 28px !important
   :deep(img)
-    width: 100%
-
+    width: 30%
+    margin-top: 5px
+    margin-bottom: -5px !important
+    filter: grayscale(100%)
+  :deep(p)
+    margin-bottom: 5px !important
 .divider
   border-color: rgba(0, 0, 0, 1) !important
   border: 1px solid black
@@ -187,9 +201,14 @@ export default {
   left: 0px
   width: 100%
 
+.v-list
+  height: fit-content
+.v-list-item
+  padding: 0 0
 .v-list-item__content
-  height: 66px
+  height: 55px
   padding: 0px 0px 0px 0px !important
   align-content: center
-
+.v-list-group:last-child
+  border-bottom: 2px solid black
 </style>

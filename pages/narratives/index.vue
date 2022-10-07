@@ -18,10 +18,12 @@ export default {
     ]
   },
   data() {
-    return {}
+    return {
+      g: null
+    }
   },
   scrollToTop: true,
-  mounted() {
+  mounted () {
     let ForceGraph3D
     if (window) {
       ForceGraph3D = require('3d-force-graph').default
@@ -55,7 +57,6 @@ export default {
     }
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
-      .nodeLabel('id')
       .linkWidth(0.2)
       .showNavInfo(false)
       .numDimensions(2)
@@ -82,12 +83,19 @@ export default {
         return group
       })
     g.d3Force('charge').strength(-1800)
+    this.g = g
+    window.addEventListener( 'resize', this.onWindowResize, false );
+
   },
   async asyncData({ $content }) {},
   computed: {},
   components: {},
 
   methods: {
+    onWindowResize () {
+      this.g.width(window.innerWidth)
+      this.g.height(window.innerHeight)
+    },
     onNodeClick(node) {
       this.$router.push({ path: '/narratives/' + node.path })
     }

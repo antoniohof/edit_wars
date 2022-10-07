@@ -10,7 +10,11 @@
         color="transparent"
         justify-space-around
       >
-        <div v-show="!isHomeRoute" @click="onClickHome" class="title">
+        <div
+          v-if="!isHomeRoute && delayOver"
+          @click="onClickHome"
+          class="title"
+        >
           EDIT WARS
         </div>
         <!--
@@ -23,7 +27,13 @@
         -->
         <v-spacer></v-spacer>
         <transition name="fademenu">
-          <div class="menu" @click="onClickMenu" v-if="!isMenuOpen">MENU</div>
+          <div
+            class="menu"
+            v-if="!isIntroFirstStep && !isMenuOpen"
+            @click="onClickMenu"
+          >
+            MENU
+          </div>
         </transition>
       </v-app-bar>
     </transition>
@@ -34,6 +44,8 @@
 </template>
 
 <script>
+import EventBus from '@/utils/event-bus'
+
 export default {
   head: {
     title: 'Home',
@@ -64,10 +76,27 @@ export default {
       return this.isEnglish ? 'ru' : 'en'
     }
   },
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      this.delayOver = true
+    }, 250)
+    if ($nuxt.$route.path !== '/') {
+      this.isIntroFirstStep = false
+    } else {
+      this.isIntroFirstStep = true
+    }
+    EventBus.$on('introfirst', () => {
+      this.isIntroFirstStep = true
+    })
+    EventBus.$on('introsecond', () => {
+      this.isIntroFirstStep = false
+    })
+  },
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isIntroFirstStep: true,
+      delayOver: false
     }
   },
   methods: {
@@ -131,11 +160,15 @@ export default {
   font-weight: 700 !important
   margin-left: -2px
   margin-top: 40px
+  @media only screen and (max-width: 480px)
+    font-size: 26px !important
+    margin-top: 0px
 .topbar
   color: white
   width: 100vw
-  background-image: red
   padding: 0px 40px 0px 40px
+  @media only screen and (max-width: 480px)
+    padding: 0px 12px 0px 12px !important
 
 .menu
   cursor: pointer
@@ -145,4 +178,9 @@ export default {
   font-size: 32px
   text-transform: uppercase
   margin-top: 32px
+  @media only screen and (max-width: 480px)
+    font-size: 26px !important
+    margin-top: -1px
+  &:hover
+    font-style: italic
 </style>

@@ -6,20 +6,22 @@
         <div v-show="showName" class="intro-title">EDIT WARS</div>
       </transition>
     </v-container>
-    <typewriter :type-interval="20" class="intro-text" v-if="isScrolled">
-      <div>
-        The monopoly on information is a key propaganda tool. Using it, a state
-        is able to shape a non-alternative picture of the world. Nowadays, not
-        only does the Russian government wage a war in Ukraine, but it also
-        works hard on shaping the information reality using propaganda
-        narratives. This project is the data and art research how propaganda
-        narratives are reproduced in the Russian-language digital media in the
-        closed space of destroyed media freedom.
-      </div>
-    </typewriter>
+    <client-only>
+      <vue-typer
+        :type-delay="20"
+        :repeat="0"
+        :text="getText"
+        :erase-on-complete="false"
+        class="intro-text"
+        v-if="isScrolled"
+      >
+      </vue-typer>
+    </client-only>
     <transition name="fade">
       <div class="arrow" v-show="!isScrolled" @click="onClickArrow">
-        <img src="~/assets/icons/arrow.svg" />
+        <div class="adjuster">
+          <img src="~/assets/icons/arrow.svg" />
+        </div>
       </div>
     </transition>
   </v-container>
@@ -30,6 +32,8 @@ import throttle from 'lodash/throttle'
 import SpriteText from 'three-spritetext'
 import * as THREE from 'three'
 import { request } from 'http'
+import EventBus from '@/utils/event-bus'
+
 export default {
   scrollToTop: true,
   head() {
@@ -65,7 +69,7 @@ export default {
           target: Math.round(Math.random() * (id - 1))
         }))
     }
-
+    this.g = g
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
       .nodeLabel('id')
@@ -106,29 +110,47 @@ export default {
     }
 
     this.animation = requestAnimationFrame(step)
+
+    window.addEventListener( 'resize', this.onWindowResize, false );
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener( 'resize', this.onWindowResize );
+
     cancelAnimationFrame(this.animation)
   },
   activated() {},
   updated() {},
   data() {
     return {
+      g: null,
       animation: null,
       isScrolled: false,
       showName: false
     }
   },
-  computed: {},
+  computed: {
+    getText() {
+      return 'The monopoly on information is a key propaganda tool. \nUsing it, a state is able to shape a non-alternative \npicture of the world.\n \nNowadays, not only does the Russian government wage a war \nin Ukraine, but it also works hard on shaping the \ninformation reality using propaganda narratives. \n \nThis is an data and art research project showing how propaganda \nnarratives are reproduced in the Russian-language digital \nmedia in the closed space of destroyed media freedom.'
+    }
+  },
   components: {},
   async asyncData({ $content, params, error }) {},
   methods: {
+    onWindowResize () {
+      this.g.width(window.innerWidth)
+      this.g.height(window.innerHeight)
+    },
     handleScroll() {
-      console.log('window.scrollY', window.scrollY)
       if (window.scrollY > 100) {
+        if (!this.isScrolled) {
+          EventBus.$emit('introsecond')
+        }
         this.isScrolled = true
       } else {
+        if (this.isScrolled) {
+          EventBus.$emit('introfirst')
+        }
         this.isScrolled = false
       }
       const text = document.querySelector('.intro-title')
@@ -181,6 +203,7 @@ export default {
 .intro-title
   z-index: 1
   width: 100%
+  pointer-events: none
   margin-top: -64px
   position: relative
   font-size: 16vw
@@ -198,21 +221,34 @@ export default {
 .intro-text
   height: 75vh
   font-family: Space Mono !important
-  font-size: 35px !important
+  font-size: 35px
   padding: 0px 64px 0px 64px
   z-index: 5
   color: black
+  @media only screen and (max-width: 480px)
+    padding: 0px 15px 0px 15px
+    font-size: 22px
+
 .arrow
   position: fixed
-  width: 100%
-  height: 50px
+  width: 100vw
+  transform: scaleX(2)
+  height: 120px
   bottom: 0
-  width: 100%
   margin: 0 auto
-  height: 100px
   justify-content: center
   display: flex
+  left: 0
   cursor: pointer
-  bottom: 0
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(0,0, 0,0.5) 100%)
+  background-image: url("/img/gradient.png")
+  filter: drop-shadow(16px 16px 15px black)
+  img
+    animation: spin 4s linear infinite
+.adjuster
+  transform: scaleX(0.5)
+
+@keyframes spin
+  100%
+    -webkit-transform: rotateY(360deg)
+    transform: rotateY(360deg)
 </style>

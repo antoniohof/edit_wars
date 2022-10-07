@@ -1,36 +1,35 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_container">
-      <div class='text-component_container_top'></div>
-      <h1 class='text-component_container_title' v-if="hasTitle">{{currentTitle}}</h1>
-      <nuxt-content class='text-component_container_content' :document="step[currentBody]" />
+      <div class="text-component_container_top"></div>
+      <h1 class="text-component_container_title" v-if="hasTitle">
+        {{ currentTitle }}
+      </h1>
+      <nuxt-content
+        class="text-component_container_content"
+        :document="step[currentBody]"
+      />
     </div>
   </v-container>
 </template>
 
 <script>
-import StepMixin from "@/mixins/StepMixin.js";
+import StepMixin from '@/mixins/StepMixin.js'
 
 export default {
   name: 'DefaultText',
   mixins: [StepMixin],
   data() {
-    return {
-    }
+    return {}
   },
-  mounted () {
+  mounted() {
     console.log('montou')
   },
-  async asyncData({ $content }) {
-  },
-  computed: {
-  },
-  methods: {
-  },
+  async asyncData({ $content }) {},
+  computed: {},
+  methods: {},
 
-  watch: {
-
-  }
+  watch: {}
 }
 </script>
 
@@ -44,6 +43,11 @@ export default {
   width: fit-content
   height: 100vh
   will-change: transform
+  @media only screen and (max-width: 480px)
+    align-items: flex-start
+    justify-content: flex-start
+    align-items: flex-start
+    align-content: flex-start
   &_container
     border-radius: 4px
     background-color: $window-text-bg

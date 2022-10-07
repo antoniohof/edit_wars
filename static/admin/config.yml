@@ -9,13 +9,15 @@ collections:
   - label: "Pages"
     label_singular: "Page"
     name: "pages"
+    extension: "json"
+    format: "json"
     create: false
     preview: false
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.md"
-        format: "frontmatter"
+        file: "content/about.json"
+        format: "json"
         fields:
           - { label: main_en, name: aboutmain_en, widget: markdown }
           - { label: main_ru, name: aboutmain_ru, widget: markdown }
@@ -39,12 +41,13 @@ collections:
           - { label: tools_ru, name: abouttools_ru, widget: markdown }
           - { label: funding_en, name: aboutfunding_en, widget: markdown }
           - { label: funding_ru, name: aboutfunding_ru, widget: markdown }
-  - label: "Steps"
-    label_singular: "Step"
-    name: "steps"
+  - label: "Narrative 1 Steps"
+    label_singular: "Narrative 1 Step"
+    name: "narrative1steps"
     preview: false
-    folder: content/steps
-    format: "frontmatter"
+    folder: content/1/steps
+    format: "json"
+    extension: "json"
     create: true
     slug: "{{identifier}}"
     identifier_field: identifier
@@ -58,10 +61,10 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
-          default: 0,
+          widget: "hidden",
+          default: 1,
           value_type: "int",
-          required: true,
+          required: true
         }
       - {
           label: "Order",
@@ -83,12 +86,14 @@ collections:
 
     editor:
       preview: false
-  - label: "Backgrounds"
-    label_singular: "Background"
-    name: "backgrounds"
-    folder: content/backgrounds
-    format: "frontmatter"
+
+  - label: "Narrative 1 Backgrounds"
+    label_singular: "Narrative 1 Background"
+    name: "narrative1backgrounds"
+    folder: content/1/backgrounds
+    format: "json"
     create: true
+    extension: "json"
     slug: "{{identifier}}"
     identifier_field: identifier
     fields:
@@ -97,10 +102,331 @@ collections:
       - {
           label: "Narrative",
           name: "narrative",
-          widget: "number",
-          default: 0,
+          widget: "hidden",
+          default: 1,
           value_type: "int",
-          required: true,
+          required: true
+        }
+      - {
+          label: "Step Start",
+          name: "stepstart",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - {
+          label: "Step End",
+          name: "stepend",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - label: "Data JSON"
+        name: "data"
+        widget: "file"
+        required: false
+        media_folder: "/static/data"
+      - {
+          label: "Chart Options",
+          name: "chartoptions",
+          widget: "code",
+          required: false,
+          default_language: "json",
+          output_code_only: true,
+        }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+    editor:
+      preview: false
+  - label: "Narrative 2 Steps"
+    label_singular: "Narrative 2 Step"
+    name: "narrative2steps"
+    preview: false
+    folder: content/2/steps
+    format: "json"
+    extension: "json"
+    create: true
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    sortable_fields: ["order"]
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - { label: "Title EN", name: "title_en", widget: string, required: false }
+      - { label: "Title RU", name: "title_ru", widget: string, required: false }
+      - { label: "Date", name: "date", widget: "date", required: false }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
+        }
+      - {
+          label: "Order",
+          name: "order",
+          widget: "number",
+          value_type: "float",
+          default: 1.0,
+          min: 1.0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+
+    editor:
+      preview: false
+  - label: "Narrative 2 Backgrounds"
+    label_singular: "Narrative 2 Background"
+    name: "narrative2backgrounds"
+    folder: content/2/backgrounds
+    format: "json"
+    create: true
+    extension: "json"
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
+        }
+      - {
+          label: "Step Start",
+          name: "stepstart",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - {
+          label: "Step End",
+          name: "stepend",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - label: "Data JSON"
+        name: "data"
+        widget: "file"
+        required: false
+        media_folder: "/static/data"
+      - {
+          label: "Chart Options",
+          name: "chartoptions",
+          widget: "code",
+          required: false,
+          default_language: "json",
+          output_code_only: true,
+        }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+    editor:
+      preview: false
+  - label: "Narrative 3 Steps"
+    label_singular: "Narrative 3 Step"
+    name: "narrative3steps"
+    preview: false
+    folder: content/3/steps
+    format: "json"
+    extension: "json"
+    create: true
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    sortable_fields: ["order"]
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - { label: "Title EN", name: "title_en", widget: string, required: false }
+      - { label: "Title RU", name: "title_ru", widget: string, required: false }
+      - { label: "Date", name: "date", widget: "date", required: false }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
+        }
+      - {
+          label: "Order",
+          name: "order",
+          widget: "number",
+          value_type: "float",
+          default: 1.0,
+          min: 1.0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+
+    editor:
+      preview: false
+  - label: "Narrative 3 Backgrounds"
+    label_singular: "Narrative 3 Background"
+    name: "narrative3backgrounds"
+    folder: content/3/backgrounds
+    format: "json"
+    create: true
+    extension: "json"
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
+        }
+      - {
+          label: "Step Start",
+          name: "stepstart",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - {
+          label: "Step End",
+          name: "stepend",
+          widget: "number",
+          value_type: "int",
+          default: 0,
+          step: 1,
+          min: 0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - label: "Data JSON"
+        name: "data"
+        widget: "file"
+        required: false
+        media_folder: "/static/data"
+      - {
+          label: "Chart Options",
+          name: "chartoptions",
+          widget: "code",
+          required: false,
+          default_language: "json",
+          output_code_only: true,
+        }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+    editor:
+      preview: false
+  - label: "Narrative 4 Steps"
+    label_singular: "Narrative 4 Step"
+    name: "narrative4steps"
+    preview: false
+    folder: content/4/steps
+    format: "json"
+    extension: "json"
+    create: true
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    sortable_fields: ["order"]
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - { label: "Title EN", name: "title_en", widget: string, required: false }
+      - { label: "Title RU", name: "title_ru", widget: string, required: false }
+      - { label: "Date", name: "date", widget: "date", required: false }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
+        }
+      - {
+          label: "Order",
+          name: "order",
+          widget: "number",
+          value_type: "float",
+          default: 1.0,
+          min: 1.0,
+        }
+      - { label: "Vue Component", name: "component", widget: "string" }
+      - { label: "Body EN", name: "body_en", widget: markdown, required: false }
+      - { label: "Body RU", name: "body_ru", widget: markdown, required: false }
+      - {
+          label: "Identifier",
+          name: "identifier",
+          widget: "hidden",
+          default: "",
+        }
+
+    editor:
+      preview: false
+  - label: "Narrative 4 Backgrounds"
+    label_singular: "Narrative 4 Background"
+    name: "narrative4backgrounds"
+    folder: content/4/backgrounds
+    format: "json"
+    create: true
+    extension: "json"
+    slug: "{{identifier}}"
+    identifier_field: identifier
+    fields:
+      - { label: "UUID", name: "uuid", widget: uuid }
+      - { label: "Name", name: "name", widget: string }
+      - {
+          label: "Narrative",
+          name: "narrative",
+          widget: "hidden",
+          default: 2,
+          value_type: "int",
+          required: true
         }
       - {
           label: "Step Start",

@@ -46,7 +46,7 @@ import {
 
 import { colorPalette } from "../utils/constants";
 
-import StepMixin from "@/mixins/StepMixin.js";
+import StepMixin from '@/mixins/StepMixin.js'
 
 import { defaultOptions } from "../utils/chart"
 
@@ -220,4 +220,5 @@ function compare(a, b) {
   width: -moz-available
   width: -webkit-fill-available
   width: fill-available
+  @media only screen and (max-width: 480px)
 </style>
