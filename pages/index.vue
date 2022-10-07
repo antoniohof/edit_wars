@@ -8,7 +8,7 @@
     </v-container>
     <client-only>
       <vue-typer
-        :type-delay="20"
+        :type-delay="10"
         :repeat="0"
         :text="getText"
         :erase-on-complete="false"
