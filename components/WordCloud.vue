@@ -38,7 +38,7 @@ export default {
       let url =
         "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
         this.background.name;
-      this.setData(this.background, url);
+      this.setData(this.background, url)
     }
   },
   async asyncData({ $content }) {},
@@ -52,12 +52,12 @@ export default {
   methods: {
     setData(background, url) {
       console.log("bg", background);
-      if (background.chartoptions) {
-        this.chartOptions = JSON.parse(escapeCode(background.chartoptions));
-        if (this.chartOptions["function"] !== undefined) {
+      if (background.keywords) {
+        const word = background.keywords
+        if (word) {
           this.$refs.wordcloud.contentWindow.postMessage({
-            function: this.chartOptions["function"],
-            data: this.chartOptions["data"],
+            function: "focusOnNode",
+            data: word,
           }, "*");
         }
       }
