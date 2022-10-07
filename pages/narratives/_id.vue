@@ -334,16 +334,13 @@ export default {
         return
       }
       const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
-      back = this.backgrounds.find((item) => {
-        if (
+      back = this.backgrounds.find((item) => 
           currOrder >= item.stepstart &&
           currOrder <= item.stepend &&
           parseInt(item.narrative) === parseInt(this.currentNarrative?.id)
-        ) {
-          return item
-        }
-      })
+      )
       this.currentBackground = back
+      //console.log("this.currentBackground", this.currentBackground)
     },
     currentBackground(value) {
       if (!value) {
