@@ -122,9 +122,7 @@ const getDateValue = (date, data) => {
     */
   })
   //console.log("value", value)
-
-  console.log("foundIndex", foundIndex)
-  
+  console.log("foundIndex", foundIndex)  
   var closestDate = data[foundIndex].x
   var dateDiff = getDateDiff(closestDate, date)
   console.log("dateDiff", dateDiff)
