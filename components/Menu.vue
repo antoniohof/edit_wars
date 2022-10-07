@@ -136,6 +136,9 @@ export default {
 .list
     margin-top: 147px
     margin-left: 60px
+    @media only screen and (max-width: 480px)
+      margin-top: 35%
+      margin-left: 22%
 
 .close
     position: absolute
