@@ -166,7 +166,8 @@ export default {
       const dataIndex = step.order - this.background.stepstart 
       console.log('this.background.stepstart ', this.background.stepstart)
       console.log('dataIndex', dataIndex)
-      this.setData(this.dataList[dataIndex])
+      console.log('data', this.dataList[dataIndex])
+      this.setData(this.dataList[dataIndex] ? this.dataList[dataIndex] : this.dataList[0])
     }
   }
 }
