@@ -106,14 +106,7 @@ export default {
   },
   methods: {
     async loadData() {
-      console.log("currentChartData", this.background)
       this.dataList = [];
-      /*
-      this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
-      this.chartOptions = {...defaultOptions, ...this.chartOptions}
-      delete this.chartOptions.backgroundColor
-      delete this.chartOptions.borderColor
-      */
       this.chartOptions = defaultOptions;
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
