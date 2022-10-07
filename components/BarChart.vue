@@ -115,7 +115,10 @@ export default {
       delete this.chartOptions.borderColor
       */
       this.chartOptions = defaultOptions;
-      const dataNames = this.background.name.split(",");
+      let dataNames = [this.background.name]
+      if (this.background.name.indexOf(',')) {
+        dataNames = this.background.name.split(",");
+      }
       for await (const name of dataNames) {
         let url =
           "https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
