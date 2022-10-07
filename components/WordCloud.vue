@@ -31,7 +31,7 @@ export default {
     console.error("ACTIVATED WORDCLOUD");
   },
   mounted() {
-    console.error("MOUNTED WORDCLOUD");
+    console.error("MOUNTED WORDCLOUD", this.background);
     if (this.background) {
       console.log("this.background", this.background);
       // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
@@ -71,6 +71,7 @@ export default {
   },
   watch: {
     background(entity) {
+      console.log("background", entity)
       if (entity && entity.component === "WordCloud") {
         let url =
           "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
