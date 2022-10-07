@@ -56,8 +56,12 @@ export default {
       links: links
     }
     let fontSize = 5
+    let scale = 0.8
+    let position = 10
     if (this.isMobile()) {
       fontSize = 15
+      scale = 2
+      position = 30
     }
     g.graphData(gData)
       .backgroundColor('rgba(0,0,0,0)')
@@ -72,7 +76,7 @@ export default {
           const geometry = new THREE.SphereGeometry(5, 64, 64)
           const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
           const sphere = new THREE.Mesh(geometry, material)
-          sphere.scale.set(0.8, 0.8, 0.8)
+          sphere.scale.set(scale, scale, scale)
           const sprite = new SpriteText(node.label.toUpperCase())
           sprite.fontFace = 'Space Mono Italic'
           sprite.material.depthWrite = false // make sprite background transparent
@@ -80,14 +84,14 @@ export default {
           sprite.textHeight = fontSize
           group.add(sprite)
 
-          sprite.position.set(0, 10, 0)
+          sprite.position.set(0, position, 0)
           group.add(sphere)
         }
         g.controls().noPan = true
         g.controls().noZoom = true
         setTimeout(() => {
-          g.zoomToFit(500)
-        }, 100)
+          g.zoomToFit(150)
+        }, 10)
         return group
       })
     this.g = g
