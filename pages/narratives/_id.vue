@@ -13,6 +13,7 @@
       :progress="getStepProgress(currStepIndex)"
       :background="currentBackground"
     />
+    <!--
     <div class="timeline">
       <v-timeline dense>
         <v-timeline-item
@@ -26,6 +27,7 @@
         >
       </v-timeline>
     </div>
+    -->
     <transition :name="getBackgroundTransition">
       <div
         class="background"
@@ -462,7 +464,13 @@ export default {
   display: flex
   justify-content: center
   flex-direction: column
-
+  // -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(transparent)), -webkit-gradient(linear, left bottom, left top, from(black), to(transparent))
+  // -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%), linear-gradient(to top, black 50%, transparent 100%)
+  // mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(transparent)), -webkit-gradient(linear, left bottom, left top, from(black), to(transparent))
+  // mask-image: linear-gradient(to bottom, black 50%, transparent 100%), linear-gradient(to top, black 50%, transparent 100%)
+  // mask-position: center
+  // mask-repeat:no-repeat
+  // mask-composite: intersect
 .v-timeline::before
   bottom: 0
   content: ""
@@ -480,7 +488,6 @@ export default {
       background: black !important
       cursor: pointer
       box-shadow: 0px !important
-
 .side
   display: flex
   width: 25vw !important

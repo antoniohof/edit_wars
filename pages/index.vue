@@ -8,7 +8,7 @@
     </v-container>
     <client-only>
       <vue-typer
-        :type-delay="20"
+        :type-delay="10"
         :repeat="0"
         :text="getText"
         :erase-on-complete="false"
@@ -214,6 +214,7 @@ export default {
   display: flex
   justify-content: center
   align-content: center
+  transition: transform 0.1s ease
   align-items: center
   &:after
     content: none !important
