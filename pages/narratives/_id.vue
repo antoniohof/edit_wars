@@ -213,7 +213,6 @@ export default {
       steps = await $content(nameSteps).sortBy('order').fetch()
       console.log('steps', steps)
       backgrounds = await $content(nameBgs).fetch()
-      console.log('backgrounds', backgrounds)
     } catch (e) {
       error({ message: 'error retrieving content' })
     }
@@ -326,6 +325,35 @@ export default {
         }
       }
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
+    },
+    mergedGraphSequence (backgrounds) {
+      //console.log("mergedGraphSequence" ,backgrounds)
+      backgrounds.sort((a, b) => {
+        return (b.stepstart) - (a.stepstart);
+      })
+      var mergedBackgrounds = []
+      var hasBarSequence = true
+      while (hasBarSequence == true) {
+        mergedBackgrounds = []
+        for(var i = 0; i < backgrounds.length-1; i++) {
+          var hasfound = false
+          var cur = backgrounds[i]
+          var next = backgrounds[i+1]
+          if (cur.component == "BarChart" && next.component == "BarChart") {
+            cur.name += `,${next.name}`
+            cur.stepend = next.stepend
+            hasBarSequence = true
+            mergedBackgrounds.push(cur) 
+            hasfound=true
+          } else if (cur.component !== "BarChart"){
+            mergedBackgrounds.push(cur) 
+          }
+          hasBarSequence = hasfound
+        }
+      }
+      mergedBackgrounds.map(bg => {console.log("bg", bg.name)})
+      console.log("mergedBackgrounds" ,mergedBackgrounds)
+      return mergedBackgrounds
     }
   },
   watch: {

@@ -53,7 +53,7 @@ import { colorPalette } from "../utils/constants";
 
 import StepMixin from '@/mixins/StepMixin.js'
 
-import { defaultOptions } from "../utils/chart"
+import { defaultOptions, getDateValue } from "../utils/chart"
 
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
@@ -120,14 +120,7 @@ export default {
   },
   methods: {
     async loadData() {
-      console.log("currentChartData", this.background)
       this.dataList = [];
-      /*
-      this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
-      this.chartOptions = {...defaultOptions, ...this.chartOptions}
-      delete this.chartOptions.backgroundColor
-      delete this.chartOptions.borderColor
-      */
       this.chartOptions = defaultOptions;
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
@@ -151,15 +144,14 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      console.log('data', fetchedData)
+      //console.log('data', fetchedData)
       var datasets = fetchedData.datasets;
 
-      datasets[0].type = "line";
-
-      datasets[0].data = datasets[0].data.sort(compare);
       datasets[0] = {
         ...datasets[0],
         //borderColor: "rgb(255, 0, 0)",
+        type: "line",
+        data: datasets[0].data.sort(compare),
         borderWidth: 1,
         tension: 0.1,
         backgroundColor: "transparent",
@@ -174,14 +166,12 @@ export default {
         borderRadius: 4,
         backgroundColor: "transparent",
         //type: 'scatter-chart',
-        data: datasets[0].data.map((d) => ({
-          x: d.x,
-          y: d.y,
-          label: "this is an illustrative headline this is an illustrative headline 20",
+        data: fetchedData.headlines.map((headline) => ({
+          x: headline.date,
+          y: getDateValue(headline.date, datasets[0].data),
+          label: headline.text_en,
           type: "headline"
-        })).filter((d, i) => {
-          return i % 2 == 0
-        }),
+        }))
       };
 
       var events = {
@@ -192,12 +182,13 @@ export default {
         radius: 5,
         borderRadius: 4,
         backgroundColor: "red",
-        data: [{
-          x: "2022-04-26T23:00:00.000Z",
+        data: fetchedData.events.map(event => ({
+          x: event.date,
           y: 0,
-          label: "this is an event this is an illustrative headline 20",
+          label: event.text,
+          // link: event.link
           type: "event"
-        }]
+        }))
       } 
       console.log("headlines", headlines);
 

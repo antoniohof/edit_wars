@@ -104,4 +104,42 @@ const defaultOptions = {
     }
   }
 };
-export { defaultOptions }
+
+const getDateValue = (date, data) => {
+  // try exact date
+  console.log("getDateValue", date)
+  let foundIndex = 0
+  var value = data.find((d, i) => {
+    if (new Date(d.x) > new Date(date)) {
+      foundIndex = i-1
+      return true
+    }
+    /*
+    new Date(d.x).getDate() == new Date(date).getDate() &&
+    new Date(d.x).getMonth() == new Date(date).getMonth() &&
+    new Date(d.x).getYear() == new Date(date).getYear()
+    */
+  })
+  //console.log("value", value)
+
+  console.log("foundIndex", foundIndex)
+  
+  var closestDate = data[foundIndex].x
+  var dateDiff = getDateDiff(closestDate, date)
+  console.log("dateDiff", dateDiff)
+  
+  if (value) {
+    return value.y
+  } else {
+    return 0
+  }
+}
+
+const getDateDiff = (d1, d2) => {
+  var diff = new Date(d2).getTime() - new Date(d1).getTime();   
+  var daydiff = diff / (1000 * 60 * 60 * 24); 
+  return daydiff  
+}
+
+
+export { defaultOptions, getDateValue }
