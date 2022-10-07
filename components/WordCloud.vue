@@ -71,12 +71,10 @@ export default {
   },
   watch: {
     background(entity) {
-      console.log("background", entity, entity.component)
       if (entity && entity.component === "WordCloud") {
         let url =
           "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
           entity.narrativeName;
-        console.log("entity.name", entity.name, url)
         this.setData(entity, url);
       }
     },

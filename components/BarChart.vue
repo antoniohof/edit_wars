@@ -106,6 +106,7 @@ export default {
   },
   methods: {
     async loadData() {
+      console.log("currentChartData", this.background)
       this.dataList = [];
       /*
       this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
@@ -117,7 +118,7 @@ export default {
       const dataNames = this.background.name.split(",");
       for await (const name of dataNames) {
         let url =
-          "https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/" +
+          "https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
           name +
           ".json";
         await fetch(parseDataUrl(url))
