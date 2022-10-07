@@ -55,7 +55,7 @@ export default {
       nodes: ds,
       links: links
     }
-    let fontSize = 5
+    let fontSize = 8
     let scale = 0.8
     let position = 10
     if (this.isMobile()) {
@@ -90,7 +90,9 @@ export default {
         g.controls().noPan = true
         g.controls().noZoom = true
         setTimeout(() => {
-          g.zoomToFit(150)
+          if (this.isMobile()) {
+            g.zoomToFit(150)
+          }
         }, 10)
         return group
       })

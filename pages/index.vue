@@ -218,7 +218,7 @@ export default {
   display: flex
   justify-content: center
   align-content: center
-  transition: transform 0.1s ease
+  transition: transform 0.5s ease
   align-items: center
   &:after
     content: none !important
