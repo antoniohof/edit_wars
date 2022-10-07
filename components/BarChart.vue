@@ -147,16 +147,16 @@ export default {
       //console.log('data', fetchedData)
       var datasets = fetchedData.datasets;
 
-      datasets[0] = {
-        ...datasets[0],
+      datasets.map( dataset => ({
+        ...dataset,
         //borderColor: "rgb(255, 0, 0)",
         type: "line",
-        data: datasets[0].data.sort(compare),
+        data: dataset.data.sort(compare),
         borderWidth: 1,
         tension: 0.1,
         backgroundColor: "transparent",
         pointRadius: 0,
-      };
+      }))
 
       var headlines = {
         label: "scatter",

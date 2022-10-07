@@ -93,6 +93,7 @@ const defaultOptions = {
       },
     },
   },
+  /*
   animation: {
     x: {
       duration: 5000,
@@ -102,7 +103,7 @@ const defaultOptions = {
       duration: 3000,
       from: 500
     }
-  }
+  }*/
 };
 
 const getDateValue = (date, data) => {
