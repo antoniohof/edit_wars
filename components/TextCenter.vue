@@ -2,10 +2,6 @@
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_center">
       <div class="text-component_center_container">
-        <div class="text-component_center_container_top"></div>
-        <h1 class="text-component_center_container_title" v-if="hasTitle">
-          {{ currentTitle }}
-        </h1>
         <nuxt-content
           class="text-component_center_container_content"
           :document="step[currentBody]"
@@ -63,7 +59,8 @@ export default {
 
     &_container
       display: flex
-      background-color: $window-text-bg
+      // background-color: $window-text-bg
+      background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
       backdrop-filter: blur(3px)
       border-radius: 4px
       max-width: 80%

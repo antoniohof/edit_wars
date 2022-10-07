@@ -15,17 +15,20 @@
 </template>
 
 <script>
-import { Bar, Scatter } from "vue-chartjs";
+import { Bar, Scatter, Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
   BarElement,
+  PointElement,
   CategoryScale,
+  LineElement,
   LinearScale,
   TimeScale,
 } from "chart.js";
+
 import "chartjs-adapter-date-fns";
 ChartJS.register(
   Title,
@@ -34,7 +37,9 @@ ChartJS.register(
   BarElement,
   CategoryScale,
   LinearScale,
-  TimeScale
+  PointElement,
+  TimeScale,
+  LineElement
 );
 
 import {
@@ -71,7 +76,11 @@ Tooltip.positioners.bottom = function(items) {
 export default {
   name: "BarChart",
   mixins: [StepMixin],
-  components: { Bar, Scatter },
+  components: {     
+    Line,
+    Bar, 
+    Scatter 
+},
   props: {
     background: {
       type: Object,
@@ -137,7 +146,7 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-
+      console.log('data', fetchedData)
       var datasets = fetchedData.datasets;
 
       datasets[0].type = "line";
