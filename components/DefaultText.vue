@@ -1,10 +1,6 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_container">
-      <div class="text-component_container_top"></div>
-      <h1 class="text-component_container_title" v-if="hasTitle">
-        {{ currentTitle }}
-      </h1>
       <nuxt-content
         class="text-component_container_content"
         :document="step[currentBody]"
@@ -19,10 +15,10 @@ import StepMixin from '@/mixins/StepMixin.js'
 export default {
   name: 'DefaultText',
   mixins: [StepMixin],
-  data() {
+  data () {
     return {}
   },
-  mounted() {
+  mounted () {
     console.log('montou')
   },
   async asyncData({ $content }) {},
@@ -50,7 +46,8 @@ export default {
     align-content: flex-start
   &_container
     border-radius: 4px
-    background-color: $window-text-bg
+    // background-color: $window-text-bg
+    background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
     backdrop-filter: blur(3px)
     box-shadow: 0px 4px 25px 0px #00000040
     &_top
