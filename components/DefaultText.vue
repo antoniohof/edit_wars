@@ -40,7 +40,7 @@ export default {
   height: 100vh
   will-change: transform
   @media only screen and (max-width: 480px)
-    max-width: 80vw
+    max-width: 95vw
     align-items: flex-start
     justify-content: flex-start
     align-items: flex-start

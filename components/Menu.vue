@@ -195,7 +195,7 @@ export default {
 .contact
   font-family: Space Mono
   position: absolute
-  bottom: 0px
+  bottom: -2px
   font-size: 20px
   color: grey
   left: 27px

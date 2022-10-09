@@ -108,7 +108,7 @@ export default {
   -o-transform: translateZ(0)
   transform: translateZ(0)
 .hide
-  opacity: 0.05 !important
+  opacity: 0.2 !important
   pointer-events: none !important
 </style>
   

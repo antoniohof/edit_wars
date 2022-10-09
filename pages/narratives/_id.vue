@@ -5,14 +5,16 @@
         {{ getNarrativeName }}
       </h1>
     </div>
-    <WordCloud
-      keep-alive
-      class="wordcloud"
-      :step="currStepObj"
-      :currentStepIndex="currStepIndex"
-      :progress="getStepProgress(currStepIndex)"
-      :background="currentBackground"
-    />
+    <client-only>
+      <WordCloud
+        keep-alive
+        class="wordcloud"
+        :step="currStepObj"
+        :currentStepIndex="currStepIndex"
+        :progress="getStepProgress(currStepIndex)"
+        :background="currentBackground"
+      />
+    </client-only>
     <!--
     <div class="timeline">
       <v-timeline dense>
@@ -28,6 +30,9 @@
       </v-timeline>
     </div>
     -->
+    <div class="infobutton">
+      <img src="~/assets/icons/info.svg"/>
+    </div>
     <transition :name="getBackgroundTransition">
       <div
         class="background"
@@ -425,7 +430,8 @@ export default {
   &_title
     pointer-events: none
     position: sticky
-    top: 35px
+    top: 80px
+    word-spacing: -15px !important
     left: 0
     width: 100vw
     height: 200px
@@ -441,7 +447,7 @@ export default {
       width: 100vw
       left: 0
       color: black
-      font-family: Space Mono
+      font-family: Space Mono Italic
       font-weight: 400
       font-size: 24px
       text-transform: uppercase
@@ -490,15 +496,15 @@ export default {
       box-shadow: 0px !important
 .side
   display: flex
-  width: 25vw !important
+  width: 28vw !important
   align-self: flex-end
-  padding: 0px 27px 0px 27px
+  padding: 0px 30px 0px 30px
   z-index: 2
   @media only screen and (max-width: 480px)
     width: 100% !important
     left: 0 !important
     margin-top: 50% // check
-    padding: 0px 50px 0px 50px
+    padding: 0px 15px 0px 15px
 .scrollama
   flex: 1
   will-change: transform
@@ -563,4 +569,15 @@ export default {
   width: 100vw
   z-index: 0
   background-color: transparent
+
+.infobutton
+  position: fixed
+  bottom: 30px
+  background-color: transparent
+  left: 31px
+  height: 40px
+  width: 40px
+  img
+    height: 40px
+    width: 40px
 </style>
