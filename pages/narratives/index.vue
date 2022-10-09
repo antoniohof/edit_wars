@@ -1,5 +1,4 @@
 <template>
-  <v-container class="narratives-page ma-0 pa-0" fluid>.</v-container>
 </template>
 
 <script>

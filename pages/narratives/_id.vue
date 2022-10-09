@@ -449,7 +449,7 @@ export default {
       color: black
       font-family: Space Mono Italic
       font-weight: 400
-      font-size: 24px
+      font-size: 22px
       text-transform: uppercase
       @media only screen and (max-width: 480px)
         padding: 0px 50px 0px 50px !important
