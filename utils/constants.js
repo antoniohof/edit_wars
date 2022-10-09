@@ -1,10 +1,5 @@
 const narratives = [
   {
-    id: 0,
-    label: '',
-    path: ''
-  },
-  {
     id: 1,
     name: '“Freezing Europe”',
     subtitle: "myths and propaganda about sanctions against Russia in connection with the invasion of Ukraine",
@@ -23,6 +18,7 @@ const narratives = [
     name: 'Mythical “Nazis”',
     subtitle: "constructing an enemy through the exploitation of historical memory",
     slug: 'mythical-nazis',
+    disabled: false
   },
   {
     id: 4,

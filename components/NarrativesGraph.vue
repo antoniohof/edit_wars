@@ -10,7 +10,8 @@
     data() {
       return {
         g: null,
-        currentRoute: '/'
+        currentRoute: '/',
+        fonts: {}
       }
     },
     scrollToTop: true,
@@ -19,8 +20,14 @@
       if (!process.browser) {
         return
       }
+
+      this.currentRoute = this.$nuxt.$route.path
+      console.log('this.currentRoute', this.currentRoute)
       process.nextTick(() => {
         this.buildGraph()
+        process.nextTick(() => {
+          this.calculateOpacities()
+        })
       })
     },
     async asyncData({ $content }) {},
@@ -41,6 +48,23 @@
     components: {},
   
     methods: {
+      calculateOpacities () {
+        process.nextTick(() => {
+          console.log('this.fonts', this.fonts)
+          console.log('window.location.pathname', window.location.pathname)
+          for (const property in this.fonts) {
+            console.log(`${property}: ${this.fonts[property]}`);
+            const mat = this.fonts[property]
+            if (window.location.pathname == '/narratives') {
+              console.log('narrative')
+              mat.opacity = narratives[property]?.disabled ? 0.5 : 1
+            } else {
+              console.log('not narrative pages')
+              mat.opacity = 0
+            }
+          }
+        })
+      },
       buildGraph () {
         let ForceGraph3D
         if (window) {
@@ -59,25 +83,45 @@
           disabled: narrative.disabled
         }))
         const ds = data.filter((d) => !!d)
+
+        
+        /*
         // empty node to conect all
         ds.push({
           id: 0,
           label: '',
           path: ''
         })
+        */
+
+        const nums = new Set();
+        while(nums.size !== 2) {
+          const num = Math.floor(Math.random() * ds.length - 1)
+          if (num > 0) {
+            nums.add(num);
+          }
+        }
+        const arr = [...nums]
+        console.log('arr', arr)
+
         var links = ds.map((n) => ({
-          source: ds.filter(d=> d.id !== n.id)[Math.floor(Math.random()*(ds.length-1))],
+          source: ds.filter(d=> d.id !== n.id)[arr[0]],
           target: n.id,
           color: 'rgba(0,0,0,1)'
         }))
-        //console.log("links", links)
-    
+        
+        var links2 = ds.map((n) => ({
+          source: ds.filter(d=> d.id !== n.id)[arr[1]],
+          target: n.id,
+          color: 'rgba(0,0,0,1)'
+        }))
         const gData = {
           nodes: ds,
-          links: links
+          links: links.concat(links2)
         }
         console.log('gdata', gData)
         console.log('gdata string', JSON.stringify(gData))
+
         let fontSize = 6
         let scale = 0.8
         let position = 10
@@ -99,12 +143,13 @@
               const geometry = new THREE.SphereGeometry(5, 64, 64)
               const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
               const sphere = new THREE.Mesh(geometry, material)
-              sphere.material.opacity = node.disabled ? 0.5 : 1
               sphere.scale.set(scale, scale, scale)
               const sprite = new SpriteText(node.label.toUpperCase())
               sprite.fontFace = 'Space Mono Italic'
               sprite.material.depthWrite = false // make sprite background transparent
-              sprite.material.opacity = node.disabled ? 0.5 : 1
+              sprite.material.opacity = 0 
+              this.fonts[node.id] = sprite.material
+              
               sprite.color = node.color
               sprite.textHeight = fontSize
               group.add(sprite)
@@ -116,7 +161,13 @@
             g.controls().noZoom = true
             setTimeout(() => {
               if (this.isMobile()) {
-                g.zoomToFit(150)
+                g.zoomToFit(500)
+
+                g.cameraPosition(
+                  { x: 0, y: 0, z: 1200 }, // new position
+                  0, // lookAt ({ x, y, z })
+                  500  // ms transition duration
+                );
               }
             }, 10)
             return group
@@ -162,6 +213,7 @@
         console.log('NEW ROUTE', val)
         this.currentRoute = val
         console.log('graph', this.g)
+        this.calculateOpacities()
       }
     },
     beforeDestroy() {}
