@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Bar, Scatter } from "vue-chartjs";
+import { Bar, Scatter, Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -76,7 +76,8 @@ export default {
   mixins: [StepMixin],
   components: {     
     Bar, 
-    Scatter 
+    Scatter,
+    Line
 },
   props: {
     background: {

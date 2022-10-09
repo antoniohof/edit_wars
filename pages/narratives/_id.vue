@@ -42,7 +42,7 @@
         "
       >
       <client-only>
-        <LazyNuxtDynamic
+        <NuxtDynamic
           class="background_container"
           :component="currentBackground.component"
           :background="currentBackground"
