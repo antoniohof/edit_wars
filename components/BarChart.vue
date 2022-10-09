@@ -20,6 +20,8 @@
 import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
 import Chart from 'chart.js/auto';
 
+import { Tooltip } from 'chart.js'
+
 import "chartjs-adapter-date-fns";
 
 
