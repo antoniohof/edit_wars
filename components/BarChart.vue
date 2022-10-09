@@ -111,7 +111,12 @@ export default {
     const dataIndex = this.step.order - this.background.stepstart;
     console.log("dataIndex", dataIndex);
     console.log("this.dataList", this.dataList);
-    this.setData(this.dataList[dataIndex]);
+    let data = this.dataList[0]
+    if (this.dataList[dataIndex]) {
+      data = this.dataList[dataIndex]
+    }
+    console.log('data to send', data)
+    this.setData(data)
   },
   methods: {
     async loadData() {
@@ -207,9 +212,12 @@ export default {
   watch: {
     step(step) {
       const dataIndex = step.order - this.background.stepstart;
-      console.log("this.background.stepstart ", this.background.stepstart);
-      console.log("dataIndex", dataIndex);
-      this.setData(this.dataList[dataIndex]);
+      let data = this.dataList[0]
+      if (this.dataList[dataIndex]) {
+        data = this.dataList[dataIndex]
+      }
+      console.log('data to send', data)
+      this.setData(data)
     },
   },
 };
