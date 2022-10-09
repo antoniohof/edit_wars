@@ -25,9 +25,9 @@
       console.log('this.currentRoute', this.currentRoute)
       process.nextTick(() => {
         this.buildGraph()
-        process.nextTick(() => {
+        setTimeout(() => {
           this.calculateOpacities()
-        })
+        }, 100)
       })
     },
     async asyncData({ $content }) {},
@@ -55,7 +55,7 @@
           for (const property in this.fonts) {
             console.log(`${property}: ${this.fonts[property]}`);
             const mat = this.fonts[property]
-            if (window.location.pathname == '/narratives') {
+            if (window.location.pathname == "/narratives") {
               console.log('narrative')
               mat.opacity = narratives[property]?.disabled ? 0.5 : 1
             } else {
