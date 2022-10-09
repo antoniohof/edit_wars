@@ -2,7 +2,7 @@
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
     <client-only>
-    <Scatter
+    <scatterjs
       v-if="currentChartData"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Bar, Scatter } from "vue-chartjs";
+import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -80,8 +80,9 @@ export default {
   name: "BarChart",
   mixins: [StepMixin],
   components: {     
-    Bar, 
-    Scatter
+    barjs, 
+    scatterjs,
+    linejs
 },
   props: {
     background: {
