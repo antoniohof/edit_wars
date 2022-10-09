@@ -543,6 +543,7 @@ export default {
   @media only screen and (max-width: 480px)
     width: 100vw !important
     left: 0
+    margin-top: calc(50% - 60px)
 .background_container
   display: flex
   justify-content: center
