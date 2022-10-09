@@ -206,7 +206,7 @@ export default {
   opacity: 1.0
   transition: opacity 0.4s ease
 .intro-title
-  z-index: 1
+  z-index: 20
   width: 100%
   pointer-events: none
   margin-top: -64px

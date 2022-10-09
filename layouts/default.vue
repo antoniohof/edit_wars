@@ -170,6 +170,9 @@ export default {
           transition-delay: 0.5s
 .main
   color: white
+  &.blur
+    backdrop-filter: blur(3px) !important
+
 .backgroundgraph
   position: fixed
   top: 0

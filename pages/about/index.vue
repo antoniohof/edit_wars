@@ -161,6 +161,7 @@ export default {
   margin: 0px 85px 0px 85px
   color: black
   &-title
+    z-index: 10
     font-family: Space Mono
     font-size: 29px
     margin-bottom: 30px
@@ -172,6 +173,7 @@ export default {
     margin: 0px !important
     height: fit-content
     max-height: 400px
+    z-index: 10
 
 .title
   font-family: Space Mono !important
@@ -180,6 +182,7 @@ export default {
   text-transform: uppercase
   color: black
   padding: 0px !important
+  z-index: 10
 
 .topic
   font-family: Golos-Text-Regular
@@ -203,6 +206,7 @@ export default {
 
 .v-list
   height: fit-content
+  background: transparent
 .v-list-item
   padding: 0 0
 .v-list-item__content
