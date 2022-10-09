@@ -77,4 +77,8 @@ const narratives = [
 
 const colorPalette = ['#FFBE41', '#A67BEA', '#66CE79', '#FF70B6']
 
-export { narratives, colorPalette }
+const colors = {
+  chartColor: '#666565'
+}
+
+export { narratives, colorPalette, colors }

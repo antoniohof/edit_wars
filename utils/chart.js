@@ -5,10 +5,18 @@ const defaultOptions = {
   plugins: {
     legend: {
       display: false,
+      labels: {
+        // This more specific font property overrides the global property
+        font: {
+          size: 12,
+          family: "Golos-Text-Regular",
+        }
+    }
     },
     tooltip: {
       position: (context) => {
-        if (context.chart.tooltip && context.tooltip.dataPoints[0].raw.type === 'event') {
+        return 'nearest'
+        if (context.chart.tooltip?.dataPoints && context.chart.tooltip && context.tooltip.dataPoints[0].raw.type === 'event') {
           return 'bottom'
         } else {
           return 'nearest'
@@ -60,7 +68,7 @@ const defaultOptions = {
       font: {
         size: "18",
         weight: "normal",
-        family: "Golos-Text-Regular",
+        family: "Space Mono",
       },
     },
   },
@@ -75,18 +83,18 @@ const defaultOptions = {
         },
       },
       grid: {
-        display: false,
+        display: true,
         drawBorder: true,
-        drawOnChartArea: false,
-        drawTicks: false,
+        drawOnChartArea: true,
+        drawTicks: true,
       },
     },
     y: {
       grid: {
-        display: false,
+        display: true,
         drawBorder: true,
-        drawOnChartArea: false,
-        drawTicks: false,
+        drawOnChartArea: true,
+        drawTicks: true,
       },
       ticks: {
         // Include a dollar sign in the ticks
