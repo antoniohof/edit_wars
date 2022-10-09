@@ -8,7 +8,6 @@ const defaultOptions = {
     },
     tooltip: {
       position: (context) => {
-        return 'nearest'
         if (context.chart.tooltip && context.tooltip.dataPoints[0].raw.type === 'event') {
           return 'bottom'
         } else {
