@@ -110,10 +110,12 @@ export default {
     if (process.client) {
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
-      let data = this.dataList[0]
+      let data = this.dataList[dataIndex]
+      /*
       if (this.dataList[dataIndex]) {
         data = this.dataList[dataIndex]
       }
+      */
       this.setData(data)
     }
   },
@@ -225,10 +227,12 @@ export default {
       step(step) {
         if (process.client) {
         const dataIndex = step.order - this.background.stepstart;
-        let data = this.dataList[0]
+        let data = this.dataList[dataIndex]
+        /*
         if (this.dataList[dataIndex]) {
           data = this.dataList[dataIndex]
         }
+        */
         this.setData(data)
       }
     },
