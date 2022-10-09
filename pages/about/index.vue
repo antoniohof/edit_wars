@@ -179,6 +179,7 @@ export default {
   font-family: Space Mono !important
   font-size: 29px !important
   overflow: visible
+  user-select: none
   text-transform: uppercase
   color: black
   padding: 0px !important
