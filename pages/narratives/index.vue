@@ -1,4 +1,11 @@
 <template>
+  <transition name="fade">
+    <div class="arrow" @click="onClickArrow">
+      <div class="adjuster">
+        <img src="~/assets/icons/arrow.svg" />
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -111,6 +118,9 @@ export default {
   components: {},
 
   methods: {
+    onClickArrow () {
+      this.$router.push({ path: '/about'})
+    },
     isMobile() {
       let check = false
       ;(function (a) {

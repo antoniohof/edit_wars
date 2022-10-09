@@ -175,12 +175,16 @@ export default {
   margin-right: 5px !important
 
 .dot
-  height: 16px
-  width: 16px
+  height: 12px
+  width: 12px
   background-color: black
   border-radius: 50%
   display: inline-block
-
+  margin-left: 2px
+  &.selected
+    height: 16px
+    width: 16px
+    margin-left: 0px !important
 .line:before
   content: ""
   display: block

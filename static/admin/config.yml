@@ -41,6 +41,8 @@ collections:
           - { label: tools_ru, name: abouttools_ru, widget: markdown }
           - { label: funding_en, name: aboutfunding_en, widget: markdown }
           - { label: funding_ru, name: aboutfunding_ru, widget: markdown }
+          - { label: context_en, name: aboutcontext_en, widget: markdown }
+          - { label: context_ru, name: aboutcontext_ru, widget: markdown }
   - label: "Narrative 1 Steps"
     label_singular: "Narrative 1 Step"
     name: "narrative1steps"

@@ -51,6 +51,11 @@ export default {
     return {
       topics: [
         {
+          title: 'Context',
+          content: 'context',
+          isOpen: false
+        },
+        {
           title: 'Goals',
           content: 'goals',
           isOpen: false
@@ -113,6 +118,9 @@ export default {
     },
     funding() {
       return this.about['aboutfunding_' + this.$i18n.locale]
+    },
+    context() {
+      return this.about['aboutcontext_' + this.$i18n.locale]
     }
   },
   components: {},

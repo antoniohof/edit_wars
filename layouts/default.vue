@@ -43,7 +43,9 @@
         </transition>
       </v-app-bar>
     <v-main class="main">
-      <nuxt class="content" :key="$route.params.id" />
+      <transition name="fade">
+        <nuxt class="content" :key="$route.params.id" />
+      </transition>
     </v-main>
   </v-app>
 </template>
