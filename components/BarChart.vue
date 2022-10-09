@@ -151,12 +151,13 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
+      var data = JSON.parse(JSON.stringify(fetchedData)) 
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
 
-      console.log("fetchedData.datasets", fetchedData.datasets,)
+      console.log("fetchedData.datasets", data.datasets,)
       
-      fetchedData.datasets.forEach(narrative => {
+      data.datasets.forEach(narrative => {
         console.log("narrative", narrative)
         var data = narrative.data//.sort(compare)
         datasets.push({
@@ -170,7 +171,6 @@ export default {
           pointRadius: 0,
         })
       });
-      /*
 
       
       var headlines = {
@@ -181,7 +181,7 @@ export default {
         borderRadius: 4,
         backgroundColor: "transparent",
         //type: 'scatter-chart',
-        data: fetchedData.headlines.map((headline) => ({
+        data: data.headlines.map((headline) => ({
           x: headline.date,
           y: 0,//getDateValue(headline.date, datasets[0].data),
           label: headline.text_en,
@@ -198,7 +198,7 @@ export default {
         radius: 5,
         borderRadius: 4,
         backgroundColor: "red",
-        data: fetchedData.events.map(event => ({
+        data: data.events.map(event => ({
           x: event.date,
           y: 0,
           label: event.text,
@@ -211,10 +211,9 @@ export default {
       datasets = datasets.concat(events);
 
       console.log("datasets", datasets)
-      */
 
       this.currentChartData = {
-        labels: fetchedData.labels,
+        labels: data.labels,
         datasets: datasets,
       };
     },
