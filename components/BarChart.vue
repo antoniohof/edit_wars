@@ -127,8 +127,15 @@ export default {
           name +
           ".json";
         await fetch(parseDataUrl(url))
-          .then((response) => response.json())
+          .then((response) => { 
+            console.log('response', response)
+            return response.ok ? response.json() : undefined 
+          })
           .then((fetchedData) => {
+            if (!fetchedData) {
+              console.error("MISSING DATA FOR STEP: " + this.currentStepIndex)
+              return
+            }
             this.dataList.push(fetchedData);
             console.log("loaded", this.dataList);
           });
