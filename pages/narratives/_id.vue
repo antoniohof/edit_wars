@@ -46,7 +46,6 @@
           class="background_container"
           :component="currentBackground.component"
           :background="currentBackground"
-          keep-alive
           :step="currStepObj"
           :currentStepIndex="currStepIndex"
           :progress="getStepProgress(currStepIndex)"

@@ -107,13 +107,15 @@ export default {
     };
   },
   async mounted() {
-    await this.loadData();
-    const dataIndex = this.step.order - this.background.stepstart;
-    let data = this.dataList[0]
-    if (this.dataList[dataIndex]) {
-      data = this.dataList[dataIndex]
+    if (process.client) {
+      await this.loadData();
+      const dataIndex = this.step.order - this.background.stepstart;
+      let data = this.dataList[0]
+      if (this.dataList[dataIndex]) {
+        data = this.dataList[dataIndex]
+      }
+      this.setData(data)
     }
-    this.setData(data)
   },
   methods: {
     async loadData() {
@@ -214,13 +216,15 @@ export default {
     },
   },
   watch: {
-    step(step) {
-      const dataIndex = step.order - this.background.stepstart;
-      let data = this.dataList[0]
-      if (this.dataList[dataIndex]) {
-        data = this.dataList[dataIndex]
+      step(step) {
+        if (process.client) {
+        const dataIndex = step.order - this.background.stepstart;
+        let data = this.dataList[0]
+        if (this.dataList[dataIndex]) {
+          data = this.dataList[dataIndex]
+        }
+        this.setData(data)
       }
-      this.setData(data)
     },
   },
 };
