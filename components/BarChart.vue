@@ -154,26 +154,22 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      var data = JSON.parse(JSON.stringify(fetchedData)) 
+      var fetchedData = JSON.parse(JSON.stringify(fetchedData)) 
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
 
-      console.log("fetchedData.datasets", data.datasets)
+      console.log("fetchedData.datasets", fetchedData.datasets)
       
-      data.datasets.forEach(narrative => {
-        console.log("narrative", narrative)
-        var data = narrative.data//.sort(compare)
-        datasets.push({
+      datasets[0] = {
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
           type: "line",
-          data: data,
+          data: fetchedData.datasets[0].data,
           borderWidth: 1,
           tension: 0.1,
           backgroundColor: "transparent",
           pointRadius: 0,
-        })
-      });
+        }
 
       /*
       var headlines = {
@@ -221,7 +217,7 @@ export default {
       datasets = JSON.parse(JSON.stringify(datasets)) 
 
       this.currentChartData = {
-        labels: data.labels,
+        labels: fetchedData.labels,
         datasets: datasets,
       };
     },
