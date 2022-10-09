@@ -1,5 +1,5 @@
 <template>
-  <v-container class="narratives-page ma-0 pa-0" fluid> </v-container>
+  <v-container class="narratives-page ma-0 pa-0" fluid>.</v-container>
 </template>
 
 <script>
@@ -150,6 +150,7 @@ export default {
   background-color: white
   flex-direction: column
   align-content: flex-start
+  color: white
   width: 100%
   margin-bottom: 200px
   color: black
