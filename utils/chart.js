@@ -125,7 +125,6 @@ const getDateValue = (date, data) => {
   console.log("foundIndex", foundIndex)  
   var closestDate = data[foundIndex].x
   var dateDiff = getDateDiff(closestDate, date)
-  console.log("dateDiff", dateDiff)
   
   if (value) {
     return value.y
