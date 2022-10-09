@@ -154,7 +154,7 @@ export default {
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
 
-      console.log("fetchedData.datasets", fetchedData.datasets, fetchedData)
+      console.log("fetchedData.datasets", fetchedData.datasets,)
       
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
@@ -162,16 +162,15 @@ export default {
         datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
-          type: "bar",
+          type: "line",
           data: data,
           borderWidth: 1,
           tension: 0.1,
           backgroundColor: "transparent",
           pointRadius: 0,
-          events: narrative.events,
-          headlines: narrative.headlines,
         })
       });
+      /*
 
       
       var headlines = {
@@ -212,6 +211,7 @@ export default {
       datasets = datasets.concat(events);
 
       console.log("datasets", datasets)
+      */
 
       this.currentChartData = {
         labels: fetchedData.labels,
