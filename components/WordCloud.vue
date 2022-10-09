@@ -1,6 +1,6 @@
 <template>
   <div class="wordcloud-page ma-0 pa-0" :class="{ hide: fadeCloud }">
-    <iframe ref="wordcloud" sandbox="allow-scripts allow-same-origin allow-modal" class="wordcloudiframe" :src="currentUrl"></iframe>
+    <iframe ref="wordcloud" sandbox="allow-scripts allow-same-origin" class="wordcloudiframe" :src="currentUrl"></iframe>
   </div>
 </template>
   
