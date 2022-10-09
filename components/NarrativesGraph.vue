@@ -57,7 +57,7 @@
             const mat = this.fonts[property]
             if (window.location.pathname == "/narratives") {
               console.log('narrative')
-              mat.opacity = narratives[property]?.disabled ? 0.5 : 1
+              mat.opacity = narratives[property]?.disabled ? 0.25 : 1
             } else {
               console.log('not narrative pages')
               mat.opacity = 0
@@ -177,7 +177,7 @@
           if (this.isMobile()) {
             g.d3Force('charge').strength(-1000)
           } else {
-            g.d3Force('charge').strength(-500)
+            g.d3Force('charge').strength(-800)
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
