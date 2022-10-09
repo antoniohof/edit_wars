@@ -28,7 +28,7 @@ import {
   BarElement,
   PointElement,
   CategoryScale,
-  LineElement,
+  //LineElement,
   LinearScale,
   TimeScale,
 } from "chart.js";
@@ -43,7 +43,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   TimeScale,
-  LineElement
+  //LineElement
 );
 
 import {
