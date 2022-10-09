@@ -1,7 +1,6 @@
 <template>
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
-    <client-only>
     <scatterjs
       v-if="currentChartData"
       :chart-options="chartOptions"
@@ -13,7 +12,6 @@
       :width="width"
       :height="height"
     />
-    </client-only>
     <p class="chart-description" v-show="background">{{ background.description }}</p>
   </div>
 </template>

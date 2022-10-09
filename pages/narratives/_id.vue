@@ -30,8 +30,13 @@
       </v-timeline>
     </div>
     -->
-    <div class="infobutton">
+    <div class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
+    </div>
+    <div v-if="infoOpen" class="infosquare">
+      <p>
+        The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: GDELT.
+      </p>
     </div>
     <transition :name="getBackgroundTransition">
       <div
@@ -114,6 +119,7 @@ export default {
     })
   },
   mounted() {
+    document.addEventListener(('click'), this.closeInfo)
     window.mobileCheck = function () {
       let check = false
       ;(function (a) {
@@ -159,12 +165,14 @@ export default {
     //window.addEventListener('scroll', throttle(callback, 1000));
   },
   beforeDestroy() {
+    document.removeEventListener(('click'), this.closeInfo)
     cancelAnimationFrame(this.backgroundAnimation)
   },
   activated() {},
   updated() {},
   data() {
     return {
+      infoOpen: false,
       isMobile: false,
       backgroundContainer: null,
       currentNarrative: {},
@@ -228,6 +236,13 @@ export default {
     }
   },
   methods: {
+    closeInfo () {
+      this.infoOpen = false
+    },
+    onClickOnInfo () {
+      console.log('on click info')
+      this.infoOpen = true
+    },
     onProgress(val) {
       this.currStepProgress = val.progress
     },
@@ -571,13 +586,29 @@ export default {
   z-index: 0
   background-color: transparent
 
+.infosquare
+  position: fixed
+  cursor: pointer
+  color: white
+  display: flex
+  bottom: 30px
+  background-color: black
+  left: 31px
+  height: 80px
+  width: 80px
+  p
+    font-size: 30px
 .infobutton
   position: fixed
+  cursor: pointer
   bottom: 30px
   background-color: transparent
   left: 31px
   height: 40px
   width: 40px
+  :hover
+    transform: rotateZ(360deg)
+    transition: transform 1s
   img
     height: 40px
     width: 40px
