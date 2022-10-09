@@ -20,31 +20,10 @@
 
 <script>
 import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  PointElement,
-  CategoryScale,
-  //LineElement,
-  LinearScale,
-  TimeScale,
-} from "chart.js";
+import Chart from 'chart.js/auto';
 
 import "chartjs-adapter-date-fns";
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  TimeScale,
-  //LineElement
-);
+
 
 import {
   getDates,
