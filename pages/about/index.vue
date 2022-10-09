@@ -51,6 +51,11 @@ export default {
     return {
       topics: [
         {
+          title: 'Context',
+          content: 'context',
+          isOpen: false
+        },
+        {
           title: 'Goals',
           content: 'goals',
           isOpen: false

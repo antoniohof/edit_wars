@@ -259,6 +259,20 @@ export default {
           document['aboutfunding_ru']
         )
       }
+      if (document['aboutcontext_en']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutcontext_en'] = await database.markdown.toJSON(
+          document['aboutcontext_en']
+        )
+      }
+      if (document['aboutcontext_ru']) {
+        // Replace Markdown string in database
+        // with the JSON ATS version
+        document['aboutcontext_ru'] = await database.markdown.toJSON(
+          document['aboutcontext_ru']
+        )
+      }
     }
   },
   styleResources: {
