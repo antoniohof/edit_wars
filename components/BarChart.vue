@@ -165,7 +165,7 @@ export default {
         datasets[0] = {
             //...narrative,
             //borderColor: "rgb(255, 0, 0)",
-            type: "line",
+            //type: "line",
             data: [],//fetchedData.datasets[0].data,
             borderWidth: 1,
             tension: 0.1,
