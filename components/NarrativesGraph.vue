@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'blur': isBlurred}" class="narrative-graph-page">.</div>
+  <div :class="{'blur': isBlurred, 'nopoint': isNoPoint }" class="narrative-graph-page">.</div>
 </template>
   
 <script>
@@ -25,6 +25,12 @@
     },
     async asyncData({ $content }) {},
     computed: {
+      isNoPoint () {
+        if (!process.browser) {
+          return false
+        }
+        return $nuxt.$route.path === '/'
+      },
       isBlurred () {
         if (!process.browser) {
           return false
@@ -185,6 +191,8 @@
   .blur
     filter: blur(3px)
     transition: all 0.4s ease
+  .nopoint
+    pointer-events: none
 
 
   </style>
