@@ -303,6 +303,11 @@ export default {
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    html: { 
+      minify: {
+        minifyJS: false
+      }
+    },
     transpile: [
       'three'
       /*
