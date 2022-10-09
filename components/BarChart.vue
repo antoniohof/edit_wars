@@ -112,13 +112,7 @@ export default {
           name +
           ".json";
         await fetch(parseDataUrl(url))
-          .then((response) => { 
-            if (response.status === 200) {
-              response.json() 
-            } else {
-              return undefined
-            }
-          })
+          .then((response) => response.json())
           .then((fetchedData) => {
             if (!fetchedData) {
               console.error(url)
