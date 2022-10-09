@@ -5,14 +5,16 @@
         {{ getNarrativeName }}
       </h1>
     </div>
-    <WordCloud
-      keep-alive
-      class="wordcloud"
-      :step="currStepObj"
-      :currentStepIndex="currStepIndex"
-      :progress="getStepProgress(currStepIndex)"
-      :background="currentBackground"
-    />
+    <client-only>
+      <WordCloud
+        keep-alive
+        class="wordcloud"
+        :step="currStepObj"
+        :currentStepIndex="currStepIndex"
+        :progress="getStepProgress(currStepIndex)"
+        :background="currentBackground"
+      />
+    </client-only>
     <!--
     <div class="timeline">
       <v-timeline dense>
