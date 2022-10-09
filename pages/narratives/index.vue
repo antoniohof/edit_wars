@@ -1,5 +1,5 @@
 <template>
-  <v-container class="narratives-page ma-0 pa-0" fluid> </v-container>
+  <v-container class="narratives-page ma-0 pa-0" fluid>.</v-container>
 </template>
 
 <script>
@@ -55,7 +55,7 @@ export default {
       nodes: ds,
       links: links
     }
-    let fontSize = 8
+    let fontSize = 6
     let scale = 0.8
     let position = 10
     if (this.isMobile()) {
@@ -139,11 +139,18 @@ export default {
 </script>
 
 <style lang="sass">
+@font-face
+  font-family: "Space Mono Italic"
+  font-style: italic
+  src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
+
 .narratives-page
+  font-family: Space Mono Italic
   display: flex
   background-color: white
   flex-direction: column
   align-content: flex-start
+  color: white
   width: 100%
   margin-bottom: 200px
   color: black

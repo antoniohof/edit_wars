@@ -18,7 +18,7 @@ narratives[3] = {
 }
 narratives[4] = {
   id: 4,
-  name: '“cold-war-ii',
+  name: '“cold-war-ii”',
   slug: 'cold-war-ii'
 }
 
