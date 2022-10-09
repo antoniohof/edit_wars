@@ -36,7 +36,8 @@ export default {
     const data = narratives.map((narrative) => ({
       id: narrative.id,
       label: narrative.name,
-      path: narrative.slug
+      path: narrative.slug,
+      disabled: narrative.disabled
     }))
     const ds = data.filter((d) => !!d)
     // empty node to conect all
@@ -46,10 +47,11 @@ export default {
       path: ''
     })
     var links = ds.map((n) => ({
-      source: 0,
+      source: ds.filter(d=> d.id !== n.id)[Math.floor(Math.random()*(ds.length-1))],
       target: n.id,
       color: 'rgba(0,0,0,1)'
     }))
+    //console.log("links", links)
 
     const gData = {
       nodes: ds,
@@ -76,10 +78,12 @@ export default {
           const geometry = new THREE.SphereGeometry(5, 64, 64)
           const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
           const sphere = new THREE.Mesh(geometry, material)
+          sphere.material.opacity = node.disabled ? 0.5 : 1
           sphere.scale.set(scale, scale, scale)
           const sprite = new SpriteText(node.label.toUpperCase())
           sprite.fontFace = 'Space Mono Italic'
           sprite.material.depthWrite = false // make sprite background transparent
+          sprite.material.opacity = node.disabled ? 0.5 : 1
           sprite.color = node.color
           sprite.textHeight = fontSize
           group.add(sprite)
@@ -100,7 +104,7 @@ export default {
     if (this.isMobile()) {
       g.d3Force('charge').strength(-1000)
     } else {
-      g.d3Force('charge').strength(-1800)
+      g.d3Force('charge').strength(-300)
     }
     window.addEventListener( 'resize', this.onWindowResize, false );
 
@@ -130,7 +134,9 @@ export default {
       this.g.height(window.innerHeight)
     },
     onNodeClick(node) {
-      this.$router.push({ path: '/narratives/' + node.path })
+      if (!node.disabled) {
+        this.$router.push({ path: '/narratives/' + node.path })
+      }
     }
   },
   watch: {},
@@ -143,6 +149,9 @@ export default {
   font-family: "Space Mono Italic"
   font-style: italic
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
+
+.scene-container
+  margin-top: -64px !important
 
 .narratives-page
   font-family: Space Mono Italic

@@ -57,12 +57,10 @@ import { defaultOptions, getDateValue } from "../utils/chart"
 
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
-
   // Happens when nothing is found
   if (pos === false) {
     return false;
   }
-
   const chart = this.chart;
 
   return {
@@ -202,7 +200,7 @@ export default {
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
 
-      console.log("fetchedData", fetchedData);
+      // console.log("fetchedData", fetchedData);
       this.currentChartData = {
         labels: fetchedData.labels,
         datasets: datasets,
