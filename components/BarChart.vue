@@ -157,7 +157,7 @@ export default {
         console.log("narrative", narrative)
         var data = narrative.data.sort(compare)
         datasets.push({
-          ...narrative,
+          //...narrative,
           //borderColor: "rgb(255, 0, 0)",
           type: "line",
           data: data,
