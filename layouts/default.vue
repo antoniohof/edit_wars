@@ -182,6 +182,7 @@ export default {
   z-index: 5
 .title
   cursor: pointer
+  user-select: none
   color: black !important
   font-size: 54px !important
   z-index: 100

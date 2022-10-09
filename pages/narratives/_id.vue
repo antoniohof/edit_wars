@@ -7,6 +7,7 @@
     </div>
     <client-only>
       <WordCloud
+        @click="closeInfo"
         keep-alive
         class="wordcloud"
         :step="currStepObj"
@@ -30,12 +31,12 @@
       </v-timeline>
     </div>
     -->
-    <div class="infobutton" @click="onClickOnInfo">
+    <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
     </div>
     <div v-if="infoOpen" class="infosquare">
       <p>
-        The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: GDELT.
+        The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
       </p>
     </div>
     <transition :name="getBackgroundTransition">
@@ -236,12 +237,22 @@ export default {
     }
   },
   methods: {
+    onClickGdelt () {
+      console.log('on click gdelt')
+      const url = 'https://www.gdeltproject.org/'
+      window.open(url, '_blank').focus()
+    },
     closeInfo () {
-      this.infoOpen = false
+      console.log('close info')
+      if (this.infoOpen) {
+        this.infoOpen = false
+      }
     },
     onClickOnInfo () {
       console.log('on click info')
-      this.infoOpen = true
+      process.nextTick(() => {
+        this.infoOpen = true
+      })
     },
     onProgress(val) {
       this.currStepProgress = val.progress
@@ -592,12 +603,19 @@ export default {
   color: white
   display: flex
   bottom: 30px
+  border-radius: 4px
   background-color: black
   left: 31px
-  height: 80px
-  width: 80px
+  height: 100px
+  width: 400px
+  padding: 10px
+  backdrop-filter: blur(3px)
+  background-color: rgba(1,1,1,0.8)
+  z-index: 50
   p
-    font-size: 30px
+    font-size: 13px
+    margin-bottom: 0px !important
+    font-family: Space Mono
 .infobutton
   position: fixed
   cursor: pointer
