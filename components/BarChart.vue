@@ -149,11 +149,11 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      var datasets = [...fetchedData.datasets];
-
-      datasets = datasets.map(narrative => {
+      //var fetchedDatasets = [...fetchedData.datasets];
+      var datasets = []
+      datasets = fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
-        return {
+        datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
           type: "line",
@@ -162,7 +162,7 @@ export default {
           tension: 0.1,
           backgroundColor: "transparent",
           pointRadius: 0,
-        }
+        })
       });
       
       var headlines = {
