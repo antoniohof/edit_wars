@@ -274,13 +274,11 @@ export default {
       })
     },
     backgroundLoop() {
-      console.log('backgroundLoop1')
       if (this.currentBackgroundToShow) {
         this.backgroundContainer = document.querySelector(
           '.background_container'
         )
         if (this.backgroundContainer) {
-          console.log('backgroundLoop2')
           let oneStepBackground = true
           if (
             this.currentBackground.stepend - this.currentBackground.stepstart >
@@ -297,7 +295,6 @@ export default {
           const currOrder = parseInt(
             this.narrativeSteps[this.currStepIndex]?.order
           )
-          console.log('backgroundLoop3')
 
           let translateY = top - this.currentBackgroundScroll
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
