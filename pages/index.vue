@@ -49,7 +49,7 @@ export default {
       this.showName = true
     }, 700)
     window.addEventListener('scroll', this.handleScroll)
-
+    /*
     let ForceGraph3D
     if (window) {
       ForceGraph3D = require('3d-force-graph').default
@@ -111,11 +111,12 @@ export default {
 
     this.animation = requestAnimationFrame(step)
 
-    window.addEventListener( 'resize', this.onWindowResize, false );
+    // window.addEventListener( 'resize', this.onWindowResize, false );
+    */
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener( 'resize', this.onWindowResize );
+    // window.removeEventListener( 'resize', this.onWindowResize );
 
     cancelAnimationFrame(this.animation)
   },

@@ -1,7 +1,10 @@
 <template>
   <v-app id="app">
+    <client-only>
+      <NarrativesGraph class='backgroundgraph' v-if="isHomeRoute || isNarrativesRoute || isAboutRoute">
+      </NarrativesGraph>
+    </client-only>
     <Menu @onclose="onMenuClose" :isOpen="isMenuOpen"></Menu>
-    <transition name="fade">
       <v-app-bar
         app
         flat
@@ -10,13 +13,16 @@
         color="transparent"
         justify-space-around
       >
+      <transition name="fade">
         <div
-          v-if="!isHomeRoute && delayOver"
+          v-show="!isHomeRoute && delayOver"
           @click="onClickHome"
           class="title"
         >
           EDIT WARS
         </div>
+      </transition>
+
         <!--
         <NuxtLink
           class="topbar_item justify-end about"
@@ -36,7 +42,6 @@
           </div>
         </transition>
       </v-app-bar>
-    </transition>
     <v-main class="main">
       <nuxt class="content" :key="$route.params.id" />
     </v-main>
@@ -45,6 +50,7 @@
 
 <script>
 import EventBus from '@/utils/event-bus'
+import NarrativesGraph from '../components/NarrativesGraph.vue'
 
 export default {
   head: {
@@ -61,8 +67,20 @@ export default {
     ]
   },
   scrollToTop: false,
-  components: {},
+  components: { NarrativesGraph },
   computed: {
+    isNarrativesRoute () {
+      if (!process.browser) {
+        return null
+      }
+      return $nuxt.$route.path === '/narratives'
+    },
+    isAboutRoute () {
+      if (!process.browser) {
+        return null
+      }
+      return $nuxt.$route.path === '/about'
+    },
     isHomeRoute() {
       if (!process.browser) {
         return null
@@ -152,10 +170,18 @@ export default {
           transition-delay: 0.5s
 .main
   color: white
+.backgroundgraph
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  z-index: 0
 .title
   cursor: pointer
   color: black !important
   font-size: 54px !important
+  z-index: 100
   font-family: Space Mono !important
   font-weight: 700 !important
   margin-left: -2px
