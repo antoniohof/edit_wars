@@ -153,14 +153,14 @@ export default {
       var datasets = []
 
       console.log("datasets", fetchedData.datasets)
-      /*
+      
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
         var data = narrative.data//.sort(compare)
         datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
-          type: "scatter",
+          type: "line",
           data: data,
           borderWidth: 1,
           tension: 0.1,
@@ -170,7 +170,7 @@ export default {
           headlines: narrative.headlines,
         })
       });
-      */
+      
       
       var headlines = {
         label: "scatter",
