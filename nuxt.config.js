@@ -304,8 +304,7 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [
-      'three'
-      /*
+      'three',
       'd3-force-3d',
       'd3-dispatch',
       'd3-timer',
@@ -318,7 +317,7 @@ export default {
       'd3-color',
       'd3-format',
       'd3-quadtree'
-      */
+      
     ],
     extend(config, ctx) {
       config.module.rules.push({

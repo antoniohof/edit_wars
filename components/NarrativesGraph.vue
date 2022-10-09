@@ -1,6 +1,6 @@
 <template>
-    <v-container class="narrative-graph-page ma-0 pa-0" fluid>.</v-container>
-  </template>
+  <div :class="{'blur': isBlurred}" class="narrative-graph-page">.</div>
+</template>
   
 <script>
   import { narratives } from '@/utils/constants.js'
@@ -9,7 +9,8 @@
   export default {
     data() {
       return {
-        g: null
+        g: null,
+        currentRoute: '/'
       }
     },
     scrollToTop: true,
@@ -17,96 +18,108 @@
       if (!process.browser) {
         return
       }
-      let ForceGraph3D
-      if (window) {
-        ForceGraph3D = require('3d-force-graph').default
-      } else {
-        return
-      }
-      const el = document.querySelector('.narrative-graph-page')
-      const g = ForceGraph3D()(el)
-      const N = 3
-      const data = narratives.map((narrative) => ({
-        id: narrative.id,
-        label: narrative.name,
-        path: narrative.slug,
-        disabled: narrative.disabled
-      }))
-      const ds = data.filter((d) => !!d)
-      // empty node to conect all
-      ds.push({
-        id: 0,
-        label: '',
-        path: ''
+      process.nextTick(() => {
+        this.buildGraph()
       })
-      var links = ds.map((n) => ({
-        source: ds.filter(d=> d.id !== n.id)[Math.floor(Math.random()*(ds.length-1))],
-        target: n.id,
-        color: 'rgba(0,0,0,1)'
-      }))
-      //console.log("links", links)
-  
-      const gData = {
-        nodes: ds,
-        links: links
-      }
-      let fontSize = 6
-      let scale = 0.8
-      let position = 10
-      if (this.isMobile()) {
-        fontSize = 15
-        scale = 2
-        position = 30
-      }
-      g.graphData(gData)
-        .backgroundColor('rgba(0,0,0,0)')
-        .linkWidth(0.2)
-        .showNavInfo(false)
-        .numDimensions(2)
-        .linkOpacity(1.0)
-        .onNodeClick(this.onNodeClick)
-        .nodeThreeObject((node) => {
-          const group = new THREE.Group()
-          if (node.id > 0) {
-            const geometry = new THREE.SphereGeometry(5, 64, 64)
-            const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
-            const sphere = new THREE.Mesh(geometry, material)
-            sphere.material.opacity = node.disabled ? 0.5 : 1
-            sphere.scale.set(scale, scale, scale)
-            const sprite = new SpriteText(node.label.toUpperCase())
-            sprite.fontFace = 'Space Mono Italic'
-            sprite.material.depthWrite = false // make sprite background transparent
-            sprite.material.opacity = node.disabled ? 0.5 : 1
-            sprite.color = node.color
-            sprite.textHeight = fontSize
-            group.add(sprite)
-  
-            sprite.position.set(0, position, 0)
-            group.add(sphere)
-          }
-          g.controls().noPan = true
-          g.controls().noZoom = true
-          setTimeout(() => {
-            if (this.isMobile()) {
-              g.zoomToFit(150)
-            }
-          }, 10)
-          return group
-        })
-      this.g = g
-      if (this.isMobile()) {
-        g.d3Force('charge').strength(-1000)
-      } else {
-        g.d3Force('charge').strength(-300)
-      }
-      window.addEventListener( 'resize', this.onWindowResize, false );
-  
     },
     async asyncData({ $content }) {},
-    computed: {},
+    computed: {
+      isBlurred () {
+        return $nuxt.$route.path === '/about'
+      }
+    },
     components: {},
   
     methods: {
+      buildGraph () {
+        let ForceGraph3D
+        if (window) {
+          ForceGraph3D = require('3d-force-graph').default
+        } else {
+          return
+        }
+        const el = document.querySelector('.narrative-graph-page')
+        const g = ForceGraph3D()(el)
+        const N = 3
+        const data = narratives.map((narrative) => ({
+          id: narrative.id,
+          label: narrative.name,
+          path: narrative.slug,
+          disabled: narrative.disabled
+        }))
+        const ds = data.filter((d) => !!d)
+        // empty node to conect all
+        ds.push({
+          id: 0,
+          label: '',
+          path: ''
+        })
+        var links = ds.map((n) => ({
+          source: ds.filter(d=> d.id !== n.id)[Math.floor(Math.random()*(ds.length-1))],
+          target: n.id,
+          color: 'rgba(0,0,0,1)'
+        }))
+        //console.log("links", links)
+    
+        const gData = {
+          nodes: ds,
+          links: links
+        }
+        console.log('gdata', gData)
+        console.log('gdata string', JSON.stringify(gData))
+        let fontSize = 6
+        let scale = 0.8
+        let position = 10
+        if (this.isMobile()) {
+          fontSize = 15
+          scale = 2
+          position = 30
+        }
+        g.graphData(gData)
+          .backgroundColor('rgba(0,0,0,0)')
+          .linkWidth(0.2)
+          .showNavInfo(false)
+          .numDimensions(2)
+          .linkOpacity(1.0)
+          .onNodeClick(this.onNodeClick)
+          .nodeThreeObject((node) => {
+            const group = new THREE.Group()
+            if (node.id > 0) {
+              const geometry = new THREE.SphereGeometry(5, 64, 64)
+              const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
+              const sphere = new THREE.Mesh(geometry, material)
+              sphere.material.opacity = node.disabled ? 0.5 : 1
+              sphere.scale.set(scale, scale, scale)
+              const sprite = new SpriteText(node.label.toUpperCase())
+              sprite.fontFace = 'Space Mono Italic'
+              sprite.material.depthWrite = false // make sprite background transparent
+              sprite.material.opacity = node.disabled ? 0.5 : 1
+              sprite.color = node.color
+              sprite.textHeight = fontSize
+              group.add(sprite)
+    
+              sprite.position.set(0, position, 0)
+              group.add(sphere)
+            }
+            g.controls().noPan = true
+            g.controls().noZoom = true
+            setTimeout(() => {
+              if (this.isMobile()) {
+                g.zoomToFit(150)
+              }
+            }, 10)
+            return group
+          })
+        this.g = g
+        process.nextTick(() => {
+          if (this.isMobile()) {
+            g.d3Force('charge').strength(-1000)
+          } else {
+            g.d3Force('charge').strength(-300)
+          }
+        })
+        window.addEventListener( 'resize', this.onWindowResize, false )
+      },
       isMobile() {
         let check = false
         ;(function (a) {
@@ -123,38 +136,51 @@
         return check
       },
       onWindowResize () {
+        console.log('on Window Resize')
         this.g.width(window.innerWidth)
         this.g.height(window.innerHeight)
       },
       onNodeClick(node) {
-        if (!node.disabled) {
+        if (!node.disabled && this.currentRoute === '/narratives') {
           this.$router.push({ path: '/narratives/' + node.path })
         }
       }
     },
-    watch: {},
+    watch: {
+      "$nuxt.$route.path" (val) {
+        console.log('NEW ROUTE', val)
+        this.currentRoute = val
+        console.log('graph', this.g)
+      }
+    },
     beforeDestroy() {}
   }
   </script>
   
-  <style lang="sass">
+  <style lang="sass" scoped>
   @font-face
     font-family: "Space Mono Italic"
     font-style: italic
     src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
-  
-  .scene-container
-    margin-top: -64px !important
-  
+
   .narrative-graph-page
+    position: fixed
+    top: 0
+    left: 0
     font-family: Space Mono Italic
     display: flex
     background-color: white
     flex-direction: column
     align-content: flex-start
     color: white
-    width: 100%
-    margin-bottom: 200px
+    width: 100vw
+    height: 100vh
     color: black
+    filter: blur(0px)
+  .blur
+    filter: blur(3px)
+    transition: all 0.4s ease
+
+
   </style>
   

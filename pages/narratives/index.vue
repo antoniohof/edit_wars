@@ -1,5 +1,4 @@
 <template>
-  <v-container class="narratives-page ma-0 pa-0" fluid>.</v-container>
 </template>
 
 <script>
@@ -148,17 +147,4 @@ export default {
   font-style: italic
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
-.scene-container
-  margin-top: -64px !important
-
-.narratives-page
-  font-family: Space Mono Italic
-  display: flex
-  background-color: white
-  flex-direction: column
-  align-content: flex-start
-  color: white
-  width: 100%
-  margin-bottom: 200px
-  color: black
 </style>
