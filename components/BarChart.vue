@@ -135,10 +135,7 @@ export default {
           name +
           ".json";
         await fetch(parseDataUrl(url))
-          .then((response) => { 
-            console.log('response', response)
-            return response.ok ? response.json() : undefined 
-          })
+          .then((response) => response.json())
           .then((fetchedData) => {
             if (!fetchedData) {
               console.error("MISSING DATA FOR STEP: " + this.currentStepIndex)
