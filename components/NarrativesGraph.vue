@@ -45,7 +45,8 @@
         const el = document.querySelector('.narrative-graph-page')
         const g = ForceGraph3D()(el)
         const N = 3
-        const data = narratives.map((narrative) => ({
+        let n = [...narratives]
+        const data = n.map((narrative) => ({
           id: narrative.id,
           label: narrative.name,
           path: narrative.slug,
