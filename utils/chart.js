@@ -123,6 +123,10 @@ const getDateValue = (date, data) => {
   })
   //console.log("value", value)
   console.log("foundIndex", foundIndex)  
+  if (foundIndex === -1) {
+    console.error('get date value error')
+    return
+  }
   var closestDate = data[foundIndex].x
   var dateDiff = getDateDiff(closestDate, date)
   

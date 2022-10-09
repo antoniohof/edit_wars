@@ -13,6 +13,7 @@
       :progress="getStepProgress(currStepIndex)"
       :background="currentBackground"
     />
+    <!--
     <div class="timeline">
       <v-timeline dense>
         <v-timeline-item
@@ -26,6 +27,7 @@
         >
       </v-timeline>
     </div>
+    -->
     <transition :name="getBackgroundTransition">
       <div
         class="background"

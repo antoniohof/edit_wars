@@ -111,7 +111,12 @@ export default {
     const dataIndex = this.step.order - this.background.stepstart;
     console.log("dataIndex", dataIndex);
     console.log("this.dataList", this.dataList);
-    this.setData(this.dataList[dataIndex]);
+    let data = this.dataList[0]
+    if (this.dataList[dataIndex]) {
+      data = this.dataList[dataIndex]
+    }
+    console.log('data to send', data)
+    this.setData(data)
   },
   methods: {
     async loadData() {
@@ -127,8 +132,15 @@ export default {
           name +
           ".json";
         await fetch(parseDataUrl(url))
-          .then((response) => response.json())
+          .then((response) => { 
+            console.log('response', response)
+            return response.ok ? response.json() : undefined 
+          })
           .then((fetchedData) => {
+            if (!fetchedData) {
+              console.error("MISSING DATA FOR STEP: " + this.currentStepIndex)
+              return
+            }
             this.dataList.push(fetchedData);
             console.log("loaded", this.dataList);
           });
@@ -200,9 +212,12 @@ export default {
   watch: {
     step(step) {
       const dataIndex = step.order - this.background.stepstart;
-      console.log("this.background.stepstart ", this.background.stepstart);
-      console.log("dataIndex", dataIndex);
-      this.setData(this.dataList[dataIndex]);
+      let data = this.dataList[0]
+      if (this.dataList[dataIndex]) {
+        data = this.dataList[dataIndex]
+      }
+      console.log('data to send', data)
+      this.setData(data)
     },
   },
 };
