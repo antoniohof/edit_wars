@@ -496,9 +496,9 @@ export default {
       box-shadow: 0px !important
 .side
   display: flex
-  width: 25vw !important
+  width: 28vw !important
   align-self: flex-end
-  padding: 0px 27px 0px 27px
+  padding: 0px 30px 0px 30px
   z-index: 2
   @media only screen and (max-width: 480px)
     width: 100% !important
@@ -574,7 +574,7 @@ export default {
   position: fixed
   bottom: 30px
   background-color: transparent
-  left: 30px
+  left: 31px
   height: 40px
   width: 40px
   img

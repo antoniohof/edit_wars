@@ -166,7 +166,7 @@ export default {
 .topbar
   color: white
   width: 100vw
-  padding: 0px 40px 0px 40px
+  padding: 0px 30px 0px 30px
   @media only screen and (max-width: 480px)
     padding: 0px 12px 0px 12px !important
 
