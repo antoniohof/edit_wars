@@ -38,10 +38,10 @@ const defaultOptions = {
               i++
               lines[i] = ""
             } else {
-              lines[i] += " " + w
+              lines[i] = lines[i] + " " + w
             }
           })
-          if (src) lines = lines.push(src)
+          if (src) lines.push(src)
           return lines
         }
       },
