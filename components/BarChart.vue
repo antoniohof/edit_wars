@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Bar, Scatter } from "vue-chartjs";
+import { Bar, Line, Scatter } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -43,7 +43,8 @@ ChartJS.register(
   LinearScale,
   PointElement,
   TimeScale,
-  LineElement
+  LineElement,
+  Line
 );
 
 import {
@@ -81,7 +82,8 @@ export default {
   mixins: [StepMixin],
   components: {     
     Bar, 
-    Scatter
+    Scatter,
+    Line
 },
   props: {
     background: {
