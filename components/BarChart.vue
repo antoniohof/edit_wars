@@ -151,16 +151,19 @@ export default {
       }
       var datasets = [...fetchedData.datasets];
 
-      datasets = datasets.map(narrative => ({
-        //...narrative,
-        //borderColor: "rgb(255, 0, 0)",
-        type: "line",
-        data: narrative.data.sort(compare),
-        borderWidth: 1,
-        tension: 0.1,
-        backgroundColor: "transparent",
-        pointRadius: 0,
-      }));
+      datasets = datasets.map(narrative => {
+        console.log("narrative", narrative)
+        return {
+          //...narrative,
+          //borderColor: "rgb(255, 0, 0)",
+          type: "line",
+          data: narrative.data.sort(compare),
+          borderWidth: 1,
+          tension: 0.1,
+          backgroundColor: "transparent",
+          pointRadius: 0,
+        }
+      });
       
       var headlines = {
         label: "scatter",
