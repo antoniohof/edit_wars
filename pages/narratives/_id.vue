@@ -41,7 +41,8 @@
           currentBackgroundToShow.component !== 'WordCloud'
         "
       >
-        <NuxtDynamic
+      <client-only>
+        <LazyNuxtDynamic
           class="background_container"
           :component="currentBackground.component"
           :background="currentBackground"
@@ -50,6 +51,7 @@
           :currentStepIndex="currStepIndex"
           :progress="getStepProgress(currStepIndex)"
         />
+      </client-only>
       </div>
     </transition>
     <div class="side">
