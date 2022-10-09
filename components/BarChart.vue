@@ -74,13 +74,8 @@ Tooltip.positioners.bottom = function(items) {
     xAlign: 'center',
     yAlign: 'top',
   };
-<<<<<<< HEAD
 };
 */
-=======
-}
->>>>>>> f292bbecfe069dc65d63faef797c4a6ee89c119f
-
 export default {
   name: "BarChart",
   mixins: [StepMixin],
