@@ -67,7 +67,7 @@ const narratives = [
     disabled: true
   },
   {
-    id:10,
+    id: 10,
     name: "“Self-cleansing from public enemies”",
     subtitle: "justifying the destruction of civil society by constant internal threats",
     slug: "self-cleansing-from-public-enemies",

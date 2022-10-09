@@ -52,12 +52,16 @@
     methods: {
       step () {
         // camera orbit
-        const distance = 400
+        let distance = 400
+        if (this.isMobile()) {
+          distance = 700
+        }
+
           this.g.cameraPosition({
             x: distance * Math.sin(this.angle),
             z: distance * Math.cos(this.angle)
           })
-          this.angle += Math.PI / 1000
+          this.angle += Math.PI / 5000
           this.animation = requestAnimationFrame(this.step)
       },
       calculateOpacities () {
@@ -69,7 +73,11 @@
             const mat = this.fonts[property]
             if (window.location.pathname == "/narratives") {
               console.log('narrative')
-              mat.opacity = narratives[property]?.disabled ? 0.25 : 1
+              if (this.isMobile()) {
+                mat.opacity = narratives[property]?.disabled ? 0 : 1
+              } else {
+                mat.opacity = narratives[property]?.disabled ? 0.25 : 1
+              }
             } else {
               console.log('not narrative pages')
               mat.opacity = 0
@@ -87,6 +95,10 @@
         const el = document.querySelector('.narrative-graph-page')
         const g = ForceGraph3D()(el)
         const N = 3
+        let dimensions = 3
+        if (this.isMobile()) {
+          dimensions = 2
+        }
         let n = [...narratives]
         const data = n.map((narrative) => ({
           id: narrative.id,
@@ -146,7 +158,7 @@
           .backgroundColor('rgba(0,0,0,0)')
           .linkWidth(0.2)
           .showNavInfo(false)
-          .numDimensions(3)
+          .numDimensions(dimensions)
           .linkOpacity(1.0)
           .onNodeClick(this.onNodeClick)
           .nodeThreeObject((node) => {
@@ -173,7 +185,6 @@
             g.controls().noZoom = true
             setTimeout(() => {
               if (this.isMobile()) {
-                g.zoomToFit(500)
 
                 g.cameraPosition(
                   { x: 0, y: 0, z: 1200 }, // new position
@@ -193,8 +204,9 @@
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
-
-        this.animation = requestAnimationFrame(this.step)
+        if (!this.isMobile()) {
+          this.animation = requestAnimationFrame(this.step)
+        }
 
       },
       isMobile() {
