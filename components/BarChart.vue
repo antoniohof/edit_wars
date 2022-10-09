@@ -59,6 +59,7 @@ import StepMixin from '@/mixins/StepMixin.js'
 
 import { defaultOptions, getDateValue } from "../utils/chart"
 
+/*
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
   // Happens when nothing is found
@@ -73,8 +74,8 @@ Tooltip.positioners.bottom = function(items) {
     xAlign: 'center',
     yAlign: 'top',
   };
-}
-
+};
+*/
 export default {
   name: "BarChart",
   mixins: [StepMixin],
@@ -151,16 +152,18 @@ export default {
       //console.log('data', fetchedData)
       var datasets = fetchedData.datasets;
 
+      /*
       datasets = datasets.map(narrative => ({
         ...narrative,
         //borderColor: "rgb(255, 0, 0)",
         type: "line",
-        data: datasets[0].data.sort(compare),
+        data: narrative.data.sort(compare),
         borderWidth: 1,
         tension: 0.1,
         backgroundColor: "transparent",
         pointRadius: 0,
       }));
+      */
 
       var headlines = {
         label: "scatter",
@@ -198,6 +201,8 @@ export default {
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
+
+      console.log("datasets", datasets)
 
       this.currentChartData = {
         labels: fetchedData.labels,
