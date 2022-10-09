@@ -172,7 +172,7 @@ export default {
           x: headline.date,
           y: getDateValue(headline.date,  datasets[0].data),
           label: headline.text_en,
-          source: headline.link,
+          source: headline.link ? (new URL(headline.link)).hostname : '',
           type: "headline"
         }))
       };
