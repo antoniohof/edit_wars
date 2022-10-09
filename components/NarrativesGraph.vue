@@ -66,6 +66,7 @@
           links: links
         }
         console.log('gdata', gData)
+        console.log('gdata string', JSON.stringify(gData))
         let fontSize = 6
         let scale = 0.8
         let position = 10
@@ -110,11 +111,13 @@
             return group
           })
         this.g = g
-        if (this.isMobile()) {
-          g.d3Force('charge').strength(-1000)
-        } else {
-          g.d3Force('charge').strength(-300)
-        }
+        process.nextTick(() => {
+          if (this.isMobile()) {
+            g.d3Force('charge').strength(-1000)
+          } else {
+            g.d3Force('charge').strength(-300)
+          }
+        })
         window.addEventListener( 'resize', this.onWindowResize, false )
       },
       isMobile() {
