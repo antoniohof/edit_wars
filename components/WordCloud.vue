@@ -1,6 +1,8 @@
 <template>
   <div class="wordcloud-page ma-0 pa-0" :class="{ hide: fadeCloud }">
+    <client-only>
     <iframe ref="wordcloud" sandbox="allow-scripts allow-same-origin" class="wordcloudiframe" :src="currentUrl"></iframe>
+    </client-only>
   </div>
 </template>
   
@@ -31,6 +33,9 @@ export default {
     console.error("ACTIVATED WORDCLOUD");
   },
   mounted() {
+    if (!process.browser) {
+      return
+    }
     console.error("MOUNTED WORDCLOUD", this.background);
     if (this.background) {
       console.log("this.background", this.background);
