@@ -18,7 +18,7 @@
       </vue-typer>
     </client-only>
     <transition name="fade">
-      <div class="arrow" v-show="!isScrolled" @click="onClickArrow">
+      <div class="arrow" v-show="!isScrolled || endScroll" @click="onClickArrow">
         <div class="adjuster">
           <img src="~/assets/icons/arrow.svg" />
         </div>
@@ -127,6 +127,7 @@ export default {
       g: null,
       animation: null,
       isScrolled: false,
+      endScroll: false,
       showName: false
     }
   },
@@ -157,17 +158,27 @@ export default {
         }
         this.isScrolled = false
       }
+      console.log(window.scrollY)
+      if (window.scrollY > (window.innerHeight - 150)) {
+        this.endScroll = true
+      } else {
+        this.endScroll = false
+      }
       const text = document.querySelector('.intro-title')
       const percentage = window.scrollY / window.innerHeight
       const x = percentage * window.innerWidth
       text.style.transform = `translateX(${-x}px)`
     },
     onClickArrow() {
-      window.scrollTo({
-        top: window.innerHeight,
-        left: 0,
-        behavior: 'smooth'
-      })
+      if (this.endScroll) {
+        this.$router.push({ path: '/narratives'})
+      } else {
+        window.scrollTo({
+          top: window.innerHeight,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
     }
   }
 }
@@ -236,27 +247,4 @@ export default {
     padding: 0px 15px 0px 15px
     font-size: 22px
 
-.arrow
-  position: fixed
-  width: 100vw
-  transform: scaleX(2)
-  height: 120px
-  user-select: none
-  bottom: 0
-  margin: 0 auto
-  justify-content: center
-  display: flex
-  left: 0
-  cursor: pointer
-  background-image: url("/img/gradient.png")
-  filter: drop-shadow(16px 16px 15px black)
-  img
-    animation: spin 4s linear infinite
-.adjuster
-  transform: scaleX(0.5)
-
-@keyframes spin
-  100%
-    -webkit-transform: rotateY(360deg)
-    transform: rotateY(360deg)
 </style>

@@ -177,7 +177,7 @@
           if (this.isMobile()) {
             g.d3Force('charge').strength(-1000)
           } else {
-            g.d3Force('charge').strength(-300)
+            g.d3Force('charge').strength(-500)
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
