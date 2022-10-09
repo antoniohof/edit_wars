@@ -151,10 +151,10 @@ export default {
       }
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
-      datasets = fetchedData.datasets.forEach(narrative => {
+      fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
         datasets.push({
-          //...narrative,
+          ...narrative,
           //borderColor: "rgb(255, 0, 0)",
           type: "line",
           data: narrative.data.sort(compare),
@@ -175,7 +175,7 @@ export default {
         //type: 'scatter-chart',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
-          y: getDateValue(headline.date,  datasets[0].data),
+          y: getDateValue(headline.date, datasets[0].data),
           label: headline.text_en,
           source: headline.link ? (new URL(headline.link)).hostname : '',
           type: "headline"
