@@ -159,7 +159,7 @@ export default {
         this.isScrolled = false
       }
       console.log(window.scrollY)
-      if (window.scrollY > (window.innerHeight - 150)) {
+      if (window.scrollY > (window.innerHeight - 200)) {
         this.endScroll = true
       } else {
         this.endScroll = false
