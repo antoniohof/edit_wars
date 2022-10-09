@@ -430,7 +430,8 @@ export default {
   &_title
     pointer-events: none
     position: sticky
-    top: 35px
+    top: 80px
+    word-spacing: -15px !important
     left: 0
     width: 100vw
     height: 200px
@@ -573,10 +574,10 @@ export default {
   position: fixed
   bottom: 30px
   background-color: transparent
-  left: 40px
-  height: 50px
-  width: 50px
+  left: 30px
+  height: 40px
+  width: 40px
   img
-    height: 50px
-    width: 50px
+    height: 40px
+    width: 40px
 </style>
