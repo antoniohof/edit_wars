@@ -55,7 +55,7 @@ export default {
       nodes: ds,
       links: links
     }
-    let fontSize = 8
+    let fontSize = 6
     let scale = 0.8
     let position = 10
     if (this.isMobile()) {
