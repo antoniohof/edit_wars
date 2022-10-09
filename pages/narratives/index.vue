@@ -3,9 +3,6 @@
 </template>
 
 <script>
-import { narratives } from '@/utils/constants.js'
-import SpriteText from 'three-spritetext'
-import * as THREE from 'three'
 export default {
   head: {
     title: 'Narratives',
@@ -24,6 +21,7 @@ export default {
   },
   scrollToTop: true,
   mounted () {
+    /*
     let ForceGraph3D
     if (window) {
       ForceGraph3D = require('3d-force-graph').default
@@ -107,7 +105,7 @@ export default {
       g.d3Force('charge').strength(-300)
     }
     window.addEventListener( 'resize', this.onWindowResize, false );
-
+    */
   },
   async asyncData({ $content }) {},
   computed: {},
