@@ -1,6 +1,7 @@
 <template>
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
+    <!--
     <Scatter
       v-if="currentChartData"
       :chart-options="chartOptions"
@@ -12,6 +13,7 @@
       :width="width"
       :height="height"
     />
+    -->
     <p class="chart-description" v-show="background">{{ background.description }}</p>
   </div>
 </template>
@@ -56,7 +58,7 @@ import { colorPalette } from "../utils/constants";
 import StepMixin from '@/mixins/StepMixin.js'
 
 import { defaultOptions, getDateValue } from "../utils/chart"
-
+/*
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
   // Happens when nothing is found
@@ -72,6 +74,7 @@ Tooltip.positioners.bottom = function(items) {
     yAlign: 'top',
   };
 };
+*/
 
 export default {
   name: "BarChart",
