@@ -149,8 +149,7 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      //console.log('data', fetchedData)
-      var datasets = Object.assign({}, fetchedData.datasets);
+      var datasets = [...fetchedData.datasets];
 
       datasets = datasets.map(narrative => ({
         ...narrative,
