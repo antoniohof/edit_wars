@@ -13,6 +13,7 @@
       <div class="close" @click="onClickClose">CLOSE</div>
       <v-list height="300" class="list">
         <v-list-item
+          @click="onClickItem"
           v-for="item in items"
           :key="item.title"
           class="menuitem"
@@ -74,6 +75,9 @@ export default {
     this.isMobile = this.getIsMobile()
   },
   methods: {
+    onClickItem () {
+      this.onClickClose()
+    },
     onClick (e) {
       e.preventDefault()
     },

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="about-page pa-0" fluid>
+  <v-container class="about-page" fluid>
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
@@ -166,8 +166,10 @@ export default {
   width: 100%
   height: 100%
   justify-content: space-evenly
-  margin: 0px 85px 0px 85px
+  padding: 0px 85px 0px 85px !important
   color: black
+  @media only screen and (max-width: 480px)
+    padding: 0px 30px 0px 30px !important
   &-title
     z-index: 10
     font-family: Space Mono
