@@ -133,7 +133,7 @@ export default {
       
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
-        var data = narrative.data//.sort(compare)
+        var data = narrative.data.sort(compare)
         datasets.push({
           ...narrative,
           //borderColor: "rgb(255, 0, 0)",
