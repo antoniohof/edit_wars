@@ -11,7 +11,9 @@
       return {
         g: null,
         currentRoute: '/',
-        fonts: {}
+        fonts: {},
+        animation: null,
+        angle: 0
       }
     },
     scrollToTop: true,
@@ -48,6 +50,16 @@
     components: {},
   
     methods: {
+      step () {
+        // camera orbit
+        const distance = 400
+          this.g.cameraPosition({
+            x: distance * Math.sin(this.angle),
+            z: distance * Math.cos(this.angle)
+          })
+          this.angle += Math.PI / 1000
+          this.animation = requestAnimationFrame(this.step)
+      },
       calculateOpacities () {
         process.nextTick(() => {
           console.log('this.fonts', this.fonts)
@@ -134,7 +146,7 @@
           .backgroundColor('rgba(0,0,0,0)')
           .linkWidth(0.2)
           .showNavInfo(false)
-          .numDimensions(2)
+          .numDimensions(3)
           .linkOpacity(1.0)
           .onNodeClick(this.onNodeClick)
           .nodeThreeObject((node) => {
@@ -181,6 +193,9 @@
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
+
+        this.animation = requestAnimationFrame(this.step)
+
       },
       isMobile() {
         let check = false
@@ -216,7 +231,9 @@
         this.calculateOpacities()
       }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+      cancelAnimationFrame(this.animation)
+    }
   }
   </script>
   
