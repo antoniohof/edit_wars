@@ -153,9 +153,10 @@ export default {
       }
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
+      
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
-        var data = narrative.data.sort(compare)
+        var data = narrative.data//.sort(compare)
         datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
