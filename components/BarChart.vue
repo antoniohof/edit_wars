@@ -152,14 +152,14 @@ export default {
       var datasets = []
 
       console.log("datasets", fetchedData.datasets)
-      
+      /*
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
         var data = narrative.data//.sort(compare)
         datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
-          type: "line",
+          type: "scatter",
           data: data,
           borderWidth: 1,
           tension: 0.1,
@@ -169,6 +169,7 @@ export default {
           headlines: narrative.headlines,
         })
       });
+      */
       
       var headlines = {
         label: "scatter",
@@ -180,7 +181,7 @@ export default {
         //type: 'scatter-chart',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
-          y: getDateValue(headline.date, datasets[0].data),
+          y: 0,//getDateValue(headline.date, datasets[0].data),
           label: headline.text_en,
           source: headline.link ? (new URL(headline.link)).hostname : '',
           type: "headline"
