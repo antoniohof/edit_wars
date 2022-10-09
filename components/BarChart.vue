@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { Bar, Scatter } from "vue-chartjs";
+import { Scatter } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  //BarElement,
   PointElement,
   CategoryScale,
   LineElement,
@@ -38,7 +38,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  //BarElement,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -80,7 +80,7 @@ export default {
   name: "BarChart",
   mixins: [StepMixin],
   components: {     
-    Bar, 
+    //Bar, 
     Scatter
 },
   props: {
@@ -155,7 +155,7 @@ export default {
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
 
-      console.log("fetchedData.datasets", data.datasets,)
+      console.log("fetchedData.datasets", data.datasets)
       
       data.datasets.forEach(narrative => {
         console.log("narrative", narrative)
@@ -172,7 +172,7 @@ export default {
         })
       });
 
-      
+      /*
       var headlines = {
         label: "scatter",
         borderColor: "blue",
@@ -209,8 +209,11 @@ export default {
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
+      */
 
       console.log("datasets", datasets)
+
+      datasets = JSON.parse(JSON.stringify(datasets)) 
 
       this.currentChartData = {
         labels: data.labels,
