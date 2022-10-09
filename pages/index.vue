@@ -185,7 +185,8 @@ export default {
   justify-content: flex-start
   align-items: flex-start
   overflow-y: hidden !important
-
+  @media only screen and (max-width: 480px)
+    height: 200vh
 .intro
   height: calc(100vh - 64px)
   margin: 0px
