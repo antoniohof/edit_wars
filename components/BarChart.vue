@@ -1,5 +1,6 @@
 <template>
   <div class="graph-container">
+    <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
     <Scatter
       v-if="currentChartData"
       :chart-options="chartOptions"
@@ -11,6 +12,7 @@
       :width="width"
       :height="height"
     />
+    <p class="chart-description" v-show="background">{{ background.description }}</p>
   </div>
 </template>
 
@@ -102,23 +104,19 @@ export default {
     };
   },
   async mounted() {
-    console.log("this.background", this.background);
-    console.log("this.currStepIndex", this.currentStepIndex);
     await this.loadData();
     const dataIndex = this.step.order - this.background.stepstart;
-    console.log("dataIndex", dataIndex);
-    console.log("this.dataList", this.dataList);
     let data = this.dataList[0]
     if (this.dataList[dataIndex]) {
       data = this.dataList[dataIndex]
     }
-    console.log('data to send', data)
     this.setData(data)
   },
   methods: {
     async loadData() {
       this.dataList = [];
       this.chartOptions = defaultOptions;
+      //this.chartOptions.plugins.title.text = this.background.chart_title
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
         dataNames = this.background.name.split(",");
@@ -174,6 +172,7 @@ export default {
           x: headline.date,
           y: getDateValue(headline.date,  datasets[0].data),
           label: headline.text_en,
+          source: headline.link,
           type: "headline"
         }))
       };
@@ -190,16 +189,14 @@ export default {
           x: event.date,
           y: 0,
           label: event.text,
-          // link: event.link
+          source: event.link ? (new URL(event.link)).hostname : '',
           type: "event"
         }))
       } 
-      console.log("headlines", headlines);
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
 
-      // console.log("fetchedData", fetchedData);
       this.currentChartData = {
         labels: fetchedData.labels,
         datasets: datasets,
@@ -213,7 +210,6 @@ export default {
       if (this.dataList[dataIndex]) {
         data = this.dataList[dataIndex]
       }
-      console.log('data to send', data)
       this.setData(data)
     },
   },
@@ -236,5 +232,23 @@ function compare(a, b) {
   width: -moz-available
   width: -webkit-fill-available
   width: fill-available
+  filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3))
   @media only screen and (max-width: 480px)
+
+.chart-description
+  position: absolute
+  bottom: -40px
+  right: 0
+  transform: translateY(100%)
+  text-align: center
+  font-size: 12px
+  color: black
+
+.chart-title
+  position: absolute
+  top: 15px
+  transform: translateY(-100%)
+  text-align: center
+  font-size: 14px
+  color: black
 </style>

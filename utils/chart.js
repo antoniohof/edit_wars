@@ -22,12 +22,14 @@ const defaultOptions = {
         label: (context) => "",
         title: (context) => "",
         afterBody: (context) => {
-          //console.log("context", context)
+          // console.log("context", context)
           let type = context[0].raw.type ? context[0].raw.type : context[1].raw.type
           if (!type) return
           const maxCharPerLine = 50
           let str = context[0].raw.label ? context[0].raw.label : context[1].raw.label
+          let src = context[0].raw.source ? context[0].raw.source : context[1].raw.source
           if (str == undefined) return ""
+          str = `“${str}”`
           var words = str.split(" ")
           var lines = [""]
           var i = 0
@@ -39,6 +41,7 @@ const defaultOptions = {
               lines[i] += " " + w
             }
           })
+          if (src) lines = lines.push(src)
           return lines
         }
       },
@@ -54,7 +57,7 @@ const defaultOptions = {
     },
     title: {
       display: true,
-      text: "Mentions of the word 'Nazi'",
+      text: "",
       color: "black",
       font: {
         size: "18",
