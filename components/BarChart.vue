@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { Bar, Line, Scatter } from "vue-chartjs";
+import { Bar, Scatter } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  //BarElement,
+  BarElement,
   PointElement,
   CategoryScale,
   LineElement,
@@ -38,7 +38,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  //BarElement,
+  BarElement,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -81,8 +81,7 @@ export default {
   mixins: [StepMixin],
   components: {     
     Bar, 
-    Scatter,
-    Line
+    Scatter
 },
   props: {
     background: {
@@ -111,12 +110,10 @@ export default {
     if (process.client) {
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
-      let data = this.dataList[dataIndex]
-      /*
+      let data = this.dataList[0]
       if (this.dataList[dataIndex]) {
         data = this.dataList[dataIndex]
       }
-      */
       this.setData(data)
     }
   },
@@ -154,89 +151,81 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      try {
-        var fetchedData = JSON.parse(JSON.stringify(fetchedData)) 
-        //var fetchedDatasets = [...fetchedData.datasets];
-        var datasets = []
-        console.log(fetchedData.datasets)
+      //var fetchedDatasets = [...fetchedData.datasets];
+      var datasets = []
 
-        console.log("fetchedData.datasets", fetchedData.datasets)
-        
-        datasets[0] = {
-            //...narrative,
-            //borderColor: "rgb(255, 0, 0)",
-            //type: "line",
-            data: [],//fetchedData.datasets[0].data,
-            borderWidth: 1,
-            tension: 0.1,
-            backgroundColor: "transparent",
-            pointRadius: 0,
-          }
-
-        /*
-        var headlines = {
-          label: "scatter",
-          borderColor: "blue",
-          borderWidth: 2,
-          radius: 5,
-          borderRadius: 4,
+      console.log("datasets", fetchedData.datasets)
+      
+      fetchedData.datasets.forEach(narrative => {
+        console.log("narrative", narrative)
+        var data = narrative.data//.sort(compare)
+        datasets.push({
+          //...narrative,
+          //borderColor: "rgb(255, 0, 0)",
+          type: "line",
+          data: data,
+          borderWidth: 1,
+          tension: 0.1,
           backgroundColor: "transparent",
-          //type: 'scatter-chart',
-          data: data.headlines.map((headline) => ({
-            x: headline.date,
-            y: 0,//getDateValue(headline.date, datasets[0].data),
-            label: headline.text_en,
-            source: headline.link ? (new URL(headline.link)).hostname : '',
-            type: "headline"
-          }))
-        };
-        console.log("events")
+          pointRadius: 0,
+          events: narrative.events,
+          headlines: narrative.headlines,
+        })
+      });
+      
+      var headlines = {
+        label: "scatter",
+        borderColor: "blue",
+        borderWidth: 2,
+        radius: 5,
+        borderRadius: 4,
+        backgroundColor: "transparent",
+        //type: 'scatter-chart',
+        data: fetchedData.headlines.map((headline) => ({
+          x: headline.date,
+          y: getDateValue(headline.date, datasets[0].data),
+          label: headline.text_en,
+          source: headline.link ? (new URL(headline.link)).hostname : '',
+          type: "headline"
+        }))
+      };
 
-        var events = {
-          label: "scatter",
-          borderColor: "red",
-          pointStyle: 'triangle',
-          borderWidth: 2,
-          radius: 5,
-          borderRadius: 4,
-          backgroundColor: "red",
-          data: data.events.map(event => ({
-            x: event.date,
-            y: 0,
-            label: event.text,
-            source: event.link ? (new URL(event.link)).hostname : '',
-            type: "event"
-          }))
-        } 
-        console.log("embaixo")
+      var events = {
+        label: "scatter",
+        borderColor: "red",
+        pointStyle: 'triangle',
+        borderWidth: 2,
+        radius: 5,
+        borderRadius: 4,
+        backgroundColor: "red",
+        data: fetchedData.events.map(event => ({
+          x: event.date,
+          y: 0,
+          label: event.text,
+          source: event.link ? (new URL(event.link)).hostname : '',
+          type: "event"
+        }))
+      } 
 
-        datasets = datasets.concat(headlines);
-        datasets = datasets.concat(events);
-        */
+      datasets = datasets.concat(headlines);
+      datasets = datasets.concat(events);
 
-        console.log("datasets", datasets)
+      console.log("datasets", datasets)
 
-        datasets = JSON.parse(JSON.stringify(datasets)) 
-
-        this.currentChartData = {
-          labels: fetchedData.labels,
-          datasets: datasets,
-        };
-      } catch (e) {
-        console.error(e)
-      }
+      this.currentChartData = {
+        labels: fetchedData.labels,
+        datasets: datasets,
+      };
     },
   },
   watch: {
       step(step) {
         if (process.client) {
         const dataIndex = step.order - this.background.stepstart;
-        let data = this.dataList[dataIndex]
-        /*
+        let data = this.dataList[0]
         if (this.dataList[dataIndex]) {
           data = this.dataList[dataIndex]
         }
-        */
         this.setData(data)
       }
     },
