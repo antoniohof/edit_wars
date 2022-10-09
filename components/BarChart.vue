@@ -172,6 +172,7 @@ export default {
         })
       });
 
+      console.log("headlines")
       
       var headlines = {
         label: "scatter",
@@ -189,6 +190,7 @@ export default {
           type: "headline"
         }))
       };
+      console.log("events")
 
       var events = {
         label: "scatter",
@@ -206,6 +208,7 @@ export default {
           type: "event"
         }))
       } 
+      console.log("embaixo")
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
