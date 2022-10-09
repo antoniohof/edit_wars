@@ -36,7 +36,7 @@ import StepMixin from '@/mixins/StepMixin.js'
 
 import { defaultOptions, getDateValue } from "../utils/chart"
 
-/*
+
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
   // Happens when nothing is found
@@ -52,7 +52,7 @@ Tooltip.positioners.bottom = function(items) {
     yAlign: 'top',
   };
 };
-*/
+
 export default {
   name: "BarChart",
   mixins: [StepMixin],
