@@ -152,7 +152,7 @@ export default {
         return;
       }
       //var fetchedDatasets = [...fetchedData.datasets];
-      var datasets = []
+      let datasets = []
       
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
@@ -171,7 +171,7 @@ export default {
         })
       });
       
-      var headlines = {
+      let headlines = {
         label: "scatter",
         borderColor: "blue",
         borderWidth: 2,
@@ -188,7 +188,7 @@ export default {
         }))
       };
 
-      var events = {
+      let events = {
         label: "scatter",
         borderColor: "red",
         pointStyle: 'triangle',
@@ -211,7 +211,7 @@ export default {
       console.log("datasets", datasets)
 
       this.currentChartData = {
-        labels: fetchedData.labels,
+        labels: [...fetchedData.labels],
         datasets: datasets,
       };
     },
