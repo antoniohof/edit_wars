@@ -145,6 +145,7 @@ export default {
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
 .narratives-page
+  font-family: Space Mono Italic
   display: flex
   background-color: white
   flex-direction: column
