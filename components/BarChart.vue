@@ -157,6 +157,7 @@ export default {
       var fetchedData = JSON.parse(JSON.stringify(fetchedData)) 
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
+      console.log(fetchedData.datasets)
 
       console.log("fetchedData.datasets", fetchedData.datasets)
       
