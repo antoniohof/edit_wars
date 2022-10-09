@@ -152,7 +152,7 @@ export default {
       var datasets = [...fetchedData.datasets];
 
       datasets = datasets.map(narrative => ({
-        ...narrative,
+        //...narrative,
         //borderColor: "rgb(255, 0, 0)",
         type: "line",
         data: narrative.data.sort(compare),
