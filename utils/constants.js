@@ -7,6 +7,7 @@ const narratives = [
   {
     id: 1,
     name: '“Freezing Europe”',
+    subtitle: "myths and propaganda about sanctions against Russia in connection with the invasion of Ukraine",
     slug: 'freezing-europe',
     disabled: false,
   },
@@ -14,16 +15,19 @@ const narratives = [
     id: 2,
     name: '“Protecting” the russian world',
     slug: 'protecting-russian-world',
+    subtitle: "a populist idea of paternal concern for the nation",
     disabled: true
   },
   {
     id: 3,
     name: 'Mythical “Nazis”',
+    subtitle: "constructing an enemy through the exploitation of historical memory",
     slug: 'mythical-nazis',
   },
   {
     id: 4,
     name: '“Cold War II”',
+    subtitle: "cultivating the fear of Western threat ",
     slug: 'cold-war-ii',
     disabled: false,
   },

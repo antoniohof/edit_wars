@@ -2,7 +2,8 @@
   <v-container fluid class="narrative ma-0 pa-0">
     <div class="narrative_title">
       <h1 class="narrative_title_name">
-        {{ getNarrativeName }}
+        {{ getNarrativeName }} <br>
+        {{ getNarrativeSubtitle }}
       </h1>
     </div>
     <client-only>
@@ -194,6 +195,10 @@ export default {
     getNarrativeName() {
       console.log(' this.currentNarrative?.name', this.currentNarrative?.name)
       return this.currentNarrative?.name
+    },
+    getNarrativeSubtitle () {
+      console.log(' this.currentNarrative?.subtitle', this.currentNarrative?.subtitle)
+      return this.currentNarrative?.subtitle
     },
     narrativeSteps() {
       if (!process.browser) {
@@ -460,7 +465,8 @@ export default {
     top: 80px
     word-spacing: -15px !important
     left: 0
-    width: 100vw
+    width: 100vw !important
+    min-width: 100vw !important
     height: 200px
     margin-top: 100px
     z-index: 15
@@ -469,16 +475,22 @@ export default {
       top: 50px
     &_name
       display: flex
+      background-color: rgba(255,255,255,0.8) !important
+      backdrop-filter: blur(3px)
       justify-content: center
       position: absolute
+      margin: 0 auto
+      text-align: center
+      left: 50%
+      transform: translate(-50%, 0)
       width: 100vw
-      left: 0
       color: black
       font-family: Space Mono Italic
       font-weight: 400
       font-size: 22px
       text-transform: uppercase
       @media only screen and (max-width: 480px)
+        font-size: 12px
         padding: 0px 50px 0px 50px !important
         text-align: center
 
