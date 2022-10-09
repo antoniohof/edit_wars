@@ -52,24 +52,25 @@ export default {
     justify-content: center
     align-items: center
     align-self: center
-    padding: 0px 20px 0px 20px !important
+    padding: 0px 15px 0px 15px !important
     @media only screen and (max-width: 480px)
       left: 0 !important
       align-items: flex-start
-
     &_container
       display: flex
       // background-color: $window-text-bg
       background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
       backdrop-filter: blur(3px)
       border-radius: 4px
-      max-width: 80%
+      max-width: 60%
       flex-direction: column
       align-content: center
       justify-content: center
       align-items: center
       height: fit-content
       box-shadow: 0px 4px 25px 0px #00000040
+      @media only screen and (max-width: 480px)
+        max-width: 95vw
       &_top
         border-radius: 4px 4px 0px 0px
         height: 24px

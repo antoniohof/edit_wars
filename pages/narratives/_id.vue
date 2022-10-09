@@ -30,6 +30,9 @@
       </v-timeline>
     </div>
     -->
+    <div class="infobutton">
+      <img src="~/assets/icons/info.svg"/>
+    </div>
     <transition :name="getBackgroundTransition">
       <div
         class="background"
@@ -443,7 +446,7 @@ export default {
       width: 100vw
       left: 0
       color: black
-      font-family: Space Mono
+      font-family: Space Mono Italic
       font-weight: 400
       font-size: 24px
       text-transform: uppercase
@@ -500,7 +503,7 @@ export default {
     width: 100% !important
     left: 0 !important
     margin-top: 50% // check
-    padding: 0px 50px 0px 50px
+    padding: 0px 15px 0px 15px
 .scrollama
   flex: 1
   will-change: transform
@@ -565,4 +568,15 @@ export default {
   width: 100vw
   z-index: 0
   background-color: transparent
+
+.infobutton
+  position: fixed
+  bottom: 30px
+  background-color: transparent
+  left: 40px
+  height: 50px
+  width: 50px
+  img
+    height: 50px
+    width: 50px
 </style>
