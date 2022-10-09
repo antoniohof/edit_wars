@@ -150,9 +150,8 @@ export default {
         return;
       }
       //console.log('data', fetchedData)
-      var datasets = fetchedData.datasets;
+      var datasets = Object.assign({}, fetchedData.datasets);
 
-      /*
       datasets = datasets.map(narrative => ({
         ...narrative,
         //borderColor: "rgb(255, 0, 0)",
@@ -163,8 +162,7 @@ export default {
         backgroundColor: "transparent",
         pointRadius: 0,
       }));
-      */
-
+      
       var headlines = {
         label: "scatter",
         borderColor: "blue",
