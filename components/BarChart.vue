@@ -43,8 +43,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   TimeScale,
-  LineElement,
-  Line
+  LineElement
 );
 
 import {
