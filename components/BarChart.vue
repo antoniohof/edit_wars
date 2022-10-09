@@ -157,17 +157,18 @@ export default {
       var data = JSON.parse(JSON.stringify(fetchedData)) 
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
+      console.log(data.datasets)
 
       console.log("fetchedData.datasets", data.datasets)
       
       data.datasets.forEach(narrative => {
+        let d = Object.assign({}, narrative)
         console.log("narrative", narrative)
-        var data = narrative.data//.sort(compare)
         datasets.push({
           //...narrative,
           //borderColor: "rgb(255, 0, 0)",
           type: "line",
-          data: data,
+          data: d.data,
           borderWidth: 1,
           tension: 0.1,
           backgroundColor: "transparent",
