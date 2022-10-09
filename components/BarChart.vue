@@ -154,73 +154,77 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      var fetchedData = JSON.parse(JSON.stringify(fetchedData)) 
-      //var fetchedDatasets = [...fetchedData.datasets];
-      var datasets = []
-      console.log(fetchedData.datasets)
+      try {
+        var fetchedData = JSON.parse(JSON.stringify(fetchedData)) 
+        //var fetchedDatasets = [...fetchedData.datasets];
+        var datasets = []
+        console.log(fetchedData.datasets)
 
-      console.log("fetchedData.datasets", fetchedData.datasets)
-      
-      datasets[0] = {
-          //...narrative,
-          //borderColor: "rgb(255, 0, 0)",
-          type: "line",
-          data: [],//fetchedData.datasets[0].data,
-          borderWidth: 1,
-          tension: 0.1,
+        console.log("fetchedData.datasets", fetchedData.datasets)
+        
+        datasets[0] = {
+            //...narrative,
+            //borderColor: "rgb(255, 0, 0)",
+            type: "line",
+            data: [],//fetchedData.datasets[0].data,
+            borderWidth: 1,
+            tension: 0.1,
+            backgroundColor: "transparent",
+            pointRadius: 0,
+          }
+
+        /*
+        var headlines = {
+          label: "scatter",
+          borderColor: "blue",
+          borderWidth: 2,
+          radius: 5,
+          borderRadius: 4,
           backgroundColor: "transparent",
-          pointRadius: 0,
-        }
+          //type: 'scatter-chart',
+          data: data.headlines.map((headline) => ({
+            x: headline.date,
+            y: 0,//getDateValue(headline.date, datasets[0].data),
+            label: headline.text_en,
+            source: headline.link ? (new URL(headline.link)).hostname : '',
+            type: "headline"
+          }))
+        };
+        console.log("events")
 
-      /*
-      var headlines = {
-        label: "scatter",
-        borderColor: "blue",
-        borderWidth: 2,
-        radius: 5,
-        borderRadius: 4,
-        backgroundColor: "transparent",
-        //type: 'scatter-chart',
-        data: data.headlines.map((headline) => ({
-          x: headline.date,
-          y: 0,//getDateValue(headline.date, datasets[0].data),
-          label: headline.text_en,
-          source: headline.link ? (new URL(headline.link)).hostname : '',
-          type: "headline"
-        }))
-      };
-      console.log("events")
+        var events = {
+          label: "scatter",
+          borderColor: "red",
+          pointStyle: 'triangle',
+          borderWidth: 2,
+          radius: 5,
+          borderRadius: 4,
+          backgroundColor: "red",
+          data: data.events.map(event => ({
+            x: event.date,
+            y: 0,
+            label: event.text,
+            source: event.link ? (new URL(event.link)).hostname : '',
+            type: "event"
+          }))
+        } 
+        console.log("embaixo")
 
-      var events = {
-        label: "scatter",
-        borderColor: "red",
-        pointStyle: 'triangle',
-        borderWidth: 2,
-        radius: 5,
-        borderRadius: 4,
-        backgroundColor: "red",
-        data: data.events.map(event => ({
-          x: event.date,
-          y: 0,
-          label: event.text,
-          source: event.link ? (new URL(event.link)).hostname : '',
-          type: "event"
-        }))
-      } 
-      console.log("embaixo")
+        datasets = datasets.concat(headlines);
+        datasets = datasets.concat(events);
+        */
 
-      datasets = datasets.concat(headlines);
-      datasets = datasets.concat(events);
-      */
+        console.log("datasets", datasets)
 
-      console.log("datasets", datasets)
+        datasets = JSON.parse(JSON.stringify(datasets)) 
 
-      datasets = JSON.parse(JSON.stringify(datasets)) 
-
-      this.currentChartData = {
-        labels: fetchedData.labels,
-        datasets: datasets,
-      };
+        this.currentChartData = {
+          labels: fetchedData.labels,
+          datasets: datasets,
+        };
+      } catch (e) {
+        console.error(e)
+      }
     },
   },
   watch: {
