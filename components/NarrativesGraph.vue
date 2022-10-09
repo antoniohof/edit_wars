@@ -15,6 +15,7 @@
     },
     scrollToTop: true,
     mounted () {
+      console.log('mounted narratives')
       if (!process.browser) {
         return
       }
@@ -25,6 +26,9 @@
     async asyncData({ $content }) {},
     computed: {
       isBlurred () {
+        if (!process.browser) {
+          return false
+        }
         return $nuxt.$route.path === '/about'
       }
     },

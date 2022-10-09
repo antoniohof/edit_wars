@@ -1,6 +1,7 @@
 <template>
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
+    <client-only>
     <Scatter
       v-if="currentChartData"
       :chart-options="chartOptions"
@@ -12,12 +13,13 @@
       :width="width"
       :height="height"
     />
+    </client-only>
     <p class="chart-description" v-show="background">{{ background.description }}</p>
   </div>
 </template>
 
 <script>
-import { Bar, Scatter, Line } from "vue-chartjs";
+import { Bar, Scatter } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -72,16 +74,19 @@ Tooltip.positioners.bottom = function(items) {
     xAlign: 'center',
     yAlign: 'top',
   };
+<<<<<<< HEAD
 };
 */
+=======
+}
+>>>>>>> f292bbecfe069dc65d63faef797c4a6ee89c119f
 
 export default {
   name: "BarChart",
   mixins: [StepMixin],
   components: {     
     Bar, 
-    Scatter,
-    Line
+    Scatter
 },
   props: {
     background: {
