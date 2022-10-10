@@ -212,6 +212,7 @@ export default {
   color: black
   font-weight: 400
   font-size: 32px
+  user-select: none
   text-transform: uppercase
   margin-top: 30px
   @media only screen and (max-width: 480px)

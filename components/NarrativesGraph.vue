@@ -1,5 +1,7 @@
 <template>
-  <div :class="{'blur': isBlurred, 'nopoint': isNoPoint }" class="narrative-graph-page">.</div>
+  <v-container fluid class="ma-0 pa-0">
+    <div :class="{'blur': isBlurred, 'nopoint': isNoPoint }" class="narrative-graph-page">.</div>
+  </v-container>
 </template>
   
 <script>
@@ -9,6 +11,7 @@
   export default {
     data() {
       return {
+        loading: false,
         g: null,
         currentRoute: '/',
         fonts: [],
@@ -22,7 +25,7 @@
       if (!process.browser) {
         return
       }
-
+      this.loading = false
       this.currentRoute = this.$nuxt.$route.path
       process.nextTick(() => {
         this.buildGraph()
@@ -148,9 +151,9 @@
         let scale = 0.8
         let position = 10
         if (this.isMobile()) {
-          fontSize = 15
-          scale = 2
-          position = 30
+          fontSize = 18
+          scale = 3
+          position = 34
         }
         g.graphData(gData)
           .backgroundColor('rgba(0,0,0,0)')
@@ -204,7 +207,7 @@
         this.g = g
         process.nextTick(() => {
           if (this.isMobile()) {
-            g.d3Force('charge').strength(-1000)
+            g.d3Force('charge').strength(-1300)
           } else {
             g.d3Force('charge').strength(-800)
           }
@@ -237,6 +240,7 @@
       },
       onNodeClick(node) {
         if (!node.disabled && this.currentRoute === '/narratives') {
+          this.loading = true 
           this.$router.push({ path: '/narratives/' + node.path })
         }
       }

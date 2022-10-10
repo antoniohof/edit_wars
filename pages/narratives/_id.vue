@@ -457,6 +457,10 @@ export default {
 </style>
 
 <style lang="sass" scoped>
+@font-face
+  font-family: "Space Mono Italic"
+  font-style: italic
+  src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
 .narrative
   height: 100%
@@ -491,7 +495,7 @@ export default {
       transform: translate(-50%, 0)
       width: 100vw
       color: black
-      font-family: Space Mono Italic
+      font-family: Space Mono Italic !important
       font-weight: 300
       font-size: 20px
       text-transform: uppercase
