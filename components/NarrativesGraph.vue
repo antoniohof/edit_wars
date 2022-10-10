@@ -24,7 +24,6 @@
       }
 
       this.currentRoute = this.$nuxt.$route.path
-      console.log('this.currentRoute', this.currentRoute)
       process.nextTick(() => {
         this.buildGraph()
         setTimeout(() => {
@@ -66,13 +65,9 @@
       },
       calculateOpacities () {
         process.nextTick(() => {
-          console.log('this.fonts', this.fonts)
-          console.log('window.location.pathname', window.location.pathname)
           for (const property in this.fonts) {
-            console.log(`${property}: ${this.fonts[property]}`);
             const mat = this.fonts[property]
             if (window.location.pathname == "/narratives") {
-              console.log('narrative')
               if (this.isMobile()) {
                 mat.opacity = narratives[property]?.disabled ? 0 : 1
               } else {
@@ -126,7 +121,6 @@
           }
         }
         const arr = [...nums]
-        console.log('arr', arr)
 
         var links = ds.map((n) => ({
           source: ds.filter(d=> d.id !== n.id)[arr[0]],
@@ -143,8 +137,6 @@
           nodes: ds,
           links: links.concat(links2)
         }
-        console.log('gdata', gData)
-        console.log('gdata string', JSON.stringify(gData))
 
         let fontSize = 6
         let scale = 0.8
