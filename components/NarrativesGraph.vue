@@ -161,8 +161,15 @@
             const group = new THREE.Group()
             if (node.id > 0) {
               const geometry = new THREE.SphereGeometry(5, 64, 64)
+
+              let op = 1
+              if (node.disabled) {
+                op = 0.3
+              }
+              const matSphere = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: op, transparent: true })
               const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
-              const sphere = new THREE.Mesh(geometry, material)
+
+              const sphere = new THREE.Mesh(geometry, matSphere)
               sphere.scale.set(scale, scale, scale)
               const sprite = new SpriteText(node.label.toUpperCase())
               sprite.fontFace = 'Space Mono Italic'
@@ -187,7 +194,7 @@
               if (this.isMobile()) {
 
                 g.cameraPosition(
-                  { x: 0, y: 0, z: 1200 }, // new position
+                  { x: 0, y: 0, z: 800 }, // new position
                   0, // lookAt ({ x, y, z })
                   500  // ms transition duration
                 );
