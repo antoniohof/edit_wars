@@ -160,6 +160,7 @@ export default {
 
 <style lang="sass">
 .v-toolbar__content
+  z-index: 1000 !important
   padding: 0px 0px !important
 </style>
 

@@ -2,12 +2,14 @@
   <v-container fluid class="home ma-0 pa-0">
     <v-container fluid class="intro pa-0">
       <div class="intro-background"></div>
-      <transition name="fadelongo">
-        <div v-show="showName" class="intro-title">EDIT WARS</div>
-      </transition>
-      <transition name="fadelongo">
-        <div v-show="showName" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
-      </transition>
+      <div class="intro-header">
+        <transition name="fadelongo">
+          <div v-show="showName" class="intro-title">EDIT WARS</div>
+        </transition>
+        <transition name="fadelongo">
+          <div v-show="showName" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
+        </transition>
+      </div>
     </v-container>
     <client-only>
       <vue-typer
@@ -244,8 +246,8 @@ export default {
   z-index: 20
   width: 100%
   pointer-events: none
-  margin-top: -64px
   position: relative
+  height: 16vw
   font-size: 16vw
   font-weight: 700
   user-select: none
@@ -257,17 +259,20 @@ export default {
   align-content: center
   align-items: center
   @media only screen and (max-width: 480px)
-    align-content: flex-start !important
+    margin-top: 64px
 
-
-
+.intro-header
+  display: flex
+  align-items: center
+  flex-direction: column
+  margin-top: -128px
+  justify-content: center
 .intro-subtitle
-  z-index: 20
+  z-index: 5000 !important
   width: 100%
   pointer-events: none
-  margin-top: -64px
   position: relative
-  font-size: 32px
+  font-size: 2.5vw
   font-weight: 300
   user-select: none
   white-space: nowrap
@@ -281,12 +286,11 @@ export default {
   align-items: center
   @media only screen and (max-width: 480px)
     font-size: 24px
-    line-height: 22px
+    line-height: 25px
     font-weight: 700
-    top: 10px
     position: absolute
     white-space: initial
-    top: 70px
+    top: 0px
     height: 50px
     left: 0px
 
