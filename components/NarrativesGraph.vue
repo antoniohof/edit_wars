@@ -179,7 +179,7 @@
               if (this.isMobile()) {
 
                 g.cameraPosition(
-                  { x: 0, y: 0, z: 1000 }, // new position
+                  { x: 0, y: 0, z: 1200 }, // new position
                   0, // lookAt ({ x, y, z })
                   500  // ms transition duration
                 );
