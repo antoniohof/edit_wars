@@ -236,28 +236,28 @@ function compare(a, b) {
 <style lang="sass" scoped>
 .graph-container
   width: 100%
+  display: flex
+  flex-direction: column
   width: -moz-available
+  justify-self: center
   width: -webkit-fill-available
   width: fill-available
   filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3))
   @media only screen and (max-width: 480px)
 
 .chart-description
-  position: absolute
-  bottom: -40px
-  right: 0
-  transform: translateY(100%)
   text-align: center
-  font-size: 12px
+  font-size: 10px
+  width: 80%
+  margin-top: 20px
   color: black
   font-family: 'Space Mono'
 
 .chart-title
-  position: absolute
-  top: 0px
+  margin-bottom: 0px !important
   font-family: 'Space Mono'
-  transform: translateY(-100%)
   text-align: center
+  width: 80%
   font-size: 18px
   color: black
 </style>

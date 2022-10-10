@@ -19,21 +19,19 @@
         :background="currentBackground"
       />
     </client-only>
-    <!--
     <div class="timeline">
       <v-timeline dense>
         <v-timeline-item
           small
           fill-dot
-          v-for="(step, index) in narrativeSteps"
+          v-for="(n, index) in narrativesList"
           @click.native="onClickTimeline(index)"
-          :class="{ active: currStepIndex === index }"
+          :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
           :key="index"
           >{{ index }}</v-timeline-item
         >
       </v-timeline>
     </div>
-    -->
     <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
     </div>
@@ -123,6 +121,7 @@ export default {
     })
   },
   mounted() {
+    this.narrativesList = narratives //.filter((n) => !n.disabled)
     document.addEventListener(('click'), this.closeInfo)
     window.mobileCheck = function () {
       let check = false
@@ -182,6 +181,7 @@ export default {
       currentNarrative: {},
       currStepIndex: -1,
       currStepProgress: 0,
+      narrativesList: [],
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
@@ -292,6 +292,9 @@ export default {
       }
     },
     onClickTimeline(index) {
+      console.log('on click narrative', index)
+      console.log(narratives[index])
+      /*
       this.lastEnterBackgroundDirection = 'jump'
       console.log('index', index)
       const margin = 100
@@ -304,6 +307,7 @@ export default {
           this.lastEnterBackgroundDirection = 'down'
         }, 250)
       })
+      */
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
@@ -502,7 +506,7 @@ export default {
   margin-top: -26px
 .timeline
   position: fixed
-  left: 0px
+  left: -2px
   top: 0px
   height: 100vh
   width: 50px
@@ -650,4 +654,7 @@ export default {
   img
     height: 40px
     width: 40px
+
+  .unclickable
+    opacity: 0.5 !important
 </style>
