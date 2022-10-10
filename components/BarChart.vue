@@ -193,8 +193,6 @@ export default {
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
 
-      //console.log("datasets", datasets)
-
       this.currentChartData = {
         labels: fetchedData.labels,
         datasets: datasets,
