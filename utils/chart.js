@@ -90,7 +90,7 @@ const defaultOptions = {
           let str = context[0].raw.label ? context[0].raw.label : context[1].raw.label
           let src = context[0].raw.source ? context[0].raw.source : context[1].raw.source
           if (str == undefined) return ""
-          str = `“${str}”`
+          if (type == 'headline') str = `“${str}”`
           var words = str.split(" ")
           var lines = [""]
           var i = 0
