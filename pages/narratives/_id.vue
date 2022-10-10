@@ -28,7 +28,7 @@
           @click.native="onClickTimeline(index)"
           :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
           :key="index"
-          >{{ index }}</v-timeline-item
+          >{{ index + 1 }}</v-timeline-item
         >
       </v-timeline>
     </div>
@@ -45,7 +45,7 @@
         class="background"
         v-if="
           currentBackgroundToShow &&
-          currentBackgroundToShow.component !== 'WordCloud'
+          currentBackground.component !== 'WordCloud'
         "
       >
       <client-only>
@@ -512,7 +512,7 @@ export default {
   margin-top: -26px
 .timeline
   position: fixed
-  left: -2px
+  left: 3px
   top: 0px
   height: 100vh
   width: 50px
