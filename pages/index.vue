@@ -52,6 +52,8 @@ export default {
       this.showName = true
     }, 700)
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('touchmove', this.handleScroll)
+
     /*
     let ForceGraph3D
     if (window) {
@@ -119,6 +121,8 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('touchmove', this.handleScroll)
+
     // window.removeEventListener( 'resize', this.onWindowResize );
 
     cancelAnimationFrame(this.animation)
