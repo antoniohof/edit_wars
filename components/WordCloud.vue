@@ -1,6 +1,11 @@
 <template>
   <div class="wordcloud-page ma-0 pa-0" :class="{ hide: fadeCloud }">
-    <iframe ref="wordcloud" sandbox="allow-scripts allow-same-origin" class="wordcloudiframe" :src="currentUrl"></iframe>
+    <iframe
+      ref="wordcloud"
+      sandbox="allow-scripts allow-same-origin"
+      class="wordcloudiframe"
+      :src="currentUrl"
+    ></iframe>
   </div>
 </template>
   
@@ -32,17 +37,15 @@ export default {
   },
   mounted() {
     if (!process.browser) {
-      return
+      return;
     }
-    console.error("MOUNTED WORDCLOUD", this.background);
     if (this.background) {
-      console.log("this.background", this.background);
       // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
       let url =
         "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-        // "http://127.0.0.1:5500/force-graph/index.html?narrative=" +
+        //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
         this.background.name;
-      this.setData(this.background, url)
+      this.setData(this.background, url);
     }
   },
   async asyncData({ $content }) {},
@@ -55,28 +58,25 @@ export default {
 
   methods: {
     setData(background, url) {
-      console.log("bg", background);
       if (background.keywords) {
-        var word = background.keywords
-        /*
-        let node_ids
-        if (word.includes(",")) {
-          node_ids = word.split(',')
-        } else {
-          node_ids = [word]
-        }
+        var word = background.keywords;
+
         if (word) {
-          this.$refs.wordcloud.contentWindow.postMessage({
-            function: "focusOnNodes",
-            data: node_ids,
-          }, "*");
-        }
-        */
-       if (word) {
-          this.$refs.wordcloud.contentWindow.postMessage({
-            function: "focusOnNode",
-            data: word,
-          }, "*");
+          word = word.toLowerCase();
+          let node_ids;
+          if (word.includes(",")) {
+            node_ids = word.split(",");
+          } else {
+            node_ids = [word];
+          }
+          node_ids = node_ids.map(id => id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""))
+          this.$refs.wordcloud.contentWindow.postMessage(
+            {
+              function: "focusOnNodes",
+              data: node_ids,
+            },
+            "*"
+          );
         }
       }
       if (this.lastBackground === background?.name || !url) {
@@ -92,13 +92,16 @@ export default {
       if (entity && entity.component === "WordCloud") {
         let url =
           "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-          // "http://127.0.0.1:5500/force-graph/index.html?narrative=" +
+          //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
           entity.narrativeName;
         this.setData(entity, url);
       } else {
-        this.$refs.wordcloud.contentWindow.postMessage({
-          function: "autoRotate"
-        }, "*");
+        this.$refs.wordcloud.contentWindow.postMessage(
+          {
+            function: "autoRotate",
+          },
+          "*"
+        );
       }
     },
   },
