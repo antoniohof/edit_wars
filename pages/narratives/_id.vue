@@ -19,7 +19,7 @@
         :background="currentBackground"
       />
     </client-only>
-    <div class="timeline">
+    <div class="timeline" v-if="showTimeline">
       <v-timeline dense>
         <v-timeline-item
           small
@@ -140,7 +140,9 @@ export default {
     }
 
     this.isMobile = window.mobileCheck()
-
+    if (this.isMobile) {
+      this.showTimeline = false
+    }
     window.scrollTo(0, 0)
     this.currStepIndex = -1
     this.startBackgroundScroll = window.scrollY
@@ -175,6 +177,7 @@ export default {
   updated() {},
   data() {
     return {
+      showTimeline: true,
       infoOpen: false,
       isMobile: false,
       backgroundContainer: null,
