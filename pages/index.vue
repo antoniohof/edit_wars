@@ -260,9 +260,10 @@ export default {
   font-size: 35px
   padding: 0px 64px 0px 64px
   z-index: 5
+  width: 100%
   color: black
   @media only screen and (max-width: 480px)
-    padding: 0px 15px 0px 15px
+    padding: 0px 26px 0px 26px
     font-size: 20px
 
 </style>
