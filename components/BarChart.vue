@@ -251,7 +251,7 @@ function compare(a, b) {
 .chart-description
   text-align: left
   font-size: 10px
-  width: 87%
+  width: 83%
   margin-top: 20px
   font-size: 12px
   color: black
@@ -263,8 +263,8 @@ function compare(a, b) {
   font-family: 'Space Mono'
   text-align: center
   margin-bottom: 0px !important
-  font-size: 18px
-  width: 87%
+  font-size: 16px
+  width: 83%
   color: black
   @media only screen and (max-width: 480px)
     font-size: 12px

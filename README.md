@@ -1,4 +1,6 @@
-# media futures
+# edit wars - media futures project website
+
+https://editwars.org
 
 ```bash
 # install dependencies

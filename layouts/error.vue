@@ -6,7 +6,7 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink to="/">
+    <NuxtLink to="/" v-if="afterTimeout">
       go back
     </NuxtLink>
   </v-container>
@@ -21,8 +21,14 @@ export default {
       default: null
     }
   },
+  mounted () {
+    setTimeout(() => {
+      this.afterTimeout = true
+    }, 100)
+  },
   data() {
     return {
+      afterTimeout: false,
       pageNotFound: 'Oops where am I?',
       otherError: 'An error occurred'
     }

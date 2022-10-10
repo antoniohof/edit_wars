@@ -436,7 +436,7 @@ export default {
   border-top: 2px dashed red !important
 
 .unclickable
-  opacity: 0.5 !important
+  opacity: 0.2 !important
 .v-timeline-item__body
   color: white
   cursor: pointer
@@ -457,6 +457,9 @@ export default {
 </style>
 
 <style lang="sass" scoped>
+@font-face
+  font-family: "Space Mono Italic"
+  src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
 .narrative
   height: 100%
@@ -491,7 +494,7 @@ export default {
       transform: translate(-50%, 0)
       width: 100vw
       color: black
-      font-family: Space Mono Italic
+      font-family: Space Mono Italic !important
       font-weight: 300
       font-size: 20px
       text-transform: uppercase
@@ -503,6 +506,9 @@ export default {
   font-family: Space Mono Italic !important
   font-weight: 300
   margin-top: -26px
+  @media only screen and (max-width: 480px)
+    margin-top: -18px
+
 .timeline
   position: fixed
   left: 3px
@@ -638,9 +644,9 @@ export default {
   z-index: 120
   @media only screen and (max-width: 480px)
     width: 80%
-    left: 12px
-    bottom: 40px
-    height: 85px
+    left: 14px
+    bottom: 20px
+    height: fit-content
   p
     font-size: 13px
     margin-bottom: 0px !important
@@ -657,8 +663,8 @@ export default {
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
-    left: 12px
-    bottom: 40px
+    left: 14px
+    bottom: 20px
   :hover
     transform: rotateZ(360deg)
     transition: transform 1s

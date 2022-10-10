@@ -154,7 +154,6 @@ export default {
 <style lang="sass">
 @font-face
   font-family: "Space Mono Italic"
-  font-style: italic
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
 </style>

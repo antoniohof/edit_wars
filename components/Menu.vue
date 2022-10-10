@@ -132,6 +132,7 @@ export default {
     z-index: 120
     top: 20px !important
     background-color: $menu-bg
+    user-select: none
     border-radius: 4px 0px 0px 4px
     backdrop-filter: blur(3px)
     @media only screen and (max-width: 480px)

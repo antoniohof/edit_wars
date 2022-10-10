@@ -7,7 +7,7 @@
           <div v-show="showName" class="intro-title">EDIT WARS</div>
         </transition>
         <transition name="fadelongo">
-          <div v-show="showName" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
+          <div v-show="showName && !isScrolled" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
         </transition>
       </div>
     </v-container>
@@ -285,12 +285,15 @@ export default {
   transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
-    font-size: 6.5vw
+    font-size: 6vw
+    position: fixed !important
     line-height: 25px
+    text-align: left
     font-weight: 700
-    position: absolute
     white-space: initial
-    top: 0px
+    padding-left: 24px
+    padding-right: 24px
+    top: 20px
     height: 50px
     left: 0px
 
@@ -306,7 +309,8 @@ export default {
   color: black
   @media only screen and (max-width: 480px)
     padding: 0px 26px 0px 26px
-    font-size: 19px
+    font-size: 4.7vw
+    margin-top: 50px
     margin-bottom: 100px
 
 </style>

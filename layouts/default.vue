@@ -99,6 +99,10 @@ export default {
     }
   },
   mounted() {
+    console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
+    if ($nuxt.$route.path.slice(-1) === '/') {
+      this.$router.push({ path: $nuxt.$route.path.substr(0, $nuxt.$route.path.length-1) })
+    }
     setTimeout(() => {
       this.delayOver = true
     }, 250)
@@ -212,6 +216,7 @@ export default {
   color: black
   font-weight: 400
   font-size: 32px
+  user-select: none
   text-transform: uppercase
   margin-top: 30px
   @media only screen and (max-width: 480px)

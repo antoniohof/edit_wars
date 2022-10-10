@@ -1,5 +1,7 @@
 <template>
-  <div :class="{'blur': isBlurred, 'nopoint': isNoPoint }" class="narrative-graph-page">.</div>
+  <v-container fluid class="ma-0 pa-0">
+    <div :class="{'blur': isBlurred, 'nopoint': isNoPoint }" class="narrative-graph-page">.</div>
+  </v-container>
 </template>
   
 <script>
@@ -9,6 +11,7 @@
   export default {
     data() {
       return {
+        loading: false,
         g: null,
         currentRoute: '/',
         fonts: [],
@@ -22,7 +25,7 @@
       if (!process.browser) {
         return
       }
-
+      this.loading = false
       this.currentRoute = this.$nuxt.$route.path
       process.nextTick(() => {
         this.buildGraph()
@@ -70,16 +73,18 @@
       calculateOpacities () {
         process.nextTick(() => {
           this.fonts.forEach((ob) => {
-            const mat = ob.material
-            if (window.location.pathname == "/narratives") {
-              if (this.isMobile()) {
-                mat.opacity = ob.node?.disabled ? 0 : 1
-              } else {
-                mat.opacity = ob.node?.disabled ? 0.25 : 1
-              }
+            const sphereMat = ob.materials[1]
+            let textMat = ob.materials[0]
+              if (window.location.pathname == "/narratives") {
+                if (this.isMobile()) {
+                  textMat.opacity = ob.node?.disabled ? 0 : 1
+                  sphereMat.opacity = ob.node?.disabled ? 0.3 : 1
+                } else {
+                  textMat.opacity = ob.node?.disabled ? 0.25 : 1
+                }
             } else {
               console.log('not narrative pages')
-              mat.opacity = 0
+              textMat.opacity = 0
             }
           })
         })
@@ -146,9 +151,9 @@
         let scale = 0.8
         let position = 10
         if (this.isMobile()) {
-          fontSize = 15
-          scale = 2
-          position = 30
+          fontSize = 18
+          scale = 3
+          position = 34
         }
         g.graphData(gData)
           .backgroundColor('rgba(0,0,0,0)')
@@ -161,8 +166,12 @@
             const group = new THREE.Group()
             if (node.id > 0) {
               const geometry = new THREE.SphereGeometry(5, 64, 64)
+
+              let op = 1
+              const matSphere = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: op, transparent: true })
               const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
-              const sphere = new THREE.Mesh(geometry, material)
+
+              const sphere = new THREE.Mesh(geometry, matSphere)
               sphere.scale.set(scale, scale, scale)
               const sprite = new SpriteText(node.label.toUpperCase())
               sprite.fontFace = 'Space Mono Italic'
@@ -171,7 +180,7 @@
               
               this.fonts.push({
                 node: node,
-                material: sprite.material
+                materials: [sprite.material, matSphere] 
               })  
               
               sprite.color = node.color
@@ -187,7 +196,7 @@
               if (this.isMobile()) {
 
                 g.cameraPosition(
-                  { x: 0, y: 0, z: 1200 }, // new position
+                  { x: 0, y: 0, z: 800 }, // new position
                   0, // lookAt ({ x, y, z })
                   500  // ms transition duration
                 );
@@ -198,7 +207,7 @@
         this.g = g
         process.nextTick(() => {
           if (this.isMobile()) {
-            g.d3Force('charge').strength(-1000)
+            g.d3Force('charge').strength(-1300)
           } else {
             g.d3Force('charge').strength(-800)
           }
@@ -231,6 +240,7 @@
       },
       onNodeClick(node) {
         if (!node.disabled && this.currentRoute === '/narratives') {
+          this.loading = true 
           this.$router.push({ path: '/narratives/' + node.path })
         }
       }
@@ -252,7 +262,6 @@
   <style lang="sass">
   @font-face
     font-family: "Space Mono Italic"
-    font-style: italic
     src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
   .narrative-graph-page
