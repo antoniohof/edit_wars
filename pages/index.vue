@@ -286,11 +286,14 @@ export default {
   align-items: center
   @media only screen and (max-width: 480px)
     font-size: 6.5vw
+    position: fixed !important
     line-height: 25px
+    text-align: left
     font-weight: 700
-    position: absolute
     white-space: initial
-    top: 0px
+    padding-left: 24px
+    padding-right: 24px
+    top: 20px
     height: 50px
     left: 0px
 

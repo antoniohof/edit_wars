@@ -163,7 +163,7 @@
               const geometry = new THREE.SphereGeometry(5, 64, 64)
 
               let op = 1
-              if (node.disabled) {
+              if (node.disabled && this.$nuxt.$route.path !== '/') {
                 op = 0.3
               }
               const matSphere = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: op, transparent: true })
