@@ -2,6 +2,7 @@
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
     <scatterjs
+      ref="graph"
       v-if="currentChartData"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
@@ -18,12 +19,11 @@
 
 <script>
 import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
-import Chart from 'chart.js/auto';
+import Chart from 'chart.js/auto';  
 
 import { Tooltip } from 'chart.js'
 
 import "chartjs-adapter-date-fns";
-
 
 import {
   getDates,
@@ -32,11 +32,11 @@ import {
   escapeCode,
 } from "../utils/DataProcessing";
 
-import { colorPalette } from "../utils/constants";
+import { colorPalette, colors } from "../utils/constants";
 
 import StepMixin from '@/mixins/StepMixin.js'
 
-import { defaultOptions, getDateValue } from "../utils/chart"
+import { defaultOptions, getDateValue, getClostestDate } from "../utils/chart"
 
 
 Tooltip.positioners.bottom = function(items) {
@@ -88,9 +88,11 @@ export default {
   },
   async mounted() {
     if (process.client) {
+      // Chart.register(zoomPlugin);
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
       let data = this.dataList[0]
+      console.log("this.dataList", this.dataList)
       if (this.dataList[dataIndex]) {
         data = this.dataList[dataIndex]
       }
@@ -108,7 +110,8 @@ export default {
       }
       for await (const name of dataNames) {
         let url =
-          "https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
+          "https://raw.githubusercontent.com/mneunomne/edit_wars_database/main/export/data/"+
+          //"https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
           name +
           ".json";
         await fetch(parseDataUrl(url))
@@ -120,7 +123,7 @@ export default {
               return
             }
             this.dataList.push(fetchedData);
-            console.log("loaded", this.dataList);
+            console.log("loaded", this.dataList, name);
           });
       }
     },
@@ -132,6 +135,7 @@ export default {
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []
       
+      console.log("fetchedData", fetchedData)
       fetchedData.datasets.forEach(narrative => {
         console.log("narrative", narrative)
         var data = narrative.data.sort(compare)
@@ -141,7 +145,8 @@ export default {
           type: "line",
           data: data,
           borderWidth: 1,
-          tension: 0.1,
+          tension: 0,
+          borderColor: colors.chartColor,
           backgroundColor: "transparent",
           pointRadius: 0,
           events: narrative.events,
@@ -152,11 +157,11 @@ export default {
       
       var headlines = {
         label: "scatter",
-        borderColor: "blue",
+        borderColor: colors.chartColor,
         borderWidth: 2,
-        radius: 5,
+        radius: 6,
         borderRadius: 4,
-        backgroundColor: "transparent",
+        backgroundColor: colors.chartColor,
         //type: 'scatter-chart',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
@@ -169,12 +174,13 @@ export default {
 
       var events = {
         label: "scatter",
-        borderColor: "red",
+        borderColor: colors.chartColor,
         pointStyle: 'triangle',
+        rotation: 180,
         borderWidth: 2,
         radius: 5,
         borderRadius: 4,
-        backgroundColor: "red",
+        backgroundColor: colors.chartColor,
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
@@ -197,8 +203,19 @@ export default {
   },
   watch: {
       step(step) {
+        if (step.filterDate) {
+          var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate,  this.currentChartData)
+          console.log("closestDates", closestDates)
+          
+          this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
+          this.$refs.graph.chart.update();
+        } else if (this.$refs.graph.chart) {
+          this.$refs.graph.chart.resetZoom();
+          this.$refs.graph.chart.update();
+        }
         if (process.client) {
         const dataIndex = step.order - this.background.stepstart;
+        //console.lg("this.dataList", this.dataList)
         let data = this.dataList[0]
         if (this.dataList[dataIndex]) {
           data = this.dataList[dataIndex]
@@ -237,12 +254,14 @@ function compare(a, b) {
   text-align: center
   font-size: 12px
   color: black
+  font-family: 'Space Mono'
 
 .chart-title
   position: absolute
-  top: 15px
+  top: 0px
+  font-family: 'Space Mono'
   transform: translateY(-100%)
   text-align: center
-  font-size: 14px
+  font-size: 18px
   color: black
 </style>
