@@ -99,6 +99,10 @@ export default {
     }
   },
   mounted() {
+    console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
+    if ($nuxt.$route.path.slice(-1) === '/') {
+      this.$router.push({ path: $nuxt.$route.path.substr(0, $nuxt.$route.path.length-1) })
+    }
     setTimeout(() => {
       this.delayOver = true
     }, 250)
