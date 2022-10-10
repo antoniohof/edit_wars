@@ -198,7 +198,7 @@ export default {
   watch: {
       step(step) {
         if (process.client) {
-          if (this.$refs.graph.chart) {
+          if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {
               var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate,  this.currentChartData)          
               this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
