@@ -279,7 +279,8 @@
     color: black
     filter: blur(0px)
   .blur
-    filter: blur(3px)
+    filter: blur(10px)
+    opacity: 0.7
     transition: all 0.4s ease
   .nopoint
     pointer-events: none
