@@ -215,6 +215,9 @@ export default {
         this.setData(data)
       }
     },
+    background (bg) {
+      console.log("change bg!", bg)
+    }
   },
 };
 

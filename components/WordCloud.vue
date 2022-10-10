@@ -57,7 +57,11 @@ export default {
     setData(background, url) {
       console.log("bg", background);
       if (background.keywords) {
-        const word = background.keywords
+        var word = background.keywords
+        // temp fix
+        if (word.includes(',')) {
+          word = word.split(',')[0]
+        }
         if (word) {
           this.$refs.wordcloud.contentWindow.postMessage({
             function: "focusOnNode",
