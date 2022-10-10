@@ -43,7 +43,7 @@ export default {
   scrollToTop: true,
   head() {
     return {
-      // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
+      script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
     }
   },
   components: {},

@@ -9,12 +9,13 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "3d-force-graph": "^1.70.13",
     "@blokwise/dynamic": "^1.5.0",
     "@nuxt/content": "^1.11.1",
     "@nuxtjs/i18n": "^7.2.2",
+    "@nuxtjs/redirect-module": "^0.3.1",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
-    "3d-force-graph": "^1.70.13",
     "chart.js": "^3.9.1",
     "chartjs-adapter-date-fns": "^2.0.0",
     "chartjs-plugin-zoom": "^1.2.1",
