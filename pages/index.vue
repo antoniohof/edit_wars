@@ -285,7 +285,7 @@ export default {
   transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
-    font-size: 24px
+    font-size: 6.5vw
     line-height: 25px
     font-weight: 700
     position: absolute
@@ -297,15 +297,16 @@ export default {
 
 
 .intro-text
-  height: 75vh
+  height: fit-content
   font-family: Space Mono !important
-  font-size: 35px
+  font-size: 2vw
   padding: 0px 64px 0px 64px
   z-index: 5
   width: 100%
   color: black
   @media only screen and (max-width: 480px)
     padding: 0px 26px 0px 26px
-    font-size: 20px
+    font-size: 19px
+    margin-bottom: 100px
 
 </style>
