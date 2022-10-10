@@ -70,16 +70,18 @@
       calculateOpacities () {
         process.nextTick(() => {
           this.fonts.forEach((ob) => {
-            const mat = ob.material
-            if (window.location.pathname == "/narratives") {
-              if (this.isMobile()) {
-                mat.opacity = ob.node?.disabled ? 0 : 1
-              } else {
-                mat.opacity = ob.node?.disabled ? 0.25 : 1
-              }
+            const sphereMat = ob.materials[1]
+            let textMat = ob.materials[0]
+              if (window.location.pathname == "/narratives") {
+                if (this.isMobile()) {
+                  textMat.opacity = ob.node?.disabled ? 0 : 1
+                  sphereMat.opacity = ob.node?.disabled ? 0.3 : 1
+                } else {
+                  textMat.opacity = ob.node?.disabled ? 0.25 : 1
+                }
             } else {
               console.log('not narrative pages')
-              mat.opacity = 0
+              textMat.opacity = 0
             }
           })
         })
@@ -163,9 +165,6 @@
               const geometry = new THREE.SphereGeometry(5, 64, 64)
 
               let op = 1
-              if (node.disabled && this.$nuxt.$route.path !== '/') {
-                op = 0.3
-              }
               const matSphere = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: op, transparent: true })
               const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
 
@@ -178,7 +177,7 @@
               
               this.fonts.push({
                 node: node,
-                material: sprite.material
+                materials: [sprite.material, matSphere] 
               })  
               
               sprite.color = node.color
