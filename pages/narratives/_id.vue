@@ -629,7 +629,7 @@ export default {
   padding: 10px
   // backdrop-filter: blur(3px)
   // background-color: rgba(1,1,1,0.8)
-  z-index: 50
+  z-index: 120
   p
     font-size: 13px
     margin-bottom: 0px !important
@@ -640,6 +640,7 @@ export default {
   bottom: 30px
   background-color: transparent
   left: 31px
+  z-index: 120
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
