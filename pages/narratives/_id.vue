@@ -641,7 +641,7 @@ export default {
   z-index: 120
   @media only screen and (max-width: 480px)
     width: 80%
-    left: 12px
+    left: 14px
     bottom: 20px
     height: fit-content
   p
