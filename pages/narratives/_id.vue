@@ -294,7 +294,9 @@ export default {
     onClickTimeline(index) {
       console.log('on click narrative', index)
       console.log(narratives[index])
-      this.$router.push({ path: '/narratives/' + narratives[index].slug })
+      if (!narratives[index].disabled) {
+        this.$router.push({ path: '/narratives/' + narratives[index].slug })
+      }
 
       /*
       this.lastEnterBackgroundDirection = 'jump'
@@ -529,6 +531,9 @@ export default {
   // mask-position: center
   // mask-repeat:no-repeat
   // mask-composite: intersect
+  @media only screen and (max-width: 480px)
+    transform: scale(0.8) !important
+
 .v-timeline::before
   bottom: 0
   content: ""
