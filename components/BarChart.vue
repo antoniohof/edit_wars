@@ -263,7 +263,8 @@ function compare(a, b) {
   text-align: center
   margin-bottom: 0px !important
   font-size: 18px
+  width: 87%
   color: black
   @media only screen and (max-width: 480px)
-    font-size: 14px
+    font-size: 12px
 </style>
