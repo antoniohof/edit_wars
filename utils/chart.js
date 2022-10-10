@@ -1,8 +1,63 @@
+const zoomOptions = {
+    zoom: {
+      enabled: true
+      // zoom options and/or events
+    },
+    pan: {
+      enabled: true,
+      mode: 'xy',
+    }
+};
+
+function padTo2Digits(num) {
+  return num.toString().padStart(2, '0');
+}
+
+function formatDate(date) {
+  return (
+    [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-') +
+    ' ' +
+    [
+      padTo2Digits(date.getHours()),
+      padTo2Digits(date.getMinutes()),
+      padTo2Digits(date.getSeconds()),
+    ].join(':')
+  );
+}
+
+const getClostestDate = (min, max, chartData) => {
+  var minDate = new Date(min)
+  var maxDate = null
+  console.log("chart.chartData", min, max)
+  var lastDate = null
+  chartData.labels.forEach(date => {
+    if (new Date(date) <= new Date(min)) {
+      minDate = new Date(date)
+    }
+    if (new Date(date) > new Date(max) && maxDate == null) {
+      maxDate = new Date(date)
+    }
+    lastDate=new Date(date)
+  })
+  maxDate = maxDate || lastDate 
+
+  return {min: minDate, max: maxDate}
+}
+
 const defaultOptions = {
   responsive: true,
   borderColor: "black",
   backgroundColor: "black",
   plugins: {
+    zoom: zoomOptions,
+    pan: {
+      enabled: true,
+      modifierKey: 'ctrl',
+    },
     legend: {
       display: false,
       labels: {
@@ -99,7 +154,7 @@ const defaultOptions = {
       ticks: {
         // Include a dollar sign in the ticks
         callback: function (value, index, ticks) {
-          return value;
+          return Math.floor(value);
         },
       },
     },
@@ -155,4 +210,4 @@ const getDateDiff = (d1, d2) => {
 }
 
 
-export { defaultOptions, getDateValue }
+export { defaultOptions, getDateValue, getClostestDate }

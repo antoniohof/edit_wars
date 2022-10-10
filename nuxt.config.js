@@ -86,6 +86,10 @@ export default {
       src: '~/plugins/vue-typewriter.js',
       mode: 'client',
       ssr: false
+    },
+    {
+      src: '~/plugins/chartjs-zoom.js',
+      mode: 'client'
     }
   ],
 
@@ -318,7 +322,7 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [
-      'three'
+      'three',
       /*
       'd3-force-3d',
       'd3-dispatch',

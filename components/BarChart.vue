@@ -2,6 +2,7 @@
   <div class="graph-container">
     <p class="chart-title" v-show="background">{{ background.chart_title }}</p>
     <scatterjs
+      ref="graph"
       v-if="currentChartData"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
@@ -18,12 +19,11 @@
 
 <script>
 import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
-import Chart from 'chart.js/auto';
+import Chart from 'chart.js/auto';  
 
 import { Tooltip } from 'chart.js'
 
 import "chartjs-adapter-date-fns";
-
 
 import {
   getDates,
@@ -36,7 +36,7 @@ import { colorPalette, colors } from "../utils/constants";
 
 import StepMixin from '@/mixins/StepMixin.js'
 
-import { defaultOptions, getDateValue } from "../utils/chart"
+import { defaultOptions, getDateValue, getClostestDate } from "../utils/chart"
 
 
 Tooltip.positioners.bottom = function(items) {
@@ -88,6 +88,7 @@ export default {
   },
   async mounted() {
     if (process.client) {
+      // Chart.register(zoomPlugin);
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
       let data = this.dataList[0]
@@ -202,7 +203,16 @@ export default {
   },
   watch: {
       step(step) {
-        console.log("step", step.filterDate)
+        if (step.filterDate) {
+          var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate,  this.currentChartData)
+          console.log("closestDates", closestDates)
+          
+          this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
+          this.$refs.graph.chart.update();
+        } else if (this.$refs.graph.chart) {
+          this.$refs.graph.chart.resetZoom();
+          this.$refs.graph.chart.update();
+        }
         if (process.client) {
         const dataIndex = step.order - this.background.stepstart;
         //console.lg("this.dataList", this.dataList)
