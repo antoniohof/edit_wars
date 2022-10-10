@@ -3,8 +3,8 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row class="about-page-topics justify-start" width="78%">
-      <v-list dense width="78%">
+    <v-row class="about-page-topics justify-start" width="85%">
+      <v-list dense width="85%">
         <v-list-group
           v-for="(topic, index) in topics"
           :key="index"
@@ -169,37 +169,48 @@ export default {
   padding: 0px 85px 0px 85px !important
   color: black
   @media only screen and (max-width: 480px)
-    padding: 0px 30px 0px 30px !important
+    padding: 0px 26px 0px 26px !important
   &-title
     z-index: 10
     font-family: Space Mono
-    font-size: 29px
-    margin-bottom: 30px
-    width: 78%
-    margin-top: 44px
+    font-size: 24px
+    margin-bottom: 10px
+    width: 85%  
+    margin-top: -10px
     max-height: 100%
-
+    @media only screen and (max-width: 480px)
+      font-size: 16px !important
+      margin-top: 8px
+      width: 100%
   &-topics
     margin: 0px !important
     height: fit-content
     max-height: 400px
     z-index: 10
-
+    @media only screen and (max-width: 480px)
+      font-size: 16px !important
+      width: 100% !important
 .title
   font-family: Space Mono !important
-  font-size: 29px !important
+  font-size: 24px !important
   overflow: visible
   user-select: none
   text-transform: uppercase
   color: black
+  width: 100%
   padding: 0px !important
   z-index: 10
-
+  @media only screen and (max-width: 480px)
+    font-size: 18px !important
+    line-height: 23px !important
 .topic
   font-family: Golos-Text-Regular
   font-size: 20px
   margin-bottom: 25px
   line-height: 28px !important
+  @media only screen and (max-width: 480px)
+    font-size: 16px !important
+    line-height: 23px !important
   :deep(img)
     width: 30%
     margin-top: 5px
@@ -218,12 +229,17 @@ export default {
 .v-list
   height: fit-content
   background: transparent
+  @media only screen and (max-width: 480px)
+    width: 100% !important
 .v-list-item
   padding: 0 0
 .v-list-item__content
-  height: 55px
+  height: 50px
   padding: 0px 0px 0px 0px !important
   align-content: center
+  @media only screen and (max-width: 480px)
+    height: 45px
+
 .v-list-group:last-child
   border-bottom: 2px solid black
 </style>
