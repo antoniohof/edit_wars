@@ -488,8 +488,8 @@ export default {
       transform: translate(-50%, 0)
       width: 100vw
       color: black
-      font-family: Space Mono
-      font-weight: 700
+      font-family: Space Mono Italic
+      font-weight: 300
       font-size: 20px
       text-transform: uppercase
       @media only screen and (max-width: 480px)
@@ -498,7 +498,7 @@ export default {
         text-align: center
 .italic
   font-family: Space Mono Italic !important
-  font-weight: 700
+  font-weight: 300
   margin-top: -26px
 .timeline
   position: fixed
@@ -623,7 +623,7 @@ export default {
   bottom: 30px
   border-radius: 4px
   background-color: black
-  left: 31px
+  left: 32px
   height: 100px
   width: 400px
   padding: 10px

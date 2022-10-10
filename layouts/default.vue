@@ -213,7 +213,7 @@ export default {
   font-weight: 400
   font-size: 32px
   text-transform: uppercase
-  margin-top: 32px
+  margin-top: 30px
   @media only screen and (max-width: 480px)
     font-size: 26px !important
     margin-top: -1px
@@ -222,7 +222,7 @@ export default {
 
 .gradient
   width: 100vw !important
-  height: 150px
+  height: 180px
   top: 0
   position: fixed
   z-index: 100
