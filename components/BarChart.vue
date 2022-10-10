@@ -197,15 +197,17 @@ export default {
   },
   watch: {
       step(step) {
-        if (step.filterDate) {
-          var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate,  this.currentChartData)          
-          this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
-          this.$refs.graph.chart.update();
-        } else if (this.$refs.graph.chart) {
-          this.$refs.graph.chart.resetZoom();
-          this.$refs.graph.chart.update();
-        }
         if (process.client) {
+          if (this.$refs.graph.chart) {
+            if (step.filterDate) {
+              var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate,  this.currentChartData)          
+              this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
+              this.$refs.graph.chart.update();
+            } else if (this.$refs.graph.chart) {
+              this.$refs.graph.chart.resetZoom();
+              this.$refs.graph.chart.update();
+            }
+          }
         const dataIndex = step.order - this.background.stepstart;
         //console.lg("this.dataList", this.dataList)
         let data = this.dataList[0]
