@@ -299,14 +299,14 @@ export default {
 .intro-text
   height: fit-content
   font-family: Space Mono !important
-  font-size: 35px
+  font-size: 2vw
   padding: 0px 64px 0px 64px
   z-index: 5
   width: 100%
   color: black
   @media only screen and (max-width: 480px)
     padding: 0px 26px 0px 26px
-    font-size: 20px
+    font-size: 19px
     margin-bottom: 100px
 
 </style>
