@@ -6,8 +6,8 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
-    title: 'Media Futures 2022',
-    titleTemplate: 'Media Futures | %s',
+    title: 'Edit Wars - Deconstructing Russian Propaganda Narratives',
+    titleTemplate: 'Edit Wars | %s',
     meta: [
       { charset: 'utf-8' },
 
@@ -18,12 +18,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Description'
+        content: 'Deconstructing Russian Propaganda Narratives'
       },
       {
         hid: 'keywords',
         name: 'keywords',
-        content: 'art, russia, propaganda'
+        content: 'art, russia, propaganda, ukraine, media, project, media futures, paris, war'
       }
     ],
     link: [
