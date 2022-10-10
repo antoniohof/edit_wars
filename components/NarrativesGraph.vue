@@ -11,7 +11,7 @@
       return {
         g: null,
         currentRoute: '/',
-        fonts: {},
+        fonts: [],
         animation: null,
         angle: 0
       }
@@ -65,19 +65,19 @@
       },
       calculateOpacities () {
         process.nextTick(() => {
-          for (const property in this.fonts) {
-            const mat = this.fonts[property]
+          this.fonts.forEach((ob) => {
+            const mat = ob.material
             if (window.location.pathname == "/narratives") {
               if (this.isMobile()) {
-                mat.opacity = narratives[property]?.disabled ? 0 : 1
+                mat.opacity = ob.node?.disabled ? 0 : 1
               } else {
-                mat.opacity = narratives[property]?.disabled ? 0.25 : 1
+                mat.opacity = ob.node?.disabled ? 0.25 : 1
               }
             } else {
               console.log('not narrative pages')
               mat.opacity = 0
             }
-          }
+          })
         })
       },
       buildGraph () {
@@ -164,7 +164,11 @@
               sprite.fontFace = 'Space Mono Italic'
               sprite.material.depthWrite = false // make sprite background transparent
               sprite.material.opacity = 0 
-              this.fonts[node.id] = sprite.material
+              
+              this.fonts.push({
+                node: node,
+                material: sprite.material
+              })  
               
               sprite.color = node.color
               sprite.textHeight = fontSize
