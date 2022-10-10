@@ -151,9 +151,9 @@
         let scale = 0.8
         let position = 10
         if (this.isMobile()) {
-          fontSize = 18
-          scale = 3
-          position = 34
+          fontSize = 20
+          scale = 4
+          position = 38
         }
         g.graphData(gData)
           .backgroundColor('rgba(0,0,0,0)')
@@ -207,7 +207,7 @@
         this.g = g
         process.nextTick(() => {
           if (this.isMobile()) {
-            g.d3Force('charge').strength(-1300)
+            g.d3Force('charge').strength(-1500)
           } else {
             g.d3Force('charge').strength(-800)
           }
