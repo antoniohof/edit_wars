@@ -285,7 +285,7 @@ export default {
   transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
-    font-size: 24px
+    font-size: 6.5vw
     line-height: 25px
     font-weight: 700
     position: absolute
