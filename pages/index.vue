@@ -215,7 +215,7 @@ export default {
   align-items: flex-start
   overflow-y: hidden !important
   @media only screen and (max-width: 480px)
-    height: 185vh
+    height: 188vh
 
 .intro
   height: calc(100vh - 64px)
@@ -263,6 +263,6 @@ export default {
   color: black
   @media only screen and (max-width: 480px)
     padding: 0px 15px 0px 15px
-    font-size: 21px
+    font-size: 20px
 
 </style>
