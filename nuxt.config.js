@@ -309,11 +309,13 @@ export default {
     }
   },
   router: {
-    trailingSlash: true
+    trailingSlash: false
   },
   generate: {
     fallback: true,
     routes: [
+      '/about',
+      '/narratives'
     ]
   },
   render: {
