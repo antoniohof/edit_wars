@@ -1,12 +1,12 @@
 const zoomOptions = {
-    zoom: {
-      enabled: true
-      // zoom options and/or events
-    },
-    pan: {
-      enabled: true,
-      mode: 'xy',
-    }
+  zoom: {
+    enabled: true
+    // zoom options and/or events
+  },
+  pan: {
+    enabled: true,
+    mode: 'xy',
+  }
 };
 
 function padTo2Digits(num) {
@@ -33,8 +33,8 @@ const getClostestDate = (min, max, chartData) => {
   var minDate = new Date(chartData.labels[0])
   var maxDate = null
   var lastDate = null
-  
-  chartData.labels.sort(function(a,b){
+
+  chartData.labels.sort(function (a, b) {
     // Turn your strings into dates, and then subtract them
     // to get a value that is either negative, positive, or zero.
     return new Date(a) - new Date(b);
@@ -47,11 +47,11 @@ const getClostestDate = (min, max, chartData) => {
     if (new Date(date) > new Date(max) && maxDate == null) {
       maxDate = new Date(date)
     }
-    lastDate=new Date(date)
+    lastDate = new Date(date)
   })
   maxDate = maxDate || lastDate
 
-  return {min: minDate, max: maxDate}
+  return { min: minDate, max: maxDate }
 }
 
 const defaultOptions = {
@@ -70,9 +70,9 @@ const defaultOptions = {
         // This more specific font property overrides the global property
         font: {
           size: 12,
-          family: "Golos-Text-Regular",
+          family: "Space Mono",
         }
-    }
+      }
     },
     tooltip: {
       position: (context) => {
@@ -149,6 +149,12 @@ const defaultOptions = {
         drawOnChartArea: true,
         drawTicks: true,
       },
+      ticks: {
+        font: {
+          size: 10,
+          family: 'Space Mono'
+        }
+      }
     },
     y: {
       grid: {
@@ -158,6 +164,10 @@ const defaultOptions = {
         drawTicks: true,
       },
       ticks: {
+        font: {
+          size: 10,
+          family: 'Space Mono'
+        },
         // Include a dollar sign in the ticks
         callback: function (value, index, ticks) {
           return Math.floor(value);
@@ -178,41 +188,52 @@ const defaultOptions = {
   }*/
 };
 
+const days = (1000 * 60 * 60 * 24);
+const week = days * 7;
+
 const getDateValue = (date, data) => {
   // try exact date
+  var value = 0
   console.log("getDateValue", date)
-  let foundIndex = 0
-  var value = data.find((d, i) => {
-    if (new Date(d.x) > new Date(date)) {
-      foundIndex = i-1
-      return true
-    }
-    /*
+  var value = data.find((d, i) => (
     new Date(d.x).getDate() == new Date(date).getDate() &&
     new Date(d.x).getMonth() == new Date(date).getMonth() &&
     new Date(d.x).getYear() == new Date(date).getYear()
-    */
-  })
-  //console.log("value", value)
-  console.log("foundIndex", foundIndex)  
-  if (foundIndex === -1) {
-    console.error('get date value error')
-    return
-  }
-  var closestDate = data[foundIndex].x
-  // var dateDiff = getDateDiff(closestDate, date)
-  
+  ))
   if (value) {
-    return value.y
+    // found exact value
+    value = value.y
+    console.log("exact value!", value)
+  } else {
+    var closestIndex = 1
+    var minDiff = 9999999999999999
+    data.forEach((d, i) => {
+      let timeDiff = Math.abs(new Date(d.x).getTime() - new Date(date).getTime())
+      if (minDiff > timeDiff) {
+        minDiff = timeDiff
+        closestIndex = i
+        console.log("closestIndex", closestIndex)
+      }
+    })
+    let nextDate = data[closestIndex == 0 ? closestIndex + 1 : closestIndex]
+    let prevDate = data[closestIndex == 0 ? closestIndex : closestIndex - 1]
+    let diffNext = Math.abs(new Date(nextDate.x).getTime() - new Date(date).getTime())
+    let diffPrev = Math.abs(new Date(prevDate.x).getTime() - new Date(date).getTime())
+    value = nextDate.y * (1 - (diffNext / week)) + prevDate.y * (diffNext / week)
+  }
+  // var dateDiff = getDateDiff(closestDate, date)
+
+  if (value) {
+    return value
   } else {
     return 0
   }
 }
 
 const getDateDiff = (d1, d2) => {
-  var diff = new Date(d2).getTime() - new Date(d1).getTime();   
-  var daydiff = diff / (1000 * 60 * 60 * 24); 
-  return daydiff  
+  var diff = new Date(d2).getTime() - new Date(d1).getTime();
+  var daydiff = diff / (1000 * 60 * 60 * 24);
+  return daydiff
 }
 
 
