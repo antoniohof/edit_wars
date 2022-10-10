@@ -19,21 +19,19 @@
         :background="currentBackground"
       />
     </client-only>
-    <!--
     <div class="timeline">
       <v-timeline dense>
         <v-timeline-item
           small
           fill-dot
-          v-for="(step, index) in narrativeSteps"
+          v-for="(n, index) in narrativesList"
           @click.native="onClickTimeline(index)"
-          :class="{ active: currStepIndex === index }"
+          :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
           :key="index"
           >{{ index }}</v-timeline-item
         >
       </v-timeline>
     </div>
-    -->
     <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
     </div>
@@ -123,6 +121,7 @@ export default {
     })
   },
   mounted() {
+    this.narrativesList = narratives //.filter((n) => !n.disabled)
     document.addEventListener(('click'), this.closeInfo)
     window.mobileCheck = function () {
       let check = false
@@ -182,6 +181,7 @@ export default {
       currentNarrative: {},
       currStepIndex: -1,
       currStepProgress: 0,
+      narrativesList: [],
       backgroundAnimation: null,
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
@@ -292,6 +292,13 @@ export default {
       }
     },
     onClickTimeline(index) {
+      console.log('on click narrative', index)
+      console.log(narratives[index])
+      if (!narratives[index].disabled) {
+        this.$router.push({ path: '/narratives/' + narratives[index].slug })
+      }
+
+      /*
       this.lastEnterBackgroundDirection = 'jump'
       console.log('index', index)
       const margin = 100
@@ -304,6 +311,7 @@ export default {
           this.lastEnterBackgroundDirection = 'down'
         }, 250)
       })
+      */
     },
     backgroundLoop() {
       if (this.currentBackgroundToShow) {
@@ -433,7 +441,8 @@ export default {
 .scrollama__debug-offset
   border-top: 2px dashed red !important
 
-
+.unclickable
+  opacity: 0.5 !important
 .v-timeline-item__body
   color: white
   cursor: pointer
@@ -502,7 +511,7 @@ export default {
   margin-top: -26px
 .timeline
   position: fixed
-  left: 0px
+  left: -2px
   top: 0px
   height: 100vh
   width: 50px
@@ -522,6 +531,9 @@ export default {
   // mask-position: center
   // mask-repeat:no-repeat
   // mask-composite: intersect
+  @media only screen and (max-width: 480px)
+    transform: scale(0.8) !important
+
 .v-timeline::before
   bottom: 0
   content: ""
@@ -630,10 +642,17 @@ export default {
   // backdrop-filter: blur(3px)
   // background-color: rgba(1,1,1,0.8)
   z-index: 120
+  @media only screen and (max-width: 480px)
+    width: 80%
+    left: 12px
+    height: 85px
+    bottom: 20px
   p
     font-size: 13px
     margin-bottom: 0px !important
     font-family: Space Mono
+    @media only screen and (max-width: 480px)
+      font-size: 11px
 .infobutton
   position: fixed
   cursor: pointer
@@ -644,10 +663,13 @@ export default {
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
+    left: 12px
+    bottom: 20px
   :hover
     transform: rotateZ(360deg)
     transition: transform 1s
   img
     height: 40px
     width: 40px
+
 </style>

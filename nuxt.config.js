@@ -308,6 +308,9 @@ export default {
       }
     }
   },
+  router: {
+    trailingSlash: false
+  },
   generate: {
     fallback: true,
     routes: []

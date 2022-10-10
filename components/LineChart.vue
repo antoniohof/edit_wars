@@ -175,6 +175,9 @@ export default {
 
 <style lang="sass" scoped>
 .graph-container
+  display: flex
+  flex-direction: column
+  justify-content: center
   width: 100%
   width: -moz-available          
   width: -webkit-fill-available 
