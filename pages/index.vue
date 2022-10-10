@@ -255,7 +255,6 @@ export default {
   display: flex
   justify-content: center
   align-content: center
-  transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
     align-content: flex-start !important
@@ -281,7 +280,7 @@ export default {
   transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
-    font-size: 20px
+    font-size: 24px
     line-height: 22px
     font-weight: 700
     top: 10px
