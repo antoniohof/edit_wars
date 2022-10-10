@@ -194,7 +194,6 @@ const week = days * 7;
 const getDateValue = (date, data) => {
   // try exact date
   var value = 0
-  console.log("getDateValue", date)
   var value = data.find((d, i) => (
     new Date(d.x).getDate() == new Date(date).getDate() &&
     new Date(d.x).getMonth() == new Date(date).getMonth() &&
@@ -203,7 +202,6 @@ const getDateValue = (date, data) => {
   if (value) {
     // found exact value
     value = value.y
-    console.log("exact value!", value)
   } else {
     var closestIndex = 1
     var minDiff = 9999999999999999
@@ -212,7 +210,6 @@ const getDateValue = (date, data) => {
       if (minDiff > timeDiff) {
         minDiff = timeDiff
         closestIndex = i
-        console.log("closestIndex", closestIndex)
       }
     })
     let nextDate = data[closestIndex == 0 ? closestIndex + 1 : closestIndex]
@@ -221,8 +218,6 @@ const getDateValue = (date, data) => {
     let diffPrev = Math.abs(new Date(prevDate.x).getTime() - new Date(date).getTime())
     value = nextDate.y * (1 - (diffNext / week)) + prevDate.y * (diffNext / week)
   }
-  // var dateDiff = getDateDiff(closestDate, date)
-
   if (value) {
     return value
   } else {

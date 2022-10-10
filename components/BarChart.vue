@@ -122,7 +122,6 @@ export default {
               return
             }
             this.dataList.push(fetchedData);
-            console.log("loaded", this.dataList, name);
           });
       }
     },
@@ -133,7 +132,6 @@ export default {
       }
       //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []      
-      console.log("fetchedData", fetchedData)
       fetchedData.datasets.forEach(narrative => {
         var data = narrative.data.sort(compare)
         datasets.push({
@@ -201,7 +199,6 @@ export default {
           if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {
               var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate, this.currentChartData)          
-              console.log("closestDates", closestDates, step.filterDate)
               this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
               this.$refs.graph.chart.update();
             } else if (this.$refs.graph.chart) {
@@ -217,9 +214,6 @@ export default {
         }
         this.setData(data)
       }
-    },
-    background (bg) {
-      console.log("change bg!", bg)
     }
   },
 };

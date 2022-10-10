@@ -39,9 +39,7 @@ export default {
     if (!process.browser) {
       return;
     }
-    console.error("MOUNTED WORDCLOUD", this.background);
     if (this.background) {
-      console.log("this.background", this.background);
       // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
       let url =
         "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
@@ -60,7 +58,6 @@ export default {
 
   methods: {
     setData(background, url) {
-      console.log("bg", background);
       if (background.keywords) {
         var word = background.keywords;
 
@@ -73,8 +70,6 @@ export default {
             node_ids = [word];
           }
           node_ids = node_ids.map(id => id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""))
-
-          console.log("node_ids", node_ids);
           this.$refs.wordcloud.contentWindow.postMessage(
             {
               function: "focusOnNodes",
