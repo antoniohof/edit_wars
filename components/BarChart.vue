@@ -92,7 +92,6 @@ export default {
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
       let data = this.dataList[0]
-      console.log("this.dataList", this.dataList)
       if (this.dataList[dataIndex]) {
         data = this.dataList[dataIndex]
       }
@@ -133,11 +132,9 @@ export default {
         return;
       }
       //var fetchedDatasets = [...fetchedData.datasets];
-      var datasets = []
-      
+      var datasets = []      
       console.log("fetchedData", fetchedData)
       fetchedData.datasets.forEach(narrative => {
-        console.log("narrative", narrative)
         var data = narrative.data.sort(compare)
         datasets.push({
           ...narrative,
@@ -153,7 +150,6 @@ export default {
           headlines: narrative.headlines,
         })
       });
-      
       
       var headlines = {
         label: "scatter",
@@ -236,28 +232,28 @@ function compare(a, b) {
 <style lang="sass" scoped>
 .graph-container
   width: 100%
-  display: flex
-  flex-direction: column
   width: -moz-available
-  justify-self: center
   width: -webkit-fill-available
   width: fill-available
   filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3))
   @media only screen and (max-width: 480px)
 
 .chart-description
+  position: absolute
+  bottom: -40px
+  right: 0
+  transform: translateY(100%)
   text-align: center
-  font-size: 10px
-  width: 80%
-  margin-top: 20px
+  font-size: 12px
   color: black
   font-family: 'Space Mono'
 
 .chart-title
-  margin-bottom: 0px !important
+  position: absolute
+  top: 0px
   font-family: 'Space Mono'
+  transform: translateY(-100%)
   text-align: center
-  width: 80%
   font-size: 18px
   color: black
 </style>
