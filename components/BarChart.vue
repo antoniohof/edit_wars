@@ -198,7 +198,7 @@ export default {
   watch: {
       step(step) {
         if (process.client) {
-          if (this.$refs.graph.chart) {
+          if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {
               var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate, this.currentChartData)          
               console.log("closestDates", closestDates, step.filterDate)
@@ -264,7 +264,8 @@ function compare(a, b) {
   text-align: center
   margin-bottom: 0px !important
   font-size: 18px
+  width: 87%
   color: black
   @media only screen and (max-width: 480px)
-    font-size: 14px
+    font-size: 12px
 </style>

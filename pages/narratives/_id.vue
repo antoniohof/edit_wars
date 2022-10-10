@@ -639,8 +639,8 @@ export default {
   @media only screen and (max-width: 480px)
     width: 80%
     left: 12px
+    bottom: 40px
     height: 85px
-    bottom: 20px
   p
     font-size: 13px
     margin-bottom: 0px !important
@@ -658,7 +658,7 @@ export default {
   width: 40px
   @media only screen and (max-width: 480px)
     left: 12px
-    bottom: 20px
+    bottom: 40px
   :hover
     transform: rotateZ(360deg)
     transition: transform 1s
