@@ -60,7 +60,11 @@
             x: distance * Math.sin(this.angle),
             z: distance * Math.cos(this.angle)
           })
-          this.angle += Math.PI / 10000
+          let speed = 1000
+          if (this.currentRoute === '/narratives') {
+            speed = 12000
+          }
+          this.angle += Math.PI / speed
           this.animation = requestAnimationFrame(this.step)
       },
       calculateOpacities () {
