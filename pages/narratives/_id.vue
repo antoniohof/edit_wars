@@ -660,7 +660,7 @@ export default {
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
-    left: 12px
+    left: 14px
     bottom: 20px
   :hover
     transform: rotateZ(360deg)
