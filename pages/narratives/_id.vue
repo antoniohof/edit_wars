@@ -152,7 +152,6 @@ export default {
     process.nextTick(() => {
       window.dispatchEvent(new Event('resize'))
       if (this.currentBackground && this.currentBackground.component !== 'WordCloud') {
-        console.log('this.currentBackground', this.currentBackground)
         // in case theres background at step
         this.currentBackgroundToShow = this.currentBackground
         this.lastBackground = this.currentBackgroundToShow
@@ -196,11 +195,9 @@ export default {
   },
   computed: {
     getNarrativeName() {
-      console.log(' this.currentNarrative?.name', this.currentNarrative?.name)
       return this.currentNarrative?.name
     },
     getNarrativeSubtitle () {
-      console.log(' this.currentNarrative?.subtitle', this.currentNarrative?.subtitle)
       return this.currentNarrative?.subtitle
     },
     narrativeSteps() {
@@ -222,19 +219,15 @@ export default {
     }
   },
   async asyncData({ $content, params, error }) {
-    console.log('params', params)
     let steps
     let backgrounds
     try {
       let n = narratives.find((narrative) => {
       return narrative?.slug === params.id
     })
-      console.log('n', n)
       const nameSteps = `${n?.id}/steps`
       const nameBgs = `${n?.id}/backgrounds`
-      console.log(nameSteps)
       steps = await $content(nameSteps).sortBy('order').fetch()
-      console.log('steps', steps)
       backgrounds = await $content(nameBgs).fetch()
     } catch (e) {
       error({ message: 'error retrieving content' })
@@ -246,18 +239,15 @@ export default {
   },
   methods: {
     onClickGdelt () {
-      console.log('on click gdelt')
       const url = 'https://www.gdeltproject.org/'
       window.open(url, '_blank').focus()
     },
     closeInfo () {
-      console.log('close info')
       if (this.infoOpen) {
         this.infoOpen = false
       }
     },
     onClickOnInfo () {
-      console.log('on click info')
       process.nextTick(() => {
         this.infoOpen = true
       })
@@ -421,7 +411,7 @@ export default {
       //console.log("this.currentBackground", this.currentBackground)
     },
     currentBackground(value) {
-      if (!value) {
+      if (!value || value.component === "WordCloud") {
         this.currentBackgroundToShow = null
         return
       }
