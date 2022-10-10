@@ -239,24 +239,29 @@ function compare(a, b) {
   width: -webkit-fill-available
   width: fill-available
   filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3))
+  display: flex
+  flex-direction: column
+  width: -moz-available
+  justify-self: center
   @media only screen and (max-width: 480px)
 
 .chart-description
-  position: absolute
-  bottom: -40px
-  right: 0
-  transform: translateY(100%)
-  text-align: center
+  text-align: left
+  font-size: 10px
+  width: 87%
+  margin-top: 20px
   font-size: 12px
   color: black
   font-family: 'Space Mono'
+  @media only screen and (max-width: 480px)
+    font-size: 9px
 
 .chart-title
-  position: absolute
-  top: 0px
   font-family: 'Space Mono'
-  transform: translateY(-100%)
   text-align: center
+  margin-bottom: 0px !important
   font-size: 18px
   color: black
+  @media only screen and (max-width: 480px)
+    font-size: 14px
 </style>
