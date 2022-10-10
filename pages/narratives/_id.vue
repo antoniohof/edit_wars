@@ -151,7 +151,8 @@ export default {
     this.currentBackgroundScroll = window.scrollY
     process.nextTick(() => {
       window.dispatchEvent(new Event('resize'))
-      if (this.currentBackground) {
+      if (this.currentBackground && this.currentBackground.component !== 'WordCloud') {
+        console.log('this.currentBackground', this.currentBackground)
         // in case theres background at step
         this.currentBackgroundToShow = this.currentBackground
         this.lastBackground = this.currentBackgroundToShow
