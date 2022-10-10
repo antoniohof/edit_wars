@@ -313,7 +313,10 @@ export default {
   },
   generate: {
     fallback: true,
-    routes: []
+    routes: [
+      '/about',
+      '/narratives'
+    ]
   },
   render: {
     bundleRenderer: {
@@ -353,6 +356,6 @@ export default {
   },
   sitemap: {
     hostname: 'https://edit-wars.netlify.app/',
-    routes: ['/about']
+    routes: ['/about', '/narratives']
   }
 }
