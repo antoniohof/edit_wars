@@ -503,6 +503,9 @@ export default {
   font-family: Space Mono Italic !important
   font-weight: 300
   margin-top: -26px
+  @media only screen and (max-width: 480px)
+    margin-top: -18px
+
 .timeline
   position: fixed
   left: 3px
