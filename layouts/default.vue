@@ -197,6 +197,7 @@ export default {
     margin-top: 0px
 .topbar
   color: white
+  z-index: 1000 !important
   width: 100vw
   padding: 0px 30px 0px 30px
   @media only screen and (max-width: 480px)

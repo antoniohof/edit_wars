@@ -24,7 +24,6 @@
       }
 
       this.currentRoute = this.$nuxt.$route.path
-      console.log('this.currentRoute', this.currentRoute)
       process.nextTick(() => {
         this.buildGraph()
         setTimeout(() => {
@@ -52,24 +51,28 @@
     methods: {
       step () {
         // camera orbit
-        const distance = 400
+        let distance = 400
+        if (this.isMobile()) {
+          distance = 700
+        }
+
           this.g.cameraPosition({
             x: distance * Math.sin(this.angle),
             z: distance * Math.cos(this.angle)
           })
-          this.angle += Math.PI / 1000
+          this.angle += Math.PI / 10000
           this.animation = requestAnimationFrame(this.step)
       },
       calculateOpacities () {
         process.nextTick(() => {
-          console.log('this.fonts', this.fonts)
-          console.log('window.location.pathname', window.location.pathname)
           for (const property in this.fonts) {
-            console.log(`${property}: ${this.fonts[property]}`);
             const mat = this.fonts[property]
             if (window.location.pathname == "/narratives") {
-              console.log('narrative')
-              mat.opacity = narratives[property]?.disabled ? 0.25 : 1
+              if (this.isMobile()) {
+                mat.opacity = narratives[property]?.disabled ? 0 : 1
+              } else {
+                mat.opacity = narratives[property]?.disabled ? 0.25 : 1
+              }
             } else {
               console.log('not narrative pages')
               mat.opacity = 0
@@ -87,6 +90,10 @@
         const el = document.querySelector('.narrative-graph-page')
         const g = ForceGraph3D()(el)
         const N = 3
+        let dimensions = 3
+        if (this.isMobile()) {
+          dimensions = 2
+        }
         let n = [...narratives]
         const data = n.map((narrative) => ({
           id: narrative.id,
@@ -114,7 +121,6 @@
           }
         }
         const arr = [...nums]
-        console.log('arr', arr)
 
         var links = ds.map((n) => ({
           source: ds.filter(d=> d.id !== n.id)[arr[0]],
@@ -131,8 +137,6 @@
           nodes: ds,
           links: links.concat(links2)
         }
-        console.log('gdata', gData)
-        console.log('gdata string', JSON.stringify(gData))
 
         let fontSize = 6
         let scale = 0.8
@@ -146,7 +150,7 @@
           .backgroundColor('rgba(0,0,0,0)')
           .linkWidth(0.2)
           .showNavInfo(false)
-          .numDimensions(3)
+          .numDimensions(dimensions)
           .linkOpacity(1.0)
           .onNodeClick(this.onNodeClick)
           .nodeThreeObject((node) => {
@@ -173,7 +177,6 @@
             g.controls().noZoom = true
             setTimeout(() => {
               if (this.isMobile()) {
-                g.zoomToFit(500)
 
                 g.cameraPosition(
                   { x: 0, y: 0, z: 1200 }, // new position
@@ -193,8 +196,9 @@
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
-
-        this.animation = requestAnimationFrame(this.step)
+        if (!this.isMobile()) {
+          this.animation = requestAnimationFrame(this.step)
+        }
 
       },
       isMobile() {
@@ -237,7 +241,7 @@
   }
   </script>
   
-  <style lang="sass" scoped>
+  <style lang="sass">
   @font-face
     font-family: "Space Mono Italic"
     font-style: italic
@@ -247,7 +251,7 @@
     position: fixed
     top: 0
     left: 0
-    font-family: Space Mono Italic
+    font-family: Space Mono Italic !important
     display: flex
     background-color: white
     flex-direction: column
