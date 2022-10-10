@@ -481,7 +481,7 @@ export default {
     min-width: 100vw !important
     height: 200px
     margin-top: 100px
-    z-index: 150
+    z-index: 100
     @media only screen and (max-width: 480px)
       font-size: 20px
       top: 80px
