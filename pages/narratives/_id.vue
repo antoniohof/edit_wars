@@ -1,10 +1,12 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
     <div class="narrative_title">
-      <h1 class="narrative_title_name">
-        {{ getNarrativeName }} <br>
-        {{ getNarrativeSubtitle }}
+      <h1 class="narrative_title_name italic">
+        {{ getNarrativeName }}
       </h1>
+      <h2 class="narrative_title_name">
+        {{ getNarrativeSubtitle }}
+      </h2>
     </div>
     <client-only>
       <WordCloud
@@ -462,23 +464,24 @@ export default {
   &_title
     pointer-events: none
     position: sticky
-    top: 80px
+    top: 100px
     word-spacing: -15px !important
     left: 0
     width: 100vw !important
     min-width: 100vw !important
     height: 200px
     margin-top: 100px
-    z-index: 15
+    z-index: 150
     @media only screen and (max-width: 480px)
       font-size: 20px
-      top: 50px
+      top: 80px
     &_name
       display: flex
-      background-color: rgba(255,255,255,0.8) !important
-      backdrop-filter: blur(3px)
+      // background-color: rgba(255,255,255,0.8) !important
+      // backdrop-filter: blur(3px)
       justify-content: center
       position: absolute
+      margin-top: 28px
       margin: 0 auto
       text-align: center
       left: 50%
@@ -486,14 +489,17 @@ export default {
       width: 100vw
       color: black
       font-family: Space Mono Italic
-      font-weight: 400
-      font-size: 22px
+      font-weight: 300
+      font-size: 20px
       text-transform: uppercase
       @media only screen and (max-width: 480px)
         font-size: 12px
         padding: 0px 50px 0px 50px !important
         text-align: center
-
+.italic
+  font-family: Space Mono Italic !important
+  font-weight: 300
+  margin-top: -26px
 .timeline
   position: fixed
   left: 0px
@@ -617,12 +623,12 @@ export default {
   bottom: 30px
   border-radius: 4px
   background-color: black
-  left: 31px
+  left: 32px
   height: 100px
   width: 400px
   padding: 10px
-  backdrop-filter: blur(3px)
-  background-color: rgba(1,1,1,0.8)
+  // backdrop-filter: blur(3px)
+  // background-color: rgba(1,1,1,0.8)
   z-index: 50
   p
     font-size: 13px
@@ -636,6 +642,7 @@ export default {
   left: 31px
   height: 40px
   width: 40px
+  @media only screen and (max-width: 480px)
   :hover
     transform: rotateZ(360deg)
     transition: transform 1s
