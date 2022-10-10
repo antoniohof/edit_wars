@@ -176,7 +176,7 @@ export default {
     font-size: 24px
     margin-bottom: 10px
     width: 85%  
-    margin-top: -10px
+    margin-top: 0px
     max-height: 100%
     @media only screen and (max-width: 480px)
       font-size: 16px !important
