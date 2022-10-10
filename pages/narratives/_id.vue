@@ -637,10 +637,17 @@ export default {
   // backdrop-filter: blur(3px)
   // background-color: rgba(1,1,1,0.8)
   z-index: 120
+  @media only screen and (max-width: 480px)
+    width: 80%
+    left: 12px
+    height: 85px
+    bottom: 20px
   p
     font-size: 13px
     margin-bottom: 0px !important
     font-family: Space Mono
+    @media only screen and (max-width: 480px)
+      font-size: 11px
 .infobutton
   position: fixed
   cursor: pointer
@@ -651,6 +658,8 @@ export default {
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
+    left: 12px
+    bottom: 20px
   :hover
     transform: rotateZ(360deg)
     transition: transform 1s
