@@ -109,7 +109,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/sitemap',
     '@nuxtjs/i18n',
-    '@blokwise/dynamic'
+    '@blokwise/dynamic
   ],
   i18n: {
     strategy: 'no_prefix',
@@ -309,7 +309,8 @@ export default {
     }
   },
   router: {
-    trailingSlash: false
+    trailingSlash: false,
+    middleware: "trailingSlashRedirect"
   },
   generate: {
     fallback: true,
