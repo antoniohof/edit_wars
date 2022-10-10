@@ -241,7 +241,7 @@
   }
   </script>
   
-  <style lang="sass" scoped>
+  <style lang="sass">
   @font-face
     font-family: "Space Mono Italic"
     font-style: italic
@@ -251,7 +251,7 @@
     position: fixed
     top: 0
     left: 0
-    font-family: Space Mono Italic
+    font-family: Space Mono Italic !important
     display: flex
     background-color: white
     flex-direction: column

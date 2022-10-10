@@ -129,7 +129,7 @@ export default {
   background-color: transparent !important
 .menu
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)
-    z-index: 50
+    z-index: 120
     top: 20px !important
     background-color: $menu-bg
     border-radius: 4px 0px 0px 4px
