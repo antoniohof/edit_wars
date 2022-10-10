@@ -294,6 +294,8 @@ export default {
     onClickTimeline(index) {
       console.log('on click narrative', index)
       console.log(narratives[index])
+      this.$router.push({ path: '/narratives/' + narratives[index].slug })
+
       /*
       this.lastEnterBackgroundDirection = 'jump'
       console.log('index', index)
@@ -437,7 +439,8 @@ export default {
 .scrollama__debug-offset
   border-top: 2px dashed red !important
 
-
+.unclickable
+  opacity: 0.5 !important
 .v-timeline-item__body
   color: white
   cursor: pointer
@@ -655,6 +658,4 @@ export default {
     height: 40px
     width: 40px
 
-  .unclickable
-    opacity: 0.5 !important
 </style>
