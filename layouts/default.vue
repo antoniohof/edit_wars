@@ -1,5 +1,7 @@
 <template>
   <v-app id="app">
+    <div class="gradient" >
+    </div>
     <client-only>
       <NarrativesGraph class='backgroundgraph' v-if="isHomeRoute || isNarrativesRoute || isAboutRoute">
       </NarrativesGraph>
@@ -217,4 +219,12 @@ export default {
     margin-top: -1px
   &:hover
     font-style: italic
-</style>
+
+.gradient
+  width: 100vw !important
+  height: 150px
+  top: 0
+  position: fixed
+  z-index: 100
+  background-image: linear-gradient(0deg,hsla(0,0%,100%,0),#fff)
+  </style>
