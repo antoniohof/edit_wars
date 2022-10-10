@@ -309,8 +309,7 @@ export default {
     }
   },
   router: {
-    trailingSlash: false,
-    middleware: "trailingSlashRedirect"
+    trailingSlash: true
   },
   generate: {
     fallback: true,
