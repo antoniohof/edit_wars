@@ -28,7 +28,7 @@
           @click.native="onClickTimeline(index)"
           :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
           :key="index"
-          >{{ index }}</v-timeline-item
+          >{{ index + 1 }}</v-timeline-item
         >
       </v-timeline>
     </div>
@@ -40,12 +40,12 @@
         The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
       </p>
     </div>
-    <transition :name="getBackgroundTransition">
+    <transition mode='in-out' :name="getBackgroundTransition">
       <div
         class="background"
         v-if="
           currentBackgroundToShow &&
-          currentBackgroundToShow.component !== 'WordCloud'
+          currentBackground.component !== 'WordCloud'
         "
       >
       <client-only>
@@ -151,7 +151,8 @@ export default {
     this.currentBackgroundScroll = window.scrollY
     process.nextTick(() => {
       window.dispatchEvent(new Event('resize'))
-      if (this.currentBackground) {
+      if (this.currentBackground && this.currentBackground.component !== 'WordCloud') {
+        console.log('this.currentBackground', this.currentBackground)
         // in case theres background at step
         this.currentBackgroundToShow = this.currentBackground
         this.lastBackground = this.currentBackgroundToShow
@@ -511,7 +512,7 @@ export default {
   margin-top: -26px
 .timeline
   position: fixed
-  left: -2px
+  left: 3px
   top: 0px
   height: 100vh
   width: 50px
