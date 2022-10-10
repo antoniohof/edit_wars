@@ -60,7 +60,7 @@
             x: distance * Math.sin(this.angle),
             z: distance * Math.cos(this.angle)
           })
-          this.angle += Math.PI / 5000
+          this.angle += Math.PI / 10000
           this.animation = requestAnimationFrame(this.step)
       },
       calculateOpacities () {

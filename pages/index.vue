@@ -5,6 +5,9 @@
       <transition name="fadelongo">
         <div v-show="showName" class="intro-title">EDIT WARS</div>
       </transition>
+      <transition name="fadelongo">
+        <div v-show="showName" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
+      </transition>
     </v-container>
     <client-only>
       <vue-typer
@@ -223,7 +226,6 @@ export default {
   display: flex
   flex-direction: column
   justify-content: center
-
 .intro-background
   position: fixed
   pointer-events: none
@@ -251,8 +253,41 @@ export default {
   align-content: center
   transition: transform 0.5s ease
   align-items: center
-  &:after
-    content: none !important
+  @media only screen and (max-width: 480px)
+    align-content: flex-start !important
+
+
+
+.intro-subtitle
+  z-index: 20
+  width: 100%
+  pointer-events: none
+  margin-top: -64px
+  position: relative
+  font-size: 32px
+  font-weight: 300
+  user-select: none
+  white-space: nowrap
+  font-family: Space Mono
+  text-transform: uppercase
+  text-align: center
+  display: flex
+  justify-content: center
+  align-content: center
+  transition: transform 0.5s ease
+  align-items: center
+  @media only screen and (max-width: 480px)
+    font-size: 20px
+    line-height: 22px
+    font-weight: 700
+    top: 10px
+    position: absolute
+    white-space: initial
+    top: 70px
+    height: 50px
+    left: 0px
+
+
 
 .intro-text
   height: 75vh
