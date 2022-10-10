@@ -30,9 +30,8 @@ function formatDate(date) {
 }
 
 const getClostestDate = (min, max, chartData) => {
-  var minDate = new Date(min)
+  var minDate = new Date(chartData.labels[0])
   var maxDate = null
-  console.log("chart.chartData", min, max)
   var lastDate = null
   chartData.labels.forEach(date => {
     if (new Date(date) <= new Date(min)) {
@@ -43,7 +42,7 @@ const getClostestDate = (min, max, chartData) => {
     }
     lastDate=new Date(date)
   })
-  maxDate = maxDate || lastDate 
+  maxDate = maxDate || lastDate
 
   return {min: minDate, max: maxDate}
 }
