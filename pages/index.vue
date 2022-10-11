@@ -290,7 +290,7 @@ export default {
   font-family: Space Mono !important
   font-size: 2vw
   padding: 0px 64px 0px 64px
-  z-index: 5
+  z-index: 101
   width: 100%
   color: black
   @media only screen and (max-width: 480px)

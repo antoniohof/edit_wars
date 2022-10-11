@@ -152,8 +152,8 @@
         let scale = 0.8
         let position = 10
         if (getIsMobile()) {
-          fontSize = 22
-          scale = 4
+          fontSize = 18
+          scale = 2.5
           position = 38
         }
         g.graphData(gData)
@@ -214,9 +214,9 @@
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
-        if (!getIsMobile()) {
+        // if (!this.isMobile()) {
           this.animation = requestAnimationFrame(this.step)
-        }
+        // }
       },
       onWindowResize () {
         console.log('on Window Resize')
