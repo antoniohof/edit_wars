@@ -151,7 +151,7 @@
         let scale = 0.8
         let position = 10
         if (this.isMobile()) {
-          fontSize = 20
+          fontSize = 18
           scale = 2.5
           position = 38
         }
