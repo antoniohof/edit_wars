@@ -67,7 +67,7 @@ export default {
       chartId: "bar-chart",
       datasetIdKey: "label",
       width: 800,
-      height: getIsMobile() ? '1200px' : 800,
+      height: 800,
       cssClasses: "",
       styles: {
         "width": `85%`,
