@@ -20,24 +20,15 @@
 <script>
 import { Bar as barjs, Scatter as scatterjs, Line as linejs } from "vue-chartjs";
 import Chart from 'chart.js/auto';  
-
 import { Tooltip } from 'chart.js'
+import { getIsMobile } from '@/utils/index.js'
 
 import "chartjs-adapter-date-fns";
 
-import {
-  getDates,
-  processTableutData,
-  parseDataUrl,
-  escapeCode,
-} from "../utils/DataProcessing";
-
-import { colorPalette, colors } from "../utils/constants";
-
+import { parseDataUrl } from "../utils/DataProcessing";
+import { colors } from "../utils/constants";
 import StepMixin from '@/mixins/StepMixin.js'
-
 import { defaultOptions, getDateValue, getClostestDate } from "../utils/chart"
-
 
 Tooltip.positioners.bottom = function(items) {
   const pos = Tooltip.positioners.average(items);
@@ -46,7 +37,6 @@ Tooltip.positioners.bottom = function(items) {
     return false;
   }
   const chart = this.chart;
-
   return {
     x: pos.x,
     y: chart.chartArea.bottom + 300,
@@ -71,22 +61,25 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
       currentProcessedData: null,
       currentChartData: null,
       chartId: "bar-chart",
       datasetIdKey: "label",
       width: 800,
-      height: 800,
+      height: getIsMobile() ? '1200px' : 800,
       cssClasses: "",
       styles: {
-        width: `85%`,
-        "max-width": `800px`
+        "width": `85%`,
+        "max-width": `800px`,
+        "height": getIsMobile() ? '70vw' : 'auto'
       },
       chartOptions: {},
       dataList: [],
     };
   },
   async mounted() {
+    this.isMobile = getIsMobile()
     if (process.client) {
       // Chart.register(zoomPlugin);
       await this.loadData();
@@ -101,8 +94,7 @@ export default {
   methods: {
     async loadData() {
       this.dataList = [];
-      this.chartOptions = defaultOptions;
-      //this.chartOptions.plugins.title.text = this.background.chart_title
+      this.chartOptions = {...defaultOptions, maintainAspectRatio: !this.isMobile};
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
         dataNames = this.background.name.split(",");
@@ -130,13 +122,11 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      //var fetchedDatasets = [...fetchedData.datasets];
       var datasets = []      
       fetchedData.datasets.forEach(narrative => {
         var data = narrative.data.sort(compare)
         datasets.push({
           ...narrative,
-          //borderColor: "rgb(255, 0, 0)",
           type: "line",
           data: data,
           borderWidth: 1,
@@ -153,10 +143,9 @@ export default {
         label: "scatter",
         borderColor: colors.chartColor,
         borderWidth: 2,
-        radius: 6,
-        borderRadius: 4,
+        radius: this.isMobile ? 3 : 6,
+        borderRadius: this.isMobile ? 2 : 4,
         backgroundColor: colors.chartColor,
-        //type: 'scatter-chart',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
@@ -172,8 +161,8 @@ export default {
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
-        radius: 5,
-        borderRadius: 4,
+        radius: this.isMobile ? 3 : 5,
+        // borderRadius: this.isMobile ? 2 : 4,
         backgroundColor: colors.chartColor,
         data: fetchedData.events.map(event => ({
           x: event.date,
@@ -256,7 +245,7 @@ function compare(a, b) {
 .chart-title
   font-family: 'Space Mono'
   text-align: center
-  margin-bottom: 0px !important
+  margin-bottom: -20px !important
   font-size: 16px
   width: 83%
   color: black

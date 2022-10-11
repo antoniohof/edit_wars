@@ -12,8 +12,8 @@
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
 import { narratives } from "@/utils/constants.js";
-
 import { escapeCode } from "../utils/DataProcessing";
+import { getIsMobile } from '@/utils/index.js'
 
 export default {
   mixins: [StepMixin],
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
       lastBackground: "",
       currentUrl: "",
       chartOptions: null,
@@ -39,6 +40,7 @@ export default {
     if (!process.browser) {
       return;
     }
+    this.isMobile = getIsMobile()
     if (this.background) {
       // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
       let url =
@@ -84,7 +86,6 @@ export default {
       }
       this.lastBackground = background?.name || "";
       this.currentUrl = url;
-      // this.g.resumeAnimation()
     },
   },
   watch: {
@@ -96,12 +97,9 @@ export default {
           entity.narrativeName;
         this.setData(entity, url);
       } else {
-        this.$refs.wordcloud.contentWindow.postMessage(
-          {
-            function: "autoRotate",
-          },
-          "*"
-        );
+        if (!this.isMobile) {
+          this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*");
+        }
       }
     },
   },

@@ -55,6 +55,7 @@ const getClostestDate = (min, max, chartData) => {
 }
 
 const defaultOptions = {
+  //maintainAspectRatio: false,
   responsive: true,
   borderColor: "black",
   backgroundColor: "black",
