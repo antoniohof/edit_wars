@@ -245,7 +245,7 @@ function compare(a, b) {
 .chart-title
   font-family: 'Space Mono'
   text-align: center
-  margin-bottom: -20px !important
+  margin-bottom: -25px !important
   font-size: 16px
   width: 83%
   color: black
