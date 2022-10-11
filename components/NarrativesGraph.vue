@@ -213,9 +213,9 @@
           }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
-        if (!this.isMobile()) {
+        // if (!this.isMobile()) {
           this.animation = requestAnimationFrame(this.step)
-        }
+        // }
 
       },
       isMobile() {
