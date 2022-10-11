@@ -245,7 +245,8 @@ function compare(a, b) {
 .chart-description
   text-align: left
   font-size: 10px
-  width: 83%
+  width: 83%  !important
+  max-width: 83% !important
   margin-top: 20px
   font-size: 12px
   color: black

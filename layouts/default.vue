@@ -227,7 +227,7 @@ export default {
 
 .gradient
   width: 100vw !important
-  height: 180px
+  height: 150px
   pointer-events: none !important
   top: 0
   position: fixed

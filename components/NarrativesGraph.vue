@@ -151,8 +151,8 @@
         let scale = 0.8
         let position = 10
         if (this.isMobile()) {
-          fontSize = 22
-          scale = 4
+          fontSize = 20
+          scale = 2.5
           position = 38
         }
         g.graphData(gData)
