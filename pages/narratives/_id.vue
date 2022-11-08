@@ -538,6 +538,7 @@ export default {
       cursor: pointer
       box-shadow: 0px !important
 .side
+  pointer-events: none
   display: flex
   width: 28vw !important
   align-self: flex-end
