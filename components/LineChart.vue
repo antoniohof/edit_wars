@@ -73,7 +73,7 @@ export default {
       this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
       const dataNames = this.background.name.split(',')
       for await (const name of dataNames) {
-        let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + name + '.json'
+        let url = 'https://cdn.jsdelivr.net/gh/editwarsteam/edit_wars_api/export/' + name + '.json'
         await fetch(parseDataUrl(url)).then(response => response.json()).then(fetchedData => {
           this.dataList.push(fetchedData)
         })

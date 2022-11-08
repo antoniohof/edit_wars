@@ -101,7 +101,8 @@ export default {
       }
       for await (const name of dataNames) {
         let url =
-          "https://raw.githubusercontent.com/mneunomne/edit_wars_database/main/export/data/"+
+          "https://raw.githubusercontent.com/editwarsteam/edit_wars_api/main/export/data/"+
+          //"https://raw.githubusercontent.com/mneunomne/edit_wars_database/main/export/data/"+
           //"https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
           name +
           ".json";
