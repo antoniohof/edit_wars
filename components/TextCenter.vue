@@ -62,7 +62,7 @@ export default {
       background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
       backdrop-filter: blur(8px)
       border-radius: 4px
-      max-width: 60%
+      max-width: 40%
       flex-direction: column
       align-content: center
       justify-content: center
