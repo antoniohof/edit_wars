@@ -90,7 +90,7 @@ const defaultOptions = {
         label: (context) => "",
         title: (context) => "",
         afterBody: (context) => {
-          // console.log("context", context)
+          console.log("context", context)
           let type = context[0].raw.type ? context[0].raw.type : context[1].raw.type
           if (!type) return
           const maxCharPerLine = 50
@@ -104,9 +104,9 @@ const defaultOptions = {
           words.forEach(w => {
             if (lines[i].length + w.length > maxCharPerLine) {
               i++
-              lines[i] = ""
+              lines[i] = w + " "
             } else {
-              lines[i] = lines[i] + " " + w
+              lines[i] = lines[i] + w + " " 
             }
           })
           if (src) lines.push(src)
