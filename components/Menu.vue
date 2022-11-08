@@ -38,7 +38,7 @@
         </v-list-item>
       </v-list>
       <div class="contact" @click="onClick">CONTACT
-        <div class="email">editwars@protonmail.me</div>
+        <div class="email">editwarsproject@proton.me</div>
       </div>
     </v-navigation-drawer>
   </div>

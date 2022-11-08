@@ -52,7 +52,7 @@ collections:
     extension: "json"
     create: true
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     sortable_fields: ["order"]
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
@@ -97,7 +97,7 @@ collections:
     create: true
     extension: "json"
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
       - { label: "Name", name: "name", widget: string }
@@ -160,7 +160,7 @@ collections:
     extension: "json"
     create: true
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     sortable_fields: ["order"]
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
@@ -204,7 +204,7 @@ collections:
     create: true
     extension: "json"
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
       - { label: "Name", name: "name", widget: string }
@@ -267,7 +267,7 @@ collections:
     extension: "json"
     create: true
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     sortable_fields: ["order"]
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
@@ -311,7 +311,7 @@ collections:
     create: true
     extension: "json"
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
       - { label: "Name", name: "name", widget: string }
@@ -374,7 +374,7 @@ collections:
     extension: "json"
     create: true
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     sortable_fields: ["order"]
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
@@ -418,7 +418,7 @@ collections:
     create: true
     extension: "json"
     slug: "{{identifier}}"
-    identifier_field: identifier
+    identifier_field: name
     fields:
       - { label: "UUID", name: "uuid", widget: uuid }
       - { label: "Name", name: "name", widget: string }
