@@ -90,7 +90,6 @@ const defaultOptions = {
         label: (context) => "",
         title: (context) => "",
         afterBody: (context) => {
-          console.log("context", context)
           let type = context[0].raw.type ? context[0].raw.type : context[1].raw.type
           if (!type) return
           const maxCharPerLine = 50
