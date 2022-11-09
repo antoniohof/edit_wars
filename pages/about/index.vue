@@ -215,7 +215,6 @@ export default {
     width: 30%
     margin-top: 5px
     margin-bottom: -5px !important
-    filter: grayscale(100%)
   :deep(p)
     margin-bottom: 5px !important
 .divider

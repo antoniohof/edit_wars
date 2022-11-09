@@ -76,16 +76,13 @@
           this.fonts.forEach((ob) => {
             const sphereMat = ob.materials[1]
             let textMat = ob.materials[0]
-              if (window.location.pathname == "/narratives") {
-                if (getIsMobile()) {
-                  textMat.opacity = ob.node?.disabled ? 0 : 1
-                  sphereMat.opacity = ob.node?.disabled ? 0.3 : 1
-                } else {
-                  textMat.opacity = ob.node?.disabled ? 0.25 : 1
-                }
+            if (window.location.pathname == "/narratives") {
+              textMat.opacity = ob.node?.disabled ? 0 : 1
+              sphereMat.opacity = ob.node?.disabled ? 0.3 : 1
             } else {
               console.log('not narrative pages')
               textMat.opacity = 0
+              sphereMat.opacity = 1
             }
           })
         })
