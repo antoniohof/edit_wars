@@ -173,6 +173,16 @@ export default {
           type: "event"
         }))
       } 
+  /*
+      var test = {
+        radius: 2,
+        label: "scatter",
+        data: datasets[0].data.map(d => {
+          x: d.x,
+          y: 0,
+        })
+      }
+*/    
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
@@ -181,6 +191,16 @@ export default {
         labels: fetchedData.labels,
         datasets: datasets,
       };
+
+      if (this.step.filterDate) {
+        var closestDates = getClostestDate(this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData)          
+        console.log("this.step.filterDate", this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData.labels.length)
+        console.log("closestDates", closestDates)
+        this.$nextTick(() => {
+            this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
+            this.$refs.graph.chart.update();
+        })
+      } 
     },
   },
   watch: {

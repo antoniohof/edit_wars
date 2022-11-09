@@ -94,8 +94,8 @@ const defaultOptions = {
           let type = context[0].raw.type ? context[0].raw.type : context[1].raw.type
           if (!type) return
           const maxCharPerLine = 50
-          let str = context[0].raw.label ? context[0].raw.label : context[1].raw.label
-          let src = context[0].raw.source ? context[0].raw.source : context[1].raw.source
+          let str = typeof context[0].raw.label == "string" ? context[0].raw.label : context[1].raw.label
+          let src = typeof context[0].raw.source == "string" ? context[0].raw.source : context[1].raw.source
           if (str == undefined) return ""
           if (type == 'headline') str = `“${str}”`
           var words = str.split(" ")
