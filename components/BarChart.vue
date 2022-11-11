@@ -128,7 +128,7 @@ export default {
         var data = narrative.data.sort(compare)
         datasets.push({
           ...narrative,
-          type: "line",
+          type: isChartWeekly(data) ? "line" : "bar",
           data: data,
           borderWidth: 1,
           tension: 0,
@@ -227,6 +227,15 @@ export default {
     }
   },
 };
+
+function isChartWeekly (data) {
+  var d1 = new Date (data[0].x).getTime()
+  var d2 = new Date (data[1].x).getTime()
+  let difference = d1 - d2;
+  let TotalDays = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
+  console.log("TotalDays", TotalDays)
+  return TotalDays > 1
+}
 
 function compare(a, b) {
   if (a.x < b.x) {
