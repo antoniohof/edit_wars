@@ -17,11 +17,19 @@
         currentRoute: '/',
         fonts: [],
         animation: null,
-        angle: 0
+        angle: 0,
+        interacted: false
       }
     },
     scrollToTop: true,
     mounted () {
+      document.addEventListener('mousedown', () => {
+        this.interacted = true 
+      })
+      document.addEventListener('touchstart', () => {
+        this.interacted = true 
+      })
+
       console.log('mounted narratives')
       if (!process.browser) {
         return
@@ -33,6 +41,14 @@
         setTimeout(() => {
           this.calculateOpacities()
         }, 100)
+      })
+    },
+    beforeUnmount () {
+      document.removeEventListener('mousedown', () => {
+        this.interacted = true 
+      })
+      document.removeEventListener('touchstart', () => {
+        this.interacted = true 
       })
     },
     async asyncData({ $content }) {},
@@ -55,6 +71,10 @@
     methods: {
       step () {
         // camera orbit
+        if (this.interacted) {
+          // stop animation
+          return;
+        } 
         let distance = 400
         if (getIsMobile()) {
           distance = 700
@@ -66,10 +86,10 @@
           })
           let speed = 1000
           if (this.currentRoute === '/narratives') {
-            speed = 12000
+            speed = 1200
           }
           this.angle += Math.PI / speed
-          this.animation = requestAnimationFrame(this.step)
+        this.animation = requestAnimationFrame(this.step)
       },
       calculateOpacities () {
         process.nextTick(() => {
@@ -174,8 +194,21 @@
               sprite.position.set(0, position, 0)
               group.add(sphere)
             }
-            g.controls().noPan = true
-            g.controls().noZoom = true
+            return group
+          })
+        this.g = g
+        process.nextTick(() => {
+
+
+
+          if (getIsMobile()) {
+            g.d3Force('charge').strength(-1500)
+          } else {
+            g.d3Force('charge').strength(-800)
+          }
+          g.controls().maxDistance = 1000;
+            //g.controls().noPan = true
+            //g.controls().noZoom = true
             setTimeout(() => {
               if (getIsMobile()) {
 
@@ -186,15 +219,6 @@
                 );
               }
             }, 10)
-            return group
-          })
-        this.g = g
-        process.nextTick(() => {
-          if (getIsMobile()) {
-            g.d3Force('charge').strength(-1500)
-          } else {
-            g.d3Force('charge').strength(-800)
-          }
         })
         window.addEventListener( 'resize', this.onWindowResize, false )
         // if (!this.isMobile()) {
