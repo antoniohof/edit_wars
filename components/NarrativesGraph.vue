@@ -109,17 +109,6 @@
           disabled: narrative.disabled
         }))
         const ds = data.filter((d) => !!d)
-
-        
-        /*
-        // empty node to conect all
-        ds.push({
-          id: 0,
-          label: '',
-          path: ''
-        })
-        */
-
         const nums = new Set();
         while(nums.size !== 2) {
           const num = Math.floor(Math.random() * ds.length - 1)
@@ -164,11 +153,8 @@
             const group = new THREE.Group()
             if (node.id > 0) {
               const geometry = new THREE.SphereGeometry(5, 64, 64)
-
               let op = 1
               const matSphere = new THREE.MeshBasicMaterial({ color: 0x000000, opacity: op, transparent: true })
-              const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
-
               const sphere = new THREE.Mesh(geometry, matSphere)
               sphere.scale.set(scale, scale, scale)
               const sprite = new SpriteText(node.label.toUpperCase())

@@ -26,97 +26,9 @@ export default {
     }
   },
   scrollToTop: true,
-  mounted () {
-    /*
-    let ForceGraph3D
-    if (window) {
-      ForceGraph3D = require('3d-force-graph').default
-    } else {
-      return
-    }
-    const el = document.querySelector('.narratives-page')
-    const g = ForceGraph3D()(el)
-    const N = 3
-    const data = narratives.map((narrative) => ({
-      id: narrative.id,
-      label: narrative.name,
-      path: narrative.slug,
-      disabled: narrative.disabled
-    }))
-    const ds = data.filter((d) => !!d)
-    // empty node to conect all
-    ds.push({
-      id: 0,
-      label: '',
-      path: ''
-    })
-    var links = ds.map((n) => ({
-      source: ds.filter(d=> d.id !== n.id)[Math.floor(Math.random()*(ds.length-1))],
-      target: n.id,
-      color: 'rgba(0,0,0,1)'
-    }))
-    //console.log("links", links)
-
-    const gData = {
-      nodes: ds,
-      links: links
-    }
-    let fontSize = 6
-    let scale = 0.8
-    let position = 10
-    if (this.isMobile()) {
-      fontSize = 15
-      scale = 2
-      position = 30
-    }
-    g.graphData(gData)
-      .backgroundColor('rgba(0,0,0,0)')
-      .linkWidth(0.2)
-      .showNavInfo(false)
-      .numDimensions(2)
-      .linkOpacity(1.0)
-      .onNodeClick(this.onNodeClick)
-      .nodeThreeObject((node) => {
-        const group = new THREE.Group()
-        if (node.id > 0) {
-          const geometry = new THREE.SphereGeometry(5, 64, 64)
-          const material = new THREE.MeshBasicMaterial({ color: 0x000000 })
-          const sphere = new THREE.Mesh(geometry, material)
-          sphere.material.opacity = node.disabled ? 0.5 : 1
-          sphere.scale.set(scale, scale, scale)
-          const sprite = new SpriteText(node.label.toUpperCase())
-          sprite.fontFace = 'Space Mono Italic'
-          sprite.material.depthWrite = false // make sprite background transparent
-          sprite.material.opacity = node.disabled ? 0.5 : 1
-          sprite.color = node.color
-          sprite.textHeight = fontSize
-          group.add(sprite)
-
-          sprite.position.set(0, position, 0)
-          group.add(sphere)
-        }
-        g.controls().noPan = true
-        g.controls().noZoom = true
-        setTimeout(() => {
-          if (this.isMobile()) {
-            g.zoomToFit(150)
-          }
-        }, 10)
-        return group
-      })
-    this.g = g
-    if (this.isMobile()) {
-      g.d3Force('charge').strength(-1000)
-    } else {
-      g.d3Force('charge').strength(-300)
-    }
-    window.addEventListener( 'resize', this.onWindowResize, false );
-    */
-  },
   async asyncData({ $content }) {},
   computed: {},
   components: {},
-
   methods: {
     onClickArrow () {
       this.$router.push({ path: '/about'})
