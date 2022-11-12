@@ -202,6 +202,7 @@ const getDateValue = (date, data) => {
     // found exact value
     value = value.y
   } else {
+    // console.log("getDateValue", date, data)
     var closestIndex = 1
     var minDiff = 9999999999999999
     data.forEach((d, i) => {
@@ -213,6 +214,7 @@ const getDateValue = (date, data) => {
     })
     let nextDate = data[closestIndex == 0 ? closestIndex + 1 : closestIndex]
     let prevDate = data[closestIndex == 0 ? closestIndex : closestIndex - 1]
+    let diffPrevNext = new Date(nextDate.x).getTime() - new Date(prevDate.x).getTime()
     let diffNext = Math.abs(new Date(nextDate.x).getTime() - new Date(date).getTime())
     let diffPrev = Math.abs(new Date(prevDate.x).getTime() - new Date(date).getTime())
     value = nextDate.y * (1 - (diffNext / week)) + prevDate.y * (diffNext / week)

@@ -123,6 +123,7 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
+      console.log("fetchedData", fetchedData)
       var datasets = []      
       fetchedData.datasets.forEach(narrative => {
         var data = narrative.data.sort(compare)
@@ -139,15 +140,17 @@ export default {
           headlines: narrative.headlines,
         })
       });
-      
+
+      var headlineData = fetchedData.headlines.sort(compareHeadlines)
+      console.log("headlineData", headlineData)
       var headlines = {
         label: "scatter",
         borderColor: colors.chartColor,
         borderWidth: 2,
-        radius: this.isMobile ? 3 : 6,
+        radius: this.isMobile ? 3 : 3,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: colors.chartColor,
-        data: fetchedData.headlines.map((headline) => ({
+        backgroundColor: 'transparent',//colors.chartColor,
+        data: headlineData.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
           label: headline.text_en,
@@ -246,6 +249,17 @@ function compare(a, b) {
   }
   return 0;
 }
+
+function compareHeadlines(a, b) {
+  if (a.date < b.date) {
+    return -1;
+  }
+  if (a.date > b.date) {
+    return 1;
+  }
+  return 0;
+}
+
 </script>
 
 <style lang="sass" scoped>
