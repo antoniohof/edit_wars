@@ -123,7 +123,7 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      console.log("fetchedData", fetchedData)
+      //console.log("fetchedData", fetchedData)
       var datasets = []      
       fetchedData.datasets.forEach(narrative => {
         var data = narrative.data.sort(compare)
@@ -185,8 +185,6 @@ export default {
 
       if (this.step.filterDate) {
         var closestDates = getClostestDate(this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData)          
-        console.log("this.step.filterDate", this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData.labels.length)
-        console.log("closestDates", closestDates)
         this.$nextTick(() => {
             this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
             this.$refs.graph.chart.update();
