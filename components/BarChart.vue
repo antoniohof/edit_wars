@@ -140,17 +140,15 @@ export default {
           headlines: narrative.headlines,
         })
       });
-
-      var headlineData = fetchedData.headlines.sort(compareHeadlines)
-      console.log("headlineData", headlineData)
+      
       var headlines = {
         label: "scatter",
-        borderColor: colors.chartColor,
+        borderColor: 'blue',//colors.chartColor,
         borderWidth: 2,
-        radius: this.isMobile ? 3 : 3,
+        radius: this.isMobile ? 3 : 4,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: 'transparent',//colors.chartColor,
-        data: headlineData.map((headline) => ({
+        backgroundColor: 'blue',//colors.chartColor,
+        data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
           label: headline.text_en,
@@ -161,13 +159,13 @@ export default {
 
       var events = {
         label: "scatter",
-        borderColor: colors.chartColor,
+        borderColor: 'red',//colors.chartColor,
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: colors.chartColor,
+        backgroundColor: 'red',//colors.chartColor,
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
@@ -175,17 +173,7 @@ export default {
           source: event.link ? (new URL(event.link)).hostname : '',
           type: "event"
         }))
-      } 
-  /*
-      var test = {
-        radius: 2,
-        label: "scatter",
-        data: datasets[0].data.map(d => {
-          x: d.x,
-          y: 0,
-        })
       }
-*/    
 
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
