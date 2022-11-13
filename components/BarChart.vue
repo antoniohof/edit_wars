@@ -143,11 +143,11 @@ export default {
       
       var headlines = {
         label: "scatter",
-        borderColor: 'blue',//colors.chartColor,
+        borderColor: colors.chartColor,
         borderWidth: 2,
         radius: this.isMobile ? 3 : 4,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: 'blue',//colors.chartColor,
+        backgroundColor: colors.chartColor,
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
@@ -165,7 +165,7 @@ export default {
         borderWidth: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: 'red',//colors.chartColor,
+        backgroundColor: colors.chartColor,
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
