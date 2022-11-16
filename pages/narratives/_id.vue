@@ -44,7 +44,7 @@
       </p>
     </div>
     <transition  :name="getBackgroundTransition">
-      <div
+        <div
         class="background"
         v-if="
           currentBackgroundToShow &&
@@ -95,7 +95,7 @@
           Read next narrative
         </p>
       </div>
-    </div>
+  </div>
   </v-container>
 </template>
 
@@ -574,14 +574,15 @@ export default {
   pointer-events: none
   display: flex
   flex-direction: column
-  width: 28vw !important
+  width: 30vw !important
+  margin-right: 80px
   align-self: flex-end
-  padding: 0px 30px 0px 30px
   z-index: 2
   @media only screen and (max-width: 480px)
     width: 100% !important
     left: 0 !important
     margin-top: 50% // check
+    margin-right: 0px !important
     padding: 0px 15px 0px 15px
 .scrollama
   flex: 1
@@ -617,9 +618,10 @@ export default {
 
 .background
   height: 100vh
-  width: 75vw
+  width: calc(70vw - 160px)
   position: fixed
-  left: 30px
+  left: 0px
+  padding-right: 80px
   top: 0
   display: flex
   justify-content: center
@@ -633,8 +635,9 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  margin-left: 85px
   height: fit-content
-  width: 85%
+  width: 100%
   margin-bottom: 0px
   position: relative
   z-index: 1

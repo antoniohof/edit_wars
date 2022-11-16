@@ -63,6 +63,13 @@ export default {
         as: 'font',
         type: 'font/woff2',
         crossorigin: true
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/OpenSans/OpenSans-Regular.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: true
       }
     ],
     script: [

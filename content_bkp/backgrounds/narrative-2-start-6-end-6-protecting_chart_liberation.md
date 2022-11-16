@@ -28,7 +28,7 @@ chartoptions: |-
         "color": "black",
         "font": {
           "size": "30",
-          "family": "Golos-Text-Regular"
+          "family": "Open Sans"
         }
       }
     },

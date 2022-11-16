@@ -41,7 +41,7 @@ export default {
   height: 100vh
   &_center
     position: absolute
-    left: -38vw
+    left: -30vw
     width: 100vw
     height: fit-content
     margin: 0 auto
@@ -87,8 +87,8 @@ export default {
         height: fit-content
         width: fit-content
         :deep(p)
-            font-family: Golos-Text-Regular
+            font-family: Open Sans
             color: black
-            font-size: 16px
+            font-size: 18px
             margin-bottom: 0px
 </style>

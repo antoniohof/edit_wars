@@ -66,7 +66,7 @@ export default {
       height: fit-content
       width: 100%
       :deep(p)
-        font-family: Golos-Text-Regular
+        font-family: Open Sans
         color: black
         font-size: 16px
         margin-bottom: 0px
