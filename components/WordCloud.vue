@@ -49,8 +49,8 @@ export default {
     if (this.background) {
       // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
       let url =
-        //"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
-        "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
+        "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
+        //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
         //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
         this.background.name;
       this.setData(this.background, url);
@@ -103,8 +103,8 @@ export default {
     background(entity) {
       if (entity && entity.component === "WordCloud") {
         let url =
-          //"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
-          "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
+          "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
+          //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
           //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
           entity.narrativeName;
         this.setData(entity, url);
