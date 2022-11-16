@@ -50,7 +50,7 @@ export default {
     pointer-events: all !important
     // background-color: $window-text-bg
     background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
-    backdrop-filter: blur(8px)
+    backdrop-filter: blur(25px)
     box-shadow: 0px 4px 25px 0px #00000040
     &_top
       border-radius: 4px 4px 0px 0px

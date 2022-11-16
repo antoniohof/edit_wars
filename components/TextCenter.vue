@@ -60,7 +60,7 @@ export default {
       display: flex
       // background-color: $window-text-bg
       background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
-      backdrop-filter: blur(8px)
+      backdrop-filter: blur(25px)
       border-radius: 4px
       max-width: 40%
       pointer-events: all !important
