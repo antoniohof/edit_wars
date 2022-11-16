@@ -162,6 +162,7 @@ export default {
 
 .about-page
   display: flex
+  margin-top: 25px
   flex-direction: column
   width: 100%
   height: 100%
