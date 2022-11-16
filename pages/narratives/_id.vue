@@ -20,6 +20,7 @@
         :background="currentBackground"
       />
     </client-only>
+    <!--
     <div class="timeline" v-if="showTimeline">
       <v-timeline dense>
         <v-timeline-item
@@ -33,6 +34,7 @@
         >
       </v-timeline>
     </div>
+    -->
     <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
     </div>
