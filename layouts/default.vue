@@ -127,7 +127,7 @@ export default {
   },
   methods: {
     onClickHome() {
-      this.$router.push({ path: '/narratives' })
+      this.$router.push({ path: '/' })
     },
     isMobile() {
       let check = false
