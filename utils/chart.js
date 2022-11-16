@@ -116,7 +116,7 @@ const defaultOptions = {
       labelTextColor: "white",
       bodyFont: {
         size: "12",
-        family: "Golos-Text-Regular",
+        family: "Open Sans",
       },
       backgroundColor: 'rgb(0, 0, 0)'
     },

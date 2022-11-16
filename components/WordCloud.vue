@@ -65,7 +65,7 @@ export default {
   components: {},
 
   methods: {
-    sendAutoRotate() { (throttle(this.autoRotate, 200))() },
+    sendAutoRotate() { (throttle(this.autoRotate, 10))() },
     autoRotate () {
       console.log('auto rotate')
       this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
