@@ -1,6 +1,8 @@
 const zoomOptions = {
   zoom: {
-    enabled: true
+    wheel: {
+      enabled: false
+    }
     // zoom options and/or events
   },
   pan: {

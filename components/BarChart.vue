@@ -264,8 +264,8 @@ function compareHeadlines(a, b) {
 .chart-description
   text-align: left
   font-size: 10px
-  width: 83%  !important
-  max-width: 83% !important
+  width: 66%  !important
+  max-width: 66% !important
   margin-top: 20px
   font-size: 12px
   color: black
