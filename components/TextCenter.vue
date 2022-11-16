@@ -41,7 +41,7 @@ export default {
   height: 100vh
   &_center
     position: absolute
-    left: -38vw
+    left: -30vw
     width: 100vw
     height: fit-content
     margin: 0 auto

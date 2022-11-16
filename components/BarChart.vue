@@ -66,11 +66,11 @@ export default {
       currentChartData: null,
       chartId: "bar-chart",
       datasetIdKey: "label",
-      width: 800,
+      width: 1000,
       height: 800,
       cssClasses: "",
       styles: {
-        "width": `85%`,
+        "width": `100%`,
         "max-width": `800px`,
         "height": getIsMobile() ? '70vw' : 'auto'
       },
@@ -265,7 +265,7 @@ function compareHeadlines(a, b) {
   text-align: left
   font-size: 10px
   max-width: 800px
-  width: 83%  !important
+  width: 100%  !important
   margin-top: 20px
   font-size: 12px
   color: black
@@ -278,7 +278,7 @@ function compareHeadlines(a, b) {
   text-align: center
   margin-bottom: -25px !important
   font-size: 16px
-  width: 83%
+  width: 100%
   color: black
   @media only screen and (max-width: 480px)
     font-size: 12px

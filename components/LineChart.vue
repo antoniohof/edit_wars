@@ -44,11 +44,11 @@ export default {
     return {
       chartId: 'line-chart',
       datasetIdKey: 'label',
-      width:800,
+      width: 1000,
       height: 800,
       cssClasses: '',
       styles: {
-          width: `85%`,
+          width: `100%`,
       },
       chartOptions: null,
       additionalOptions: null,
