@@ -140,8 +140,8 @@ function IntersectionObserver(callback, opt_options) {
   }
 
   // Binds and throttles `this._checkForIntersections`.
-  this._checkForIntersections = throttle(
-      this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
+  this._checkForIntersections = this._checkForIntersections.bind(this);
+      // this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
 
   // Private properties.
   this._callback = callback;
@@ -167,7 +167,7 @@ function IntersectionObserver(callback, opt_options) {
  * The minimum interval within which the document will be checked for
  * intersection changes.
  */
-IntersectionObserver.prototype.THROTTLE_TIMEOUT = 10;
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
 
 
 /**
