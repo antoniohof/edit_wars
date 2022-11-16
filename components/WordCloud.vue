@@ -21,6 +21,10 @@ export default {
     background: {
       type: Object,
     },
+    forceFadeOut: {
+      type: Boolean,
+      default: false
+    },
   },
   static() {
     return {};
@@ -54,7 +58,7 @@ export default {
   async asyncData({ $content }) {},
   computed: {
     fadeCloud() {
-      return !!this.background && this.background.component !== "WordCloud";
+      return (!!this.background && this.background.component !== "WordCloud") || this.forceFadeOut;
     },
   },
   components: {},

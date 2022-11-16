@@ -14,6 +14,7 @@
         keep-alive
         class="wordcloud"
         :step="currStepObj"
+        :forceFadeOut="forceFadeOutWordCloud"
         :currentStepIndex="currStepIndex"
         :progress="getStepProgress(currStepIndex)"
         :background="currentBackground"
@@ -86,6 +87,11 @@
           </div>
         </Scrollama>
       </client-only>
+      <div v-if="!isLastNarrative()" class="next" @click="onClickNext">
+        <p>
+          Read next narrative
+        </p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -182,7 +188,10 @@ export default {
       lastBackground: null
     }
   },
-  computed: {
+  computed: { 
+    forceFadeOutWordCloud () {
+      return this.totalProgress > this.narrativeSteps.length - 0.5
+    },
     getNarrativeName() {
       return this.currentNarrative?.name
     },
@@ -205,6 +214,9 @@ export default {
         return 'slide-fade-down'
       }
       return 'slide-fade-up'
+    },
+    totalProgress () {
+      return this.currStepIndex + this.currStepProgress
     }
   },
   async asyncData({ $content, params, error }) {
@@ -227,6 +239,26 @@ export default {
     }
   },
   methods: {
+    isLastNarrative () {
+      if (!this.narrativesList || !this.isLoaded) {
+        return false
+      }
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
+      const lastId = validNarratives[validNarratives.length - 1].id
+      return this.currentNarrative.id === lastId
+    }, 
+    onClickNext () {
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
+      let nextNarrative = null;
+      for (let i = 0; i < validNarratives.length; i++) {
+        if (validNarratives[i].id === this.currentNarrative.id) {
+          nextNarrative = validNarratives[i + 1]
+        }
+      }
+      if (nextNarrative) {
+        this.$router.push({ path: '/narratives/' + nextNarrative.slug })
+      }
+    },
     onClickGdelt () {
       const url = 'https://www.gdeltproject.org/'
       window.open(url, '_blank').focus()
@@ -272,8 +304,6 @@ export default {
       }
     },
     onClickTimeline(index) {
-      console.log('on click narrative', index)
-      console.log(narratives[index])
       if (!narratives[index].disabled) {
         this.$router.push({ path: '/narratives/' + narratives[index].slug })
       }
@@ -379,7 +409,6 @@ export default {
         }
       }
       mergedBackgrounds.map(bg => {console.log("bg", bg.name)})
-      console.log("mergedBackgrounds" ,mergedBackgrounds)
       return mergedBackgrounds
     }
   },
@@ -540,6 +569,7 @@ export default {
 .side
   pointer-events: none
   display: flex
+  flex-direction: column
   width: 28vw !important
   align-self: flex-end
   padding: 0px 30px 0px 30px
@@ -575,6 +605,7 @@ export default {
 
 
 .step:last-child
+  margin-bottom: 60vh
 // .step.active
 
 .step-child
@@ -659,4 +690,30 @@ export default {
     height: 40px
     width: 40px
 
+
+.next
+  width: 100vw
+  left: 0
+  bottom: 0px
+  z-index: 99999
+  height: 100px
+  position: absolute
+  pointer-events: all !important
+  display: flex
+  flex-direction: column
+  justify-content: center
+  margin-bottom: 40vh
+  p
+    width: fit-content
+    z-index: 99999
+    font-size: 32px
+    font-weight: 500
+    padding: 10px
+    font-family: Space Mono
+    pointer-events: all !important
+    background-color: rgba(0,0,0,0.5)
+    position: sticky
+    align-self: center
+    cursor: pointer
+    color: white
 </style>

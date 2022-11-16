@@ -183,11 +183,11 @@ export default {
         datasets: datasets,
       };
 
-      if (this.step.filterDate) {
+      if (this.step.filterDate && this.$refs.graph) {
         var closestDates = getClostestDate(this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData)          
         this.$nextTick(() => {
-            this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
-            this.$refs.graph.chart.update();
+            this.$refs?.graph?.chart.zoomScale('x',  closestDates, 'default');
+            this.$refs?.graph?.chart.update();
         })
       } 
     },
@@ -198,8 +198,8 @@ export default {
           if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {
               var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate, this.currentChartData)          
-              this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
-              this.$refs.graph.chart.update();
+              this.$refs?.graph?.chart.zoomScale('x',  closestDates, 'default');
+              this.$refs?.graph?.chart.update();
             } else if (this.$refs.graph.chart) {
               this.$refs.graph.chart.resetZoom();
               this.$refs.graph.chart.update();

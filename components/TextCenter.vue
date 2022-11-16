@@ -63,6 +63,7 @@ export default {
       backdrop-filter: blur(8px)
       border-radius: 4px
       max-width: 40%
+      pointer-events: all !important
       flex-direction: column
       align-content: center
       justify-content: center

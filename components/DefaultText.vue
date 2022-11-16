@@ -47,6 +47,7 @@ export default {
     align-content: flex-start
   &_container
     border-radius: 4px
+    pointer-events: all !important
     // background-color: $window-text-bg
     background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
     backdrop-filter: blur(8px)
