@@ -69,6 +69,6 @@ export default {
       :deep(p)
         font-family: Open Sans
         color: black
-        font-size: 18px
+        font-size: 20px
         margin-bottom: 0px
 </style>
