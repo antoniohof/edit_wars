@@ -6,7 +6,7 @@ const zoomOptions = {
     // zoom options and/or events
   },
   pan: {
-    enabled: true,
+    enabled: false,
     mode: 'xy',
   }
 };
@@ -63,7 +63,7 @@ const defaultOptions = {
   plugins: {
     zoom: zoomOptions,
     pan: {
-      enabled: true,
+      enabled: false,
       modifierKey: 'ctrl',
     },
     legend: {
