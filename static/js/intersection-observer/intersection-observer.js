@@ -167,7 +167,7 @@ function IntersectionObserver(callback, opt_options) {
  * The minimum interval within which the document will be checked for
  * intersection changes.
  */
-IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 15;
 
 
 /**
