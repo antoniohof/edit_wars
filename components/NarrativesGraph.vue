@@ -210,7 +210,7 @@ export default {
         if (getIsMobile()) {
           g.d3Force("charge").strength(-1500);
         } else {
-          g.d3Force("charge").strength(-800);
+          g.d3Force("charge").strength(-2200);
         }
         g.controls().noPan = true;
         g.controls().noZoom = true;

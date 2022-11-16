@@ -14,6 +14,7 @@ import StepMixin from "@/mixins/StepMixin.js";
 import { narratives } from "@/utils/constants.js";
 import { escapeCode } from "../utils/DataProcessing";
 import { getIsMobile } from '@/utils/index.js'
+import throttle from 'lodash/throttle'
 
 export default {
   mixins: [StepMixin],
@@ -64,6 +65,11 @@ export default {
   components: {},
 
   methods: {
+    sendAutoRotate() { (throttle(this.autoRotate, 200))() },
+    autoRotate () {
+      console.log('auto rotate')
+      this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
+    },
     setData(background, url) {
       if (background.keywords) {
         var word = background.keywords;
@@ -104,7 +110,7 @@ export default {
         this.setData(entity, url);
       } else {
         if (!this.isMobile) {
-          this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*");
+          this.sendAutoRotate()
         }
       }
     },
