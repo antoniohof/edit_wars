@@ -64,6 +64,7 @@
     <div class="side">
       <client-only>
         <Scrollama
+          ref="scrollama"
           class="scrollama"
           :debug="false"
           @step-enter="stepEnterHandler"
@@ -153,6 +154,7 @@ export default {
       }
     })
     setTimeout(() => {
+      console.log('scrollama', this.$refs.scrollama)
       this.isLoaded = true
       this.currStepIndex = 0
       process.nextTick(() => {
@@ -677,7 +679,7 @@ export default {
   bottom: 30px
   background-color: transparent
   left: 31px
-  z-index: 120
+  z-index: 15
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)

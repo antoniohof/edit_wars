@@ -65,7 +65,11 @@ export default {
         crossorigin: true
       }
     ],
-    script: []
+    script: [
+      {
+        src: '/js/intersection-observer/intersection-observer.js'
+      }
+    ]
   },
   ssr: true,
   // Global CSS (https://go.nuxtjs.dev/config-css)
