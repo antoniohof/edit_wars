@@ -189,6 +189,8 @@ export default {
   z-index: 1
 
 .contact
+  pointer-events: all !important
+  z-index: 9999 !important
   font-family: Space Mono
   position: absolute
   bottom: -2px
@@ -200,6 +202,9 @@ export default {
 .email
   margin-top: -2px
   font-size: 16px
+  user-select: all
+  pointer-events: all !important
+  z-index: 9999 !important
   font-family: Golos-Text-Regular !important
   color: black !important
 
