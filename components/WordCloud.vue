@@ -127,7 +127,6 @@ export default {
   width: 100%
   margin-bottom: 200px
   color: black
-  opacity: 0.8
   transition: opacity 0.4s ease
   will-change: transform
   -webkit-transform: translateZ(0)
