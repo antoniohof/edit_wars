@@ -102,6 +102,8 @@
 <script>
 import Vue from 'vue'
 import throttle from 'lodash/throttle'
+import debounce from 'lodash/debounce'
+
 import { narratives } from '@/utils/constants.js'
 import { getIsMobile } from '@/utils/index.js'
 
@@ -163,7 +165,7 @@ export default {
         window.dispatchEvent(new Event('resize'))
       })
     }, 250)
-    //window.addEventListener('scroll', throttle(callback, 1000));
+    window.addEventListener('scroll', debounce(this.onEndScroll, 300));
   },
   beforeDestroy() {
     document.removeEventListener(('click'), this.closeInfo)
@@ -189,7 +191,10 @@ export default {
       lastDirection: 'down',
       currentBackgroundToShow: null,
       currentBackground: null,
-      lastBackground: null
+      lastBackground: null,
+      magneticCenter: false,
+      animatingToStep: false,
+      animateToStepTimeout: null
     }
   },
   computed: { 
@@ -243,6 +248,29 @@ export default {
     }
   },
   methods: {
+    onEndScroll () {
+      if (!this.animatingToStep) {
+        clearTimeout(this.animateToStepTimeout)
+        const index = this.currStepIndex
+        const percentage = index / this.narrativeSteps.length
+        const side = document.querySelector('.side')
+        const totalHeight = side.clientHeight - 64
+        const added = this.narrativeSteps.length * 12 * -1
+        const pixels = (percentage * (totalHeight + added))
+        this.animatingToStep = true
+        window.scroll(
+          {
+            top: pixels,
+            left: 0,
+            behavior: 'smooth'
+          }
+        )
+        this.animateToStepTimeout = setTimeout(() => {
+          console.log('ended animate to step')
+          this.animatingToStep = false
+        }, 1000)
+      }
+    },
     isLastNarrative () {
       if (!this.narrativesList || !this.isLoaded) {
         return false
@@ -285,6 +313,7 @@ export default {
         return
       }
       this.currStepIndex = parseInt(element.dataset.stepNo)
+      console.log('this.currStepIndex', this.currStepIndex)
       if (this.lastEnterBackgroundDirection !== 'jump') {
         this.lastEnterBackgroundDirection = direction
         this.startBackgroundScroll = window.scrollY
@@ -574,13 +603,14 @@ export default {
   pointer-events: none
   display: flex
   flex-direction: column
-  width: 30vw !important
+  width: 32vw !important
   margin-right: 80px
   align-self: flex-end
   z-index: 2
   @media only screen and (max-width: 480px)
-    width: 100% !important
     left: 0 !important
+    overflow-y: scroll
+    min-width: 100vw !important
     margin-top: 50% // check
     margin-right: 0px !important
     padding: 0px 15px 0px 15px
@@ -618,10 +648,10 @@ export default {
 
 .background
   height: 100vh
-  width: calc(70vw - 160px)
+  width: calc(70vw - 100px)
   position: fixed
-  left: 0px
-  padding-right: 80px
+  left: -20px
+  padding-right: 50px
   top: 0
   display: flex
   justify-content: center
