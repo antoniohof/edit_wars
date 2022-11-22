@@ -40,6 +40,7 @@ export default {
       lastBackground: "",
       currentUrl: "",
       chartOptions: null,
+      wordCloudLoaded: false
     };
   },
   actiavated() {
