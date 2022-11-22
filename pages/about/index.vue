@@ -162,6 +162,7 @@ export default {
 
 .about-page
   display: flex
+  margin-top: 25px
   flex-direction: column
   width: 100%
   height: 100%
@@ -204,7 +205,7 @@ export default {
     font-size: 18px !important
     line-height: 23px !important
 .topic
-  font-family: Golos-Text-Regular
+  font-family: Open Sans
   font-size: 20px
   margin-bottom: 25px
   line-height: 28px !important

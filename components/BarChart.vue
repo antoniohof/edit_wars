@@ -66,11 +66,11 @@ export default {
       currentChartData: null,
       chartId: "bar-chart",
       datasetIdKey: "label",
-      width: 800,
+      width: 1000,
       height: 800,
       cssClasses: "",
       styles: {
-        "width": `85%`,
+        "width": `100%`,
         "max-width": `800px`,
         "height": getIsMobile() ? '70vw' : 'auto'
       },
@@ -191,11 +191,11 @@ export default {
         datasets: datasets,
       };
 
-      if (this.step.filterDate) {
+      if (this.step.filterDate && this.$refs.graph) {
         var closestDates = getClostestDate(this.step.filterDate.startDate, this.step.filterDate.endDate, this.currentChartData)          
         this.$nextTick(() => {
-            this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
-            this.$refs.graph.chart.update();
+            this.$refs?.graph?.chart.zoomScale('x',  closestDates, 'default');
+            this.$refs?.graph?.chart.update();
         })
       } 
     },
@@ -206,8 +206,8 @@ export default {
           if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {
               var closestDates = getClostestDate(step.filterDate.startDate, step.filterDate.endDate, this.currentChartData)          
-              this.$refs.graph.chart.zoomScale('x',  closestDates, 'default');
-              this.$refs.graph.chart.update();
+              this.$refs?.graph?.chart.zoomScale('x',  closestDates, 'default');
+              this.$refs?.graph?.chart.update();
             } else if (this.$refs.graph.chart) {
               this.$refs.graph.chart.resetZoom();
               this.$refs.graph.chart.update();
@@ -272,8 +272,8 @@ function compareHeadlines(a, b) {
 .chart-description
   text-align: left
   font-size: 10px
-  width: 83%  !important
-  max-width: 83% !important
+  max-width: 800px
+  width: 100%  !important
   margin-top: 20px
   font-size: 12px
   color: black
@@ -286,7 +286,7 @@ function compareHeadlines(a, b) {
   text-align: center
   margin-bottom: -25px !important
   font-size: 16px
-  width: 83%
+  width: 100%
   color: black
   @media only screen and (max-width: 480px)
     font-size: 12px

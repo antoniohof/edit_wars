@@ -63,9 +63,20 @@ export default {
         as: 'font',
         type: 'font/woff2',
         crossorigin: true
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/OpenSans/OpenSans-Regular.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: true
       }
     ],
-    script: []
+    script: [
+      {
+        src: '/js/intersection-observer/intersection-observer.js'
+      }
+    ]
   },
   ssr: true,
   // Global CSS (https://go.nuxtjs.dev/config-css)

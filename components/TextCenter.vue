@@ -41,7 +41,7 @@ export default {
   height: 100vh
   &_center
     position: absolute
-    left: -38vw
+    left: -30vw
     width: 100vw
     height: fit-content
     margin: 0 auto
@@ -60,9 +60,10 @@ export default {
       display: flex
       // background-color: $window-text-bg
       background: linear-gradient(180deg, rgba(157, 157, 157, 0.7) 0%, rgba(233, 233, 233, 0) 100%)
-      backdrop-filter: blur(8px)
+      backdrop-filter: blur(25px)
       border-radius: 4px
       max-width: 40%
+      pointer-events: all !important
       flex-direction: column
       align-content: center
       justify-content: center
@@ -86,8 +87,8 @@ export default {
         height: fit-content
         width: fit-content
         :deep(p)
-            font-family: Golos-Text-Regular
+            font-family: Open Sans
             color: black
-            font-size: 16px
+            font-size: 20px
             margin-bottom: 0px
 </style>

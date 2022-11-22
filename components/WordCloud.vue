@@ -12,6 +12,7 @@
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
 import { getIsMobile } from '@/utils/index.js'
+import throttle from 'lodash/throttle'
 
 //"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
 //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
@@ -24,6 +25,10 @@ export default {
   props: {
     background: {
       type: Object,
+    },
+    forceFadeOut: {
+      type: Boolean,
+      default: false
     },
   },
   static() {
@@ -53,12 +58,17 @@ export default {
   async asyncData({ $content }) {},
   computed: {
     fadeCloud() {
-      return !!this.background && this.background.component !== "WordCloud";
+      return (!!this.background && this.background.component !== "WordCloud") || this.forceFadeOut;
     },
   },
   components: {},
 
   methods: {
+    sendAutoRotate() { (throttle(this.autoRotate, 10))() },
+    autoRotate () {
+      console.log('auto rotate')
+      this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
+    },
     setData(background, url) {
       if (background.keywords) {
         var word = background.keywords;
@@ -95,7 +105,7 @@ export default {
         this.setData(entity, url);
       } else {
         if (!this.isMobile) {
-          this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*");
+          this.sendAutoRotate()
         }
       }
     },
@@ -118,7 +128,6 @@ export default {
   width: 100%
   margin-bottom: 200px
   color: black
-  opacity: 0.8
   transition: opacity 0.4s ease
   will-change: transform
   -webkit-transform: translateZ(0)

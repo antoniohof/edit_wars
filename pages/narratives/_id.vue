@@ -14,11 +14,13 @@
         keep-alive
         class="wordcloud"
         :step="currStepObj"
+        :forceFadeOut="forceFadeOutWordCloud"
         :currentStepIndex="currStepIndex"
         :progress="getStepProgress(currStepIndex)"
         :background="currentBackground"
       />
     </client-only>
+    <!--
     <div class="timeline" v-if="showTimeline">
       <v-timeline dense>
         <v-timeline-item
@@ -32,6 +34,7 @@
         >
       </v-timeline>
     </div>
+    -->
     <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
       <img src="~/assets/icons/info.svg"/>
     </div>
@@ -41,7 +44,7 @@
       </p>
     </div>
     <transition  :name="getBackgroundTransition">
-      <div
+        <div
         class="background"
         v-if="
           currentBackgroundToShow &&
@@ -63,6 +66,7 @@
     <div class="side">
       <client-only>
         <Scrollama
+          ref="scrollama"
           class="scrollama"
           :debug="false"
           @step-enter="stepEnterHandler"
@@ -86,7 +90,12 @@
           </div>
         </Scrollama>
       </client-only>
-    </div>
+      <div v-if="!isLastNarrative()" class="next" @click="onClickNext">
+        <p>
+          Read next narrative
+        </p>
+      </div>
+  </div>
   </v-container>
 </template>
 
@@ -147,6 +156,7 @@ export default {
       }
     })
     setTimeout(() => {
+      console.log('scrollama', this.$refs.scrollama)
       this.isLoaded = true
       this.currStepIndex = 0
       process.nextTick(() => {
@@ -182,7 +192,10 @@ export default {
       lastBackground: null
     }
   },
-  computed: {
+  computed: { 
+    forceFadeOutWordCloud () {
+      return this.totalProgress > this.narrativeSteps.length - 0.5
+    },
     getNarrativeName() {
       return this.currentNarrative?.name
     },
@@ -205,6 +218,9 @@ export default {
         return 'slide-fade-down'
       }
       return 'slide-fade-up'
+    },
+    totalProgress () {
+      return this.currStepIndex + this.currStepProgress
     }
   },
   async asyncData({ $content, params, error }) {
@@ -227,6 +243,26 @@ export default {
     }
   },
   methods: {
+    isLastNarrative () {
+      if (!this.narrativesList || !this.isLoaded) {
+        return false
+      }
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
+      const lastId = validNarratives[validNarratives.length - 1].id
+      return this.currentNarrative.id === lastId
+    }, 
+    onClickNext () {
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
+      let nextNarrative = null;
+      for (let i = 0; i < validNarratives.length; i++) {
+        if (validNarratives[i].id === this.currentNarrative.id) {
+          nextNarrative = validNarratives[i + 1]
+        }
+      }
+      if (nextNarrative) {
+        this.$router.push({ path: '/narratives/' + nextNarrative.slug })
+      }
+    },
     onClickGdelt () {
       const url = 'https://www.gdeltproject.org/'
       window.open(url, '_blank').focus()
@@ -272,8 +308,6 @@ export default {
       }
     },
     onClickTimeline(index) {
-      console.log('on click narrative', index)
-      console.log(narratives[index])
       if (!narratives[index].disabled) {
         this.$router.push({ path: '/narratives/' + narratives[index].slug })
       }
@@ -379,7 +413,6 @@ export default {
         }
       }
       mergedBackgrounds.map(bg => {console.log("bg", bg.name)})
-      console.log("mergedBackgrounds" ,mergedBackgrounds)
       return mergedBackgrounds
     }
   },
@@ -540,14 +573,16 @@ export default {
 .side
   pointer-events: none
   display: flex
-  width: 28vw !important
+  flex-direction: column
+  width: 30vw !important
+  margin-right: 80px
   align-self: flex-end
-  padding: 0px 30px 0px 30px
   z-index: 2
   @media only screen and (max-width: 480px)
     width: 100% !important
     left: 0 !important
     margin-top: 50% // check
+    margin-right: 0px !important
     padding: 0px 15px 0px 15px
 .scrollama
   flex: 1
@@ -575,6 +610,7 @@ export default {
 
 
 .step:last-child
+  margin-bottom: 60vh
 // .step.active
 
 .step-child
@@ -582,9 +618,10 @@ export default {
 
 .background
   height: 100vh
-  width: 75vw
+  width: calc(70vw - 160px)
   position: fixed
-  left: 30px
+  left: 0px
+  padding-right: 80px
   top: 0
   display: flex
   justify-content: center
@@ -598,8 +635,9 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  margin-left: 85px
   height: fit-content
-  width: 85%
+  width: 100%
   margin-bottom: 0px
   position: relative
   z-index: 1
@@ -646,7 +684,7 @@ export default {
   bottom: 30px
   background-color: transparent
   left: 31px
-  z-index: 120
+  z-index: 15
   height: 40px
   width: 40px
   @media only screen and (max-width: 480px)
@@ -659,4 +697,30 @@ export default {
     height: 40px
     width: 40px
 
+
+.next
+  width: 100vw
+  left: 0
+  bottom: 0px
+  z-index: 99999
+  height: 100px
+  position: absolute
+  pointer-events: all !important
+  display: flex
+  flex-direction: column
+  justify-content: center
+  margin-bottom: 40vh
+  p
+    width: fit-content
+    z-index: 99999
+    font-size: 32px
+    font-weight: 500
+    padding: 10px
+    font-family: Space Mono
+    pointer-events: all !important
+    background-color: rgba(0,0,0,0.5)
+    position: sticky
+    align-self: center
+    cursor: pointer
+    color: white
 </style>

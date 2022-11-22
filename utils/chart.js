@@ -1,10 +1,12 @@
 const zoomOptions = {
   zoom: {
-    enabled: true
+    wheel: {
+      enabled: false
+    }
     // zoom options and/or events
   },
   pan: {
-    enabled: true,
+    enabled: false,
     mode: 'xy',
   }
 };
@@ -61,7 +63,7 @@ const defaultOptions = {
   plugins: {
     zoom: zoomOptions,
     pan: {
-      enabled: true,
+      enabled: false,
       modifierKey: 'ctrl',
     },
     legend: {
@@ -125,7 +127,7 @@ const defaultOptions = {
       labelTextColor: "white",
       bodyFont: {
         size: "12",
-        family: "Golos-Text-Regular",
+        family: "Open Sans",
       },
       backgroundColor: 'rgb(0, 0, 0)'
     },
