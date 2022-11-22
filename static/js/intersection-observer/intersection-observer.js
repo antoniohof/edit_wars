@@ -366,8 +366,8 @@ IntersectionObserver.prototype._monitorIntersections = function(doc) {
   if (this.POLL_INTERVAL) {
     monitoringInterval = win.setInterval(callback, this.POLL_INTERVAL);
   } else {
-    addEvent(win, 'resize', callback, true);
-    addEvent(doc, 'scroll', callback, true);
+    addEvent(win, 'resize', callback, false);
+    addEvent(doc, 'scroll', callback, false);
     if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in win) {
       domObserver = new win.MutationObserver(callback);
       domObserver.observe(doc, {
