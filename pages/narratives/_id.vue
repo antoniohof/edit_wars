@@ -165,7 +165,7 @@ export default {
         window.dispatchEvent(new Event('resize'))
       })
     }, 250)
-    window.addEventListener('scroll', debounce(this.onEndScroll, 300));
+    window.addEventListener('scroll', debounce(this.onEndScroll, 600));
   },
   beforeDestroy() {
     document.removeEventListener(('click'), this.closeInfo)
