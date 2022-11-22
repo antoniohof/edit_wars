@@ -65,13 +65,24 @@ const defaultOptions = {
       modifierKey: 'ctrl',
     },
     legend: {
-      display: false,
+      display: true,
       labels: {
         // This more specific font property overrides the global property
         font: {
           size: 12,
           family: "Space Mono",
-        }
+        },
+        usePointStyle: true,
+        filter: (legend, data) => {
+          return true
+          let filtered = data.datasets.filter(d=>d.label !== 'scatter')
+          // console.log("legend", legend, filtered)
+          if (filtered.length > 1) {
+            return legend.text !== 'scatter'
+          } else {
+            return false
+          }
+        },
       }
     },
     tooltip: {
