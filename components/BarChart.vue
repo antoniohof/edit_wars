@@ -26,7 +26,7 @@ import { getIsMobile } from '@/utils/index.js'
 import "chartjs-adapter-date-fns";
 
 import { parseDataUrl } from "../utils/DataProcessing";
-import { colors } from "../utils/constants";
+import { colors, graph_colors } from "../utils/constants";
 import StepMixin from '@/mixins/StepMixin.js'
 import { defaultOptions, getDateValue, getClostestDate } from "../utils/chart"
 
@@ -79,6 +79,7 @@ export default {
     };
   },
   async mounted() {
+    console.log("mounted")
     this.isMobile = getIsMobile()
     if (process.client) {
       // Chart.register(zoomPlugin);
@@ -125,16 +126,17 @@ export default {
       }
       //console.log("fetchedData", fetchedData)
       var datasets = []      
-      fetchedData.datasets.forEach(narrative => {
+      fetchedData.datasets.forEach((narrative, index) => {
         var data = narrative.data.sort(compare)
         datasets.push({
           ...narrative,
           type: isChartWeekly(data) ? "line" : "bar",
+          pointStyle: isChartWeekly(data) ? "line" : "rect",
           data: data,
           borderWidth: 1,
           tension: 0,
-          borderColor: colors.chartColor,
-          backgroundColor: "transparent",
+          borderColor: graph_colors[index],
+          backgroundColor: isChartWeekly(data) ? "transparent" : graph_colors[index],
           pointRadius: 0,
           events: narrative.events,
           headlines: narrative.headlines,
@@ -142,12 +144,12 @@ export default {
       });
       
       var headlines = {
-        label: "scatter",
-        borderColor: colors.chartColor,
+        label: "headlines",
+        borderColor: 'blue',
         borderWidth: 2,
         radius: this.isMobile ? 3 : 4,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: colors.chartColor,
+        backgroundColor: 'blue',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
@@ -158,14 +160,14 @@ export default {
       };
 
       var events = {
-        label: "scatter",
+        label: "events",
         borderColor: 'red',//colors.chartColor,
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: colors.chartColor,
+        backgroundColor: 'red',
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
@@ -178,6 +180,12 @@ export default {
       datasets = datasets.concat(headlines);
       datasets = datasets.concat(events);
 
+      var options = {}
+      if (fetchedData.datasets.length > 1) {
+        options
+      }
+
+      this.chartOptions = {...this.chartOptions, options}
       this.currentChartData = {
         labels: fetchedData.labels,
         datasets: datasets,

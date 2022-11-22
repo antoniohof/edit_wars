@@ -70,6 +70,7 @@ export default {
   methods: {
     async loadData () {
       this.dataList = []
+      console.log("this.chartOptions = JSON.parse", this.background)
       this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
       const dataNames = this.background.name.split(',')
       for await (const name of dataNames) {

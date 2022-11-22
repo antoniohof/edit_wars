@@ -11,10 +11,14 @@
   
 <script>
 import StepMixin from "@/mixins/StepMixin.js";
-import { narratives } from "@/utils/constants.js";
-import { escapeCode } from "../utils/DataProcessing";
 import { getIsMobile } from '@/utils/index.js'
 import throttle from 'lodash/throttle'
+
+//"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
+//"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
+//"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
+
+const WORD_GRAPH_PATH = "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative="
 
 export default {
   mixins: [StepMixin],
@@ -47,12 +51,7 @@ export default {
     }
     this.isMobile = getIsMobile()
     if (this.background) {
-      // let url = 'https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/' + entity.name + '.json'
-      let url =
-        "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
-        //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-        //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
-        this.background.name;
+      let url = WORD_GRAPH_PATH + this.background.name;
       this.setData(this.background, url);
     }
   },
@@ -102,11 +101,7 @@ export default {
   watch: {
     background(entity) {
       if (entity && entity.component === "WordCloud") {
-        let url =
-          "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
-          //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-          //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
-          entity.narrativeName;
+        let url = WORD_GRAPH_PATH + entity.narrativeName;
         this.setData(entity, url);
       } else {
         if (!this.isMobile) {
