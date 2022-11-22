@@ -18,7 +18,7 @@ import throttle from 'lodash/throttle'
 //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
 //"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
 
-const WORD_GRAPH_PATH = "https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative="
+const WORD_GRAPH_PATH = "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative="
 
 export default {
   mixins: [StepMixin],
