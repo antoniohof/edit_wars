@@ -579,8 +579,9 @@ export default {
   align-self: flex-end
   z-index: 2
   @media only screen and (max-width: 480px)
-    width: 100% !important
     left: 0 !important
+    overflow-y: scroll
+    min-width: 100vw !important
     margin-top: 50% // check
     margin-right: 0px !important
     padding: 0px 15px 0px 15px
