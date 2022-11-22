@@ -574,7 +574,7 @@ export default {
   pointer-events: none
   display: flex
   flex-direction: column
-  width: 30vw !important
+  width: 32vw !important
   margin-right: 80px
   align-self: flex-end
   z-index: 2
@@ -619,10 +619,10 @@ export default {
 
 .background
   height: 100vh
-  width: calc(70vw - 160px)
+  width: calc(70vw - 100px)
   position: fixed
-  left: 0px
-  padding-right: 80px
+  left: -20px
+  padding-right: 50px
   top: 0
   display: flex
   justify-content: center
