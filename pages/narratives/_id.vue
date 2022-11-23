@@ -394,7 +394,10 @@ export default {
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
-          translateY = translateY
+
+          if (this.isMobile) {
+            translateY = translateY - 100
+          }
 
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty(
@@ -539,7 +542,7 @@ export default {
     z-index: 100
     @media only screen and (max-width: 480px)
       font-size: 20px
-      top: 80px
+      top: -100px
     &_name
       display: flex
       // background-color: rgba(255,255,255,0.8) !important

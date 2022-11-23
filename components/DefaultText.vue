@@ -71,4 +71,7 @@ export default {
         color: black
         font-size: 1.2vw
         margin-bottom: 0px
+        @media only screen and (max-width: 480px)
+          font-size: 16px
+
 </style>
