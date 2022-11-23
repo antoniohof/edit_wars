@@ -266,7 +266,7 @@ export default {
           return
         }
         const totalHeight = side.clientHeight - 64
-        const added = this.narrativeSteps.length * 12 * -1
+        const added = this.narrativeSteps.length * 13 * -1
         const pixels = (percentage * (totalHeight + added))
         this.animatingToStep = true
         window.scroll(
