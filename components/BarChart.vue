@@ -71,7 +71,6 @@ export default {
       cssClasses: "",
       styles: {
         "width": `100%`,
-        "max-width": `800px`,
         "height": getIsMobile() ? '70vw' : 'auto'
       },
       chartOptions: {},
@@ -272,7 +271,6 @@ function compareHeadlines(a, b) {
 .chart-description
   text-align: left
   font-size: 10px
-  max-width: 800px
   width: 100%  !important
   margin-top: 20px
   font-size: 12px

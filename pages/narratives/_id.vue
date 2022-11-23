@@ -11,7 +11,6 @@
     <client-only>
       <WordCloud
         @click="closeInfo"
-        keep-alive
         class="wordcloud"
         :step="currStepObj"
         :forceFadeOut="forceFadeOutWordCloud"
@@ -52,11 +51,12 @@
         "
       >
       <client-only>
-        <NuxtDynamic
+        <LazyNuxtDynamic
           class="background_container"
           :component="currentBackground.component"
           :background="currentBackground"
           :step="currStepObj"
+          keep-alive
           :currentStepIndex="currStepIndex"
           :progress="getStepProgress(currStepIndex)"
         />
@@ -249,6 +249,9 @@ export default {
   },
   methods: {
     onEndScroll () {
+      if (this.isMobile) {
+        return
+      }
       if (!this.animatingToStep) {
         clearTimeout(this.animateToStepTimeout)
         const index = this.currStepIndex
@@ -603,7 +606,7 @@ export default {
   pointer-events: none
   display: flex
   flex-direction: column
-  width: 32vw !important
+  width: 400px!important
   margin-right: 80px
   align-self: flex-end
   z-index: 2
@@ -648,10 +651,11 @@ export default {
 
 .background
   height: 100vh
-  width: calc(70vw - 100px)
+  width: calc(100vw - 440px)
   position: fixed
-  left: -20px
-  padding-right: 50px
+  padding-left: 70px
+  padding-right: 180px
+  left: 0px
   top: 0
   display: flex
   justify-content: center
@@ -661,11 +665,12 @@ export default {
     width: 100vw !important
     left: 0
     margin-top: calc(50% - 60px)
+    padding-left: 15px !important
+    padding-right: 15px !important
 .background_container
   display: flex
   justify-content: center
   align-items: center
-  margin-left: 85px
   height: fit-content
   width: 100%
   margin-bottom: 0px

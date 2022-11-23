@@ -3,8 +3,8 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row class="about-page-topics justify-start" width="85%">
-      <v-list dense width="85%">
+    <v-row class="about-page-topics justify-start" width="100%">
+      <v-list dense width="100%">
         <v-list-group
           v-for="(topic, index) in topics"
           :key="index"
@@ -165,7 +165,7 @@ export default {
   margin-top: 25px
   flex-direction: column
   width: 100%
-  height: 100%
+  height: 80%
   justify-content: space-evenly
   padding: 0px 85px 0px 85px !important
   color: black
@@ -174,9 +174,9 @@ export default {
   &-title
     z-index: 10
     font-family: Space Mono
-    font-size: 24px
+    font-size: 1.8em
     margin-bottom: 10px
-    width: 85%  
+    width: 100%  
     margin-top: 0px
     max-height: 100%
     @media only screen and (max-width: 480px)
@@ -193,7 +193,7 @@ export default {
       width: 100% !important
 .title
   font-family: Space Mono !important
-  font-size: 24px !important
+  font-size: 1.8em !important
   overflow: visible
   user-select: none
   text-transform: uppercase
@@ -206,14 +206,14 @@ export default {
     line-height: 23px !important
 .topic
   font-family: Open Sans
-  font-size: 20px
+  font-size: 24px
   margin-bottom: 25px
-  line-height: 28px !important
+  line-height: 35px !important
   @media only screen and (max-width: 480px)
     font-size: 16px !important
     line-height: 23px !important
   :deep(img)
-    width: 30%
+    width: 12%
     margin-top: 5px
     margin-bottom: -5px !important
   :deep(p)
@@ -234,7 +234,7 @@ export default {
 .v-list-item
   padding: 0 0
 .v-list-item__content
-  height: 50px
+  height: 60px
   padding: 0px 0px 0px 0px !important
   align-content: center
   @media only screen and (max-width: 480px)

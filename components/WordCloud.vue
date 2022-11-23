@@ -49,6 +49,7 @@ export default {
     if (!process.browser) {
       return;
     }
+    console.log('mounted wordcloud')
     this.isMobile = getIsMobile()
     if (this.background) {
       let url = WORD_GRAPH_PATH + this.background.name;
@@ -66,8 +67,8 @@ export default {
   methods: {
     sendAutoRotate() { (throttle(this.autoRotate, 10))() },
     autoRotate () {
-      console.log('auto rotate')
-      this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
+      // console.log('auto rotate')
+      // this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
     },
     setData(background, url) {
       if (background.keywords) {
@@ -82,6 +83,7 @@ export default {
             node_ids = [word];
           }
           node_ids = node_ids.map(id => id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""))
+          console.log('node_ids', node_ids)
           this.$refs.wordcloud.contentWindow.postMessage(
             {
               function: "focusOnNodes",
@@ -118,7 +120,12 @@ export default {
 .wordcloudiframe
   width: 100%
   height: 100%
-
+  will-change: transform
+  -webkit-transform: translateZ(0)
+  -moz-transform: translateZ(0)
+  -ms-transform: translateZ(0)
+  -o-transform: translateZ(0)
+  transform: translateZ(0)
 .wordcloud-page
   display: flex
   background-color: white
