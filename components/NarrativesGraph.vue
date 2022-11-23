@@ -68,6 +68,7 @@ export default {
       if (!process.browser) {
         return false;
       }
+      console.log('$nuxt.$route.path', $nuxt.$route.path)
       return $nuxt.$route.path === "/about";
     },
   },
@@ -275,7 +276,7 @@ export default {
     color: black
     filter: blur(0px)
   .blur
-    filter: blur(10px)
+    filter: blur(10px) !important
     opacity: 0.7
     transition: all 0.4s ease
   .nopoint

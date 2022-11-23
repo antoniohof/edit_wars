@@ -143,10 +143,11 @@ export default {
 
 .mdi-close
   color: black !important
-  font-size: 26px !important
+  font-size: 32px !important
   align-self: center
-  width: 24px !important
-  height: 24px !important
+  width: 26px !important
+  height: 36px !important
+  transform: scale(1.5,1.5)
   left: 3px
   font-weight: 1000 !important
 .mdi-plus
@@ -154,7 +155,7 @@ export default {
   color: black !important
   font-weight: 1000 !important
   left: 3px
-  transform: scale(1.2,1.2)
+  transform: scale(1.5,1.5)
 
 </style>
 
@@ -162,10 +163,10 @@ export default {
 
 .about-page
   display: flex
-  margin-top: 25px
+  margin-top: 0px
   flex-direction: column
   width: 100%
-  height: 80%
+  height: 90%
   justify-content: space-evenly
   padding: 0px 85px 0px 85px !important
   color: black
@@ -174,7 +175,7 @@ export default {
   &-title
     z-index: 10
     font-family: Space Mono
-    font-size: 1.8em
+    font-size: 1.6vw
     margin-bottom: 10px
     width: 100%  
     margin-top: 0px
@@ -193,7 +194,7 @@ export default {
       width: 100% !important
 .title
   font-family: Space Mono !important
-  font-size: 1.8em !important
+  font-size: 1.6vw !important
   overflow: visible
   user-select: none
   text-transform: uppercase
@@ -234,7 +235,7 @@ export default {
 .v-list-item
   padding: 0 0
 .v-list-item__content
-  height: 60px
+  height: 3.5vw
   padding: 0px 0px 0px 0px !important
   align-content: center
   @media only screen and (max-width: 480px)
