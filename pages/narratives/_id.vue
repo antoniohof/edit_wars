@@ -257,6 +257,10 @@ export default {
         const index = this.currStepIndex
         const percentage = index / this.narrativeSteps.length
         const side = document.querySelector('.side')
+        if (!side) {
+          clearTimeout(this.animateToStepTimeout)
+          return
+        }
         const totalHeight = side.clientHeight - 64
         const added = this.narrativeSteps.length * 12 * -1
         const pixels = (percentage * (totalHeight + added))
