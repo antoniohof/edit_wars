@@ -213,8 +213,8 @@ export default {
     font-size: 16px !important
     line-height: 23px !important
   :deep(img)
-    width: 12%
-    margin-top: 5px
+    width: 40%
+    margin-top: 15px
     margin-bottom: -5px !important
   :deep(p)
     margin-bottom: 5px !important
