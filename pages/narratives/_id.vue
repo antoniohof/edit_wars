@@ -1,12 +1,16 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
     <div class="narrative_title">
-      <h1 class="narrative_title_name italic">
-        {{ getNarrativeName }}
-      </h1>
-      <h2 class="narrative_title_name">
-        {{ getNarrativeSubtitle }}
-      </h2>
+      <div class="narrative_title_name italic">
+        <h1>
+          {{ getNarrativeName }}
+        </h1>
+      </div>
+      <div class="narrative_title_name">
+        <h1>
+          {{ getNarrativeSubtitle }}
+        </h1>
+      </div>
     </div>
     <client-only>
       <WordCloud
@@ -525,7 +529,7 @@ export default {
   &_title
     pointer-events: none
     position: sticky
-    top: 100px
+    top: -100px
     word-spacing: -15px !important
     left: 0
     width: 100vw !important
@@ -551,8 +555,19 @@ export default {
       color: black
       font-family: Space Mono Italic !important
       font-weight: 300
+      padding-left: 30vw
+      padding-right: 30vw
       font-size: 20px
       text-transform: uppercase
+      h1
+        font-size: 20px
+        background-color: rgba(255,255,255,0.8) !important
+        font-weight: 300
+        font-family: Space Mono Italic !important
+        @media only screen and (max-width: 480px)
+          font-size: 12px
+          padding: 0px 50px 0px 50px !important
+          text-align: center
       @media only screen and (max-width: 480px)
         font-size: 12px
         padding: 0px 50px 0px 50px !important
