@@ -33,7 +33,6 @@ function getFrameElement(doc) {
  * A local reference to the root document.
  */
 var document = (function(startDoc) {
-  console.log('porra')
   var doc = startDoc;
   var frame = getFrameElement(doc);
   while (frame) {
@@ -42,7 +41,6 @@ var document = (function(startDoc) {
   }
   return doc;
 })(window.document);
-console.log('intersection')
 /**
  * An IntersectionObserver registry. This registry exists to hold a strong
  * reference to IntersectionObserver instances currently observing a target
@@ -123,8 +121,8 @@ function IntersectionObserver(callback, opt_options) {
   }
 
   // Binds and throttles `this._checkForIntersections`.
-  this._checkForIntersections = this._checkForIntersections.bind(this);
-      // this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
+  // this._checkForIntersections = this._checkForIntersections.bind(this);
+  this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
 
   // Private properties.
   this._callback = callback;
@@ -159,7 +157,6 @@ IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
  * calling `observe` on the first target.
  */
 IntersectionObserver.prototype.POLL_INTERVAL = null;
-console.log('am I using this')
 /**
  * Use a mutation observer on the root element
  * to detect intersection changes.
@@ -329,7 +326,6 @@ IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
  * @private
  */
 IntersectionObserver.prototype._monitorIntersections = function(doc) {
-  console.log('monitor')
 
   var win = doc.defaultView;
   if (!win) {
