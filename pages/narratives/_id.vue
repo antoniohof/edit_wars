@@ -13,6 +13,7 @@
       </div>
     </div>
     <client-only>
+      <!--
       <WordCloud
         @click="closeInfo"
         class="wordcloud"
@@ -22,6 +23,7 @@
         :progress="getStepProgress(currStepIndex)"
         :background="currentBackground"
       />
+      -->
     </client-only>
     <!--
     <div class="timeline" v-if="showTimeline">
@@ -169,7 +171,6 @@ export default {
         window.dispatchEvent(new Event('resize'))
       })
     }, 250)
-    window.addEventListener('scroll', debounce(this.onEndScroll, 600));
   },
   beforeDestroy() {
     document.removeEventListener(('click'), this.closeInfo)

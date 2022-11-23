@@ -37,6 +37,7 @@ export default {
   align-content: center
   justify-content: center
   width: fit-content
+  max-width: 480px
   height: 100vh
   will-change: transform
   @media only screen and (max-width: 480px)
