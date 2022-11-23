@@ -13,7 +13,6 @@
       </div>
     </div>
     <client-only>
-      <!--
       <WordCloud
         @click="closeInfo"
         class="wordcloud"
@@ -23,7 +22,6 @@
         :progress="getStepProgress(currStepIndex)"
         :background="currentBackground"
       />
-      -->
     </client-only>
     <!--
     <div class="timeline" v-if="showTimeline">
