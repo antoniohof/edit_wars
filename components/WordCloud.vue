@@ -149,5 +149,7 @@ export default {
   transform: translateZ(0)
 .hide
   pointer-events: none !important
+  opacity: 0.15
+  transition: opacity 0.3s ease !important
 </style>
   
