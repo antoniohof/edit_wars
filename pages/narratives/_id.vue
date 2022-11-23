@@ -372,11 +372,11 @@ export default {
           ) {
             oneStepBackground = false
           }
-          let top = (window.innerHeight / 2) + 64
+          let top = (window.innerHeight / 2)
           this.currentBackgroundScroll =
             window.scrollY - this.startBackgroundScroll
           if (this.lastEnterBackgroundDirection === 'up') {
-            top = -(window.innerHeight / 2) + 64
+            top = -(window.innerHeight / 2)
           }
           const currOrder = parseInt(
             this.narrativeSteps[this.currStepIndex]?.order
@@ -391,7 +391,7 @@ export default {
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty(
               'transform',
-              `translateY(${translateY}px)`,
+              `translateY(${translateY - 32}px)`,
               'important'
             )
           } else {

@@ -163,7 +163,7 @@ export default {
 
 .about-page
   display: flex
-  margin-top: 0px
+  margin-top: 10px
   flex-direction: column
   width: 100%
   height: 90%
