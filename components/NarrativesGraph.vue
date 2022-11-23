@@ -1,7 +1,6 @@
 <template>
-  <v-container fluid class="ma-0 pa-0">
+  <v-container  :class="{ 'borrou': isBlurred, nopoint: isNoPoint }" class='container-narrativa ma-0 pa-0' fluid>
     <div
-      :class="{ blur: isBlurred, nopoint: isNoPoint }"
       class="narrative-graph-page"
     >
       .
@@ -65,9 +64,6 @@ export default {
       return $nuxt.$route.path === "/";
     },
     isBlurred() {
-      if (!process.browser) {
-        return false;
-      }
       console.log('$nuxt.$route.path', $nuxt.$route.path)
       return $nuxt.$route.path === "/about";
     },
@@ -256,30 +252,29 @@ export default {
 };
 </script>
   
-  <style lang="sass">
+<style lang="sass">
 @font-face
   font-family: "Space Mono Italic"
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
-  .narrative-graph-page
-    position: fixed
-    top: 0
-    left: 0
-    font-family: Space Mono Italic !important
-    display: flex
-    background-color: white
-    flex-direction: column
-    align-content: flex-start
-    color: white
-    width: 100vw
-    height: 100vh
-    color: black
-    filter: blur(0px)
-  .blur
-    filter: blur(10px) !important
-    opacity: 0.7
-    transition: all 0.4s ease
-  .nopoint
-    pointer-events: none
+.narrative-graph-page
+  position: fixed
+  top: 0
+  left: 0
+  font-family: Space Mono Italic !important
+  display: flex
+  background-color: white
+  flex-direction: column
+  align-content: flex-start
+  color: white
+  width: 100vw
+  height: 100vh
+  color: black
+.borrou
+  filter: blur(8px) !important
+  opacity: 0.7
+  transition: all 0.4s ease
+.nopoint
+  pointer-events: none
 </style>
   

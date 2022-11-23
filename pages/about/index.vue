@@ -207,7 +207,7 @@ export default {
     line-height: 23px !important
 .topic
   font-family: Open Sans
-  font-size: 1.6vw
+  font-size: 1.5vw
   margin-bottom: 25px
   line-height: 2.5vw !important
   @media only screen and (max-width: 480px)
