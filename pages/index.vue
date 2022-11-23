@@ -81,10 +81,10 @@ export default {
       return getIsMobile() ? this.getTextMobile : this.getText
     },
     getText() {
-      return 'The monopoly on information is a key propaganda tool. \nUsing it, a state is able to shape a non-alternative \npicture of the world.\n \nNowadays, not only does the Russian government wage a war \nin Ukraine, but it also works hard on shaping the \ninformation reality using propaganda narratives. \n \nThis is an data and art research project showing how propaganda \nnarratives are reproduced in the Russian-language digital \nmedia in the closed space of destroyed media freedom.'
+      return 'The monopoly on information is a key propaganda tool. \nUsing it, a state is able to shape a non-alternative \npicture of the world.\n \nNowadays, not only does the Russian government wage a war \nin Ukraine, but it also works hard on shaping the \ninformation reality using propaganda narratives. \n \nThis is a data and art research project showing how propaganda \nnarratives are reproduced in the Russian-language digital \nmedia in the closed space of destroyed media freedom.'
     },
     getTextMobile() {
-      return 'The monopoly on \ninformation is a key \npropaganda tool. Using it, \na state is able to shape a \nnon-alternative picture of \nthe world. \n\nNowadays, not only does \nthe Russian government \nwage a war in Ukraine, but \nit also works hard on \nshaping the information \nreality using propaganda \nnarratives. \n \nThis is an data and art \nresearch project showing how \npropaganda narratives are \nreproduced in the Russian-\nlanguage digital media in \nthe closed space of \ndestroyed media freedom.'
+      return 'The monopoly on \ninformation is a key \npropaganda tool. Using it, \na state is able to shape a \nnon-alternative picture of \nthe world. \n\nNowadays, not only does \nthe Russian government \nwage a war in Ukraine, but \nit also works hard on \nshaping the information \nreality using propaganda \nnarratives. \n \nThis is a data and art \nresearch project showing how \npropaganda narratives are \nreproduced in the Russian-\nlanguage digital media in \nthe closed space of \ndestroyed media freedom.'
     }
   },
   components: {},

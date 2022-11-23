@@ -22,17 +22,11 @@ export default {
       fonts: [],
       animation: null,
       angle: 0,
-      interacted: false,
+      rotateActivated: true
     };
   },
   scrollToTop: true,
   mounted() {
-    document.addEventListener("mousedown", () => {
-      this.interacted = true;
-    });
-    document.addEventListener("touchstart", () => {
-      this.interacted = true;
-    });
 
     console.log("mounted narratives");
     if (!process.browser) {
@@ -48,12 +42,6 @@ export default {
     });
   },
   beforeUnmount() {
-    document.removeEventListener("mousedown", () => {
-      this.interacted = true;
-    });
-    document.removeEventListener("touchstart", () => {
-      this.interacted = true;
-    });
   },
   async asyncData({ $content }) {},
   computed: {
@@ -72,25 +60,22 @@ export default {
 
   methods: {
     step() {
-      // camera orbit
-      if (this.interacted) {
-        // stop animation
-        return;
-      }
-      let distance = 400;
-      if (getIsMobile()) {
-        distance = 700;
-      }
+      if (this.rotateActivated) {
+        let distance = 400;
+        if (getIsMobile()) {
+          distance = 700;
+        }
 
-      this.g.cameraPosition({
-        x: distance * Math.sin(this.angle),
-        z: distance * Math.cos(this.angle),
-      });
-      let speed = 1000;
-      if (this.currentRoute === "/narratives") {
-        speed = 1200;
+        this.g.cameraPosition({
+          x: distance * Math.sin(this.angle),
+          z: distance * Math.cos(this.angle),
+        });
+        let speed = 1000;
+        if (this.currentRoute === "/narratives") {
+          speed = 5500;
+        }
+        this.angle += Math.PI / speed;
       }
-      this.angle += Math.PI / speed;
       this.animation = requestAnimationFrame(this.step);
     },
     calculateOpacities() {
