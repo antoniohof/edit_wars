@@ -140,7 +140,7 @@ export default {
     this.narrativesList = narratives //.filter((n) => !n.disabled)
     document.addEventListener(('click'), this.closeInfo)
 
-    this.isMobile = getIsMobile()
+    this.isMobile = getIsMobile() || window.innerWidth < 1000
     if (this.isMobile) {
       this.showTimeline = false
     }
@@ -323,6 +323,8 @@ export default {
       if (!this.isLoaded) {
         return
       }
+      this.isMobile = getIsMobile() || window.innerWidth < 1000
+
       this.currStepIndex = parseInt(element.dataset.stepNo)
       console.log('this.currStepIndex', this.currStepIndex)
       if (this.lastEnterBackgroundDirection !== 'jump') {
@@ -395,10 +397,6 @@ export default {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
 
-          if (this.isMobile) {
-            translateY = translateY - 100
-          }
-
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty(
               'transform',
@@ -406,6 +404,10 @@ export default {
               'important'
             )
           } else {
+
+            if (this.isMobile) {
+              translateY = translateY - 300
+            }
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
@@ -632,7 +634,7 @@ export default {
   margin-right: 80px
   align-self: flex-end
   z-index: 2
-  @media only screen and (max-width: 480px)
+  @media only screen and (max-width: 1000px)
     left: 0 !important
     overflow-y: scroll
     min-width: 100vw !important
@@ -683,10 +685,16 @@ export default {
   justify-content: center
   align-items: center
   z-index: 1
+  @media only screen and (max-width: 1000px)
+    width: 100vw !important
+    left: 0
+    margin-top: calc(50vh)
+    padding-left: 15px !important
+    padding-right: 15px !important
   @media only screen and (max-width: 480px)
     width: 100vw !important
     left: 0
-    margin-top: calc(50% - 60px)
+    margin-top: calc(30vh)
     padding-left: 15px !important
     padding-right: 15px !important
 .background_container
@@ -698,8 +706,11 @@ export default {
   margin-bottom: 0px
   position: relative
   z-index: 1
-  @media only screen and (max-width: 480px)
+  @media only screen and (max-width: 1000px)
     width: 100% !important
+    padding-top: 100px !important
+  @media only screen and (max-width: 480px)
+    padding-top: 0px
 
 .wordcloud
   position: fixed

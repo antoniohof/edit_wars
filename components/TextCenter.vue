@@ -54,7 +54,7 @@ export default {
     align-items: center
     align-self: center
     padding: 0px 15px 0px 15px !important
-    @media only screen and (max-width: 480px)
+    @media only screen and (max-width: 1000px)
       left: 0 !important
       transform: translate(0px, 0px) !important
       align-items: flex-start
@@ -92,6 +92,8 @@ export default {
             color: black
             font-size: 1.2vw
             margin-bottom: 0px
+            @media only screen and (max-width: 1000px)
+            font-size: 20px
             @media only screen and (max-width: 480px)
               font-size: 16px
 </style>
