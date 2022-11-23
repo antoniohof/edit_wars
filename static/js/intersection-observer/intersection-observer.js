@@ -124,7 +124,7 @@ function IntersectionObserver(callback, opt_options) {
   // this._checkForIntersections = this._checkForIntersections.bind(this);
   this._checkForIntersections = throttle(
     this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
-    
+
   // Private properties.
   this._callback = callback;
   this._observationTargets = [];
@@ -149,7 +149,7 @@ function IntersectionObserver(callback, opt_options) {
  * The minimum interval within which the document will be checked for
  * intersection changes.
  */
-IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 1;
 
 
 /**
@@ -355,8 +355,8 @@ IntersectionObserver.prototype._monitorIntersections = function(doc) {
     });
     */
   } else {
-    addEvent(win, 'resize', callback, false);
-    addEvent(doc, 'scroll', callback, false);
+    addEvent(win, 'resize', callback, true);
+    addEvent(doc, 'scroll', callback, true);
     if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in win) {
       domObserver = new win.MutationObserver(callback);
       domObserver.observe(doc, {
