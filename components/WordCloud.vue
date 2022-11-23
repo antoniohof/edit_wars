@@ -72,7 +72,7 @@ export default {
     },
     autoRotate () {
       // console.log('auto rotate')
-      // this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
+      this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
     },
     setData(background, url) {
       if (background.keywords) {
@@ -111,8 +111,8 @@ export default {
         this.setData(entity, url);
       } else {
         if (!this.isMobile) {
-          //this.sendAutoRotate()
-          this.sendInitialPosition()
+          this.sendAutoRotate()
+          // this.sendInitialPosition()
         }
       }
     },
@@ -148,7 +148,6 @@ export default {
   -o-transform: translateZ(0)
   transform: translateZ(0)
 .hide
-  opacity: 0.1 !important
   pointer-events: none !important
 </style>
   
