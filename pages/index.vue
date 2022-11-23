@@ -50,6 +50,7 @@ export default {
   components: {},
   beforeMount() {},
   mounted() {
+    EventBus.$emit('introfirst')
     window.scrollTo(0, 0)
     setTimeout(() => {
       this.showName = true

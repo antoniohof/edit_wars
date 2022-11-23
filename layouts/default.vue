@@ -17,7 +17,7 @@
       >
       <transition name="fade">
         <div
-          v-show="!isHomeRoute && delayOver"
+          v-show="!this.isIntroFirstStep && delayOver"
           @click="onClickHome"
           class="title"
         >
