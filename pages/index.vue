@@ -42,10 +42,15 @@ import { getIsMobile } from '@/utils/index.js'
 
 export default {
   scrollToTop: true,
-  head() {
-    return {
-      // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
-    }
+  head: {
+    title: 'Edit Wars',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Deconstructing Russian Propaganda Narratives'
+      }
+    ]
   },
   components: {},
   beforeMount() {},

@@ -58,12 +58,12 @@ import NarrativesGraph from '../components/NarrativesGraph.vue'
 
 export default {
   head: {
-    title: 'Home',
+    title: 'Edit Wars - Home',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Home description'
+        content: 'Deconstructing Russian Propaganda Narratives'
       }
     ],
     script: [
