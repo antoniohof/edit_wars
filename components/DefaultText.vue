@@ -37,6 +37,7 @@ export default {
   align-content: center
   justify-content: center
   width: fit-content
+  max-width: 480px
   height: 100vh
   will-change: transform
   @media only screen and (max-width: 480px)
@@ -69,6 +70,11 @@ export default {
       :deep(p)
         font-family: Open Sans
         color: black
-        font-size: 20px
+        font-size: 1.2vw
         margin-bottom: 0px
+        @media only screen and (max-width: 1000px)
+          font-size: 20px
+        @media only screen and (max-width: 480px)
+          font-size: 16px
+
 </style>

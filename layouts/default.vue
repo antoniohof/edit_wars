@@ -17,7 +17,7 @@
       >
       <transition name="fade">
         <div
-          v-show="!isHomeRoute && delayOver"
+          v-show="!this.isIntroFirstStep && delayOver"
           @click="onClickHome"
           class="title"
         >
@@ -58,12 +58,12 @@ import NarrativesGraph from '../components/NarrativesGraph.vue'
 
 export default {
   head: {
-    title: 'Home',
+    title: 'Edit Wars - Home',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Home description'
+        content: 'Deconstructing Russian Propaganda Narratives'
       }
     ],
     script: [
@@ -127,7 +127,11 @@ export default {
   },
   methods: {
     onClickHome() {
-      this.$router.push({ path: '/' })
+      if ($nuxt.$route.path === '/') {
+        location.reload();
+      } else {
+        this.$router.push({ path: '/' })
+      } 
     },
     isMobile() {
       let check = false

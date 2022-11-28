@@ -1,17 +1,20 @@
 <template>
   <v-container fluid class="narrative ma-0 pa-0">
     <div class="narrative_title">
-      <h1 class="narrative_title_name italic">
-        {{ getNarrativeName }}
-      </h1>
-      <h2 class="narrative_title_name">
-        {{ getNarrativeSubtitle }}
-      </h2>
+      <div class="narrative_title_name italic">
+        <h1>
+          {{ getNarrativeName }}
+        </h1>
+      </div>
+      <div class="narrative_title_name">
+        <h1>
+          {{ getNarrativeSubtitle }}
+        </h1>
+      </div>
     </div>
     <client-only>
       <WordCloud
         @click="closeInfo"
-        keep-alive
         class="wordcloud"
         :step="currStepObj"
         :forceFadeOut="forceFadeOutWordCloud"
@@ -52,11 +55,12 @@
         "
       >
       <client-only>
-        <NuxtDynamic
+        <LazyNuxtDynamic
           class="background_container"
           :component="currentBackground.component"
           :background="currentBackground"
           :step="currStepObj"
+          keep-alive
           :currentStepIndex="currStepIndex"
           :progress="getStepProgress(currStepIndex)"
         />
@@ -136,7 +140,7 @@ export default {
     this.narrativesList = narratives //.filter((n) => !n.disabled)
     document.addEventListener(('click'), this.closeInfo)
 
-    this.isMobile = getIsMobile()
+    this.isMobile = getIsMobile() || window.innerWidth < 1000
     if (this.isMobile) {
       this.showTimeline = false
     }
@@ -165,7 +169,7 @@ export default {
         window.dispatchEvent(new Event('resize'))
       })
     }, 250)
-    window.addEventListener('scroll', debounce(this.onEndScroll, 600));
+   // window.addEventListener('scroll', debounce(this.onEndScroll, 500));
   },
   beforeDestroy() {
     document.removeEventListener(('click'), this.closeInfo)
@@ -249,13 +253,20 @@ export default {
   },
   methods: {
     onEndScroll () {
+      if (this.isMobile) {
+        return
+      }
       if (!this.animatingToStep) {
         clearTimeout(this.animateToStepTimeout)
         const index = this.currStepIndex
         const percentage = index / this.narrativeSteps.length
         const side = document.querySelector('.side')
+        if (!side) {
+          clearTimeout(this.animateToStepTimeout)
+          return
+        }
         const totalHeight = side.clientHeight - 64
-        const added = this.narrativeSteps.length * 12 * -1
+        const added = this.narrativeSteps.length * 13 * -1
         const pixels = (percentage * (totalHeight + added))
         this.animatingToStep = true
         window.scroll(
@@ -312,6 +323,8 @@ export default {
       if (!this.isLoaded) {
         return
       }
+      this.isMobile = getIsMobile() || window.innerWidth < 1000
+
       this.currStepIndex = parseInt(element.dataset.stepNo)
       console.log('this.currStepIndex', this.currStepIndex)
       if (this.lastEnterBackgroundDirection !== 'jump') {
@@ -369,11 +382,11 @@ export default {
           ) {
             oneStepBackground = false
           }
-          let top = window.innerHeight / 2
+          let top = (window.innerHeight / 2)
           this.currentBackgroundScroll =
             window.scrollY - this.startBackgroundScroll
           if (this.lastEnterBackgroundDirection === 'up') {
-            top = -window.innerHeight / 2
+            top = -(window.innerHeight / 2)
           }
           const currOrder = parseInt(
             this.narrativeSteps[this.currStepIndex]?.order
@@ -383,15 +396,18 @@ export default {
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
             translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
           }
-          translateY = translateY
 
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty(
               'transform',
-              `translateY(${translateY}px)`,
+              `translateY(${translateY - 32}px)`,
               'important'
             )
           } else {
+
+            if (this.isMobile) {
+              translateY = translateY - 300
+            }
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
@@ -518,7 +534,7 @@ export default {
   &_title
     pointer-events: none
     position: sticky
-    top: 100px
+    top: -100px
     word-spacing: -15px !important
     left: 0
     width: 100vw !important
@@ -528,7 +544,7 @@ export default {
     z-index: 100
     @media only screen and (max-width: 480px)
       font-size: 20px
-      top: 80px
+      top: -100px
     &_name
       display: flex
       // background-color: rgba(255,255,255,0.8) !important
@@ -544,8 +560,19 @@ export default {
       color: black
       font-family: Space Mono Italic !important
       font-weight: 300
+      padding-left: 30vw
+      padding-right: 30vw
       font-size: 20px
       text-transform: uppercase
+      h1
+        font-size: 20px
+        background-color: rgba(255,255,255,0.8) !important
+        font-weight: 300
+        font-family: Space Mono Italic !important
+        @media only screen and (max-width: 480px)
+          font-size: 12px
+          padding: 0px 50px 0px 50px !important
+          text-align: center
       @media only screen and (max-width: 480px)
         font-size: 12px
         padding: 0px 50px 0px 50px !important
@@ -603,11 +630,11 @@ export default {
   pointer-events: none
   display: flex
   flex-direction: column
-  width: 32vw !important
+  width: 400px!important
   margin-right: 80px
   align-self: flex-end
   z-index: 2
-  @media only screen and (max-width: 480px)
+  @media only screen and (max-width: 1000px)
     left: 0 !important
     overflow-y: scroll
     min-width: 100vw !important
@@ -648,31 +675,42 @@ export default {
 
 .background
   height: 100vh
-  width: calc(70vw - 100px)
+  width: calc(100vw - 440px)
   position: fixed
-  left: -20px
-  padding-right: 50px
+  padding-left: 70px
+  padding-right: 180px
+  left: 0px
   top: 0
   display: flex
   justify-content: center
   align-items: center
   z-index: 1
+  @media only screen and (max-width: 1000px)
+    width: 100vw !important
+    left: 0
+    margin-top: calc(50vh)
+    padding-left: 15px !important
+    padding-right: 15px !important
   @media only screen and (max-width: 480px)
     width: 100vw !important
     left: 0
-    margin-top: calc(50% - 60px)
+    margin-top: calc(30vh)
+    padding-left: 15px !important
+    padding-right: 15px !important
 .background_container
   display: flex
   justify-content: center
   align-items: center
-  margin-left: 85px
   height: fit-content
   width: 100%
   margin-bottom: 0px
   position: relative
   z-index: 1
-  @media only screen and (max-width: 480px)
+  @media only screen and (max-width: 1000px)
     width: 100% !important
+    padding-top: 100px !important
+  @media only screen and (max-width: 480px)
+    padding-top: 0px
 
 .wordcloud
   position: fixed

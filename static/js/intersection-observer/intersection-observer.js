@@ -14,24 +14,6 @@ if (typeof window !== 'object') {
   return;
 }
 
-// Exit early if all IntersectionObserver and IntersectionObserverEntry
-// features are natively supported.
-if ('IntersectionObserver' in window &&
-    'IntersectionObserverEntry' in window &&
-    'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
-
-  // Minimal polyfill for Edge 15's lack of `isIntersecting`
-  // See: https://github.com/w3c/IntersectionObserver/issues/211
-  if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
-    Object.defineProperty(window.IntersectionObserverEntry.prototype,
-      'isIntersecting', {
-      get: function () {
-        return this.intersectionRatio > 0;
-      }
-    });
-  }
-  return;
-}
 
 /**
  * Returns the embedding frame element, if any.
@@ -59,7 +41,6 @@ var document = (function(startDoc) {
   }
   return doc;
 })(window.document);
-
 /**
  * An IntersectionObserver registry. This registry exists to hold a strong
  * reference to IntersectionObserver instances currently observing a target
@@ -140,8 +121,9 @@ function IntersectionObserver(callback, opt_options) {
   }
 
   // Binds and throttles `this._checkForIntersections`.
-  this._checkForIntersections = this._checkForIntersections.bind(this);
-      // this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
+  // this._checkForIntersections = this._checkForIntersections.bind(this);
+  this._checkForIntersections = throttle(
+    this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
 
   // Private properties.
   this._callback = callback;
@@ -167,7 +149,7 @@ function IntersectionObserver(callback, opt_options) {
  * The minimum interval within which the document will be checked for
  * intersection changes.
  */
-IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 1;
 
 
 /**
@@ -176,7 +158,6 @@ IntersectionObserver.prototype.THROTTLE_TIMEOUT = 5;
  * calling `observe` on the first target.
  */
 IntersectionObserver.prototype.POLL_INTERVAL = null;
-
 /**
  * Use a mutation observer on the root element
  * to detect intersection changes.
@@ -346,6 +327,7 @@ IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
  * @private
  */
 IntersectionObserver.prototype._monitorIntersections = function(doc) {
+
   var win = doc.defaultView;
   if (!win) {
     // Already destroyed.
@@ -365,9 +347,16 @@ IntersectionObserver.prototype._monitorIntersections = function(doc) {
   // resize and scroll events or DOM mutations.
   if (this.POLL_INTERVAL) {
     monitoringInterval = win.setInterval(callback, this.POLL_INTERVAL);
+    /*
+    monitoringInterval = win.requestAnimationFrame(() => {
+      console.log('checking interval')
+      callback();
+      win.requestAnimationFrame(this)
+    });
+    */
   } else {
-    addEvent(win, 'resize', callback, false);
-    addEvent(doc, 'scroll', callback, false);
+    addEvent(win, 'resize', callback, true);
+    addEvent(doc, 'scroll', callback, true);
     if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in win) {
       domObserver = new win.MutationObserver(callback);
       domObserver.observe(doc, {
@@ -388,6 +377,7 @@ IntersectionObserver.prototype._monitorIntersections = function(doc) {
     if (win) {
       if (monitoringInterval) {
         win.clearInterval(monitoringInterval);
+        win.cancelAnimationFrame(monitoringInterval)
       }
       removeEvent(win, 'resize', callback, true);
     }

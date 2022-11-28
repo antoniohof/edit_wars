@@ -3,8 +3,8 @@
     <div class="about-page-title">
       <nuxt-content class="about-page-title-content" :document="mainText" />
     </div>
-    <v-row class="about-page-topics justify-start" width="85%">
-      <v-list dense width="85%">
+    <v-row class="about-page-topics justify-start" width="100%">
+      <v-list dense width="100%">
         <v-list-group
           v-for="(topic, index) in topics"
           :key="index"
@@ -143,10 +143,11 @@ export default {
 
 .mdi-close
   color: black !important
-  font-size: 26px !important
+  font-size: 32px !important
   align-self: center
-  width: 24px !important
-  height: 24px !important
+  width: 26px !important
+  height: 36px !important
+  transform: scale(1.5,1.5)
   left: 3px
   font-weight: 1000 !important
 .mdi-plus
@@ -154,7 +155,7 @@ export default {
   color: black !important
   font-weight: 1000 !important
   left: 3px
-  transform: scale(1.2,1.2)
+  transform: scale(1.5,1.5)
 
 </style>
 
@@ -162,10 +163,10 @@ export default {
 
 .about-page
   display: flex
-  margin-top: 25px
+  margin-top: 10px
   flex-direction: column
   width: 100%
-  height: 100%
+  height: 90%
   justify-content: space-evenly
   padding: 0px 85px 0px 85px !important
   color: black
@@ -174,9 +175,9 @@ export default {
   &-title
     z-index: 10
     font-family: Space Mono
-    font-size: 24px
+    font-size: 1.6vw
     margin-bottom: 10px
-    width: 85%  
+    width: 100%  
     margin-top: 0px
     max-height: 100%
     @media only screen and (max-width: 480px)
@@ -193,7 +194,7 @@ export default {
       width: 100% !important
 .title
   font-family: Space Mono !important
-  font-size: 24px !important
+  font-size: 1.6vw !important
   overflow: visible
   user-select: none
   text-transform: uppercase
@@ -206,15 +207,15 @@ export default {
     line-height: 23px !important
 .topic
   font-family: Open Sans
-  font-size: 20px
+  font-size: 1.5vw
   margin-bottom: 25px
-  line-height: 28px !important
+  line-height: 2.1vw !important
   @media only screen and (max-width: 480px)
     font-size: 16px !important
     line-height: 23px !important
   :deep(img)
-    width: 30%
-    margin-top: 5px
+    width: 40%
+    margin-top: 15px
     margin-bottom: -5px !important
   :deep(p)
     margin-bottom: 5px !important
@@ -234,7 +235,7 @@ export default {
 .v-list-item
   padding: 0 0
 .v-list-item__content
-  height: 50px
+  height: 3.5vw
   padding: 0px 0px 0px 0px !important
   align-content: center
   @media only screen and (max-width: 480px)

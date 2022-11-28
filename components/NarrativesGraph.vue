@@ -1,7 +1,6 @@
 <template>
-  <v-container fluid class="ma-0 pa-0">
+  <v-container  :class="{ 'borrou': isBlurred, nopoint: isNoPoint }" class='container-narrativa ma-0 pa-0' fluid>
     <div
-      :class="{ blur: isBlurred, nopoint: isNoPoint }"
       class="narrative-graph-page"
     >
       .
@@ -23,17 +22,11 @@ export default {
       fonts: [],
       animation: null,
       angle: 0,
-      interacted: false,
+      rotateActivated: true
     };
   },
   scrollToTop: true,
   mounted() {
-    document.addEventListener("mousedown", () => {
-      this.interacted = true;
-    });
-    document.addEventListener("touchstart", () => {
-      this.interacted = true;
-    });
 
     console.log("mounted narratives");
     if (!process.browser) {
@@ -49,12 +42,6 @@ export default {
     });
   },
   beforeUnmount() {
-    document.removeEventListener("mousedown", () => {
-      this.interacted = true;
-    });
-    document.removeEventListener("touchstart", () => {
-      this.interacted = true;
-    });
   },
   async asyncData({ $content }) {},
   computed: {
@@ -65,9 +52,7 @@ export default {
       return $nuxt.$route.path === "/";
     },
     isBlurred() {
-      if (!process.browser) {
-        return false;
-      }
+      console.log('$nuxt.$route.path', $nuxt.$route.path)
       return $nuxt.$route.path === "/about";
     },
   },
@@ -75,25 +60,22 @@ export default {
 
   methods: {
     step() {
-      // camera orbit
-      if (this.interacted) {
-        // stop animation
-        return;
-      }
-      let distance = 400;
-      if (getIsMobile()) {
-        distance = 700;
-      }
+      if (this.rotateActivated) {
+        let distance = 400;
+        if (getIsMobile()) {
+          distance = 700;
+        }
 
-      this.g.cameraPosition({
-        x: distance * Math.sin(this.angle),
-        z: distance * Math.cos(this.angle),
-      });
-      let speed = 1000;
-      if (this.currentRoute === "/narratives") {
-        speed = 1200;
+        this.g.cameraPosition({
+          x: distance * Math.sin(this.angle),
+          z: distance * Math.cos(this.angle),
+        });
+        let speed = 1000;
+        if (this.currentRoute === "/narratives") {
+          speed = 5500;
+        }
+        this.angle += Math.PI / speed;
       }
-      this.angle += Math.PI / speed;
       this.animation = requestAnimationFrame(this.step);
     },
     calculateOpacities() {
@@ -255,30 +237,29 @@ export default {
 };
 </script>
   
-  <style lang="sass">
+<style lang="sass">
 @font-face
   font-family: "Space Mono Italic"
   src: url(/fonts/space-mono-v12-latin/Space_Mono/SpaceMono-Italic.ttf) format("truetype")
 
-  .narrative-graph-page
-    position: fixed
-    top: 0
-    left: 0
-    font-family: Space Mono Italic !important
-    display: flex
-    background-color: white
-    flex-direction: column
-    align-content: flex-start
-    color: white
-    width: 100vw
-    height: 100vh
-    color: black
-    filter: blur(0px)
-  .blur
-    filter: blur(10px)
-    opacity: 0.7
-    transition: all 0.4s ease
-  .nopoint
-    pointer-events: none
+.narrative-graph-page
+  position: fixed
+  top: 0
+  left: 0
+  font-family: Space Mono Italic !important
+  display: flex
+  background-color: white
+  flex-direction: column
+  align-content: flex-start
+  color: white
+  width: 100vw
+  height: 100vh
+  color: black
+.borrou
+  filter: blur(8px) !important
+  opacity: 0.7
+  transition: all 0.4s ease
+.nopoint
+  pointer-events: none
 </style>
   
