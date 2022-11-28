@@ -84,16 +84,16 @@ const colors = {
 const graph_colors = [
   "#EA5545",
   "#F46A9B",
-  "#EDBF33",
-  "#F5C243",
-  "#EDE15B",
-  "#BDCF32",
   "#87BC45",
+  "#EDBF33",
+  "#EDE15B",
+  "#F5C243",
   "#27AEEF",
   "#B33DC6",
-  "#FF69EB",
+  "#BDCF32",
   "#F7A9A8",
   "#FF9F1C",
+  "#FF69EB",
 ]
 
 export { narratives, colorPalette, colors, graph_colors }
