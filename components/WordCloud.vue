@@ -16,7 +16,7 @@ import throttle from 'lodash/throttle'
 
 //"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
 //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-//"http://127.0.0.1:5500/force-graph/index.html?narrative=" +
+//"http://127.0.0.1:5500/force-graph/index.html?narrative="
 
 const WORD_GRAPH_PATH = "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative="
 
@@ -72,7 +72,7 @@ export default {
     },
     autoRotate () {
       // console.log('auto rotate')
-      this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
+      // this.$refs.wordcloud.contentWindow.postMessage({ function: "autoRotate",},"*")
     },
     setData(background, url) {
       if (background.keywords) {
