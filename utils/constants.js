@@ -83,12 +83,12 @@ const colors = {
 
 const graph_colors = [
   "#EA5545",
-  "#F46A9B",
-  "#87BC45",
-  "#EDBF33",
   "#EDE15B",
   "#F5C243",
   "#27AEEF",
+  "#F46A9B",
+  "#87BC45",
+  "#EDBF33",
   "#B33DC6",
   "#BDCF32",
   "#F7A9A8",
