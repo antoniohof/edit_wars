@@ -70,7 +70,7 @@ export default {
       :deep(p)
         font-family: Open Sans
         color: black
-        font-size: 1.2vw
+        font-size: max(1.2vw, 18px)
         margin-bottom: 0px
         @media only screen and (max-width: 1000px)
           font-size: 20px

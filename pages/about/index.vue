@@ -175,13 +175,13 @@ export default {
   &-title
     z-index: 10
     font-family: Space Mono
-    font-size: 1.6vw
+    font-size: max(1.6vw, 22px)
     margin-bottom: 10px
     width: 100%  
     margin-top: 0px
     max-height: 100%
     @media only screen and (max-width: 480px)
-      font-size: 16px !important
+      font-size: 14px !important
       margin-top: 8px
       width: 100%
   &-topics
