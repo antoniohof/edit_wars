@@ -94,7 +94,7 @@
           </div>
         </Scrollama>
       </client-only>
-      <div v-if="!isLastNarrative()" class="next" @click="onClickNext">
+      <div class="next" @click="onClickNext">
         <p>
           Read next narrative
         </p>
@@ -295,7 +295,11 @@ export default {
       let nextNarrative = null;
       for (let i = 0; i < validNarratives.length; i++) {
         if (validNarratives[i].id === this.currentNarrative.id) {
-          nextNarrative = validNarratives[i + 1]
+          if (this.isLastNarrative()) {
+            nextNarrative = validNarratives[0]
+          } else {
+            nextNarrative = validNarratives[i + 1]
+          }
         }
       }
       if (nextNarrative) {
