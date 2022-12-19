@@ -66,8 +66,13 @@ const defaultOptions = {
       enabled: false,
       modifierKey: 'ctrl',
     },
+    htmlLegend: {
+
+    },
     legend: {
       display: true,
+      position: 'bottom',
+      align: 'center',
       labels: {
         // This more specific font property overrides the global property
         font: {
@@ -240,7 +245,7 @@ const getDateValue = (date, data) => {
     value = nextDate.y * (1 - (diffNext / week)) + prevDate.y * (diffNext / week)
   }
   if (value) {
-    return value
+    return Math.max(0, value)
   } else {
     return 0
   }

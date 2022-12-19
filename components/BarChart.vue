@@ -132,7 +132,7 @@ export default {
           type: isChartWeekly(data) ? "line" : "bar",
           pointStyle: isChartWeekly(data) ? "line" : "rect",
           data: data,
-          borderWidth: 1,
+          borderWidth: 1.1,
           order: 99,
           tension: 0,
           borderColor: graph_colors[index],
@@ -145,12 +145,12 @@ export default {
       
       var headlines = {
         label: "headlines",
-        borderColor: 'blue',
+        borderColor: '#B33DC6',
         borderWidth: 2,
         order: 1,
         radius: this.isMobile ? 3 : 4,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: 'blue',
+        backgroundColor: '#B33DC6',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
@@ -162,14 +162,14 @@ export default {
 
       var events = {
         label: "events",
-        borderColor: '#EA5545',//colors.chartColor,
+        borderColor: '#FF9F1C',//colors.chartColor,
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
         order: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: '#EA5545',
+        backgroundColor: '#FF9F1C',
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
@@ -275,7 +275,7 @@ function compareHeadlines(a, b) {
   text-align: left
   font-size: 10px
   width: 100%  !important
-  margin-top: 20px
+  margin-top: 10px
   font-size: 12px
   color: black
   font-family: 'Space Mono'
