@@ -3,7 +3,7 @@
     <p class="chart-title" v-show="background" v-html="background.chart_title"></p>
     <scatterjs
       ref="graph"
-      v-if="currentChartData"
+      v-if="currentChartData && !isLoading"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
       :chart-id="chartId"
@@ -13,6 +13,12 @@
       :width="width"
       :height="height"
     />
+    <div v-if="isLoading" class="loading">
+      <v-progress-circular
+        indeterminate
+        color="black"
+      ></v-progress-circular>
+    </div>
     <p class="chart-description" v-show="background" v-html="background.description"></p>
   </div>
 </template>
@@ -59,8 +65,13 @@ export default {
       required: true,
     },
   },
+  beforeMount () {
+    console.time('barchart')
+
+  },
   data() {
     return {
+      isLoading: false,
       isMobile: false,
       currentProcessedData: null,
       currentChartData: null,
@@ -78,7 +89,10 @@ export default {
     };
   },
   async mounted() {
-    console.log("mounted")
+    console.timeEnd('barchart')
+    console.time('barchart2')
+    this.isLoading = true;
+
     this.isMobile = getIsMobile()
     if (process.client) {
       // Chart.register(zoomPlugin);
@@ -89,6 +103,8 @@ export default {
         data = this.dataList[dataIndex]
       }
       this.setData(data)
+      this.isLoading = false;
+      console.timeEnd('barchart2')
     }
   },
   methods: {
@@ -259,6 +275,13 @@ function compareHeadlines(a, b) {
 </script>
 
 <style lang="sass" scoped>
+
+.loading
+  width: 100%
+  height: 300px
+  display: flex
+  align-items: center
+  justify-content: center
 .graph-container
   width: 100%
   width: -moz-available
