@@ -82,17 +82,17 @@ const colors = {
 }
 
 const graph_colors = [
-  "#EA5545",
+  "#EA5545", // red
+  "#27AEEF", // blue
+  "#BDCF32", // green yellow
+  "#B33DC6", // pink
+  "#FF9F1C", // orange
   "#EDE15B",
+  "#F7A9A8", // pale red
   "#F5C243",
-  "#27AEEF",
   "#F46A9B",
   "#87BC45",
   "#EDBF33",
-  "#B33DC6",
-  "#BDCF32",
-  "#F7A9A8",
-  "#FF9F1C",
   "#FF69EB",
 ]
 

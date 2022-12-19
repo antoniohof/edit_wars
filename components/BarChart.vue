@@ -162,14 +162,14 @@ export default {
 
       var events = {
         label: "events",
-        borderColor: 'red',//colors.chartColor,
+        borderColor: '#EA5545',//colors.chartColor,
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
         order: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: 'red',
+        backgroundColor: '#EA5545',
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
