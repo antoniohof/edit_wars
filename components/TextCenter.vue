@@ -2,12 +2,12 @@
   <v-container class="text-component" fluid ma-0 pa-0>
     <div class="text-component_center">
       <transition name="fade">
-      <div v-if="step[currentBody] && loaded" class="text-component_center_container">
-        <nuxt-content
-          class="text-component_center_container_content"
-          :document="step[currentBody]"
-        />
-      </div>
+        <div v-if="step[currentBody] && loaded" class="text-component_center_container">
+          <nuxt-content
+            class="text-component_center_container_content"
+            :document="step[currentBody]"
+          />
+        </div>
     </transition>
     </div>
   </v-container>
@@ -28,7 +28,7 @@ export default {
   mounted() {
     setTimeout(()=> {
       this.loaded = true;
-    }, 150)
+    }, 250)
   },
   async asyncData({ $content }) {},
   computed: {},

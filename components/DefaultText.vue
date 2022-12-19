@@ -25,7 +25,7 @@ export default {
   mounted () {
     setTimeout(()=> {
       this.loaded = true;
-    }, 150)
+    }, 250)
   },
   async asyncData({ $content }) {},
   computed: {},
