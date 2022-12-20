@@ -684,6 +684,7 @@ export default {
 .background
   height: 100vh
   width: calc(100vw - 440px)
+  max-width: 1300px
   position: fixed
   padding-left: 70px
   padding-right: 180px
