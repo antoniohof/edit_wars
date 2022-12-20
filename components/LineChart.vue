@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="graph-container">
     <LineChartJs 
-      v-if="currentChartData"
+      v-if="currentChartData && !isLoading"
       :chart-options="chartOptions"
       :chart-data="currentChartData"
       :chart-id="chartId"
@@ -11,6 +11,12 @@
       :width="width"
       :height="height"
     />
+    <div v-if="isLoading" class="loading">
+      <v-progress-circular
+        indeterminate
+        color="black"
+      ></v-progress-circular>
+    </div>
   </v-container>
 </template>
 
@@ -42,6 +48,7 @@ export default {
   },
   data () {
     return {
+      isLoading: false,
       chartId: 'line-chart',
       datasetIdKey: 'label',
       width: 1000,
@@ -58,19 +65,16 @@ export default {
     }
   },
   async mounted () {    
-    console.log('this.background', this.background)
-    console.log('this.currStepIndex', this.currentStepIndex)
-    console.log('montou')
-    await this.loadData()
-    console.log('loudou')
+    this.isLoading = true;
 
+    await this.loadData()
     const dataIndex = this.step.order - this.background.stepstart 
     this.setData(this.dataList[dataIndex])
+    this.isLoading = false;
   },
   methods: {
     async loadData () {
       this.dataList = []
-      console.log("this.chartOptions = JSON.parse", this.background)
       this.chartOptions = JSON.parse(escapeCode(this.background.chartoptions))
       const dataNames = this.background.name.split(',')
       for await (const name of dataNames) {
@@ -85,14 +89,12 @@ export default {
         console.error('no barChart data for this step')
         return
       }
-      console.log('meteu', fetchedData)
       fetchedData.datasets = fetchedData.datasets.map((d, i) => {
         d.borderColor = colorPalette[i]
         d.backgroundColor = colorPalette[i]
         return d
       })
       this.currentProcessedData = fetchedData.datasets[0].data
-      console.log("this.chartOptions", this.chartOptions)
       if (this.chartOptions?.scales.x.time.unit !== "week") {
         //this.setAnimation()
       }
@@ -165,9 +167,6 @@ export default {
   watch: {
     step (step) {
       const dataIndex = step.order - this.background.stepstart 
-      console.log('this.background.stepstart ', this.background.stepstart)
-      console.log('dataIndex', dataIndex)
-      console.log('data', this.dataList[dataIndex])
       this.setData(this.dataList[dataIndex] ? this.dataList[dataIndex] : this.dataList[0])
     }
   }

@@ -96,7 +96,6 @@ export default {
     },
     isOpenLocal(val) {
       if (!val) {
-        console.log('close')
         this.$emit('onclose')
       }
     }

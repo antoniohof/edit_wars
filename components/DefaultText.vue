@@ -1,11 +1,13 @@
 <template>
   <v-container class="text-component" fluid ma-0 pa-0>
-    <div class="text-component_container">
+    <transition name="fade">
+    <div v-if="step[currentBody] && loaded" class="text-component_container">
       <nuxt-content
         class="text-component_container_content"
         :document="step[currentBody]"
       />
     </div>
+  </transition>
   </v-container>
 </template>
 
@@ -16,10 +18,14 @@ export default {
   name: 'DefaultText',
   mixins: [StepMixin],
   data () {
-    return {}
+    return {
+      loaded: false
+    }
   },
   mounted () {
-    console.log('montou')
+    setTimeout(()=> {
+      this.loaded = true;
+    }, 250)
   },
   async asyncData({ $content }) {},
   computed: {},

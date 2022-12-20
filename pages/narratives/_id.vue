@@ -1,106 +1,110 @@
 <template>
-  <v-container fluid class="narrative ma-0 pa-0">
-    <div class="narrative_title">
-      <div class="narrative_title_name italic">
-        <h1>
-          {{ getNarrativeName }}
-        </h1>
+  <transition name="fade">
+    <v-container fluid class="narrative ma-0 pa-0">
+      <div class="narrative_title">
+        <div class="narrative_title_name italic">
+          <h1>
+            {{ getNarrativeName }}
+          </h1>
+        </div>
+        <div class="narrative_title_name">
+          <h1>
+            {{ getNarrativeSubtitle }}
+          </h1>
+        </div>
       </div>
-      <div class="narrative_title_name">
-        <h1>
-          {{ getNarrativeSubtitle }}
-        </h1>
-      </div>
-    </div>
-    <client-only>
-      <WordCloud
-        @click="closeInfo"
-        class="wordcloud"
-        :step="currStepObj"
-        :forceFadeOut="forceFadeOutWordCloud"
-        :currentStepIndex="currStepIndex"
-        :progress="getStepProgress(currStepIndex)"
-        :background="currentBackground"
-      />
-    </client-only>
-    <!--
-    <div class="timeline" v-if="showTimeline">
-      <v-timeline dense>
-        <v-timeline-item
-          small
-          fill-dot
-          v-for="(n, index) in narrativesList"
-          @click.native="onClickTimeline(index)"
-          :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
-          :key="index"
-          >{{ index + 1 }}</v-timeline-item
-        >
-      </v-timeline>
-    </div>
-    -->
-    <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
-      <img src="~/assets/icons/info.svg"/>
-    </div>
-    <div v-if="infoOpen" class="infosquare">
-      <p>
-        The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
-      </p>
-    </div>
-    <transition  :name="getBackgroundTransition">
-        <div
-        class="background"
-        v-if="
-          currentBackgroundToShow &&
-          currentBackground.component !== 'WordCloud'
-        "
-      >
       <client-only>
-        <LazyNuxtDynamic
-          class="background_container"
-          :component="currentBackground.component"
-          :background="currentBackground"
+        <WordCloud
+          @click="closeInfo"
+          class="wordcloud"
           :step="currStepObj"
-          keep-alive
+          :forceFadeOut="forceFadeOutWordCloud"
           :currentStepIndex="currStepIndex"
           :progress="getStepProgress(currStepIndex)"
+          :background="currentBackground"
         />
       </client-only>
-      </div>
-    </transition>
-    <div class="side">
-      <client-only>
-        <Scrollama
-          ref="scrollama"
-          class="scrollama"
-          :debug="false"
-          @step-enter="stepEnterHandler"
-          v-if="narrativeSteps.length > 0"
-          @step-exit="stepExitHandler"
-          @step-progress="onProgress"
-        >
-          <div
-            v-for="(step, index) in narrativeSteps"
-            :key="step.uuid"
-            class="step"
-            :data-step-no="index"
+      <!--
+      <div class="timeline" v-if="showTimeline">
+        <v-timeline dense>
+          <v-timeline-item
+            small
+            fill-dot
+            v-for="(n, index) in narrativesList"
+            @click.native="onClickTimeline(index)"
+            :class="{ active: currentNarrative.id === (index + 1), 'unclickable': n.disabled }"
+            :key="index"
+            >{{ index + 1 }}</v-timeline-item
           >
-            <NuxtDynamic
-              class="step-child"
-              :component="step.component"
-              :step="step"
-              :currentStepIndex="currStepIndex"
-              :progress="getStepProgress(index)"
-            />
-          </div>
-        </Scrollama>
-      </client-only>
-      <div class="next" @click="onClickNext">
+        </v-timeline>
+      </div>
+      -->
+      <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
+        <img src="~/assets/icons/info.svg"/>
+      </div>
+      <div v-if="infoOpen" class="infosquare">
         <p>
-          Read next narrative
+          The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
         </p>
       </div>
-  </div>
-  </v-container>
+      <transition  :name="getBackgroundTransition">
+          <div
+          class="background"
+          v-if="
+            currentBackgroundToShow &&
+            currentBackground.component !== 'WordCloud'
+          "
+        >
+        <client-only>
+          <transition name="fade">
+          <LazyNuxtDynamic
+            class="background_container"
+            :component="currentBackground.component"
+            :background="currentBackground"
+            :step="currStepObj"
+            keep-alive
+            :currentStepIndex="currStepIndex"
+            :progress="getStepProgress(currStepIndex)"
+          />
+        </transition>
+        </client-only>
+        </div>
+      </transition>
+      <div class="side">
+        <client-only>
+          <Scrollama
+            ref="scrollama"
+            class="scrollama"
+            :debug="false"
+            @step-enter="stepEnterHandler"
+            v-if="narrativeSteps.length > 0"
+            @step-exit="stepExitHandler"
+            @step-progress="onProgress"
+          >
+            <div
+              v-for="(step, index) in narrativeSteps"
+              :key="step.uuid"
+              class="step"
+              :data-step-no="index"
+            >
+              <NuxtDynamic
+                class="step-child"
+                :component="step.component"
+                :step="step"
+                :currentStepIndex="currStepIndex"
+                :progress="getStepProgress(index)"
+              />
+            </div>
+          </Scrollama>
+        </client-only>
+        <div class="next" @click="onClickNext">
+          <p>
+            Read next narrative
+          </p>
+        </div>
+    </div>
+    </v-container>
+  </transition>
 </template>
 
 <script>
@@ -382,7 +386,7 @@ export default {
           let oneStepBackground = true
           if (
             this.currentBackground.stepend - this.currentBackground.stepstart >
-            0
+            1
           ) {
             oneStepBackground = false
           }
@@ -402,6 +406,7 @@ export default {
           }
 
           if (oneStepBackground) {
+            console.log('here0')
             this.backgroundContainer.style.setProperty(
               'transform',
               `translateY(${translateY - 32}px)`,
@@ -416,6 +421,7 @@ export default {
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
+              console.log('here1')
               this.backgroundContainer.style.setProperty(
                 'transform',
                 `translateY(${translateY}px)`,
@@ -425,6 +431,7 @@ export default {
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
+              console.log('here2')
               this.backgroundContainer.style.setProperty(
                 'transform',
                 `translateY(${translateY}px)`,
@@ -680,6 +687,7 @@ export default {
 .background
   height: 100vh
   width: calc(100vw - 440px)
+  max-width: 1300px
   position: fixed
   padding-left: 70px
   padding-right: 180px
