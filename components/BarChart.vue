@@ -1,6 +1,7 @@
 <template>
   <div class="graph-container">
-    <p class="chart-title" v-show="background" v-html="background.chart_title"></p>
+    <p v-if="!isLoading" class="chart-title" v-show="background" v-html="background.chart_title"></p>
+    <transition name="fade">
     <scatterjs
       ref="graph"
       v-if="currentChartData && !isLoading"
@@ -13,13 +14,14 @@
       :width="width"
       :height="height"
     />
+    </transition>
     <div v-if="isLoading" class="loading">
       <v-progress-circular
         indeterminate
         color="black"
       ></v-progress-circular>
     </div>
-    <p class="chart-description" v-show="background" v-html="background.description"></p>
+    <p v-if="!isLoading" class="chart-description" v-show="background" v-html="background.description"></p>
   </div>
 </template>
 
@@ -122,7 +124,7 @@ export default {
           //"https://cdn.jsdelivr.net/gh/mneunomne/edit_wars_database/export/data/" +
           name +
           ".json";
-        await fetch(parseDataUrl(url))
+        await fetch(parseDataUrl(url), {cache: "force-cache"})
           .then((response) => response.json())
           .then((fetchedData) => {
             if (!fetchedData) {
