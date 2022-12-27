@@ -14,6 +14,16 @@ import { getIsMobile } from "@/utils/index.js";
 import SpriteText from "three-spritetext";
 import * as THREE from "three";
 export default {
+  head: {
+    title: 'Edit Wars - Home',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Deconstructing Russian Propaganda Narratives'
+      }
+    ]
+  },
   data() {
     return {
       loading: false,
@@ -27,8 +37,6 @@ export default {
   },
   scrollToTop: true,
   mounted() {
-
-    console.log("mounted narratives");
     if (!process.browser) {
       return;
     }
