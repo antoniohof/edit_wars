@@ -137,11 +137,13 @@ export default {
       }
       */
     ],
+    /*
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root' // recommended
     },
+    */
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -367,7 +369,7 @@ export default {
     }
   },
   sitemap: {
-    hostname: 'https://edit-wars.netlify.app/',
-    routes: ['/about', '/narratives']
+    hostname: 'https://edit-wars.org/',
+    routes: ['/about', '/narratives', 'narratives/cold-war-ii', 'narratives/mythical-nazis', 'narratives/freezing-europe']
   }
 }

@@ -4,10 +4,10 @@
       <div class="intro-background"></div>
       <div class="intro-header">
         <transition name="fadelongo">
-          <div v-show="showName" class="intro-title">EDIT WARS</div>
+          <h1 v-show="showName" class="intro-title">EDIT WARS</h1>
         </transition>
         <transition name="fadelongo">
-          <div v-show="showName && !isScrolled" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</div>
+          <h2 v-show="showName && !isScrolled" class="intro-subtitle">Deconstructing Russian Propaganda Narratives</h2>
         </transition>
       </div>
     </v-container>
