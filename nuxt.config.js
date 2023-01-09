@@ -24,6 +24,10 @@ export default {
         hid: 'keywords',
         name: 'keywords',
         content: 'art, russia, propaganda, ukraine, media, project, media futures, paris, war'
+      },
+      {
+        name: 'google-site-verification',
+        content: 'q2JyDqTkIyAzYQJJG-_jS7odUl4rnSUK94-NdDmIssE'
       }
     ],
     link: [
