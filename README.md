@@ -38,3 +38,4 @@ Edit Wars is a project using the analysis of media publications accompanying the
 This website is part of a project «Edit Wars»‎ that has received funding from the European Union’s Horizon 2020 research and innovation programme (MediaFutures «‎Artist for media»‎) under grant agreement No.  951962
 
 <img width="600" src="./static/img/mediafutures.png"/>
+<img width="600" src="./static/img/eu_flag.jpeg"/>
