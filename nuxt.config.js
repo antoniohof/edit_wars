@@ -373,7 +373,7 @@ export default {
     }
   },
   sitemap: {
-    hostname: 'https://edit-wars.org/',
+    hostname: 'https://editwars.org/',
     routes: ['/about', '/narratives', 'narratives/cold-war-ii', 'narratives/mythical-nazis', 'narratives/freezing-europe']
   }
 }
