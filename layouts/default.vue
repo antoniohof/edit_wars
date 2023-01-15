@@ -3,8 +3,33 @@
     <div class="gradient" >
     </div>
     <client-only>
-      <NarrativesGraph class='backgroundgraph' v-if="isHomeRoute || isNarrativesRoute || isAboutRoute">
+      <NarrativesGraph class='backgroundgraph' v-if="(isHomeRoute || (isNarrativesRoute && !isMobile) || isAboutRoute)">
       </NarrativesGraph>
+      <div class="mobile_menu"  v-if="isMobile && isNarrativesRoute">
+        <v-list height="300" class="list">
+        <v-list-item
+          v-for="item in narrativeList"
+          :key="item.name"
+          class="menuitem"
+          :to="'narratives/' + item.slug"
+          nuxt
+        >
+          <v-list-item-icon>
+            <span
+              class="dot"
+              :class="{
+                line: item.name !== '“Freezing Europe”'
+              }"
+            ></span>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{
+              item.name
+            }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      </div>
     </client-only>
     <Menu @onclose="onMenuClose" :isOpen="isMenuOpen"></Menu>
       <v-app-bar
@@ -55,10 +80,16 @@
 <script>
 import EventBus from '@/utils/event-bus'
 import NarrativesGraph from '../components/NarrativesGraph.vue'
+import { narratives } from '@/utils/constants.js'
 
 export default {
   head: {
     title: 'Edit Wars - Home',
+    data () {
+      return {
+        narrativeList: []
+      }
+    },
     meta: [
       {
         hid: 'description',
@@ -99,6 +130,7 @@ export default {
     }
   },
   mounted() {
+    this.narrativeList = narratives.filter((n) => !n.disabled);
     console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
     if ($nuxt.$route.path.slice(-1) === '/') {
       this.$router.push({ path: $nuxt.$route.path.substr(0, $nuxt.$route.path.length-1) })
@@ -237,4 +269,59 @@ export default {
   position: fixed
   z-index: 100
   background-image: linear-gradient(0deg,hsla(0,0%,100%,0),#fff)
+
+.list
+  text-align: left
+
+.v-list-item
+  cursor: pointer
+  height: 70px
+  color: black !important
+
+.v-list-item__title
+    font-family: Space Mono
+    text-transform: uppercase
+    font-size: 26px !important
+    color: black
+    &:hover
+      font-style: italic
+
+
+.menuitem
+  background-color: transparent !important
+  color: black
+  pointer-events: all !important
+
+.mobile_menu
+  height: 100vh
+  widht: 100vw
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 100
+  pointer-events: none
+
+.dot
+  height: 12px
+  width: 12px
+  background-color: black
+  border-radius: 50%
+  display: inline-block
+  margin-left: 2px
+.v-list-item__icon
+  margin-right: 10px !important
+  height: 50%
+  align-items: center
+
+
+.line:before
+  content: ""
+  display: block
+  background-color: black
+  width: 1px
+  height: 100%
+  position: absolute
+  left: 23.5px
+  top: -50%
+  z-index: 1
   </style>

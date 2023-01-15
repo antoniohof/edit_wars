@@ -182,7 +182,7 @@ export default {
     max-height: 100%
     @media only screen and (max-width: 480px)
       font-size: 14px !important
-      margin-top: 8px
+      margin-top: 20px
       width: 100%
   &-topics
     margin: 0px !important
