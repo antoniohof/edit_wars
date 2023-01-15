@@ -7,28 +7,28 @@
       </NarrativesGraph>
       <div class="mobile_menu"  v-if="isMobile && isNarrativesRoute">
         <v-list height="300" class="list">
-        <v-list-item
-          v-for="item in narrativeList"
-          :key="item.name"
-          class="menuitem"
-          :to="'narratives/' + item.slug"
-          nuxt
-        >
-          <v-list-item-icon>
-            <span
-              class="dot"
-              :class="{
-                line: item.name !== '“Freezing Europe”'
-              }"
-            ></span>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{
-              item.name
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+          <v-list-item
+            v-for="item in narrativeList"
+            :key="item.name"
+            class="menuitem"
+            :to="getRoute(item)"
+            nuxt
+          >
+            <v-list-item-icon>
+              <span
+                class="dot"
+                :class="{
+                  line: item.name !== '“Freezing Europe”'
+                }"
+              ></span>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{
+                item.name
+              }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
       </div>
     </client-only>
     <Menu @onclose="onMenuClose" :isOpen="isMenuOpen"></Menu>
@@ -131,7 +131,9 @@ export default {
     }
   },
   mounted() {
-    this.isMobile = getIsMobile();
+    if (process.client) {
+      this.isMobile = getIsMobile();
+    }
     this.narrativeList = narratives.filter((n) => !n.disabled);
     console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
     if ($nuxt.$route.path.slice(-1) === '/') {
@@ -161,6 +163,9 @@ export default {
     }
   },
   methods: {
+    getRoute (item) {
+      return 'narratives/' + item.slug
+    },
     onClickHome() {
       if ($nuxt.$route.path === '/') {
         location.reload();
