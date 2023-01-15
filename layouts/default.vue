@@ -269,6 +269,8 @@ export default {
   position: fixed
   z-index: 100
   background-image: linear-gradient(0deg,hsla(0,0%,100%,0),#fff)
+  @media only screen and (max-width: 480px)
+    height: 100px
 
 .list
   text-align: left
