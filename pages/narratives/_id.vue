@@ -556,6 +556,7 @@ export default {
     @media only screen and (max-width: 480px)
       font-size: 20px
       top: -100px
+      margin-top: 50px !important
     &_name
       display: flex
       // background-color: rgba(255,255,255,0.8) !important
@@ -582,11 +583,11 @@ export default {
         font-family: Space Mono Italic !important
         @media only screen and (max-width: 480px)
           font-size: 12px
-          padding: 0px 50px 0px 50px !important
+          padding: 0px 20px 0px 20px !important
           text-align: center
       @media only screen and (max-width: 480px)
         font-size: 12px
-        padding: 0px 50px 0px 50px !important
+        padding: 0px 20px 0px 20px !important
         text-align: center
 .italic
   font-family: Space Mono Italic !important

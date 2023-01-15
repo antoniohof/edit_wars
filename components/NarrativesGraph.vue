@@ -153,7 +153,7 @@ export default {
       let scale = 0.8;
       let position = 10;
       if (getIsMobile()) {
-        fontSize = 18;
+        fontSize = 17;
         scale = 2.5;
         position = 38;
       }
@@ -188,6 +188,8 @@ export default {
 
             sprite.color = node.color;
             sprite.textHeight = fontSize;
+            
+            
             group.add(sprite);
 
             sprite.position.set(0, position, 0);
