@@ -130,6 +130,7 @@ export default {
     }
   },
   mounted() {
+    this.isMobile = getIsMobile();
     this.narrativeList = narratives.filter((n) => !n.disabled);
     console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
     if ($nuxt.$route.path.slice(-1) === '/') {
@@ -154,7 +155,8 @@ export default {
     return {
       isMenuOpen: false,
       isIntroFirstStep: true,
-      delayOver: false
+      delayOver: false,
+      isMobile: false
     }
   },
   methods: {
@@ -165,7 +167,7 @@ export default {
         this.$router.push({ path: '/' })
       } 
     },
-    isMobile() {
+    getIsMobile() {
       let check = false
       ;(function (a) {
         if (
