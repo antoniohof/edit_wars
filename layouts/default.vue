@@ -130,7 +130,7 @@ export default {
     }
   },
   mounted() {
-    this.isMobile = getIsMobile();
+    this.isMobile = this.getIsMobile();
     this.narrativeList = narratives.filter((n) => !n.disabled);
     console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
     if ($nuxt.$route.path.slice(-1) === '/') {
