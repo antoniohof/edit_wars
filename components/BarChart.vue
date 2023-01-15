@@ -94,9 +94,8 @@ export default {
     console.timeEnd('barchart')
     console.time('barchart2')
     this.isLoading = true;
-
-    this.isMobile = getIsMobile()
     if (process.client) {
+      this.isMobile = getIsMobile()
       // Chart.register(zoomPlugin);
       await this.loadData();
       const dataIndex = this.step.order - this.background.stepstart;
