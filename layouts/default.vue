@@ -3,9 +3,9 @@
     <div class="gradient" >
     </div>
     <client-only>
-      <NarrativesGraph class='backgroundgraph' v-if="(isHomeRoute || (isNarrativesRoute && !isMobile) || isAboutRoute)">
+      <NarrativesGraph class='backgroundgraph' v-show="(isHomeRoute || (isNarrativesRoute && !isMobile) || isAboutRoute)">
       </NarrativesGraph>
-      <div class="mobile_menu"  v-if="isMobile && isNarrativesRoute">
+      <div class="mobile_menu"  v-show="isMobile && isNarrativesRoute">
         <v-list height="300" class="list">
           <v-list-item
             v-for="item in narrativeList"
