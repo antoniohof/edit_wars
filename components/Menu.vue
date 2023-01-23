@@ -61,8 +61,8 @@ export default {
       items: [
         { title: 'Intro', route: '/' },
         { title: 'Narratives', route: '/narratives' },
+        { title: 'NEWS', route: '/news' },
         { title: 'About', route: '/about' },
-        { title: 'NEWS', route: '/news' }
       ]
     }
   },
