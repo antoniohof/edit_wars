@@ -204,6 +204,9 @@ export default {
   @media only screen and (max-width: 480px)
     font-size: 18px !important
     line-height: 23px !important
+  &:hover
+    cursor: pointer
+    font-style: italic
 .topic
   font-family: Open Sans
   font-size: 1.5vw
