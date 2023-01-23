@@ -5,27 +5,19 @@
         <v-list-group
           v-for="(news, index) in news_collection"
           :key="index"
-          v-model="news.isOpen"
-          :append-icon="!news.isOpen ? 'mdi-plus' : 'mdi-close'"
           dense
         >
           <template v-slot:activator>
             <v-list-item-content>
               <v-divider class="divider"></v-divider>
-              <v-list-item-title class="title">
+              <v-list-item-title class="title" @click="onClickNews(news)">
+                <span v-show="isMobile" class="arrow-icon"><img src="~/assets/icons/arrow_short.svg" /></span>
                 <span class="title_news">{{ news['title_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="type">{{ news['type_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="year">{{ news['year']}}</span>
               </v-list-item-title>
             </v-list-item-content>
           </template>
-
-          <v-list-item class="topic" dense>
-            <nuxt-content
-              class="topic-content"
-              :document="getNewsContent(news)"
-            />
-          </v-list-item>
         </v-list-group>
       </v-list>
     </v-row>
@@ -55,8 +47,13 @@ export default {
     }
   },
   mounted() {
-    this.isMobile = getIsMobile() || window.innerWidth < 1000
+    this.isMobile = getIsMobile() || window.innerWidth < 800
     window.scrollTo(0, 0)
+    window.addEventListener('resize', this.handleResize)
+  },
+  // update isMobile on window resize
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
   },
   async asyncData({ $content }) {
     const news = await $content('news').fetch()
@@ -67,12 +64,19 @@ export default {
   },
   computed: {},
   methods: {
+    handleResize () {
+      this.isMobile = getIsMobile() || window.innerWidth < 800
+    },
     setTopicOpen(topic) {
       topic.isOpen = !topic.isOpen
     },
     getNewsContent(news) {
       console.log('news', news)
       return news['body_' + this.$i18n.locale]
+    },
+    onClickNews (news) {
+      // open news url on new window
+      window && window.open(news.url, '_blank')
     }
   },
   watch: {}
@@ -100,6 +104,7 @@ export default {
   transform: scale(1.5,1.5)
 .v-list-item__icon.v-list-group__header__append-icon
   margin-left: 0px !important
+  display: none !important
 </style>
 
 <style lang="sass" scoped>
@@ -138,7 +143,7 @@ export default {
 .title
   position: relative
   font-family: Space Mono !important
-  font-size: 1.2vw !important
+  font-size: max(1.2vw, 12px) !important
   overflow: visible
   user-select: none
   text-transform: uppercase
@@ -153,10 +158,16 @@ export default {
     position: absolute
     right: 100px
     color: #797878
+  .arrow-icon
+    margin-bottom: -6px
+    margin-left: -4px
   .year
     position: absolute
     right: 0px
     color: #797878
+  &:hover
+    cursor: pointer
+    font-style: italic
 .topic
   font-family: Open Sans
   font-size: 14px
