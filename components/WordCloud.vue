@@ -87,7 +87,6 @@ export default {
             node_ids = [word];
           }
           node_ids = node_ids.map(id => id.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""))
-          console.log('node_ids', node_ids)
           this.$refs.wordcloud.contentWindow.postMessage(
             {
               function: "focusOnNodes",

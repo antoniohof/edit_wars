@@ -1,7 +1,11 @@
 <template>
   <v-container fluid class="home ma-0 pa-0">
+    <transition name="fadelongo">
+      <h3 v-show="showName && !isScrolled" id="announcements">Propaganda Narrative Soundscapes exhibition, february 2-5, tor 40, Beim Handelsmuseum (Güterbahnhof), 28195 Bremen</h3>
+    </transition>
     <v-container fluid class="intro pa-0">
-      <div class="intro-background"></div>
+      <div  class="intro-background">
+      </div>
       <div class="intro-header">
         <transition name="fadelongo">
           <h1 v-show="showName" class="intro-title">EDIT WARS</h1>
@@ -212,18 +216,7 @@ export default {
   transition: transform 0.5s ease
   align-items: center
   @media only screen and (max-width: 480px)
-    font-size: 6vw
-    position: fixed !important
-    line-height: 25px
-    text-align: left
-    font-weight: 700
-    white-space: initial
-    padding-left: 24px
-    padding-right: 24px
-    top: 20px
-    height: 50px
-    left: 0px
-
+    font-size: 3vw
 
 
 .intro-text
@@ -240,4 +233,24 @@ export default {
     margin-top: 50px
     margin-bottom: 100px
 
+#announcements
+  position: fixed
+  color: black
+  top: 0
+  z-index: 999
+  animation: animate 30s linear infinite
+  font-family: Space Mono
+  text-transform: uppercase
+  color: #27AEEF
+  font-size: 1.5vw
+  font-weight: 300
+  white-space: pre
+  @media only screen and (max-width: 480px)
+    font-size: 4vw
+
+@keyframes animate
+  0%
+    transform: translateX(100%)
+  100%
+    transform: translateX(-100%)
 </style>
