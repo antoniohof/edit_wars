@@ -21,9 +21,8 @@ collections:
       - { label: type_en, name: news_type_en, widget: string, required: true }
       - { label: type_ru, name: news_type_ru, widget: string, required: true }
       - { label: year, name: news_year, widget: number, required: true }
-      - { label: body_en, name: news_body_en, widget: markdown }
-      - { label: body_ru, name: news_body_ru, widget: markdown }
-      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 1, min: 0, required: true}
+      - { label: url, name: news_url, widget: string }
+      - { label: "order", name: "news_order", widget: "number", value_type: "int", default: 1, min: 0, required: true}
   - label: "Pages"
     label_singular: "Page"
     name: "pages"
