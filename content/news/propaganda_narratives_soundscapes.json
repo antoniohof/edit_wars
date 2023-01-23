@@ -5,5 +5,6 @@
   "body_ru": "body_ru",
   "type_en": "Exhibition",
   "type_ru": "Exhibition",
-  "year": 2023
+  "year": 2023,
+  "order": 0
 }
