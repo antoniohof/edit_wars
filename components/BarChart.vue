@@ -36,7 +36,10 @@ import { getIsMobile } from '@/utils/index.js'
 import "chartjs-adapter-date-fns";
 
 import { parseDataUrl } from "../utils/DataProcessing";
-import { colors, graph_colors } from "../utils/constants";
+import {
+  colors,
+  graph_colors,
+} from "../utils/constants";
 import StepMixin from '@/mixins/StepMixin.js'
 import { defaultOptions, getDateValue, getClostestDate } from "../utils/chart"
 
@@ -144,7 +147,8 @@ export default {
         return;
       }
       console.log("fetchedData", fetchedData)
-      var datasets = []      
+      var datasets = []
+      const colors = graph_colors['graph_colors_' + fetchedData.datasets.length] 
       fetchedData.datasets.forEach((narrative, index) => {
         var data = narrative.data.sort(compare)
         datasets.push({
@@ -155,7 +159,7 @@ export default {
           borderWidth: 1.1,
           order: 99,
           tension: 0,
-          borderColor: isChartWeekly(data) ? graph_colors[index] : "#BDCF32",
+          borderColor: isChartWeekly(data) ? colors[index] : "#BDCF32",
           backgroundColor: isChartWeekly(data) ? "transparent" : "#BDCF32",
           pointRadius: 0,
           events: narrative.events,

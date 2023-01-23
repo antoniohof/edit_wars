@@ -81,27 +81,43 @@ const colors = {
   chartColor: '#666565'
 }
 
-const graph_colors = [
-  "#1127F1", // blue
+const graph_colors_1 = [
+  "#FF69EB", // pink
+]
+const graph_colors_2 = [
+  "#FF69EB", // pink
   "#87BC45", // green
-  "#EA5545", // red
-  "#FFA959", // orange
+]
+const graph_colors_3 = [
   "#FF69EB", // pink
   "#27AEEF", // light blue
-  /* old
+  "#FFA959", // orange
+]
+const graph_colors_4 = [
+  "#FF69EB", // pink
+  "#FFA959", // orange
+  "#87BC45", // green
   "#EA5545", // red
-  "#27AEEF", // blue
-  "#BDCF32", // green yellow
-  "#B33DC6", // pink
-  "#FF9F1C", // orange
-  "#EDE15B",
-  "#F7A9A8", // pale red
-  "#F5C243",
-  "#F46A9B",
-  "#87BC45",
-  "#EDBF33",
-  "#FF69EB",
-  */
+]
+const graph_colors_5 = [
+  "#FF69EB", // pink
+  "#27AEEF", // light blue
+  "#FFA959", // orange
+  "#1127F1", // blue
+  "#EA5545", // red
 ]
 
-export { narratives, colorPalette, colors, graph_colors }
+const graph_colors = {
+  graph_colors_1,
+  graph_colors_2,
+  graph_colors_3,
+  graph_colors_4,
+  graph_colors_5
+}
+
+export {
+  narratives,
+  colorPalette,
+  colors,
+  graph_colors
+}
