@@ -9,9 +9,10 @@ collections:
   - label: "News Collection"
     label_singular: "News"
     name: "news collection"
+    folder: content/news
     extension: "json"
     format: "json"
-    create: false
+    create: true
     preview: false
     files:
       - { label: title_en, name: about_title_en, widget: string, required: true }
