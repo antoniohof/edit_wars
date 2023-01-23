@@ -6,6 +6,18 @@ media_folder: static/img
 public_folder: /img
 
 collections:
+  - label: "News Collection"
+    label_singular: "News"
+    name: "news collection"
+    extension: "json"
+    format: "json"
+    create: false
+    preview: false
+    files:
+      - { label: title_en, name: about_title_en, widget: string, required: true }
+      - { label: title_ru, name: about_title_ru, widget: string, required: true }
+      - { label: body_en, name: about_body_en, widget: markdown }
+      - { label: body_ru, name: about_body_ru, widget: markdown }
   - label: "Pages"
     label_singular: "Page"
     name: "pages"
