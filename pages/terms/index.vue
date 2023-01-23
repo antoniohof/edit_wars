@@ -22,12 +22,7 @@ export default {
     ]
   },
   scrollToTop: true,
-  transition: '',
-  computed: {
-    mainText() {
-      return this.about['aboutmain_' + this.$i18n.locale]
-    }
-  }
+  transition: ''
 }
 </script>
 <style lang="sass" scoped>
