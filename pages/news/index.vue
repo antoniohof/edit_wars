@@ -12,7 +12,7 @@
               <v-divider class="divider"></v-divider>
               <v-list-item-title class="title" @click="onClickNews(news)">
                 <span v-show="isMobile" class="arrow-icon"><img src="~/assets/icons/arrow_short.svg" /></span>
-                <span class="title_news">{{ news['title_' + $i18n.locale]}}</span>
+                <span :class="{'long': getIsLong(news)}" class="title_news">{{ news['title_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="type">{{ news['type_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="year">{{ news['year']}}</span>
               </v-list-item-title>
@@ -77,6 +77,9 @@ export default {
     onClickNews (news) {
       // open news url on new window
       window && window.open(news.url, '_blank')
+    },
+    getIsLong (news) {
+      return news['title_' + this.$i18n.locale].length > 22
     }
   },
   watch: {}
@@ -105,6 +108,8 @@ export default {
 .v-list-item__icon.v-list-group__header__append-icon
   margin-left: 0px !important
   display: none !important
+.v-list-group__header.v-list-item.v-list-item--link.theme--light
+  //display: none !important
 </style>
 
 <style lang="sass" scoped>
@@ -203,6 +208,12 @@ export default {
   align-content: center
   @media only screen and (max-width: 480px)
     height: 45px
+
+@keyframes animate
+  0%
+    transform: translateX(100%)
+  100%
+    transform: translateX(-100%)
 
 .v-list-group:last-child
   border-bottom: 2px solid black
