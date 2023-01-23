@@ -30,6 +30,7 @@
         </v-list-group>
       </v-list>
     </v-row>
+    <Footer />
   </v-container>
 </template>
 
@@ -123,8 +124,6 @@ export default {
       return this.about['aboutcontext_' + this.$i18n.locale]
     }
   },
-  components: {},
-
   methods: {
     setTopicOpen(topic) {
       topic.isOpen = !topic.isOpen

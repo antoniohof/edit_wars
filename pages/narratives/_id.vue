@@ -742,7 +742,7 @@ export default {
   border-radius: 4px
   background-color: black
   left: 32px
-  height: 100px
+  // height: 100px
   width: 400px
   padding: 10px
   // backdrop-filter: blur(3px)
