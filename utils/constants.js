@@ -82,6 +82,13 @@ const colors = {
 }
 
 const graph_colors = [
+  "#1127F1", // blue
+  "#87BC45", // green
+  "#EA5545", // red
+  "#FFA959", // orange
+  "#FF69EB", // pink
+  "#27AEEF", // light blue
+  /* old
   "#EA5545", // red
   "#27AEEF", // blue
   "#BDCF32", // green yellow
@@ -94,6 +101,7 @@ const graph_colors = [
   "#87BC45",
   "#EDBF33",
   "#FF69EB",
+  */
 ]
 
 export { narratives, colorPalette, colors, graph_colors }

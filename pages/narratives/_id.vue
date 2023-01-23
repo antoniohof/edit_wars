@@ -44,7 +44,7 @@
       </div>
       <div v-if="infoOpen" class="infosquare">
         <p>
-          The network graph depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
+          The network graph and diagrams depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
         </p>
       </div>
       <transition  :name="getBackgroundTransition">
@@ -99,7 +99,7 @@
         </client-only>
         <div class="next" @click="onClickNext">
           <p>
-            Read next narrative
+            NEXT NARRATIVE
           </p>
         </div>
     </div>
@@ -799,9 +799,10 @@ export default {
     padding: 10px
     font-family: Space Mono
     pointer-events: all !important
-    background-color: rgba(0,0,0,0.5)
     position: sticky
     align-self: center
     cursor: pointer
-    color: white
+    color: black
+  :hover
+    font-style: italic
 </style>

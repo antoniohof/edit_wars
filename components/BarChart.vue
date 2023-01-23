@@ -21,7 +21,9 @@
         color="black"
       ></v-progress-circular>
     </div>
+    <!--
     <p v-if="!isLoading && !isMobile" class="chart-description" v-show="background" v-html="background.description"></p>
+    -->
   </div>
 </template>
 
@@ -84,7 +86,7 @@ export default {
       cssClasses: "",
       styles: {
         "width": `100%`,
-        "height": getIsMobile() ? '70vw' : 'auto'
+        "height": getIsMobile() ? '50vh' : 'auto'
       },
       chartOptions: {},
       dataList: [],
@@ -112,6 +114,7 @@ export default {
     async loadData() {
       this.dataList = [];
       this.chartOptions = {...defaultOptions, maintainAspectRatio: !this.isMobile};
+      console.log("defaultOptions", defaultOptions)
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
         dataNames = this.background.name.split(",");
@@ -140,7 +143,7 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      //console.log("fetchedData", fetchedData)
+      console.log("fetchedData", fetchedData)
       var datasets = []      
       fetchedData.datasets.forEach((narrative, index) => {
         var data = narrative.data.sort(compare)
@@ -152,8 +155,8 @@ export default {
           borderWidth: 1.1,
           order: 99,
           tension: 0,
-          borderColor: graph_colors[index],
-          backgroundColor: isChartWeekly(data) ? "transparent" : graph_colors[index],
+          borderColor: isChartWeekly(data) ? graph_colors[index] : "#BDCF32",
+          backgroundColor: isChartWeekly(data) ? "transparent" : "#BDCF32",
           pointRadius: 0,
           events: narrative.events,
           headlines: narrative.headlines,
@@ -162,12 +165,12 @@ export default {
       
       var headlines = {
         label: "headlines",
-        borderColor: '#B33DC6',
+        borderColor: '#27AEEF',
         borderWidth: 2,
         order: 1,
         radius: this.isMobile ? 3 : 4,
         borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: '#B33DC6',
+        backgroundColor: '#27AEEF',
         data: fetchedData.headlines.map((headline) => ({
           x: headline.date,
           y: getDateValue(headline.date, datasets[0].data),
@@ -179,14 +182,14 @@ export default {
 
       var events = {
         label: "events",
-        borderColor: '#FF9F1C',//colors.chartColor,
+        borderColor: '#A9A9A9', //colors.chartColor,
         pointStyle: 'triangle',
         rotation: 180,
         borderWidth: 2,
         order: 2,
         radius: this.isMobile ? 3 : 5,
         // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: '#FF9F1C',
+        backgroundColor: '#A9A9A9',
         data: fetchedData.events.map(event => ({
           x: event.date,
           y: 0,
