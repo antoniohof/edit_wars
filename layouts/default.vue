@@ -135,7 +135,6 @@ export default {
       this.isMobile = getIsMobile();
     }
     this.narrativeList = narratives.filter((n) => !n.disabled);
-    console.log('$nuxt.$route.path.slice(-1)', $nuxt.$route.path.slice(-1))
     if ($nuxt.$route.path.slice(-1) === '/') {
       this.$router.push({ path: $nuxt.$route.path.substr(0, $nuxt.$route.path.length-1) })
     }
@@ -181,11 +180,9 @@ export default {
       }
     },
     onMenuClose() {
-      console.log('out')
       this.isMenuOpen = false
     },
     onClickMenu() {
-      console.log('on click menu')
       this.isMenuOpen = true
     }
   },

@@ -18,7 +18,6 @@ export default {
     netlifyIdentity.on('open', () => {
       process.nextTick(() => {
         const user = netlifyIdentity.currentUser();
-        console.log(user)
         if (user) {
           // window.location.href="https://edit-wars.netlify.app/admin/#"        
         }
@@ -27,7 +26,6 @@ export default {
     netlifyIdentity.on('close', () => {
       process.nextTick(() => {
         const user = netlifyIdentity.currentUser();
-        console.log(user)
         if (user) {
           window.location.href="https://edit-wars.netlify.app/admin/#"        
         }

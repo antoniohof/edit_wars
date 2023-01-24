@@ -56,7 +56,6 @@ export default {
   },
   async asyncData({ $content }) {
     const news = await $content('news').fetch()
-    console.log("news", news)
     return {
       "news_collection": news
     }
@@ -70,7 +69,6 @@ export default {
       topic.isOpen = !topic.isOpen
     },
     getNewsContent(news) {
-      console.log('news', news)
       return news['body_' + this.$i18n.locale]
     },
     onClickNews (news) {

@@ -97,8 +97,6 @@ export default {
     };
   },
   async mounted() {
-    console.timeEnd('barchart')
-    console.time('barchart2')
     this.isLoading = true;
     if (process.client) {
       this.isMobile = getIsMobile()
@@ -111,14 +109,12 @@ export default {
       }
       this.setData(data)
       this.isLoading = false;
-      console.timeEnd('barchart2')
     }
   },
   methods: {
     async loadData() {
       this.dataList = [];
       this.chartOptions = {...defaultOptions, maintainAspectRatio: !this.isMobile};
-      console.log("defaultOptions", defaultOptions)
       let dataNames = [this.background.name]
       if (this.background.name.indexOf(',')) {
         dataNames = this.background.name.split(",");
@@ -147,7 +143,6 @@ export default {
         console.error("no barChart data for this step");
         return;
       }
-      console.log("fetchedData", fetchedData)
       var datasets = []
       const colors = graph_colors['graph_colors_' + fetchedData.datasets.length] 
       fetchedData.datasets.forEach((narrative, index) => {
@@ -257,7 +252,6 @@ function isChartWeekly (data) {
   var d2 = new Date (data[1].x).getTime()
   let difference = d1 - d2;
   let TotalDays = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
-  console.log("TotalDays", TotalDays)
   return TotalDays > 1
 }
 

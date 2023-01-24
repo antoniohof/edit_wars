@@ -66,7 +66,6 @@ export default {
       return $nuxt.$route.path === "/";
     },
     isBlurred() {
-      console.log('$nuxt.$route.path', $nuxt.$route.path)
       return $nuxt.$route.path === "/about";
     },
   },
@@ -109,7 +108,6 @@ export default {
             textMat.opacity = ob.node?.disabled ? 0 : 1;
             sphereMat.opacity = ob.node?.disabled ? 0.3 : 1;
           } else {
-            console.log("not narrative pages");
             textMat.opacity = 0;
             sphereMat.opacity = 1;
           }
@@ -249,12 +247,10 @@ export default {
   },
   watch: {
     "$nuxt.$route.path"(val) {
-      console.log("NEW ROUTE", val);
       if (val == '/narratives') {
         this.rotateActivated = true
       }
       this.currentRoute = val;
-      console.log("graph", this.g);
       this.calculateOpacities();
     },
   },

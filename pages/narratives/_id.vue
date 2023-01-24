@@ -448,7 +448,6 @@ export default {
           }
 
           if (oneStepBackground) {
-            console.log('here0')
             this.backgroundContainer.style.setProperty(
               'transform',
               `translateY(${translateY - 32}px)`,
@@ -463,7 +462,6 @@ export default {
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
-              console.log('here1')
               this.backgroundContainer.style.setProperty(
                 'transform',
                 `translateY(${translateY}px)`,
@@ -473,7 +471,6 @@ export default {
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
-              console.log('here2')
               this.backgroundContainer.style.setProperty(
                 'transform',
                 `translateY(${translateY}px)`,
@@ -486,7 +483,6 @@ export default {
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
     },
     mergedGraphSequence (backgrounds) {
-      //console.log("mergedGraphSequence" ,backgrounds)
       backgrounds.sort((a, b) => {
         return (b.stepstart) - (a.stepstart);
       })
