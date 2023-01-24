@@ -848,10 +848,10 @@ export default {
   justify-content: center
 .step_mobile
   height: 70vh
-  margin-top: 30vh
+  margin-top: 15vh
   &:first-child
     margin-top: 15vh
-    margin-bottom: 8vh
+    margin-bottom: -10vh
   &:last-child
     margin-bottom: 50vh
 .step-child_mobile
@@ -859,7 +859,7 @@ export default {
 
 .step-child-background_mobile
   height: fit-content
-  margin-top: 10%
+  margin-top: 18%
   padding-left: 3px
   padding-right: 3px
   max-width: 100vw !important

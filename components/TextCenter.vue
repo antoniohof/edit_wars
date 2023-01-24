@@ -52,6 +52,7 @@ export default {
   @media only screen and (max-width: 1200px)
     min-width: 100vw !important
     height: fit-content !important
+    min-height: fit-content !important
   &_center
     position: absolute
     left: 0px
@@ -67,9 +68,12 @@ export default {
     align-self: center
     padding: 0px 15px 0px 15px !important
     @media only screen and (max-width: 1200px)
+      transform: 0 !important
+      position: relative !important
       left: 0 !important
       transform: translate(0px, 0px) !important
       align-items: flex-start
+      height: fit-content !important
     &_container
       display: flex
       // background-color: $window-text-bg
