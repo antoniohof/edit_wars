@@ -51,6 +51,7 @@ export default {
   min-height: 100vh
   @media only screen and (max-width: 1200px)
     min-width: 100vw !important
+    height: fit-content !important
   &_center
     position: absolute
     left: 0px

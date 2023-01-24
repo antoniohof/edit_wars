@@ -859,7 +859,7 @@ export default {
 
 .step-child-background_mobile
   height: fit-content
-  margin-top: 19%
+  margin-top: 10%
   padding-left: 3px
   padding-right: 3px
   max-width: 100vw !important

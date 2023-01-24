@@ -54,6 +54,7 @@ export default {
     align-content: flex-center
     margin: 0 auto !important
     min-width: 100vw
+    height: fit-content !important
   &_container
     border-radius: 4px
     pointer-events: all !important
