@@ -132,6 +132,7 @@
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(currStepIndex)"
               />
+              <div class='wordcloudhole' v-if="getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
             </div>
           </Scrollama>
       </div>
@@ -847,11 +848,11 @@ export default {
   flex-direction: column
   justify-content: center
 .step_mobile
-  height: 70vh
+  height: fit-content
   margin-top: 15vh
   &:first-child
     margin-top: 15vh
-    margin-bottom: -10vh
+    margin-bottom: 30vh
   &:last-child
     margin-bottom: 50vh
 .step-child_mobile
@@ -859,12 +860,14 @@ export default {
 
 .step-child-background_mobile
   height: fit-content
-  margin-top: 18%
-  padding-left: 3px
-  padding-right: 3px
+  margin-top: 45%
+  padding-left: 10px
+  padding-right: 10px
   max-width: 100vw !important
 
 .scrollama_mobile
 
+.wordcloudhole
+  height: 60vh
 
 </style>
