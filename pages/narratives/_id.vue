@@ -853,6 +853,9 @@ export default {
   &:first-child
     margin-top: 15vh
     margin-bottom: 30vh
+    @media only screen and (min-width: 480px)
+      margin-top: 50vh
+
   &:last-child
     margin-bottom: 50vh
 .step-child_mobile
@@ -864,6 +867,8 @@ export default {
   padding-left: 10px
   padding-right: 10px
   max-width: 100vw !important
+  @media only screen and (min-width: 480px)
+    margin-top: 15%
 
 .scrollama_mobile
 
