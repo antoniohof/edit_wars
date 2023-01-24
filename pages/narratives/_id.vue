@@ -85,6 +85,7 @@
               v-for="(step, index) in narrativeSteps"
               :key="step.uuid"
               class="step"
+              :class="{'mobile': isMobile}"
               :data-step-no="index"
             >
               <NuxtDynamic
@@ -676,6 +677,7 @@ export default {
   z-index: 2
   will-change: transform
   @media only screen and (max-width: 480px)
+    pointer-events: all
 
 
 .step:last-child
