@@ -66,7 +66,9 @@ export default {
   components: {},
 
   methods: {
-    sendAutoRotate() { (throttle(this.autoRotate, 10))() },
+    sendAutoRotate() {
+      (throttle(this.autoRotate, 10))()
+    },
     sendInitialPosition() {
       this.$refs.wordcloud.contentWindow.postMessage({function: "focusOnNode", data: '',},"*");
     },

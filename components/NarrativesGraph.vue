@@ -1,5 +1,11 @@
 <template>
-  <v-container  :class="{ 'borrou': isBlurred, nopoint: isNoPoint }" class='container-narrativa ma-0 pa-0' fluid>
+  <v-container
+    :class="{ 'borrou': isBlurred, nopoint: isNoPoint }"
+    class='container-narrativa ma-0 pa-0'
+    fluid
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
+  >
     <div
       class="narrative-graph-page"
     >
@@ -67,6 +73,14 @@ export default {
   components: {},
 
   methods: {
+    onMouseDown () {
+      // console.log("onMouseDown")
+      this.rotateActivated = false
+    },
+    onMouseUp () {
+      // console.log("onMouseUp")
+      // this.rotateActivated = true
+    },
     step() {
       if (this.rotateActivated) {
         let distance = 400;
@@ -80,7 +94,7 @@ export default {
         });
         let speed = 1000;
         if (this.currentRoute === "/narratives") {
-          speed = 5500;
+          speed = 7500;
         }
         this.angle += Math.PI / speed;
       }
@@ -236,6 +250,9 @@ export default {
   watch: {
     "$nuxt.$route.path"(val) {
       console.log("NEW ROUTE", val);
+      if (val == '/narratives') {
+        this.rotateActivated = true
+      }
       this.currentRoute = val;
       console.log("graph", this.g);
       this.calculateOpacities();

@@ -163,12 +163,12 @@ export default {
     position: absolute
     right: 100px
     color: #797878
-  .arrow-icon
+  .arrow-icon img
     margin-bottom: -6px
     margin-left: -4px
   .year
     position: absolute
-    right: 0px
+    right: 1px
     color: #797878
   &:hover
     cursor: pointer
