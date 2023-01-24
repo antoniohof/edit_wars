@@ -3,6 +3,7 @@
     <p v-if="!isLoading" class="chart-title" v-show="background" v-html="background.chart_title"></p>
     <transition name="fade">
     <scatterjs
+      class="scatterjs"
       ref="graph"
       v-if="currentChartData && !isLoading"
       :chart-options="chartOptions"
@@ -322,4 +323,5 @@ function compareHeadlines(a, b) {
   color: black
   @media only screen and (max-width: 480px)
     font-size: 12px
+  
 </style>

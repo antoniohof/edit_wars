@@ -51,6 +51,7 @@
           <div
           class="background"
           v-if="
+            !isSausage &&
             currentBackgroundToShow &&
             currentBackground.component !== 'WordCloud'
           "
@@ -70,7 +71,7 @@
         </client-only>
         </div>
       </transition>
-      <div class="side">
+      <div class="side" v-if="!isSausage">
         <client-only>
           <Scrollama
             ref="scrollama"
@@ -85,7 +86,6 @@
               v-for="(step, index) in narrativeSteps"
               :key="step.uuid"
               class="step"
-              :class="{'mobile': isMobile}"
               :data-step-no="index"
             >
               <NuxtDynamic
@@ -98,12 +98,48 @@
             </div>
           </Scrollama>
         </client-only>
-        <div class="next" @click="onClickNext">
+      </div>
+      <div class='sausage_mobile' v-if="isSausage">
+        <Scrollama
+            ref="scrollama"
+            class="scrollama_mobile"
+            :debug="false"
+            @step-enter="stepEnterHandler"
+            v-if="narrativeSteps.length > 0"
+            @step-exit="stepExitHandler"
+            @step-progress="onProgress"
+          >
+            <div
+              v-for="(step, index) in narrativeSteps"
+              :key="step.uuid"
+              class="step_mobile"
+              :data-step-no="index"
+            >
+              <NuxtDynamic
+                class="step-child_mobile"
+                :component="step.component"
+                :step="step"
+                :currentStepIndex="currStepIndex"
+                :progress="getStepProgress(index)"
+              />
+              <NuxtDynamic
+                class="step-child-background_mobile"
+                v-if="getBackgroundOfStep(step.order).component != 'WordCloud'"
+                :component="getBackgroundOfStep(step.order).component"
+                :background="getBackgroundOfStep(step.order)"
+                :step="currStepObj"
+                keep-alive
+                :currentStepIndex="currStepIndex"
+                :progress="getStepProgress(currStepIndex)"
+              />
+            </div>
+          </Scrollama>
+      </div>
+      <div class="next" @click="onClickNext">
           <p>
             NEXT NARRATIVE
           </p>
         </div>
-    </div>
     </v-container>
   </transition>
 </template>
@@ -127,6 +163,7 @@ export default {
     // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
+    this.isSausage = window.innerWidth < 1200
     this.currentNarrative = narratives.find((narrative) => {
       return narrative?.slug === $nuxt.$route.params.id
     })
@@ -145,7 +182,8 @@ export default {
     this.narrativesList = narratives //.filter((n) => !n.disabled)
     document.addEventListener(('click'), this.closeInfo)
 
-    this.isMobile = getIsMobile() || window.innerWidth < 1000
+    this.isMobile = getIsMobile() || window.innerWidth < 1200
+
     if (this.isMobile) {
       this.showTimeline = false
     }
@@ -184,6 +222,7 @@ export default {
   updated() {},
   data() {
     return {
+      isSausage: false,
       showTimeline: true,
       infoOpen: false,
       isMobile: false,
@@ -379,6 +418,7 @@ export default {
       */
     },
     backgroundLoop() {
+      this.isSausage = window.innerWidth < 1200
       if (this.currentBackgroundToShow) {
         this.backgroundContainer = document.querySelector(
           '.background_container'
@@ -471,6 +511,14 @@ export default {
       }
       mergedBackgrounds.map(bg => {console.log("bg", bg.name)})
       return mergedBackgrounds
+    },
+    getBackgroundOfStep (stepIndex) {
+      const back = this.backgrounds.find((item) => 
+          stepIndex >= item.stepstart &&
+          stepIndex <= item.stepend &&
+          parseInt(item.narrative) === parseInt(this.currentNarrative?.id)
+      )
+      return back
     }
   },
   watch: {
@@ -530,6 +578,7 @@ export default {
 
 .v-timeline-item__dot
   box-shadow: none !important
+  
 </style>
 
 <style lang="sass" scoped>
@@ -647,13 +696,6 @@ export default {
   margin-right: 80px
   align-self: flex-end
   z-index: 2
-  @media only screen and (max-width: 1000px)
-    left: 0 !important
-    overflow-y: scroll
-    min-width: 100vw !important
-    margin-top: 50% // check
-    margin-right: 0px !important
-    padding: 0px 15px 0px 15px
 .scrollama
   flex: 1
   will-change: transform
@@ -676,8 +718,6 @@ export default {
   margin-bottom: 100px
   z-index: 2
   will-change: transform
-  @media only screen and (max-width: 480px)
-    pointer-events: all
 
 
 .step:last-child
@@ -699,13 +739,6 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-  z-index: 1
-  @media only screen and (max-width: 1000px)
-    width: 100vw !important
-    left: 0
-    margin-top: calc(50vh)
-    padding-left: 15px !important
-    padding-right: 15px !important
   @media only screen and (max-width: 480px)
     width: 100vw !important
     left: 0
@@ -721,11 +754,6 @@ export default {
   margin-bottom: 0px
   position: relative
   z-index: 1
-  @media only screen and (max-width: 1000px)
-    width: 100% !important
-    padding-top: 100px !important
-  @media only screen and (max-width: 480px)
-    padding-top: 0px
 
 .wordcloud
   position: fixed
@@ -807,4 +835,36 @@ export default {
     color: black
   :hover
     font-style: italic
+
+// mobile
+
+.sausage_mobile
+  min-width: 100vw !important
+  width: 100vw
+  max-width: 100vw !important
+  position: relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+.step_mobile
+  height: 70vh
+  margin-bottom: 30vh
+  &:first-child
+    margin-top: 15vh
+    margin-bottom: 8vh
+  &:last-child
+    margin-top: 50vh
+.step-child_mobile
+  height: fit-content 
+
+.step-child-background_mobile
+  height: fit-content
+  margin-top: 19vh
+  padding-left: 3px
+  padding-right: 3px
+  max-width: 100vw !important
+
+.scrollama_mobile
+
+
 </style>

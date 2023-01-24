@@ -48,6 +48,9 @@ export default {
   width: 500px
   max-width: 100vw !important
   height: 100vh
+  min-height: 100vh
+  @media only screen and (max-width: 1200px)
+    min-width: 100vw !important
   &_center
     position: absolute
     left: 0px
@@ -62,7 +65,7 @@ export default {
     align-items: center
     align-self: center
     padding: 0px 15px 0px 15px !important
-    @media only screen and (max-width: 1000px)
+    @media only screen and (max-width: 1200px)
       left: 0 !important
       transform: translate(0px, 0px) !important
       align-items: flex-start
@@ -80,7 +83,6 @@ export default {
       align-items: center
       height: fit-content
       box-shadow: 0px 4px 25px 0px #00000040
-      @media only screen and (max-width: 480px)
       &_top
         border-radius: 4px 4px 0px 0px
         height: 24px
@@ -100,7 +102,7 @@ export default {
             color: black
             font-size: max(1.2vw, 18px)
             margin-bottom: 0px
-            @media only screen and (max-width: 1000px)
+            @media only screen and (max-width: 1200px)
             font-size: 20px
             @media only screen and (max-width: 480px)
               font-size: 16px

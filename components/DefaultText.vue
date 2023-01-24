@@ -44,14 +44,16 @@ export default {
   justify-content: center
   width: fit-content
   max-width: 480px
+  padding: 0px 15px 0px 15px !important
   height: 100vh
   will-change: transform
-  @media only screen and (max-width: 480px)
-    max-width: 95vw
-    align-items: flex-start
-    justify-content: flex-start
-    align-items: flex-start
-    align-content: flex-start
+  @media only screen and (max-width: 1200px)
+    align-items: flex-center
+    justify-content: flex-center
+    align-items: flex-center
+    align-content: flex-center
+    margin: 0 auto !important
+    min-width: 100vw
   &_container
     border-radius: 4px
     pointer-events: all !important
@@ -78,7 +80,7 @@ export default {
         color: black
         font-size: max(1.2vw, 18px)
         margin-bottom: 0px
-        @media only screen and (max-width: 1000px)
+        @media only screen and (max-width: 1200px)
           font-size: 20px
         @media only screen and (max-width: 480px)
           font-size: 16px
