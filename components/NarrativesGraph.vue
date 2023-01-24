@@ -125,9 +125,6 @@ export default {
       const g = ForceGraph3D()(el);
       const N = 3;
       let dimensions = 3;
-      if (getIsMobile()) {
-        dimensions = 2;
-      }
       let n = [...narratives];
       const data = n.map((narrative) => ({
         id: narrative.id,
@@ -166,7 +163,7 @@ export default {
       let position = 10;
       if (getIsMobile()) {
         fontSize = 17;
-        scale = 2.5;
+        scale = 2;
         position = 38;
       }
       g.graphData(gData)
