@@ -851,7 +851,7 @@ export default {
   height: fit-content
   margin-top: 15vh
   &:first-child
-    margin-top: 18vh
+    margin-top: 20vh
     margin-bottom: 30vh
     @media only screen and (min-width: 480px)
       margin-top: 50vh
@@ -874,5 +874,6 @@ export default {
 
 .wordcloudhole
   height: 60vh
+  pointer-events: none !important
 
 </style>
