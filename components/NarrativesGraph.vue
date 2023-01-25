@@ -109,10 +109,10 @@ export default {
           let textMat = ob.materials[0];
           if (window.location.pathname == "/narratives") {
             textMat.opacity = ob.node?.disabled ? 0 : 1;
-            sphereMat.opacity = ob.node?.disabled ? 0.3 : 1;
+            if (ob.node?.disabled) sphereMat.color.set("#B5B5B5")
           } else {
             textMat.opacity = 0;
-            sphereMat.opacity = 1;
+            sphereMat.color.set("#000000")
           }
         });
       });
@@ -217,6 +217,9 @@ export default {
             sprite.color = node.color;
             sprite.textHeight = fontSize;
             sprite.padding = 2;
+
+            sprite.renderOrder = 999;
+            sprite.material.depthTest = false;
 
             this.sprites.push({id: node.id, sprite});
             
