@@ -61,7 +61,7 @@ export default {
       items: [
         { title: 'Intro', route: '/' },
         { title: 'Narratives', route: '/narratives' },
-        { title: 'NEWS', route: '/news' },
+        { title: 'News', route: '/news' },
         { title: 'About', route: '/about' },
       ]
     }
@@ -88,6 +88,12 @@ export default {
       this.isOpenLocal = false
     },
     isSelected(item) {
+      if (
+        this.selectedRoute.indexOf('narratives') !== -1 &&
+        item.route === '/narratives'
+      ) {
+        return true
+      }
       return this.selectedRoute === item.route
     }
   },
