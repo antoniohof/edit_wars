@@ -3,9 +3,13 @@
     <div class="gradient" >
     </div>
     <client-only>
-      <NarrativesGraph class='backgroundgraph' v-show="(isHomeRoute || (isNarrativesRoute && !isMobile) || isAboutRoute)">
+      <NarrativesGraph class='backgroundgraph' v-show="(isHomeRoute || (isNarrativesRoute) || isAboutRoute)">
       </NarrativesGraph>
+        <!--
       <div class="mobile_menu"  v-show="isMobile && isNarrativesRoute">
+        <div>
+          <img src="../static/img/narratives.svg"/>
+        </div>
         <v-list height="300" class="list">
           <v-list-item
             v-for="item in narrativeList"
@@ -30,6 +34,7 @@
           </v-list-item>
         </v-list>
       </div>
+        -->
     </client-only>
     <Menu @onclose="onMenuClose" :isOpen="isMenuOpen"></Menu>
       <v-app-bar

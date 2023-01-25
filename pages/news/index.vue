@@ -11,7 +11,6 @@
             <v-list-item-content>
               <v-divider class="divider"></v-divider>
               <v-list-item-title class="title" @click="onClickNews(news)">
-                <span v-show="isMobile" class="arrow-icon"><img src="~/assets/icons/arrow_short.svg" /></span>
                 <span :class="{'long': getIsLong(news)}" class="title_news">{{ news['title_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="type">{{ news['type_' + $i18n.locale]}}</span>
                 <span v-show="!isMobile" class="year">{{ news['year']}}</span>

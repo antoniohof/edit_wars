@@ -5,6 +5,7 @@
     fluid
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
+    @touchstart="onMouseDown"
   >
     <div
       class="narrative-graph-page"
@@ -15,6 +16,7 @@
 </template>
   
 <script>
+import d3ForceLimit from 'd3-force-limit';
 import { narratives } from "@/utils/constants.js";
 import { getIsMobile } from "@/utils/index.js";
 import SpriteText from "three-spritetext";
@@ -119,6 +121,7 @@ export default {
       let ForceGraph3D;
       if (window) {
         ForceGraph3D = require("3d-force-graph").default;
+        //console.log("d3ForceLimit", d3ForceLimit)
       } else {
         return;
       }
@@ -224,10 +227,23 @@ export default {
           }
           return group;
         });
+
       this.g = g;
       process.nextTick(() => {
         if (getIsMobile()) {
-          g.d3Force("charge").strength(-1500);
+          g.d3Force("charge").strength(-4000);
+          let w = window.innerWidth/3
+          let h = window.innerHeight
+          let z = w 
+          g.d3Force('limit', 
+            d3ForceLimit()
+            .x0(-w/2)
+            .x1(w/2)
+            .y0(-h)
+            .y1(h)
+            .z0(-z)
+            .z1(z)
+          );
         } else {
           g.d3Force("charge").strength(-1500);
         }
