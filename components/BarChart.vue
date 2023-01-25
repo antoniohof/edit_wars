@@ -75,7 +75,9 @@ export default {
   },
   beforeMount () {
     console.time('barchart')
-
+  },
+  mounted () {
+    console.timeEnd('barchart')
   },
   data() {
     return {
@@ -162,45 +164,46 @@ export default {
           headlines: narrative.headlines,
         })
       });
-      
-      var headlines = {
-        label: "headlines",
-        borderColor: '#27AEEF',
-        borderWidth: 2,
-        order: 1,
-        radius: this.isMobile ? 3 : 4,
-        borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: '#27AEEF',
-        data: fetchedData.headlines.map((headline) => ({
-          x: headline.date,
-          y: getDateValue(headline.date, datasets[0].data),
-          label: headline.text_en,
-          source: headline.link ? (new URL(headline.link)).hostname : '',
-          type: "headline"
-        }))
-      };
-
-      var events = {
-        label: "events",
-        borderColor: '#A9A9A9', //colors.chartColor,
-        pointStyle: 'triangle',
-        rotation: 180,
-        borderWidth: 2,
-        order: 2,
-        radius: this.isMobile ? 3 : 5,
-        // borderRadius: this.isMobile ? 2 : 4,
-        backgroundColor: '#A9A9A9',
-        data: fetchedData.events.map(event => ({
-          x: event.date,
-          y: 0,
-          label: event.text,
-          source: event.link ? (new URL(event.link)).hostname : '',
-          type: "event"
-        }))
+      if (!this.isMobile) {
+        var headlines = {
+          label: "headlines",
+          borderColor: '#27AEEF',
+          borderWidth: 2,
+          order: 1,
+          radius: this.isMobile ? 3 : 4,
+          borderRadius: this.isMobile ? 2 : 4,
+          backgroundColor: '#27AEEF',
+          data: fetchedData.headlines.map((headline) => ({
+            x: headline.date,
+            y: getDateValue(headline.date, datasets[0].data),
+            label: headline.text_en,
+            source: headline.link ? (new URL(headline.link)).hostname : '',
+            type: "headline"
+          }))
+        };
+  
+        var events = {
+          label: "events",
+          borderColor: '#A9A9A9', //colors.chartColor,
+          pointStyle: 'triangle',
+          rotation: 180,
+          borderWidth: 2,
+          order: 2,
+          radius: this.isMobile ? 3 : 5,
+          // borderRadius: this.isMobile ? 2 : 4,
+          backgroundColor: '#A9A9A9',
+          data: fetchedData.events.map(event => ({
+            x: event.date,
+            y: 0,
+            label: event.text,
+            source: event.link ? (new URL(event.link)).hostname : '',
+            type: "event"
+          }))
+        }
+  
+        datasets = datasets.concat(headlines);
+        datasets = datasets.concat(events);
       }
-
-      datasets = datasets.concat(headlines);
-      datasets = datasets.concat(events);
 
       var options = {}
       if (fetchedData.datasets.length > 1) {

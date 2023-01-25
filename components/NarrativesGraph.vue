@@ -213,6 +213,7 @@ export default {
 
             sprite.color = node.color;
             sprite.textHeight = fontSize;
+            sprite.padding = 2;
 
             this.sprites.push({id: node.id, sprite});
             

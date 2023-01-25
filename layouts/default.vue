@@ -86,10 +86,8 @@ import { getIsMobile } from '@/utils/index.js'
 export default {
   head: {
     title: 'Edit Wars - Home',
-    data () {
-      return {
-        narrativeList: []
-      }
+    data: {
+      narrativeList: []
     },
     meta: [
       {
@@ -245,6 +243,8 @@ export default {
   user-select: none
   text-transform: uppercase
   margin-top: 30px
+  padding-right: 4px
+  margin-right: -4px
   @media only screen and (max-width: 480px)
     font-size: 26px !important
     margin-top: -1px
