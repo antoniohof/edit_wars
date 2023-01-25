@@ -203,6 +203,15 @@ export default {
               transparent: true,
             });
             const sphere = new THREE.Mesh(geometry, matSphere);
+
+            const clickMatSphere = new THREE.MeshBasicMaterial({
+              color: 0x000000,
+              opacity: 0,
+              transparent: true,
+            });
+            const click_sphere = new THREE.Mesh(geometry, clickMatSphere);
+            click_sphere.scale.set(10, 10, 10);
+
             sphere.scale.set(scale, scale, scale);
             const sprite = new SpriteText(node.label.toUpperCase());
             sprite.fontFace = "Space Mono";
@@ -224,9 +233,11 @@ export default {
             this.sprites.push({id: node.id, sprite});
             
             group.add(sprite);
-
             sprite.position.set(0, position, 0);
             group.add(sphere);
+            if (!node?.disabled) {
+              group.add(click_sphere);
+            }
           }
           return group;
         });
