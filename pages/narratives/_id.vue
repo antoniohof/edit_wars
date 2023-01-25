@@ -122,17 +122,17 @@
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(index)"
               />
-              <NuxtDynamic
+              <LazyNuxtDynamic
                 class="step-child-background_mobile"
-                v-if="getBackgroundOfStep(step.order).component != 'WordCloud'"
-                :component="getBackgroundOfStep(step.order).component"
-                :background="getBackgroundOfStep(step.order)"
+                v-if="step && getBackgroundOfStep(step.order).component != 'WordCloud'"
+                :component="step && getBackgroundOfStep(step.order).component"
+                :background="step && getBackgroundOfStep(step.order)"
                 :step="currStepObj"
                 keep-alive
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(currStepIndex)"
               />
-              <div class='wordcloudhole' v-if="getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
+              <div class='wordcloudhole' v-if="step && getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
             </div>
           </Scrollama>
       </div>
