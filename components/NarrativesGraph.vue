@@ -38,7 +38,8 @@ export default {
       fonts: [],
       animation: null,
       angle: 0,
-      rotateActivated: true
+      rotateActivated: true,
+      sprites: []
     };
   },
   scrollToTop: true,
@@ -173,6 +174,21 @@ export default {
         .numDimensions(dimensions)
         .linkOpacity(1.0)
         .onNodeClick(this.onNodeClick)
+        .onNodeHover((node) => {
+          if (node == null) {
+            this.sprites.map(s => {
+              s.sprite.fontFace = "Space Mono";
+            })
+            return
+          }
+          var sprite = this.sprites.find((s) => {
+            return s.id === node.id
+          });
+          if (sprite) {
+            sprite.sprite._fontSize = 120
+            sprite.sprite.fontFace = "Space Mono Italic";
+          }
+        })
         .nodeThreeObject((node) => {
           const group = new THREE.Group();
           if (node.id > 0) {
@@ -186,7 +202,7 @@ export default {
             const sphere = new THREE.Mesh(geometry, matSphere);
             sphere.scale.set(scale, scale, scale);
             const sprite = new SpriteText(node.label.toUpperCase());
-            sprite.fontFace = "Space Mono Italic";
+            sprite.fontFace = "Space Mono";
             sprite.material.depthWrite = false; // make sprite background transparent
             sprite.material.opacity = 0;
 
@@ -197,7 +213,8 @@ export default {
 
             sprite.color = node.color;
             sprite.textHeight = fontSize;
-            
+
+            this.sprites.push({id: node.id, sprite});
             
             group.add(sprite);
 
