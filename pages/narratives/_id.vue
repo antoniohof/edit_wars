@@ -847,10 +847,10 @@ export default {
   height: fit-content
   margin-top: 15vh
   &:first-child
-    margin-top: 20vh
+    margin-top: 25vh
     margin-bottom: 30vh
     @media only screen and (min-width: 480px)
-      margin-top: 50vh
+      margin-top: 50vw !important
 
   &:last-child
     margin-bottom: 50vh
