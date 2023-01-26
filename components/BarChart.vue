@@ -74,10 +74,6 @@ export default {
     },
   },
   beforeMount () {
-    console.time('barchart')
-  },
-  mounted () {
-    console.timeEnd('barchart')
   },
   data() {
     return {
@@ -96,22 +92,26 @@ export default {
       },
       chartOptions: {},
       dataList: [],
+      loadedStep: null
     };
   },
   async mounted() {
-    this.isLoading = true;
-    if (process.client) {
-      this.isMobile = getIsMobile()
-      // Chart.register(zoomPlugin);
-      await this.loadData();
-      const dataIndex = this.step.order - this.background.stepstart;
-      let data = this.dataList[0]
-      if (this.dataList[dataIndex]) {
-        data = this.dataList[dataIndex]
+    if (!this.step) {
+        return
       }
-      this.setData(data)
-      this.isLoading = false;
-    }
+      this.isLoading = true;
+      if (process.client) {
+        this.isMobile = getIsMobile()
+        // Chart.register(zoomPlugin);
+        await this.loadData();
+        const dataIndex = this.step.order - this.background.stepstart;
+        let data = this.dataList[0]
+        if (this.dataList[dataIndex]) {
+          data = this.dataList[dataIndex]
+        }
+        this.setData(data)
+        this.isLoading = false;
+      }
   },
   methods: {
     async loadData() {
@@ -226,7 +226,27 @@ export default {
     },
   },
   watch: {
-      step(step) {
+      async step(step) {
+        if (!this.loadedStep) {
+          this.loadedStep = true;
+          if (!this.step) {
+            console.error('no step for bar chart!')
+            return
+          }
+          this.isLoading = true;
+          if (process.client) {
+            this.isMobile = getIsMobile()
+            // Chart.register(zoomPlugin);
+            await this.loadData();
+            const dataIndex = this.step.order - this.background.stepstart;
+            let data = this.dataList[0]
+            if (this.dataList[dataIndex]) {
+              data = this.dataList[dataIndex]
+            }
+            this.setData(data)
+            this.isLoading = false;
+          }
+        }
         if (process.client) {
           if (this?.$refs?.graph?.chart) {
             if (step.filterDate) {

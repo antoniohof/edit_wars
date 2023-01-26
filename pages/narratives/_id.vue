@@ -122,17 +122,17 @@
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(index)"
               />
-              <NuxtDynamic
+              <LazyNuxtDynamic
                 class="step-child-background_mobile"
-                v-if="getBackgroundOfStep(step.order).component != 'WordCloud'"
-                :component="getBackgroundOfStep(step.order).component"
-                :background="getBackgroundOfStep(step.order)"
+                v-if="step && getBackgroundOfStep(step.order).component != 'WordCloud'"
+                :component="step && getBackgroundOfStep(step.order).component"
+                :background="step && getBackgroundOfStep(step.order)"
                 :step="currStepObj"
                 keep-alive
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(currStepIndex)"
               />
-              <div class='wordcloudhole' v-if="getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
+              <div class='wordcloudhole' v-if="step && getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
             </div>
           </Scrollama>
       </div>
@@ -381,7 +381,7 @@ export default {
         this.startBackgroundScroll = window.scrollY
       }
       this.lastDirection = direction
-      window.dispatchEvent(new Event('resize'))
+      // window.dispatchEvent(new Event('resize'))
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction
@@ -847,10 +847,10 @@ export default {
   height: fit-content
   margin-top: 15vh
   &:first-child
-    margin-top: 20vh
+    margin-top: 25vh
     margin-bottom: 30vh
     @media only screen and (min-width: 480px)
-      margin-top: 50vh
+      margin-top: 50vh !important
 
   &:last-child
     margin-bottom: 50vh
