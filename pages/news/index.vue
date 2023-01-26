@@ -56,7 +56,9 @@ export default {
   async asyncData({ $content }) {
     const news = await $content('news').fetch()
     return {
-      "news_collection": news
+      "news_collection": news.sort((a, b) => {
+        return b.order - a.order
+      })
     }
   },
   computed: {},
