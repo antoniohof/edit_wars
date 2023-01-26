@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Loading v-if="!isWordCloudLoaded" class="load-icon"></Loading>
+    <transition name="fade">
+      <Loading v-if="!isWordCloudLoaded" class="load-icon"></Loading>
+    </transition>
     <transition name="fade">
       <v-container :class="{ loaded: isWordCloudLoaded }" v-show="isWordCloudLoaded" fluid class="narrative ma-0 pa-0">
         <div class="narrative_title">
