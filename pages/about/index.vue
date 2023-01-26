@@ -155,7 +155,8 @@ export default {
   font-weight: 1000 !important
   left: 3px
   transform: scale(1.5,1.5)
-
+  font-size: 20px !important
+  
 </style>
 
 <style lang="sass" scoped>

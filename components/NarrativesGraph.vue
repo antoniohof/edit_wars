@@ -258,7 +258,19 @@ export default {
             .z1(z)
           );
         } else {
-          g.d3Force("charge").strength(-1500);
+          g.d3Force("charge").strength(-2000);
+          let w = window.innerWidth
+          let h = window.innerHeight
+          let z = w 
+          g.d3Force('limit', 
+            d3ForceLimit()
+            .x0(-w/5)
+            .x1(w/5)
+            .y0(-h/6)
+            .y1(h/6)
+            .z0(-z/5)
+            .z1(z/5)
+          );
         }
         g.controls().noPan = true;
         g.controls().noZoom = true;

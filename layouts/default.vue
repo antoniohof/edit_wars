@@ -208,6 +208,7 @@ export default {
           transition-delay: 0.5s
 .main
   color: white
+  padding: 74px 0px 0px
   &.blur
     backdrop-filter: blur(3px) !important
 

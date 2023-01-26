@@ -87,34 +87,19 @@ export default {
 <style lang="sass">
 .v-list-group__header
   padding: 0px !important
-
-.mdi-close
-  color: black !important
-  font-size: 32px !important
-  align-self: center
-  width: 26px !important
-  height: 36px !important
-  transform: scale(1.5,1.5)
-  left: 3px
-  font-weight: 1000 !important
-.mdi-plus
-  margin-top: 1px
-  color: black !important
-  font-weight: 1000 !important
-  left: 3px
-  transform: scale(1.5,1.5)
-.v-list-item__icon.v-list-group__header__append-icon
-  margin-left: 0px !important
-  display: none !important
-.v-list-group__header.v-list-item.v-list-item--link.theme--light
-  //display: none !important
+.news-page
+  .v-list-item__icon.v-list-group__header__append-icon
+    margin-left: 0px !important
+    display: none !important
+  .v-list-group__header.v-list-item.v-list-item--link.theme--light
+    //display: none !important
 </style>
 
 <style lang="sass" scoped>
 
 .news-page
   display: flex
-  margin-top: 10px
+  margin-top: 0px
   flex-direction: column
   width: 100%
   height: 90%
