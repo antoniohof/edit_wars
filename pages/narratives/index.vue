@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="arrow" @click="onClickArrow">
+    <div v-show="false" class="arrow" @click="onClickArrow">
       <div class="adjuster">
         <img src="~/assets/icons/arrow.svg" />
       </div>

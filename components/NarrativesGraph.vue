@@ -76,7 +76,6 @@ export default {
 
   methods: {
     onMouseDown () {
-      // console.log("onMouseDown")
       this.rotateActivated = false
     },
     onMouseUp () {

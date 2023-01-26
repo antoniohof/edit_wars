@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="home ma-0 pa-0">
+  <v-container fluid class="home ma-0 pa-0" @click="onClickArrow">
     <transition name="fadelongo">
       <h3 v-show="showName && !isScrolled" id="announcements">Propaganda Narrative Soundscapes exhibition, February 2 – Vernissage, 7-11 pm, February 3-4 – Main program, 5-9 pm, February 5 – Finissage & Discussion, 5-9 pm, tor 40, Beim Handelsmuseum (Güterbahnhof), 28195 Bremen</h3>
     </transition>
