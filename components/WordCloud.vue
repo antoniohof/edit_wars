@@ -16,7 +16,7 @@ import throttle from 'lodash/throttle'
 
 //"https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative=" +
 //"https://mneunomne.github.io/edit_wars_database/force-graph/index.html?narrative=" +
-//"http://127.0.0.1:5500/force-graph/index.html?narrative="
+// const WORD_GRAPH_PATH = "http://127.0.0.1:5500/force-graph/index.html?narrative="
 
 const WORD_GRAPH_PATH = "https://editwarsteam.github.io/edit_wars_api/force-graph/index.html?narrative="
 
@@ -40,7 +40,6 @@ export default {
       lastBackground: "",
       currentUrl: "",
       chartOptions: null,
-      wordCloudLoaded: false
     };
   },
   actiavated() {
@@ -64,7 +63,6 @@ export default {
     },
   },
   components: {},
-
   methods: {
     sendAutoRotate() {
       (throttle(this.autoRotate, 10))()
@@ -117,8 +115,7 @@ export default {
         }
       }
     },
-  },
-  beforeDestroy() {},
+  }
 };
 </script>
   

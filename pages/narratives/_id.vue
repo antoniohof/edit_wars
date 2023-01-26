@@ -1,30 +1,33 @@
 <template>
   <transition name="fade">
     <v-container fluid class="narrative ma-0 pa-0">
-      <div class="narrative_title">
-        <div class="narrative_title_name italic">
-          <h1>
-            {{ getNarrativeName }}
-          </h1>
+      <Loading v-if="!isWordCloudLoaded" class="load-icon"></Loading>
+      <transition name="fade">
+      <div v-show="isWordCloudLoaded">
+        <div class="narrative_title">
+          <div class="narrative_title_name italic">
+            <h1>
+              {{ getNarrativeName }}
+            </h1>
+          </div>
+          <div class="narrative_title_name">
+            <h1>
+              {{ getNarrativeSubtitle }}
+            </h1>
+          </div>
         </div>
-        <div class="narrative_title_name">
-          <h1>
-            {{ getNarrativeSubtitle }}
-          </h1>
-        </div>
-      </div>
-      <client-only>
-        <WordCloud
-          @click="closeInfo"
-          class="wordcloud"
-          :step="currStepObj"
-          :forceFadeOut="forceFadeOutWordCloud"
-          :currentStepIndex="currStepIndex"
-          :progress="getStepProgress(currStepIndex)"
-          :background="currentBackground"
-        />
-      </client-only>
-      <!--
+        <client-only>
+          <WordCloud
+            @click="closeInfo"
+            class="wordcloud"
+            :step="currStepObj"
+            :forceFadeOut="forceFadeOutWordCloud"
+            :currentStepIndex="currStepIndex"
+            :progress="getStepProgress(currStepIndex)"
+            :background="currentBackground"
+          />
+        </client-only>
+        <!--
       <div class="timeline" v-if="showTimeline">
         <v-timeline dense>
           <v-timeline-item
@@ -39,68 +42,71 @@
         </v-timeline>
       </div>
       -->
-      <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
-        <img src="~/assets/icons/info.svg"/>
-      </div>
-      <div v-if="infoOpen" class="infosquare">
-        <p>
-          The network graph and diagrams depicts the result of N-gram language modelling analysis based on relevant Russian-language media headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source: <u @click="onClickGdelt">GDELT</u>.
-        </p>
-      </div>
-      <transition  :name="getBackgroundTransition">
-          <div
-          class="background"
-          v-if="
-            !isSausage &&
-            currentBackgroundToShow &&
-            currentBackground.component !== 'WordCloud'
-          "
-        >
-        <client-only>
-          <transition name="fade">
-          <LazyNuxtDynamic
-            class="background_container"
-            :component="currentBackground.component"
-            :background="currentBackground"
-            :step="currStepObj"
-            keep-alive
-            :currentStepIndex="currStepIndex"
-            :progress="getStepProgress(currStepIndex)"
-          />
-        </transition>
-        </client-only>
+        <div v-if="!infoOpen" class="infobutton" @click="onClickOnInfo">
+          <img src="~/assets/icons/info.svg" />
         </div>
-      </transition>
-      <div class="side" v-if="!isSausage">
-        <client-only>
-          <Scrollama
-            ref="scrollama"
-            class="scrollama"
-            :debug="false"
-            @step-enter="stepEnterHandler"
-            v-if="narrativeSteps.length > 0"
-            @step-exit="stepExitHandler"
-            @step-progress="onProgress"
+        <div v-if="infoOpen" class="infosquare">
+          <p>
+            The network graph and diagrams depicts the result of N-gram language
+            modelling analysis based on relevant Russian-language media
+            headlines. Timeframe: 01.01.2022 – 31.07.2022. Data source:
+            <u @click="onClickGdelt">GDELT</u>.
+          </p>
+        </div>
+        <transition :name="getBackgroundTransition">
+          <div
+            class="background"
+            v-if="
+              !isSausage &&
+              currentBackgroundToShow &&
+              currentBackground.component !== 'WordCloud'
+            "
           >
-            <div
-              v-for="(step, index) in narrativeSteps"
-              :key="step.uuid"
-              class="step"
-              :data-step-no="index"
+            <client-only>
+              <transition name="fade">
+                <LazyNuxtDynamic
+                  class="background_container"
+                  :component="currentBackground.component"
+                  :background="currentBackground"
+                  :step="currStepObj"
+                  keep-alive
+                  :currentStepIndex="currStepIndex"
+                  :progress="getStepProgress(currStepIndex)"
+                />
+              </transition>
+            </client-only>
+          </div>
+        </transition>
+        <div class="side" v-if="!isSausage">
+          <client-only>
+            <Scrollama
+              ref="scrollama"
+              class="scrollama"
+              :debug="false"
+              @step-enter="stepEnterHandler"
+              v-if="narrativeSteps.length > 0"
+              @step-exit="stepExitHandler"
+              @step-progress="onProgress"
             >
-              <NuxtDynamic
-                class="step-child"
-                :component="step.component"
-                :step="step"
-                :currentStepIndex="currStepIndex"
-                :progress="getStepProgress(index)"
-              />
-            </div>
-          </Scrollama>
-        </client-only>
-      </div>
-      <div class='sausage_mobile' v-if="isSausage">
-        <Scrollama
+              <div
+                v-for="(step, index) in narrativeSteps"
+                :key="step.uuid"
+                class="step"
+                :data-step-no="index"
+              >
+                <NuxtDynamic
+                  class="step-child"
+                  :component="step.component"
+                  :step="step"
+                  :currentStepIndex="currStepIndex"
+                  :progress="getStepProgress(index)"
+                />
+              </div>
+            </Scrollama>
+          </client-only>
+        </div>
+        <div class="sausage_mobile" v-if="isSausage">
+          <Scrollama
             ref="scrollama"
             class="scrollama_mobile"
             :debug="false"
@@ -124,7 +130,10 @@
               />
               <LazyNuxtDynamic
                 class="step-child-background_mobile"
-                v-if="step && getBackgroundOfStep(step.order).component != 'WordCloud'"
+                v-if="
+                  step &&
+                  getBackgroundOfStep(step.order).component != 'WordCloud'
+                "
                 :component="step && getBackgroundOfStep(step.order).component"
                 :background="step && getBackgroundOfStep(step.order)"
                 :step="currStepObj"
@@ -132,92 +141,103 @@
                 :currentStepIndex="currStepIndex"
                 :progress="getStepProgress(currStepIndex)"
               />
-              <div class='wordcloudhole' v-if="step && getBackgroundOfStep(step.order).component === 'WordCloud'"></div>
+              <div
+                class="wordcloudhole"
+                v-if="
+                  step &&
+                  getBackgroundOfStep(step.order).component === 'WordCloud'
+                "
+              ></div>
             </div>
           </Scrollama>
-      </div>
-      <div class="next" @click="onClickNext">
-          <p>
-            NEXT NARRATIVE
-          </p>
         </div>
+        <div class="next" @click="onClickNext">
+          <p>NEXT NARRATIVE</p>
+        </div>
+      </div>
+      </transition>
     </v-container>
   </transition>
 </template>
 
 <script>
-import Vue from 'vue'
-import throttle from 'lodash/throttle'
-import debounce from 'lodash/debounce'
+import Vue from "vue";
+import throttle from "lodash/throttle";
+import debounce from "lodash/debounce";
 
-import { narratives } from '@/utils/constants.js'
-import { getIsMobile } from '@/utils/index.js'
+import { narratives } from "@/utils/constants.js";
+import { getIsMobile } from "@/utils/index.js";
 
 export default {
   head() {
     return {
       // script: [{ src: 'https://unpkg.com/aframe/dist/aframe-master.min.js' }]
-    }
+    };
   },
   scrollToTop: true,
   components: {
     // WordCloud: process.browser ? () => import('@/layouts/WordCloud.vue') : null
   },
   beforeMount() {
-    this.isSausage = window.innerWidth < 1200
+    window.addEventListener("message", this.wordCloudLoaded);
+    this.isSausage = window.innerWidth < 1200;
     this.currentNarrative = narratives.find((narrative) => {
-      return narrative?.slug === $nuxt.$route.params.id
-    })
+      return narrative?.slug === $nuxt.$route.params.id;
+    });
     if (!this.currentNarrative) {
-      console.error('narrative not found!', $nuxt.$route.params.id)
+      console.error("narrative not found!", $nuxt.$route.params.id);
     }
     // check if each step components exist, if not set to load default
     this.steps.forEach((step) => {
-      let componentExists = step.component in Vue.options.components
+      let componentExists = step.component in Vue.options.components;
       if (!componentExists) {
-        step.component = 'DefaultComponent'
+        step.component = "DefaultComponent";
       }
-    })
+    });
   },
   mounted() {
-    this.narrativesList = narratives //.filter((n) => !n.disabled)
-    document.addEventListener(('click'), this.closeInfo)
+    this.narrativesList = narratives; //.filter((n) => !n.disabled)
+    document.addEventListener("click", this.closeInfo);
 
-    this.isMobile = getIsMobile() || window.innerWidth < 1200
+    this.isMobile = getIsMobile() || window.innerWidth < 1200;
 
     if (this.isMobile) {
-      this.showTimeline = false
+      this.showTimeline = false;
     }
-    window.scrollTo(0, 0)
-    this.currStepIndex = -1
-    this.startBackgroundScroll = window.scrollY
-    this.lastEnterBackgroundDirection = 'down'
-    this.lastDirection = 'down'
+    window.scrollTo(0, 0);
+    this.currStepIndex = -1;
+    this.startBackgroundScroll = window.scrollY;
+    this.lastEnterBackgroundDirection = "down";
+    this.lastDirection = "down";
 
-    this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
-    this.currentBackgroundScroll = window.scrollY
+    this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop);
+    this.currentBackgroundScroll = window.scrollY;
     process.nextTick(() => {
-      window.dispatchEvent(new Event('resize'))
-      if (this.currentBackground && this.currentBackground.component !== 'WordCloud') {
+      window.dispatchEvent(new Event("resize"));
+      if (
+        this.currentBackground &&
+        this.currentBackground.component !== "WordCloud"
+      ) {
         // in case theres background at step
-        this.currentBackgroundToShow = this.currentBackground
-        this.lastBackground = this.currentBackgroundToShow
-        window.dispatchEvent(new Event('resize'))
+        this.currentBackgroundToShow = this.currentBackground;
+        this.lastBackground = this.currentBackgroundToShow;
+        window.dispatchEvent(new Event("resize"));
       }
-    })
+    });
     setTimeout(() => {
-      console.log('scrollama', this.$refs.scrollama)
-      this.isLoaded = true
-      this.currStepIndex = 0
+      console.log("scrollama", this.$refs.scrollama);
+      this.isLoaded = true;
+      this.currStepIndex = 0;
       process.nextTick(() => {
-        window.dispatchEvent(new Event('resize'))
-      })
-    }, 250)
-   // window.addEventListener('scroll', debounce(this.onEndScroll, 500));
+        window.dispatchEvent(new Event("resize"));
+      });
+    }, 250);
+    // window.addEventListener('scroll', debounce(this.onEndScroll, 500));
   },
   beforeDestroy() {
-    document.removeEventListener(('click'), this.closeInfo)
-    cancelAnimationFrame(this.backgroundAnimation)
+    window.removeEventListener("message", this.wordCloudLoaded);
+    document.removeEventListener("click", this.closeInfo);
+    cancelAnimationFrame(this.backgroundAnimation);
   },
   activated() {},
   updated() {},
@@ -236,171 +256,174 @@ export default {
       startBackgroundScroll: 0,
       currentBackgroundScroll: 0,
       isLoaded: false,
-      lastEnterBackgroundDirection: 'down',
-      lastDirection: 'down',
+      lastEnterBackgroundDirection: "down",
+      lastDirection: "down",
       currentBackgroundToShow: null,
       currentBackground: null,
       lastBackground: null,
       magneticCenter: false,
       animatingToStep: false,
-      animateToStepTimeout: null
-    }
+      animateToStepTimeout: null,
+      isWordCloudLoaded: false,
+    };
   },
-  computed: { 
-    forceFadeOutWordCloud () {
-      return this.totalProgress > this.narrativeSteps.length - 0.5
+  computed: {
+    forceFadeOutWordCloud() {
+      return this.totalProgress > this.narrativeSteps.length - 0.5;
     },
     getNarrativeName() {
-      return this.currentNarrative?.name
+      return this.currentNarrative?.name;
     },
-    getNarrativeSubtitle () {
-      return this.currentNarrative?.subtitle
+    getNarrativeSubtitle() {
+      return this.currentNarrative?.subtitle;
     },
     narrativeSteps() {
       if (!process.browser) {
-        return []
+        return [];
       }
       return this.steps.filter(
         (step) => step.narrative === parseInt(this.currentNarrative.id)
-      )
+      );
     },
     currStepObj() {
-      return this.narrativeSteps[this.currStepIndex]
+      return this.narrativeSteps[this.currStepIndex];
     },
     getBackgroundTransition() {
-      if (this.lastDirection === 'down') {
-        return 'slide-fade-down'
+      if (this.lastDirection === "down") {
+        return "slide-fade-down";
       }
-      return 'slide-fade-up'
+      return "slide-fade-up";
     },
-    totalProgress () {
-      return this.currStepIndex + this.currStepProgress
-    }
+    totalProgress() {
+      return this.currStepIndex + this.currStepProgress;
+    },
   },
   async asyncData({ $content, params, error }) {
-    let steps
-    let backgrounds
+    let steps;
+    let backgrounds;
     try {
       let n = narratives.find((narrative) => {
-      return narrative?.slug === params.id
-    })
-      const nameSteps = `${n?.id}/steps`
-      const nameBgs = `${n?.id}/backgrounds`
-      steps = await $content(nameSteps).sortBy('order').fetch()
-      backgrounds = await $content(nameBgs).fetch()
+        return narrative?.slug === params.id;
+      });
+      const nameSteps = `${n?.id}/steps`;
+      const nameBgs = `${n?.id}/backgrounds`;
+      steps = await $content(nameSteps).sortBy("order").fetch();
+      backgrounds = await $content(nameBgs).fetch();
     } catch (e) {
-      error({ message: 'error retrieving content' })
+      error({ message: "error retrieving content" });
     }
     return {
       steps,
-      backgrounds
-    }
+      backgrounds,
+    };
   },
   methods: {
-    onEndScroll () {
+    wordCloudLoaded(e) {
+      console.log("wordCloudLoaded!");
+      this.isWordCloudLoaded = true;
+    },
+    onEndScroll() {
       if (this.isMobile) {
-        return
+        return;
       }
       if (!this.animatingToStep) {
-        clearTimeout(this.animateToStepTimeout)
-        const index = this.currStepIndex
-        const percentage = index / this.narrativeSteps.length
-        const side = document.querySelector('.side')
+        clearTimeout(this.animateToStepTimeout);
+        const index = this.currStepIndex;
+        const percentage = index / this.narrativeSteps.length;
+        const side = document.querySelector(".side");
         if (!side) {
-          clearTimeout(this.animateToStepTimeout)
-          return
+          clearTimeout(this.animateToStepTimeout);
+          return;
         }
-        const totalHeight = side.clientHeight - 64
-        const added = this.narrativeSteps.length * 13 * -1
-        const pixels = (percentage * (totalHeight + added))
-        this.animatingToStep = true
-        window.scroll(
-          {
-            top: pixels,
-            left: 0,
-            behavior: 'smooth'
-          }
-        )
+        const totalHeight = side.clientHeight - 64;
+        const added = this.narrativeSteps.length * 13 * -1;
+        const pixels = percentage * (totalHeight + added);
+        this.animatingToStep = true;
+        window.scroll({
+          top: pixels,
+          left: 0,
+          behavior: "smooth",
+        });
         this.animateToStepTimeout = setTimeout(() => {
-          console.log('ended animate to step')
-          this.animatingToStep = false
-        }, 1000)
+          console.log("ended animate to step");
+          this.animatingToStep = false;
+        }, 1000);
       }
     },
-    isLastNarrative () {
+    isLastNarrative() {
       if (!this.narrativesList || !this.isLoaded) {
-        return false
+        return false;
       }
-      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
-      const lastId = validNarratives[validNarratives.length - 1].id
-      return this.currentNarrative.id === lastId
-    }, 
-    onClickNext () {
-      const validNarratives = this.narrativesList.filter((n) => !n.disabled)
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled);
+      const lastId = validNarratives[validNarratives.length - 1].id;
+      return this.currentNarrative.id === lastId;
+    },
+    onClickNext() {
+      const validNarratives = this.narrativesList.filter((n) => !n.disabled);
       let nextNarrative = null;
       for (let i = 0; i < validNarratives.length; i++) {
         if (validNarratives[i].id === this.currentNarrative.id) {
           if (this.isLastNarrative()) {
-            nextNarrative = validNarratives[0]
+            nextNarrative = validNarratives[0];
           } else {
-            nextNarrative = validNarratives[i + 1]
+            nextNarrative = validNarratives[i + 1];
           }
         }
       }
       if (nextNarrative) {
-        this.$router.push({ path: '/narratives/' + nextNarrative.slug })
+        this.$router.push({ path: "/narratives/" + nextNarrative.slug });
       }
     },
-    onClickGdelt () {
-      const url = 'https://www.gdeltproject.org/'
-      window.open(url, '_blank').focus()
+    onClickGdelt() {
+      const url = "https://www.gdeltproject.org/";
+      window.open(url, "_blank").focus();
     },
-    closeInfo () {
+    closeInfo() {
       if (this.infoOpen) {
-        this.infoOpen = false
+        this.infoOpen = false;
       }
     },
-    onClickOnInfo () {
+    onClickOnInfo() {
       process.nextTick(() => {
-        this.infoOpen = true
-      })
+        this.infoOpen = true;
+      });
     },
     onProgress(val) {
-      this.currStepProgress = val.progress
+      this.currStepProgress = val.progress;
     },
     stepEnterHandler({ element, index, direction }) {
       if (!this.isLoaded) {
-        return
+        return;
       }
-      this.isMobile = getIsMobile() || window.innerWidth < 1000
+      this.isMobile = getIsMobile() || window.innerWidth < 1000;
 
-      this.currStepIndex = parseInt(element.dataset.stepNo)
-      console.log('this.currStepIndex', this.currStepIndex)
-      if (this.lastEnterBackgroundDirection !== 'jump') {
-        this.lastEnterBackgroundDirection = direction
-        this.startBackgroundScroll = window.scrollY
+      this.currStepIndex = parseInt(element.dataset.stepNo);
+      console.log("this.currStepIndex", this.currStepIndex);
+      if (this.lastEnterBackgroundDirection !== "jump") {
+        this.lastEnterBackgroundDirection = direction;
+        this.startBackgroundScroll = window.scrollY;
       }
-      this.lastDirection = direction
+      this.lastDirection = direction;
       // window.dispatchEvent(new Event('resize'))
     },
     stepExitHandler({ element, index, direction }) {
-      this.lastDirection = direction
+      this.lastDirection = direction;
     },
     getStepProgress(step) {
-      const curStepNum = this.currStepIndex
+      const curStepNum = this.currStepIndex;
       if (step === curStepNum) {
-        return this.currStepProgress
+        return this.currStepProgress;
       }
       if (step < curStepNum) {
-        return 1
+        return 1;
       }
       if (step > curStepNum) {
-        return 0
+        return 0;
       }
     },
     onClickTimeline(index) {
       if (!narratives[index].disabled) {
-        this.$router.push({ path: '/narratives/' + narratives[index].slug })
+        this.$router.push({ path: "/narratives/" + narratives[index].slug });
       }
 
       /*
@@ -419,138 +442,141 @@ export default {
       */
     },
     backgroundLoop() {
-      this.isSausage = window.innerWidth < 1200
+      this.isSausage = window.innerWidth < 1200;
       if (this.currentBackgroundToShow) {
         this.backgroundContainer = document.querySelector(
-          '.background_container'
-        )
+          ".background_container"
+        );
         if (this.backgroundContainer) {
-          let oneStepBackground = true
+          let oneStepBackground = true;
           if (
             this.currentBackground.stepend - this.currentBackground.stepstart >
             1
           ) {
-            oneStepBackground = false
+            oneStepBackground = false;
           }
-          let top = (window.innerHeight / 2)
+          let top = window.innerHeight / 2;
           this.currentBackgroundScroll =
-            window.scrollY - this.startBackgroundScroll
-          if (this.lastEnterBackgroundDirection === 'up') {
-            top = -(window.innerHeight / 2)
+            window.scrollY - this.startBackgroundScroll;
+          if (this.lastEnterBackgroundDirection === "up") {
+            top = -(window.innerHeight / 2);
           }
           const currOrder = parseInt(
             this.narrativeSteps[this.currStepIndex]?.order
-          )
+          );
 
-          let translateY = top - this.currentBackgroundScroll
+          let translateY = top - this.currentBackgroundScroll;
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
-            translateY = translateY - (window.innerHeight / 2 - 64) // 64 is topbar height
+            translateY = translateY - (window.innerHeight / 2 - 64); // 64 is topbar height
           }
 
           if (oneStepBackground) {
             this.backgroundContainer.style.setProperty(
-              'transform',
+              "transform",
               `translateY(${translateY - 32}px)`,
-              'important'
-            )
+              "important"
+            );
           } else {
-
             if (this.isMobile) {
-              translateY = translateY - 300
+              translateY = translateY - 300;
             }
             if (
               this.currStepProgress < 0.5 &&
               this.currentBackground.stepstart === currOrder
             ) {
               this.backgroundContainer.style.setProperty(
-                'transform',
+                "transform",
                 `translateY(${translateY}px)`,
-                'important'
-              )
+                "important"
+              );
             } else if (
               this.currStepProgress > 0.5 &&
               this.currentBackground.stepend === currOrder
             ) {
               this.backgroundContainer.style.setProperty(
-                'transform',
+                "transform",
                 `translateY(${translateY}px)`,
-                'important'
-              )
+                "important"
+              );
             }
           }
         }
       }
-      this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop)
+      this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop);
     },
-    mergedGraphSequence (backgrounds) {
+    mergedGraphSequence(backgrounds) {
       backgrounds.sort((a, b) => {
-        return (b.stepstart) - (a.stepstart);
-      })
-      var mergedBackgrounds = []
-      var hasBarSequence = true
+        return b.stepstart - a.stepstart;
+      });
+      var mergedBackgrounds = [];
+      var hasBarSequence = true;
       while (hasBarSequence == true) {
-        mergedBackgrounds = []
-        for(var i = 0; i < backgrounds.length-1; i++) {
-          var hasfound = false
-          var cur = backgrounds[i]
-          var next = backgrounds[i+1]
+        mergedBackgrounds = [];
+        for (var i = 0; i < backgrounds.length - 1; i++) {
+          var hasfound = false;
+          var cur = backgrounds[i];
+          var next = backgrounds[i + 1];
           if (cur.component == "BarChart" && next.component == "BarChart") {
-            cur.name += `,${next.name}`
-            cur.stepend = next.stepend
-            hasBarSequence = true
-            mergedBackgrounds.push(cur) 
-            hasfound=true
-          } else if (cur.component !== "BarChart"){
-            mergedBackgrounds.push(cur) 
+            cur.name += `,${next.name}`;
+            cur.stepend = next.stepend;
+            hasBarSequence = true;
+            mergedBackgrounds.push(cur);
+            hasfound = true;
+          } else if (cur.component !== "BarChart") {
+            mergedBackgrounds.push(cur);
           }
-          hasBarSequence = hasfound
+          hasBarSequence = hasfound;
         }
       }
-      mergedBackgrounds.map(bg => {console.log("bg", bg.name)})
-      return mergedBackgrounds
+      mergedBackgrounds.map((bg) => {
+        console.log("bg", bg.name);
+      });
+      return mergedBackgrounds;
     },
-    getBackgroundOfStep (stepIndex) {
-      const back = this.backgrounds.find((item) => 
+    getBackgroundOfStep(stepIndex) {
+      const back = this.backgrounds.find(
+        (item) =>
           stepIndex >= item.stepstart &&
           stepIndex <= item.stepend &&
           parseInt(item.narrative) === parseInt(this.currentNarrative?.id)
-      )
-      return back
-    }
+      );
+      return back;
+    },
   },
   watch: {
     currStepIndex(index) {
-      let back = null
+      let back = null;
       if (!this.currStepObj) {
-        this.currentBackground = null
-        return
+        this.currentBackground = null;
+        return;
       }
-      const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order)
-      back = this.backgrounds.find((item) => 
+      const currOrder = parseInt(this.narrativeSteps[this.currStepIndex].order);
+      back = this.backgrounds.find(
+        (item) =>
           currOrder >= item.stepstart &&
           currOrder <= item.stepend &&
           parseInt(item.narrative) === parseInt(this.currentNarrative?.id)
-      )
-      this.currentBackground = back
+      );
+      this.currentBackground = back;
       //console.log("this.currentBackground", this.currentBackground)
     },
     currentBackground(value) {
       if (!value || value.component === "WordCloud") {
-        this.currentBackgroundToShow = null
-        return
+        this.currentBackgroundToShow = null;
+        return;
       }
       if (!this.lastBackground || value.uuid !== this.lastBackground.uuid) {
-        this.currentBackgroundToShow = null
-        this.lastBackground = value
+        this.currentBackgroundToShow = null;
+        this.lastBackground = value;
         process.nextTick(() => {
-          this.currentBackgroundToShow = value
-        })
+          this.currentBackgroundToShow = value;
+        });
       } else {
-        this.currentBackgroundToShow = value
+        this.currentBackgroundToShow = value;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="sass">
 .scrollama__debug-offset
@@ -575,7 +601,6 @@ export default {
 
 .v-timeline-item__dot
   box-shadow: none !important
-  
 </style>
 
 <style lang="sass" scoped>
@@ -716,7 +741,6 @@ export default {
   z-index: 2
   will-change: transform
 
-
 .step:last-child
   margin-bottom: 60vh
 // .step.active
@@ -805,7 +829,6 @@ export default {
     height: 40px
     width: 40px
 
-
 .next
   width: 100vw
   left: 0
@@ -855,7 +878,7 @@ export default {
   &:last-child
     margin-bottom: 50vh
 .step-child_mobile
-  height: fit-content 
+  height: fit-content
 
 .step-child-background_mobile
   height: fit-content
@@ -872,4 +895,10 @@ export default {
   height: 60vh
   pointer-events: none !important
 
+.load-icon
+  position: fixed
+  z-index: 9999999999
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
 </style>
