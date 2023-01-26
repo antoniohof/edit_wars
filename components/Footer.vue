@@ -47,7 +47,7 @@ export default {
     position: absolute
     bottom: 20px
   span
-    margin-right: 40px
+    margin-right: 60px
   @media only screen and (max-width: 480px)
     left: 12px
     height: 60px
