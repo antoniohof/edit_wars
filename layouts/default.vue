@@ -90,7 +90,7 @@ import { getIsMobile } from '@/utils/index.js'
 
 export default {
   head: {
-    title: 'Edit Wars - Home',
+    title: 'Home',
     data: {
       narrativeList: []
     },
