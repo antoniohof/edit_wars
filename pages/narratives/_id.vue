@@ -614,6 +614,7 @@ export default {
   justify-content: flex-end
   width: 100vw
   position: relative
+  transition-delay: 0.3s
   &_title
     pointer-events: none
     position: sticky
