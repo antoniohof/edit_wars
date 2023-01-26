@@ -1,9 +1,8 @@
 <template>
-  <transition name="fade">
-    <v-container fluid class="narrative ma-0 pa-0">
-      <Loading v-if="!isWordCloudLoaded" class="load-icon"></Loading>
-      <transition name="fade">
-      <div v-show="isWordCloudLoaded">
+  <div>
+    <Loading v-if="!isWordCloudLoaded" class="load-icon"></Loading>
+    <transition name="fade">
+      <v-container :class="{ loaded: isWordCloudLoaded }" v-show="isWordCloudLoaded" fluid class="narrative ma-0 pa-0">
         <div class="narrative_title">
           <div class="narrative_title_name italic">
             <h1>
@@ -154,10 +153,9 @@
         <div class="next" @click="onClickNext">
           <p>NEXT NARRATIVE</p>
         </div>
-      </div>
-      </transition>
-    </v-container>
-  </transition>
+      </v-container>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -319,7 +317,7 @@ export default {
   },
   methods: {
     wordCloudLoaded(e) {
-      console.log("wordCloudLoaded!");
+      console.log("wordCloudLoaded! 2");
       this.isWordCloudLoaded = true;
     },
     onEndScroll() {
