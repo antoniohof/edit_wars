@@ -1,9 +1,8 @@
 <template>
   <div class="graph-container">
     <p
-      v-if="!isLoading"
       class="chart-title"
-      v-show="background"
+      v-show="!isLoading && background"
       v-html="background.chart_title"
     ></p>
     <transition name="fade">

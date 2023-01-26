@@ -64,7 +64,7 @@
             "
           >
             <client-only>
-              <transition name="fade">
+              <!--<transition name="fade">-->
                 <LazyNuxtDynamic
                   class="background_container"
                   :component="currentBackground.component"
@@ -74,7 +74,7 @@
                   :currentStepIndex="currStepIndex"
                   :progress="getStepProgress(currStepIndex)"
                 />
-              </transition>
+              <!--</transition>-->
             </client-only>
           </div>
         </transition>
