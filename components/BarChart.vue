@@ -96,6 +96,22 @@ export default {
     };
   },
   async mounted() {
+    if (!this.step) {
+        return
+      }
+      this.isLoading = true;
+      if (process.client) {
+        this.isMobile = getIsMobile()
+        // Chart.register(zoomPlugin);
+        await this.loadData();
+        const dataIndex = this.step.order - this.background.stepstart;
+        let data = this.dataList[0]
+        if (this.dataList[dataIndex]) {
+          data = this.dataList[dataIndex]
+        }
+        this.setData(data)
+        this.isLoading = false;
+      }
   },
   methods: {
     async loadData() {
