@@ -20,6 +20,7 @@
         </v-list-group>
       </v-list>
     </v-row>
+    <Footer />
   </v-container>
 </template>
 

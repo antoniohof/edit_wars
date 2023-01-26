@@ -211,7 +211,7 @@ export default {
   user-select: all
   pointer-events: all !important
   z-index: 9999 !important
-  font-family: Open Sans !important
+  font-family: Space Mono !important
   color: black !important
 
 </style>
