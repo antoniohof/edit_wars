@@ -64,17 +64,15 @@
             "
           >
             <client-only>
-              <!--<transition name="fade">-->
-                <LazyNuxtDynamic
-                  class="background_container"
-                  :component="currentBackground.component"
-                  :background="currentBackground"
-                  :step="currStepObj"
-                  keep-alive
-                  :currentStepIndex="currStepIndex"
-                  :progress="getStepProgress(currStepIndex)"
-                />
-              <!--</transition>-->
+              <LazyNuxtDynamic
+                class="background_container"
+                :component="currentBackground.component"
+                :background="currentBackground"
+                :step="currStepObj"
+                keep-alive
+                :currentStepIndex="currStepIndex"
+                :progress="getStepProgress(currStepIndex)"
+              />
             </client-only>
           </div>
         </transition>
