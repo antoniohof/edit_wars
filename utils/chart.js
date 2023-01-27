@@ -171,7 +171,9 @@ const defaultOptions = {
           size: 10,
           family: 'Space Mono'
         }
-      }
+      },
+      min: new Date('2022-01-01').valueOf(),
+      max: new Date('2022-07-31').valueOf()
     },
     y: {
       grid: {

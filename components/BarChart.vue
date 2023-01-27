@@ -120,6 +120,8 @@ export default {
       this.chartOptions = {
         ...defaultOptions,
         maintainAspectRatio: !this.isMobile,
+        animation: !this.isMobile,
+        spanGaps: true
       };
       let dataNames = [this.background.name];
       if (this.background.name.indexOf(",")) {

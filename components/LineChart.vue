@@ -153,7 +153,9 @@ export default {
           },
           scales: {
             x: {
-              type: 'linear'
+              type: 'linear',
+              min: new Date('2022-01-01').valueOf(),
+              max: new Date('2022-07-31').valueOf()
             }
           },
           animation: this.animation
