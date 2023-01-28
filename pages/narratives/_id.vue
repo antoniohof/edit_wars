@@ -64,15 +64,17 @@
             "
           >
             <client-only>
-              <LazyNuxtDynamic
-                class="background_container"
-                :component="currentBackground.component"
-                :background="currentBackground"
-                :step="currStepObj"
-                keep-alive
-                :currentStepIndex="currStepIndex"
-                :progress="getStepProgress(currStepIndex)"
-              />
+              <transition name="fade">
+                <LazyNuxtDynamic
+                  class="background_container"
+                  :component="currentBackground.component"
+                  :background="currentBackground"
+                  :step="currStepObj"
+                  keep-alive
+                  :currentStepIndex="currStepIndex"
+                  :progress="getStepProgress(currStepIndex)"
+                />
+              </transition>
             </client-only>
           </div>
         </transition>
@@ -129,10 +131,7 @@
               />
               <LazyNuxtDynamic
                 class="step-child-background_mobile"
-                v-if="
-                  step &&
-                  getBackgroundOfStep(step.order).component != 'WordCloud'
-                "
+                v-if="step && getBackgroundOfStep(step.order).component != 'WordCloud'"
                 :component="step && getBackgroundOfStep(step.order).component"
                 :background="step && getBackgroundOfStep(step.order)"
                 :step="currStepObj"
@@ -194,6 +193,7 @@ export default {
     });
   },
   mounted() {
+    this.backgroundContainer = document.querySelector(".background_container");
     this.narrativesList = narratives; //.filter((n) => !n.disabled)
     document.addEventListener("click", this.closeInfo);
 
@@ -279,9 +279,7 @@ export default {
       if (!process.browser) {
         return [];
       }
-      return this.steps.filter(
-        (step) => step.narrative === parseInt(this.currentNarrative.id)
-      );
+      return this.steps.filter((step) => step.narrative === parseInt(this.currentNarrative.id));
     },
     currStepObj() {
       return this.narrativeSteps[this.currStepIndex];
@@ -443,15 +441,10 @@ export default {
       this.isSausage = window.innerWidth < 1200;
       if (this.currentBackgroundToShow) {
         // to do remove query from loop
-        this.backgroundContainer = document.querySelector(
-          ".background_container"
-        );
+        // this.backgroundContainer = document.querySelector(".background_container");
         if (this.backgroundContainer) {
           let oneStepBackground = true;
-          if (
-            this.currentBackground.stepend - this.currentBackground.stepstart >
-            0
-          ) {
+          if (this.currentBackground.stepend - this.currentBackground.stepstart > 0) {
             oneStepBackground = false;
           }
           let top = window.innerHeight / 2;
@@ -460,9 +453,7 @@ export default {
           if (this.lastEnterBackgroundDirection === "up") {
             top = -(window.innerHeight / 2);
           }
-          const currOrder = parseInt(
-            this.narrativeSteps[this.currStepIndex]?.order
-          );
+          const currOrder = parseInt(this.narrativeSteps[this.currStepIndex]?.order);
 
           let translateY = top - this.currentBackgroundScroll;
           if (currOrder === 1 && this.startBackgroundScroll === 0) {
@@ -476,22 +467,14 @@ export default {
               "important"
             );
           } else {
-            if (this.isMobile) {
-              translateY = translateY - 300;
-            }
-            if (
-              this.currStepProgress < 0.5 &&
-              this.currentBackground.stepstart === currOrder
-            ) {
+            if (this.isMobile) {translateY = translateY - 300;}
+            if (this.currStepProgress < 0.5 && this.currentBackground.stepstart === currOrder) {
               this.backgroundContainer.style.setProperty(
                 "transform",
                 `translateY(${translateY}px)`,
                 "important"
               );
-            } else if (
-              this.currStepProgress > 0.5 &&
-              this.currentBackground.stepend === currOrder
-            ) {
+            } else if (this.currStepProgress > 0.5 && this.currentBackground.stepend === currOrder) {
               this.backgroundContainer.style.setProperty(
                 "transform",
                 `translateY(${translateY}px)`,
