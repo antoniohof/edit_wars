@@ -9,7 +9,8 @@
       <scatterjs
         class="scatterjs"
         ref="graph"
-        v-if="currentChartData && !isLoading"
+        v-show="!isLoading"
+        v-if="currentChartData"
         :chart-options="chartOptions"
         :chart-data="currentChartData"
         :chart-id="chartId"
@@ -120,8 +121,8 @@ export default {
       this.chartOptions = {
         ...defaultOptions,
         maintainAspectRatio: !this.isMobile,
-        animation: !this.isMobile,
-        spanGaps: true
+        //animation: !this.isMobile,
+        // spanGaps: true
       };
       let dataNames = [this.background.name];
       if (this.background.name.indexOf(",")) {
@@ -224,6 +225,8 @@ export default {
       };
 
       if (this.step.filterDate && this.$refs.graph) {
+        console.log("this.step.filterDate", this.step)
+
         var closestDates = getClostestDate(
           this.step.filterDate.startDate,
           this.step.filterDate.endDate,

@@ -442,6 +442,7 @@ export default {
     backgroundLoop() {
       this.isSausage = window.innerWidth < 1200;
       if (this.currentBackgroundToShow) {
+        // to do remove query from loop
         this.backgroundContainer = document.querySelector(
           ".background_container"
         );
@@ -449,7 +450,7 @@ export default {
           let oneStepBackground = true;
           if (
             this.currentBackground.stepend - this.currentBackground.stepstart >
-            1
+            0
           ) {
             oneStepBackground = false;
           }
