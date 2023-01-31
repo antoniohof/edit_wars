@@ -25,7 +25,7 @@
       <v-progress-circular indeterminate color="black"></v-progress-circular>
     </div>
     <!--
-    <p v-if="!isLoading && !isMobile" class="chart-description" v-show="background" v-html="background.description"></p>
+      <p v-if="!isLoading && !isMobile" class="chart-description" v-show="background" v-html="background.description"></p>
     -->
   </div>
 </template>
