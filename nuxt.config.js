@@ -74,6 +74,20 @@ export default {
         as: 'font',
         type: 'font/ttf',
         crossorigin: true
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/OpenSans/OpenSans-Regular.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: true
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/roboto-mono-v22-latin_cyrillic-ext_cyrillic-regular.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossorigin: true
       }
     ],
     script: [
