@@ -2,7 +2,7 @@
   <div class="wordcloud-page ma-0 pa-0" :class="{ hide: fadeCloud }">
     <iframe
       ref="wordcloud"
-      sandbox="allow-scripts"
+      sandbox="allow-scripts allow-top-navigation allow-same-origin"
       class="wordcloudiframe"
       :src="currentUrl"
     ></iframe>
