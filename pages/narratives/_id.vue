@@ -397,7 +397,7 @@ export default {
         this.startBackgroundScroll = window.scrollY;
       }
       this.lastDirection = direction;
-      // window.dispatchEvent(new Event('resize'))
+      window.dispatchEvent(new Event('resize'))
     },
     stepExitHandler({ element, index, direction }) {
       this.lastDirection = direction;
