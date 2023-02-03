@@ -194,7 +194,7 @@ export default {
     this.narrativesList = narratives; //.filter((n) => !n.disabled)
     document.addEventListener("click", this.closeInfo);
 
-    this.isMobile = getIsMobile() || window.innerWidth < 1200;
+    //this.isMobile = getIsMobile() || window.innerWidth < 1200;
 
     if (this.isMobile) {
       this.showTimeline = false;
@@ -388,7 +388,7 @@ export default {
       if (!this.isLoaded) {
         return;
       }
-      this.isMobile = getIsMobile() || window.innerWidth < 1000;
+      //this.isMobile = getIsMobile() || window.innerWidth < 1000;
 
       this.currStepIndex = parseInt(element.dataset.stepNo);
       console.log("this.currStepIndex", this.currStepIndex);
