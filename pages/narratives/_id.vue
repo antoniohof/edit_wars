@@ -54,7 +54,7 @@
             <u @click="onClickGdelt">GDELT</u>.
           </p>
         </div>
-        <transition :name="getBackgroundTransition">
+        <transition name="fade">
           <div
             class="background"
             v-if="
