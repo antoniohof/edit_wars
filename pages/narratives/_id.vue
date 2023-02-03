@@ -54,23 +54,22 @@
             <u @click="onClickGdelt">GDELT</u>.
           </p>
         </div>
-        <transition :name="getBackgroundTransition">
+        <transition name="fade">
           <div
             class="background"
             v-if="
               !isSausage &&
-              currentBackgroundToShow &&
+              currentBackground &&
               currentBackground.component !== 'WordCloud'
             "
           >
             <client-only>
               <transition name="fade">
-                <LazyNuxtDynamic
+                <NuxtDynamic
                   class="background_container"
                   :component="currentBackground.component"
                   :background="currentBackground"
                   :step="currStepObj"
-                  keep-alive
                   :currentStepIndex="currStepIndex"
                   :progress="getStepProgress(currStepIndex)"
                 />
@@ -196,7 +195,9 @@ export default {
     this.backgroundContainer = document.querySelector(".background_container");
     this.narrativesList = narratives; //.filter((n) => !n.disabled)
     document.addEventListener("click", this.closeInfo);
-
+    window.addEventListener('resize', () => {
+      this.isSausage = window.innerWidth < 1200;
+    })
     this.isMobile = getIsMobile() || window.innerWidth < 1200;
 
     if (this.isMobile) {
@@ -208,7 +209,7 @@ export default {
     this.lastEnterBackgroundDirection = "down";
     this.lastDirection = "down";
 
-    this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop);
+    // this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop);
     this.currentBackgroundScroll = window.scrollY;
     process.nextTick(() => {
       window.dispatchEvent(new Event("resize"));
@@ -394,7 +395,6 @@ export default {
       this.isMobile = getIsMobile() || window.innerWidth < 1000;
 
       this.currStepIndex = parseInt(element.dataset.stepNo);
-      console.log("this.currStepIndex", this.currStepIndex);
       if (this.lastEnterBackgroundDirection !== "jump") {
         this.lastEnterBackgroundDirection = direction;
         this.startBackgroundScroll = window.scrollY;
@@ -438,7 +438,7 @@ export default {
       */
     },
     backgroundLoop() {
-      this.isSausage = window.innerWidth < 1200;
+      /*
       if (this.currentBackgroundToShow) {
         // to do remove query from loop
         // this.backgroundContainer = document.querySelector(".background_container");
@@ -485,6 +485,7 @@ export default {
         }
       }
       this.backgroundAnimation = requestAnimationFrame(this.backgroundLoop);
+        */
     },
     mergedGraphSequence(backgrounds) {
       backgrounds.sort((a, b) => {
