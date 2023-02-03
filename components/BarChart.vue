@@ -1,10 +1,12 @@
 <template>
   <div class="graph-container">
+    <transition name="fade">
     <p
       class="chart-title"
-      v-show="!isLoading && background"
+      v-show="!isLoading"
       v-html="background.chart_title"
     ></p>
+    </transition>
     <transition name="fade">
       <scatterjs
         class="scatterjs"
@@ -247,7 +249,6 @@ export default {
           console.error("no step for bar chart!");
           return;
         }
-        this.isLoading = true;
         if (process.client) {
           this.isMobile = getIsMobile();
           // Chart.register(zoomPlugin);
@@ -258,7 +259,6 @@ export default {
             data = this.dataList[dataIndex];
           }
           this.setData(data);
-          this.isLoading = false;
         }
       }
       if (process.client) {
@@ -318,17 +318,22 @@ function compareHeadlines(a, b) {
 </script>
 
 <style lang="sass" scoped>
+
+canvas
+  min-height: 300px !important
 .loading
   width: 100%
   height: 300px
   display: flex
   align-items: center
+  min-height: 300px
   justify-content: center
 .graph-container
   width: 100%
   width: -moz-available
   width: -webkit-fill-available
   width: fill-available
+  min-height: 300px
   filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3))
   display: flex
   flex-direction: column
@@ -347,6 +352,8 @@ function compareHeadlines(a, b) {
   @media only screen and (max-width: 480px)
     font-size: 9px
 
+.scatterjs
+  min-height: 330px !important
 .chart-title
   font-family: 'Space Mono'
   text-align: center
