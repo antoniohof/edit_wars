@@ -158,9 +158,6 @@
 
 <script>
 import Vue from "vue";
-import throttle from "lodash/throttle";
-import debounce from "lodash/debounce";
-
 import { narratives } from "@/utils/constants.js";
 import { getIsMobile } from "@/utils/index.js";
 
