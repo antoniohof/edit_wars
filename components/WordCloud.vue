@@ -122,6 +122,9 @@ export default {
 </script>
   
 <style lang="sass">
+@font-face 
+  font-family: 'roboto-mono'
+  src: url('/fonts/roboto-mono-v22-latin_cyrillic-regular.ttf') format('truetype') !important
 .wordcloudiframe
   width: 100%
   height: 100%
@@ -131,6 +134,7 @@ export default {
   -ms-transform: translateZ(0)
   -o-transform: translateZ(0)
   transform: translateZ(0)
+  font-family: Space Mono Italic !important
 .wordcloud-page
   display: flex
   background-color: white
@@ -147,6 +151,8 @@ export default {
   -ms-transform: translateZ(0)
   -o-transform: translateZ(0)
   transform: translateZ(0)
+  font-family: Space Mono Italic !important
+
 .hide
   pointer-events: none !important
   opacity: 0.10
