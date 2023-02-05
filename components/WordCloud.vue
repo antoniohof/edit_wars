@@ -124,7 +124,7 @@ export default {
 <style lang="sass">
 @font-face 
   font-family: 'roboto-mono'
-  src: url('/fonts/roboto-mono-v22-latin_cyrillic-regular.ttf') format('truetype') !important
+  src: url('/fonts/roboto-mono-v22-latin_cyrillic-regular.ttf') format('truetype')
 .wordcloudiframe
   width: 100%
   height: 100%
@@ -134,7 +134,7 @@ export default {
   -ms-transform: translateZ(0)
   -o-transform: translateZ(0)
   transform: translateZ(0)
-  font-family: Space Mono Italic !important
+  font-family: roboto-mono !important
 .wordcloud-page
   display: flex
   background-color: white
@@ -151,7 +151,7 @@ export default {
   -ms-transform: translateZ(0)
   -o-transform: translateZ(0)
   transform: translateZ(0)
-  font-family: Space Mono Italic !important
+  font-family: roboto-mono !important
 
 .hide
   pointer-events: none !important
