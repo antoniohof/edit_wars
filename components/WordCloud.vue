@@ -51,12 +51,16 @@ export default {
     if (!process.browser) {
       return;
     }
-    console.log('mounted wordcloud')
     this.isMobile = getIsMobile()
-    if (this.background) {
-      let url = WORD_GRAPH_PATH + this.background.name;
-      this.setData(this.background, url);
-    }
+
+    setTimeout(() => {
+      this.$refs.wordcloud.contentWindow.location.reload(true);//The argument "true" will force all loaded resources, such as images, to be re-checked for expiry at the server
+      console.log('mounted wordcloud')
+      if (this.background) {
+        let url = WORD_GRAPH_PATH + this.background.name;
+        this.setData(this.background, url);
+      }
+    }, 100)
   },
   async asyncData({ $content }) {},
   computed: {
