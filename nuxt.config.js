@@ -87,7 +87,7 @@ export default {
         href: '/fonts/roboto-mono-v22-latin_cyrillic-ext_cyrillic-regular.ttf',
         as: 'font',
         type: 'font/ttf',
-        crossorigin: true
+        crossorigin: "anonymous"
       }
     ],
     script: [
