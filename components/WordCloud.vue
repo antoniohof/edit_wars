@@ -5,6 +5,7 @@
       ref="wordcloud"
       sandbox="allow-scripts allow-top-navigation allow-same-origin"
       class="wordcloudiframe"
+      style="font-family: 'Arial'"
       :src="currentUrl"
     ></iframe>
   </div>
