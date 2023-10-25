@@ -233,6 +233,7 @@ export default {
 .v-list
   height: fit-content
   background: transparent
+  padding-bottom: 100px
   @media only screen and (max-width: 480px)
     width: 100% !important
 .v-list-item
