@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="home ma-0 pa-0" @click="onClickArrow">
-    <transition name="fadelongo">
+    <!-- <transition name="fadelongo">
       <h3 v-show="showName && !isScrolled" id="announcements">New Exhibition in Bremen! November, 09 - February, 27, 2024: Propaganda Narrative Soundscapes Dashboard at the Jahresausstellung in the Haus der Wissenschaft, Sandstr. 4. Opening: November, 08, at 17:00</h3>
-    </transition>
+    </transition> -->
     <v-container fluid class="intro pa-0">
       <div  class="intro-background">
       </div>
